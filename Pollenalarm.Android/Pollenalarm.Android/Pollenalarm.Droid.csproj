@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{FA490029-F02F-48E7-83BC-F4CE3C814DD6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Pollenalarm.Droid</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AssemblyName>Pollenalarm.Droid</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidSupportedAbis>armeabi;x86</AndroidSupportedAbis>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <DebugSymbols>true</DebugSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Misc\Settings.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\AddEditCityActivity.cs" />
+    <Compile Include="DataHolder.cs" />
+    <Compile Include="Views\CityActivity.cs" />
+    <Compile Include="Views\Fragments\PollutionListFragment.cs" />
+    <Compile Include="Adapters\PollutionAdapter.cs" />
+    <Compile Include="Views\PollenActivity.cs" />
+    <Compile Include="Misc\Helper.cs" />
+    <Compile Include="Adapters\CityAdapter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\layout\AddEditCity.axml" />
+    <AndroidResource Include="Resources\menu\main_acticity_actions.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_search.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_search.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_search.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_search.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_new.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_new.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_new.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_new.png" />
+    <AndroidResource Include="Resources\menu\addeditcity_activity_actions.xml" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_accept.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_accept.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_accept.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_accept.png" />
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\layout\City.axml" />
+    <AndroidResource Include="Resources\layout\PollutionList.axml" />
+    <AndroidResource Include="Resources\layout\Pollen.axml" />
+    <AndroidResource Include="Resources\values\Dimens.xml" />
+    <AndroidResource Include="Resources\menu\city_activity_actions.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable\Ambrosia.png" />
+    <AndroidResource Include="Resources\drawable\Ampfer.png" />
+    <AndroidResource Include="Resources\drawable\Beifuss.png" />
+    <AndroidResource Include="Resources\drawable\Birke.png" />
+    <AndroidResource Include="Resources\drawable\Buche.png" />
+    <AndroidResource Include="Resources\drawable\Eiche.png" />
+    <AndroidResource Include="Resources\drawable\Erle.png" />
+    <AndroidResource Include="Resources\drawable\Graeser.png" />
+    <AndroidResource Include="Resources\drawable\Hasel.png" />
+    <AndroidResource Include="Resources\drawable\Pappel.png" />
+    <AndroidResource Include="Resources\drawable\Roggen.png" />
+    <AndroidResource Include="Resources\drawable\Ulme.png" />
+    <AndroidResource Include="Resources\drawable\Wegerich.png" />
+    <AndroidResource Include="Resources\drawable\Weide.png" />
+    <AndroidResource Include="Resources\layout\PollutionItem.axml" />
+    <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\values-v21\Styles.xml" />
+    <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_lens_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_lens_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_lens_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_lens_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_lens_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_panorama_fish_eye_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_panorama_fish_eye_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_panorama_fish_eye_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_panorama_fish_eye_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_panorama_fish_eye_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable\Background.png" />
+    <AndroidResource Include="Resources\values-de\Strings.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Pollenalarm.Shared\Pollenalarm.Shared.csproj">
+      <Project>{99ACB9B6-0B21-4FF3-8ECB-49398243DA79}</Project>
+      <Name>Pollenalarm.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Fragments\" />
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Resources\values-v21\" />
+    <Folder Include="Resources\values-de\" />
+  </ItemGroup>
+</Project>

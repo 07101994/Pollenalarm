@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Pollenalarm</string>
+	<string name="general_information">General Information</string>
+	<string name="city_name">Name</string>
+	<string name="city_zip">Zip</string>
+	<string name="action_add_city">New City</string>
+	<string name="tab_today">Today</string>
+	<string name="tab_tomorrow">Tomorrow</string>
+	<string name="tab_aftertomorrow">After Tomorrow</string>
+	<string name="pollen_description">Description</string>
+	<string name="clinical_pollution">Clinical Pollutions</string>
+	<string name="clinical_pollution_low">Low</string>
+	<string name="clinical_pollution_intermediate">Medium</string>
+	<string name="clinical_pollution_high">Strong</string>
+	<string name="clinical_pollution_veryhigh">Very strong</string>
+	<string name="delete">Delete</string>
+	<string name="edit">Edit</string>
+	<string name="delete_city_title">Delete {0}?</string>
+	<string name="delete_city_body">Do you really want to delete this city?</string>
+	<string name="error_header">Ooops...</string>
+	<string name="pollution_error_body">An error occurred while loading the data.</string>
+	<string name="bloom_time">Bloomtime</string>
+	<string name="bloom_time_begin">Begin of</string>
+	<string name="bloom_time_middle">Middle of</string>
+	<string name="bloom_time_end">End of</string>
+	<string name="bloom_time_until">until</string>
+	<string name="pollution_none">None</string>
+	<string name="pollution_low">Low</string>
+	<string name="pollution_medium">Medium</string>
+	<string name="pollution_high">Strong</string>
+	<string name="addEdit_error_header">Invalid entries</string>
+	<string name="addEdit_error_body">Please check your entries and try again.</string>
+
+</resources>
