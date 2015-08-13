@@ -24,7 +24,7 @@ The mobile applications are based on [Xamarin](http://xamarin.com/) technology. 
 The portable class library shares code between the server and the forntend projects. It includes the view models and some basic funtionality like downloading information from the server and calculating the pollen pollution.
 
 ### Testing
-The frontend code is tested with the Xamarin.UITest framework and is based on NUnit. To fight device fragmentation and to see how it performs in the real world, [Xamarin Test Cloud](http://xamarin.com/test-cloud) is used. [You can read here](http://wp.me/p6yt1c-DH) how this works.
+The frontend code is tested with the Xamarin.UITest framework and is based on NUnit. To fight device fragmentation and to see how it performs in the real world, [Xamarin Test Cloud](http://xamarin.com/test-cloud) is used. [You can read here](http://wp.me/p6yt1c-DH) how this works and take at the look at the [UI Test cases](https://github.com/Thepagedot/Pollenalarm/blob/master/Pollenalarm.Android/Pollenalarm.Android.UITests/Tests.cs).
 
 ![test]
 [test]: https://raw.githubusercontent.com/Thepagedot/Pollenalarm/master/Misc/TestResults.png "Test Results"
