@@ -36,9 +36,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidSupportedAbis>armeabi;x86</AndroidSupportedAbis>
-    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <DebugSymbols>true</DebugSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -101,20 +100,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_delete_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_delete_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_delete_white_24dp.png" />
-    <AndroidResource Include="Resources\drawable\Ambrosia.png" />
-    <AndroidResource Include="Resources\drawable\Ampfer.png" />
-    <AndroidResource Include="Resources\drawable\Beifuss.png" />
-    <AndroidResource Include="Resources\drawable\Birke.png" />
-    <AndroidResource Include="Resources\drawable\Buche.png" />
-    <AndroidResource Include="Resources\drawable\Eiche.png" />
-    <AndroidResource Include="Resources\drawable\Erle.png" />
-    <AndroidResource Include="Resources\drawable\Graeser.png" />
-    <AndroidResource Include="Resources\drawable\Hasel.png" />
-    <AndroidResource Include="Resources\drawable\Pappel.png" />
-    <AndroidResource Include="Resources\drawable\Roggen.png" />
-    <AndroidResource Include="Resources\drawable\Ulme.png" />
-    <AndroidResource Include="Resources\drawable\Wegerich.png" />
-    <AndroidResource Include="Resources\drawable\Weide.png" />
     <AndroidResource Include="Resources\layout\PollutionItem.axml" />
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\values-v21\Styles.xml" />
@@ -129,9 +114,23 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_panorama_fish_eye_black_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_panorama_fish_eye_black_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_panorama_fish_eye_black_24dp.png" />
-    <AndroidResource Include="Resources\drawable\Background.png" />
     <AndroidResource Include="Resources\values-de\Strings.xml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Ambrosia.jpg" />
+    <AndroidResource Include="Resources\drawable\Ampfer.jpg" />
+    <AndroidResource Include="Resources\drawable\Background.jpg" />
+    <AndroidResource Include="Resources\drawable\Beifuss.jpg" />
+    <AndroidResource Include="Resources\drawable\Birke.jpg" />
+    <AndroidResource Include="Resources\drawable\Buche.jpg" />
+    <AndroidResource Include="Resources\drawable\Eiche.jpg" />
+    <AndroidResource Include="Resources\drawable\Erle.jpg" />
+    <AndroidResource Include="Resources\drawable\Graeser.jpg" />
+    <AndroidResource Include="Resources\drawable\Hasel.jpg" />
+    <AndroidResource Include="Resources\drawable\Pappel.jpg" />
+    <AndroidResource Include="Resources\drawable\Roggen.jpg" />
+    <AndroidResource Include="Resources\drawable\Ulme.jpg" />
+    <AndroidResource Include="Resources\drawable\Wegerich.jpg" />
+    <AndroidResource Include="Resources\drawable\Weide.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

@@ -1,9 +1,15 @@
-﻿
+﻿using System;
+
 using Android.App;
 using Android.Content;
+using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Text.Style;
+using System.Collections.Generic;
+using Pollenalarm.Shared.ViewModels;
+using Pollenalarm.Shared;
 using System.Linq;
 
 namespace Pollenalarm.Droid
@@ -23,6 +29,11 @@ namespace Pollenalarm.Droid
 			SetContentView (Resource.Layout.Main);
 
 			DataHolder.Current.LoadCityList(this);
+
+			// Sample Data
+			/*DataHolder.Current.CityList.Add(new CityViewModel ("52080", "Aachen", null, 0, 0));
+			DataHolder.Current.CityList.Add(new CityViewModel ("90409", "Nürnberg", null, 0, 0));
+			DataHolder.Current.CityList.Add(new CityViewModel ("40764", "Langenfeld", null, 0, 0));*/
 
 			var listView = (ListView)FindViewById(Resource.Id.cityListView);
 			listView.ItemClick += ListView_ItemClick;

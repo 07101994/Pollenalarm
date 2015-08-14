@@ -19,7 +19,6 @@ namespace Pollenalarm.Droid
 		public TextView Name { get; set; }
 		public TextView Pollution { get; set; }
 		public ImageView Background { get; set; }
-		public int Position { get; set; }
 	}
 
 	public class PollutionAdapter : ArrayAdapter<PollutionViewModel>
@@ -46,75 +45,36 @@ namespace Pollenalarm.Droid
 
 			if (holder == null)
 			{
-				holder = new PollutionViewHolder();
-				view = inflater.Inflate(Resource.Layout.PollutionItem, null);
+                view = inflater.Inflate(Resource.Layout.PollutionItem, null);
 
+				holder = new PollutionViewHolder();				
 				holder.Name = view.FindViewById<TextView>(Resource.Id.tvName);
 				holder.Pollution = view.FindViewById<TextView>(Resource.Id.tvPollution);
 				holder.Background = view.FindViewById<ImageView>(Resource.Id.ivBackground);
+
 				view.Tag = holder;
 			}
-
-			// Fill view elements
+                			
+            // Decide which value to display according to the dayNumber
 			var valueString = "";
 			switch (dayNumber) 
 			{
-				case 0:				
-					valueString = inflater.Context.GetString(Helper.GetStringIdForPollution(GetItem(position).ValueToday));
-					break;
-				case 1:
-					valueString = inflater.Context.GetString(Helper.GetStringIdForPollution(GetItem(position).ValueTomorrow));
-					break;
-				case 2:
-					valueString = inflater.Context.GetString(Helper.GetStringIdForPollution(GetItem(position).ValueAfterTomorrow));
-					break;				
+				case 0:	valueString = inflater.Context.GetString(Helper.GetStringIdForPollution(GetItem(position).ValueToday)); break;
+				case 1: valueString = inflater.Context.GetString(Helper.GetStringIdForPollution(GetItem(position).ValueTomorrow)); break;
+				case 2: valueString = inflater.Context.GetString(Helper.GetStringIdForPollution(GetItem(position).ValueAfterTomorrow)); break;				
 			}
 
+            // Fill holder elements
 			holder.Name.Text = GetItem(position).Pollen.Name;
 			holder.Pollution.Text = valueString;
-			holder.Position = position;
 
+            // Avoid loading image while scrolling
             if (!fragment.IsScrolling)
                 holder.Background.SetImageResource(Helper.GetImageIdForPollen(GetItem(position).Pollen));
             else
                 holder.Background.SetImageResource(Android.Resource.Drawable.IcMenuGallery);
-			    //new ImageLoaderTask(position, holder, inflater.Context).ExecuteOnExecutor(AsyncTask.ThreadPoolExecutor, null);
 					
 			return view;
 		}
 	}
-
-//	class ImageLoaderTask : AsyncTask
-//	{
-//		PollutionViewHolder holder;
-//		Context context;
-//		int position;
-//
-//
-//		public ImageLoaderTask(int position, PollutionViewHolder holder, Context context)
-//		{
-//			this.holder = holder;
-//			this.position = position;
-//			this.context = context;
-//		}
-//
-//		/// <summary>
-//		/// Called on a background thread when the task is executed.
-//		/// </summary>
-//		protected override Java.Lang.Object DoInBackground(params Java.Lang.Object[] @params)
-//		{
-//			//return context.GetDrawable(Helper.GetImageIdForPollen(holder.Pollen));
-//			//return Helper.GetImageIdForPollen(holder.Pollen);
-//		}
-//
-//		/// <summary>
-//		/// Once the image is downloaded, associates it to the imageView
-//		/// </summary>
-//		protected override void OnPostExecute(Java.Lang.Object result)
-//		{
-////			if (holder.Position == position)
-////				holder.Background.SetImageDrawable((Drawable)result);
-//		}
-//	}
 }
-
