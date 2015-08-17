@@ -37,7 +37,7 @@ namespace Pollenalarm.Droid
 
 			// Image
 			var image = FindViewById<ImageView>(Resource.Id.pollenDetailsImage);
-			image.SetImageResource(Helper.GetImageIdForPollen(DataHolder.Current.CurrentPollen));
+			image.SetImageResource(Helper.GetImageIdForPollen(DataHolder.Current.CurrentPollen.Id));
 			image.SetScaleType (ImageView.ScaleType.FitXy);
 			image.SetAdjustViewBounds (true);
 

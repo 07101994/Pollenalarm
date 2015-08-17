@@ -8,9 +8,12 @@ using Android.Content;
 using System.Collections.Generic;
 using Java.Lang;
 using Android.OS;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Java.Util.Concurrent;
 using System.Threading;
+using System.Threading.Tasks;
+using Square.Picasso;
 
 namespace Pollenalarm.Droid
 {
@@ -56,7 +59,7 @@ namespace Pollenalarm.Droid
 			}
                 			
             // Decide which value to display according to the dayNumber
-			var valueString = "";
+			var valueString = "Test";
 			switch (dayNumber) 
 			{
 				case 0:	valueString = inflater.Context.GetString(Helper.GetStringIdForPollution(GetItem(position).ValueToday)); break;
@@ -65,16 +68,14 @@ namespace Pollenalarm.Droid
 			}
 
             // Fill holder elements
-			holder.Name.Text = GetItem(position).Pollen.Name;
+            var pollution = GetItem(position);
+            holder.Name.Text = pollution.Pollen.Name;
 			holder.Pollution.Text = valueString;
-
-            // Avoid loading image while scrolling
-            if (!fragment.IsScrolling)
-                holder.Background.SetImageResource(Helper.GetImageIdForPollen(GetItem(position).Pollen));
-            else
-                holder.Background.SetImageResource(Android.Resource.Drawable.IcMenuGallery);
+            var width = fragment.View.Width;
+            var height = 120 * Context.Resources.DisplayMetrics.Density;
+            Picasso.With(Context).Load(Helper.GetImageIdForPollen(GetItem(position).Pollen.Id)).Resize((int)width, (int)height).CenterCrop().Into(holder.Background);
 					
 			return view;
-		}
-	}
+		}            
+    }
 }

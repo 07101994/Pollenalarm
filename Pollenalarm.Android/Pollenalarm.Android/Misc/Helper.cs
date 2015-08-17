@@ -59,9 +59,9 @@ namespace Pollenalarm.Droid
 			return imageBitmap;
 		}
 
-		public static int GetImageIdForPollen (Pollenalarm.Shared.ViewModels.PollenViewModel pollen)
+        public static int GetImageIdForPollen(int pollenId)
 		{
-			switch (pollen.Id)
+			switch (pollenId)
 			{
 				default:
 				case 2: return Resource.Drawable.Ambrosia;

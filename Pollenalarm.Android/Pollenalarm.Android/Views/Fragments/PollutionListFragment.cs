@@ -16,7 +16,6 @@ namespace Pollenalarm.Droid
 {
 	public class PollutionListFragment : Fragment
 	{
-        public bool IsScrolling { get; set; }
         private ListView listView;
 
 		public override void OnCreate (Bundle savedInstanceState)
@@ -32,17 +31,9 @@ namespace Pollenalarm.Droid
 			listView = view.FindViewById<ListView>(Resource.Id.pollutionListView);			
 			listView.Adapter = new PollutionAdapter(this, inflater.Context, -1, DataHolder.Current.CurrentPollutions, dayNumber);
 			listView.ItemClick += ListView_ItemClick;
-            listView.ScrollStateChanged += ListView_ScrollStateChanged;
 
 			return view;
 		}
-
-        void ListView_ScrollStateChanged(object sender, AbsListView.ScrollStateChangedEventArgs e)
-        {
-            IsScrolling = (e.ScrollState != ScrollState.Idle);
-            if (!IsScrolling)
-                ((PollutionAdapter)listView.Adapter).NotifyDataSetChanged();
-        }            
 
 		void ListView_ItemClick (object sender, AdapterView.ItemClickEventArgs e)
 		{
