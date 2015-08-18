@@ -140,6 +140,11 @@
     <AndroidResource Include="Resources\drawable\Ulme.jpg" />
     <AndroidResource Include="Resources\drawable\Wegerich.jpg" />
     <AndroidResource Include="Resources\drawable\Weide.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_location_on_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_location_on_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_location_on_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_location_on_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_location_on_white_24dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

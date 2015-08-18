@@ -125,25 +125,28 @@ namespace Pollenalarm.Droid
 			public const int ic_lens_black_24dp = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int ic_panorama_fish_eye_black_24dp = 2130837519;
+			public const int ic_location_on_white_24dp = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int Icon = 2130837520;
+			public const int ic_panorama_fish_eye_black_24dp = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int Pappel = 2130837521;
+			public const int Icon = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int Roggen = 2130837522;
+			public const int Pappel = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int Ulme = 2130837523;
+			public const int Roggen = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int Wegerich = 2130837524;
+			public const int Ulme = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int Weide = 2130837525;
+			public const int Wegerich = 2130837525;
+			
+			// aapt resource value: 0x7f020016
+			public const int Weide = 2130837526;
 			
 			static Drawable()
 			{
@@ -158,17 +161,20 @@ namespace Pollenalarm.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090019
-			public const int action_add_city = 2131296281;
-			
-			// aapt resource value: 0x7f090016
-			public const int action_add_city_confirm = 2131296278;
+			// aapt resource value: 0x7f09001a
+			public const int action_add_city = 2131296282;
 			
 			// aapt resource value: 0x7f090017
-			public const int action_delete_city = 2131296279;
+			public const int action_add_city_confirm = 2131296279;
 			
 			// aapt resource value: 0x7f090018
-			public const int action_edit_city = 2131296280;
+			public const int action_delete_city = 2131296280;
+			
+			// aapt resource value: 0x7f090019
+			public const int action_edit_city = 2131296281;
+			
+			// aapt resource value: 0x7f090016
+			public const int action_location = 2131296278;
 			
 			// aapt resource value: 0x7f090000
 			public const int addEditCityName = 2131296256;
@@ -367,6 +373,15 @@ namespace Pollenalarm.Droid
 			
 			// aapt resource value: 0x7f060001
 			public const int general_information = 2131099649;
+			
+			// aapt resource value: 0x7f06001f
+			public const int get_location = 2131099679;
+			
+			// aapt resource value: 0x7f060021
+			public const int location_not_found_body = 2131099681;
+			
+			// aapt resource value: 0x7f060020
+			public const int location_not_found_title = 2131099680;
 			
 			// aapt resource value: 0x7f060008
 			public const int pollen_description = 2131099656;

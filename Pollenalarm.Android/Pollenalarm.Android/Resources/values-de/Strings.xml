@@ -31,5 +31,8 @@
 	<string name="pollution_high">Stark</string>
 	<string name="addEdit_error_header">Ungültige Eingaben</string>
 	<string name="addEdit_error_body">Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.</string>
+	<string name="get_location">Aktuelle Position</string>
+	<string name="location_not_found_title">Position nicht gefunden</string>
+	<string name="location_not_found_body">Ihre aktuelle Position konnte leider nicht gefunden werden. Bitte stellen Sie sicher, das Ihre Ortungseinstellungen aktiviert sind.</string>
 
 </resources>

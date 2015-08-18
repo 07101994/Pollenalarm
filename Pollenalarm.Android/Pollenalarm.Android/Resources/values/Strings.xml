@@ -31,5 +31,8 @@
 	<string name="pollution_high">Strong</string>
 	<string name="addEdit_error_header">Invalid entries</string>
 	<string name="addEdit_error_body">Please check your entries and try again.</string>
+	<string name="get_location">Current position</string>
+	<string name="location_not_found_title">Location not found</string>
+	<string name="location_not_found_body">We could not find your current location. Please make sure, that your location settings are activated.</string>
 
 </resources>

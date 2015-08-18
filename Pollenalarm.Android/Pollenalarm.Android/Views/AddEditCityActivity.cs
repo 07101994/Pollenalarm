@@ -19,15 +19,21 @@ using Android.Locations;
 namespace Pollenalarm.Droid
 {
 	[Activity (Label = "Add a new city", ParentActivity = typeof(MainActivity))]			
-	public class AddEditCityActivity : Activity
+    public class AddEditCityActivity : Activity, ILocationListener
 	{
 		private bool isEditMode = false;
 		private EditText etCityName;
 		private EditText etCityZip;
 
+        // Location
+        private LocationManager locationManager;
+        private string locationProvider;
+        private Location location;
+
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate (bundle);
+            SetContentView(Resource.Layout.AddEditCity);
 
 			// Hide image on Lollypop
 			if (Build.VERSION.SdkInt <= BuildVersionCodes.Kitkat)
@@ -35,15 +41,13 @@ namespace Pollenalarm.Droid
 				ActionBar.SetLogo (Resource.Drawable.Icon);
 				ActionBar.SetDisplayUseLogoEnabled (true);
 				ActionBar.SetDisplayShowHomeEnabled(true);
-			}
-				
+			}				
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
-
-			SetContentView(Resource.Layout.AddEditCity);
-
+            			
 			// Get view elements
 			etCityName = FindViewById<EditText> (Resource.Id.addEditCityName);
 			etCityZip = FindViewById<EditText> (Resource.Id.addEditCityZip);
+            locationManager = (LocationManager)GetSystemService(LocationService);
 
 			// Check if edit mode
 			isEditMode = Intent.GetBooleanExtra("isEditMode", false);
@@ -57,8 +61,25 @@ namespace Pollenalarm.Droid
 				name.Text = DataHolder.Current.CurrentCity.Name;
 				var zip = FindViewById<EditText>(Resource.Id.addEditCityZip);
 				zip.Text = DataHolder.Current.CurrentCity.Zip;
-			}
+			}                
 		}
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            // Subscribe location changes
+            locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 1000, 0, this);
+            locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 1000, 0, this);
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            // Unsibscribe location changes
+            locationManager.RemoveUpdates(this);
+        }
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
@@ -75,6 +96,9 @@ namespace Pollenalarm.Droid
 		{
 			switch (item.ItemId)
 			{
+                case Resource.Id.action_location:
+                    GetCurrentPosition();
+                    break;
 				case Resource.Id.action_add_city_confirm:
 					if (isEditMode)
 						EditCity();
@@ -89,13 +113,33 @@ namespace Pollenalarm.Droid
 			return base.OnMenuItemSelected(featureId, item);
 		}
 
-		bool CheckInputs ()
+        async void GetCurrentPosition()
+        {
+            // Get current address
+            var geoCoder = new Geocoder(this);
+            var addressList = await geoCoder.GetFromLocationAsync(location.Latitude, location.Longitude, 1);
+            var address = addressList.FirstOrDefault();
+            if (address != null)
+            {
+                etCityName.Text = address.Locality;
+                etCityZip.Text = address.PostalCode;
+            }
+            else
+            {
+                var builder = new AlertDialog.Builder(this);
+                builder.SetTitle (Resource.String.location_not_found_title);
+                builder.SetMessage(Resource.String.location_not_found_body);
+                builder.SetNeutralButton(Android.Resource.String.Ok, (s, e) => {});
+                builder.Show();
+            }
+        }
+
+		bool CheckInputs()
 		{
 			if (etCityZip.Text.Length != 5)
 				return false;
 			if (etCityName.Text.Length == 0)
 				return false;
-
 			return true;
 		}
 
@@ -112,13 +156,7 @@ namespace Pollenalarm.Droid
 			}
 
 			// Create city from inputs
-			var city = new CityViewModel (
-				((EditText)FindViewById (Resource.Id.addEditCityZip)).Text,
-				((EditText)FindViewById (Resource.Id.addEditCityName)).Text,
-				null,
-				0,
-				0
-			);
+			var city = new CityViewModel (((EditText)FindViewById (Resource.Id.addEditCityZip)).Text, ((EditText)FindViewById (Resource.Id.addEditCityName)).Text, null, 0, 0);
 
 			// Add city to list
 			DataHolder.Current.CurrentCity = city;
@@ -173,5 +211,15 @@ namespace Pollenalarm.Droid
 			message.SetPositiveButton(GetText (Android.Resource.String.Ok), (senderAlert, args) => {});
 			message.Show();
 		}
+           
+        // React on location changes
+        public void OnProviderDisabled(string provider) {}
+        public void OnProviderEnabled(string provider) {}
+        public void OnStatusChanged(string provider, Availability status, Bundle extras) {}
+        public void OnLocationChanged(Location location) 
+        {
+            this.location = location;
+            locationManager.RemoveUpdates(this);
+        }
 	}
 }
