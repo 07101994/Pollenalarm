@@ -164,17 +164,14 @@ namespace Pollenalarm.Droid
 			// aapt resource value: 0x7f09001a
 			public const int action_add_city = 2131296282;
 			
-			// aapt resource value: 0x7f090017
-			public const int action_add_city_confirm = 2131296279;
-			
 			// aapt resource value: 0x7f090018
 			public const int action_delete_city = 2131296280;
 			
 			// aapt resource value: 0x7f090019
 			public const int action_edit_city = 2131296281;
 			
-			// aapt resource value: 0x7f090016
-			public const int action_location = 2131296278;
+			// aapt resource value: 0x7f090017
+			public const int action_location = 2131296279;
 			
 			// aapt resource value: 0x7f090000
 			public const int addEditCityName = 2131296256;
@@ -182,65 +179,68 @@ namespace Pollenalarm.Droid
 			// aapt resource value: 0x7f090001
 			public const int addEditCityZip = 2131296257;
 			
-			// aapt resource value: 0x7f090006
-			public const int cityListView = 2131296262;
-			
 			// aapt resource value: 0x7f090002
-			public const int fragmentContainer = 2131296258;
-			
-			// aapt resource value: 0x7f090012
-			public const int ivBackground = 2131296274;
-			
-			// aapt resource value: 0x7f090008
-			public const int linearLayout1 = 2131296264;
-			
-			// aapt resource value: 0x7f09000a
-			public const int linearLayout2 = 2131296266;
-			
-			// aapt resource value: 0x7f090003
-			public const int pbLoading = 2131296259;
-			
-			// aapt resource value: 0x7f090010
-			public const int pollenBloomTime = 2131296272;
-			
-			// aapt resource value: 0x7f09000e
-			public const int pollenClinicalPollution = 2131296270;
-			
-			// aapt resource value: 0x7f09000f
-			public const int pollenDetailsBloomTimeTitle = 2131296271;
-			
-			// aapt resource value: 0x7f09000d
-			public const int pollenDetailsClinicalPollutionTitle = 2131296269;
-			
-			// aapt resource value: 0x7f09000c
-			public const int pollenDetailsDescription = 2131296268;
-			
-			// aapt resource value: 0x7f09000b
-			public const int pollenDetailsDescriptionTitle = 2131296267;
-			
-			// aapt resource value: 0x7f090009
-			public const int pollenDetailsImage = 2131296265;
-			
-			// aapt resource value: 0x7f090011
-			public const int pollutionItem = 2131296273;
-			
-			// aapt resource value: 0x7f090015
-			public const int pollutionListView = 2131296277;
+			public const int btnSave = 2131296258;
 			
 			// aapt resource value: 0x7f090007
-			public const int scrollView1 = 2131296263;
+			public const int cityListView = 2131296263;
 			
-			// aapt resource value: 0x7f090004
-			public const int textView1 = 2131296260;
-			
-			// aapt resource value: 0x7f090005
-			public const int textView2 = 2131296261;
+			// aapt resource value: 0x7f090003
+			public const int fragmentContainer = 2131296259;
 			
 			// aapt resource value: 0x7f090013
-			public const int tvName = 2131296275;
+			public const int ivBackground = 2131296275;
+			
+			// aapt resource value: 0x7f090009
+			public const int linearLayout1 = 2131296265;
+			
+			// aapt resource value: 0x7f09000b
+			public const int linearLayout2 = 2131296267;
+			
+			// aapt resource value: 0x7f090004
+			public const int pbLoading = 2131296260;
+			
+			// aapt resource value: 0x7f090011
+			public const int pollenBloomTime = 2131296273;
+			
+			// aapt resource value: 0x7f09000f
+			public const int pollenClinicalPollution = 2131296271;
+			
+			// aapt resource value: 0x7f090010
+			public const int pollenDetailsBloomTimeTitle = 2131296272;
+			
+			// aapt resource value: 0x7f09000e
+			public const int pollenDetailsClinicalPollutionTitle = 2131296270;
+			
+			// aapt resource value: 0x7f09000d
+			public const int pollenDetailsDescription = 2131296269;
+			
+			// aapt resource value: 0x7f09000c
+			public const int pollenDetailsDescriptionTitle = 2131296268;
+			
+			// aapt resource value: 0x7f09000a
+			public const int pollenDetailsImage = 2131296266;
+			
+			// aapt resource value: 0x7f090012
+			public const int pollutionItem = 2131296274;
+			
+			// aapt resource value: 0x7f090016
+			public const int pollutionListView = 2131296278;
+			
+			// aapt resource value: 0x7f090008
+			public const int scrollView1 = 2131296264;
+			
+			// aapt resource value: 0x7f090005
+			public const int textView1 = 2131296261;
+			
+			// aapt resource value: 0x7f090006
+			public const int textView2 = 2131296262;
 			
 			// aapt resource value: 0x7f090014
-			public const int tvPollution = 2131296276;
+			public const int tvName = 2131296276;
+			
+			// aapt resource value: 0x7f090015
+			public const int tvPollution = 2131296277;
 			
 			static Id()
 			{
@@ -400,6 +400,9 @@ namespace Pollenalarm.Droid
 			
 			// aapt resource value: 0x7f060019
 			public const int pollution_none = 2131099673;
+			
+			// aapt resource value: 0x7f060022
+			public const int save = 2131099682;
 			
 			// aapt resource value: 0x7f060007
 			public const int tab_aftertomorrow = 2131099655;

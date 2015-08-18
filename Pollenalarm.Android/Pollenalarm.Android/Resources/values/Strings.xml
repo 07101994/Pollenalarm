@@ -34,5 +34,5 @@
 	<string name="get_location">Current position</string>
 	<string name="location_not_found_title">Location not found</string>
 	<string name="location_not_found_body">We could not find your current location. Please make sure, that your location settings are activated.</string>
-
+	<string name="save">Save</string>
 </resources>

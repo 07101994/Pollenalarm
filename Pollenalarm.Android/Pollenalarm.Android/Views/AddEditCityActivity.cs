@@ -27,7 +27,6 @@ namespace Pollenalarm.Droid
 
         // Location
         private LocationManager locationManager;
-        private string locationProvider;
         private Location location;
 
 		protected override void OnCreate(Bundle bundle)
@@ -47,6 +46,14 @@ namespace Pollenalarm.Droid
 			// Get view elements
 			etCityName = FindViewById<EditText> (Resource.Id.addEditCityName);
 			etCityZip = FindViewById<EditText> (Resource.Id.addEditCityZip);
+            var btnSave = FindViewById<Button>(Resource.Id.btnSave);
+            btnSave.Click += (sender, e) => {
+                if (isEditMode)
+                    EditCity();
+                else
+                    AddCity();
+            };
+
             locationManager = (LocationManager)GetSystemService(LocationService);
 
 			// Check if edit mode
@@ -99,12 +106,6 @@ namespace Pollenalarm.Droid
                 case Resource.Id.action_location:
                     GetCurrentPosition();
                     break;
-				case Resource.Id.action_add_city_confirm:
-					if (isEditMode)
-						EditCity();
-					else
-						AddCity();
-					return true;
 				case Resource.Id.action_delete_city:
 					DeleteCity();
 					return true;				

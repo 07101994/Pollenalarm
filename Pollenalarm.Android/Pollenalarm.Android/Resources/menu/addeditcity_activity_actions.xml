@@ -4,10 +4,6 @@
     	  android:showAsAction="always"
           android:icon="@drawable/ic_location_on_white_24dp"
           android:title="@string/get_location" />
-    <item android:id="@+id/action_add_city_confirm"
-    	  android:showAsAction="always"
-          android:icon="@drawable/ic_action_accept"
-          android:title="@android:string/ok" />
 	<item android:id="@+id/action_delete_city"
     	  android:showAsAction="ifRoom"
           android:icon="@drawable/ic_delete_white_24dp"
