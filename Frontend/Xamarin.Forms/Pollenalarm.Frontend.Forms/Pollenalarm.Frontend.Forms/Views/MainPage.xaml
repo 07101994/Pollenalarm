@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Pollenalarm.Frontend.Forms.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
+    Title="Pollenalarm">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Name="Settings"
+            Activated="Settings_Activated"
+            Order="Secondary"
+            Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ListView
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsLoading}"
+        ItemsSource="{Binding Places}"
+        RefreshCommand="{Binding RefreshCommand}">
+        <ListView.Header>
+            <StackLayout>
+                <StackLayout.Padding>
+                    <OnPlatform
+                        x:TypeArguments="Thickness"
+                        Android="14"
+                        WinPhone="20"
+                        iOS="0, 20, 0, 0" />
+                </StackLayout.Padding>
+                <Label FontSize="Large" Text="General Information" />
+                <Label Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." />
+                <Label FontSize="Large" Text="Places" />
+                <Label
+                    x:Name="lblNoPlacesWarning"
+                    IsVisible="{Binding Places.Count, Converter={StaticResource IntToNegatedBooleanConverter}}"
+                    Text="It's empty down here. Add your favorite places to keep an overview of their pollen pollution." />
+            </StackLayout>
+        </ListView.Header>
+    </ListView>
+</ContentPage>
