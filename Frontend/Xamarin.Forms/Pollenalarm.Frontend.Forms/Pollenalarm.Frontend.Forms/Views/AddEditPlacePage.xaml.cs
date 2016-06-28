@@ -13,6 +13,13 @@ namespace Pollenalarm.Frontend.Forms.Views
         public AddEditPlacePage()
         {
             InitializeComponent();
+			BindingContext = App.Bootstrapper.PlaceViewModel;
+			Title = (App.Bootstrapper.PlaceViewModel.CurrentPlace != null) ? "Edit" : "New Place";
         }
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+		}
     }
 }

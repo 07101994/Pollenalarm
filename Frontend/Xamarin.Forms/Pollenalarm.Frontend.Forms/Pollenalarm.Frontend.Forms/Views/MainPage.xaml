@@ -8,6 +8,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converter:IntToNegatedBooleanConverter x:Key="IntToBooleanConverter" />
             <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -16,30 +17,52 @@
         <ToolbarItem
             Name="Settings"
             Activated="Settings_Activated"
-            Order="Secondary"
-            Priority="0" />
+            Priority="0">
+			<ToolbarItem.Order>
+				<OnPlatform    
+					x:TypeArguments="ToolbarItemOrder"
+	                Android="Secondary"
+	                WinPhone="Secondary"
+	                iOS="Primary" />
+			</ToolbarItem.Order>
+		</ToolbarItem>
+		
+		<ToolbarItem
+            Name="Add"
+            Activated="Add_Activated"
+            Priority="1">
+			<ToolbarItem.Order>
+				<OnPlatform    
+					x:TypeArguments="ToolbarItemOrder"
+	                Android="Secondary"
+	                WinPhone="Secondary"
+	                iOS="Primary" />
+			</ToolbarItem.Order>
+		</ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ListView
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsLoading}"
         ItemsSource="{Binding Places}"
-        RefreshCommand="{Binding RefreshCommand}">
+        RefreshCommand="{Binding RefreshCommand}"
+		IsVisible="{Binding Places.Count, Converter={StaticResource IntToBooleanConverter}}">
         <ListView.Header>
             <StackLayout>
                 <StackLayout.Padding>
                     <OnPlatform
                         x:TypeArguments="Thickness"
-                        Android="14"
-                        WinPhone="20"
-                        iOS="0, 20, 0, 0" />
+                        Android="{StaticResource DefaultSicknessAndroid}"
+                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                        iOS="{StaticResource DefaultSicknessiOS}" />
                 </StackLayout.Padding>
-                <Label FontSize="Large" Text="General Information" />
-                <Label Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." />
-                <Label FontSize="Large" Text="Places" />
+                <Label FontAttributes="Bold" Text="General Information" />
+                <Label FontSize="Small" Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." />
+                <Label FontAttributes="Bold" Text="Places" Margin="0, 10, 0, 0"/>
                 <Label
                     x:Name="lblNoPlacesWarning"
                     IsVisible="{Binding Places.Count, Converter={StaticResource IntToNegatedBooleanConverter}}"
+					FontSize="Small"
                     Text="It's empty down here. Add your favorite places to keep an overview of their pollen pollution." />
             </StackLayout>
         </ListView.Header>

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Pollenalarm.Frontend.Shared;
 
 namespace Pollenalarm.Frontend.Forms
 {
@@ -21,10 +22,12 @@ namespace Pollenalarm.Frontend.Forms
             // Services
             SimpleIoc.Default.Register<PollenService>();
 
-            // ViewModels
-            SimpleIoc.Default.Register<MainViewModel>();
+			// ViewModels
+			SimpleIoc.Default.Register<MainViewModel>();
+			SimpleIoc.Default.Register<PlaceViewModel>();
         }
 
-        public MainViewModel MainViewModel { get { return SimpleIoc.Default.GetInstance<MainViewModel>(); }}
+		public MainViewModel MainViewModel { get { return SimpleIoc.Default.GetInstance<MainViewModel>(); } }
+		public PlaceViewModel PlaceViewModel { get { return SimpleIoc.Default.GetInstance<PlaceViewModel>(); }}
     }
 }

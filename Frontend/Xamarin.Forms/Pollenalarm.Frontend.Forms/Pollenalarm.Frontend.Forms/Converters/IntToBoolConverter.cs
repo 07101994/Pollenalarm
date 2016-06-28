@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
 using Xamarin.Forms;
 
 namespace Pollenalarm.Frontend.Forms.Converters

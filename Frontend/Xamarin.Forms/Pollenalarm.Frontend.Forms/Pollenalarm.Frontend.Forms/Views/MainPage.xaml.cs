@@ -22,12 +22,17 @@ namespace Pollenalarm.Frontend.Forms.Views
 
             if (!App.Bootstrapper.MainViewModel.IsLoaded)
                 await App.Bootstrapper.MainViewModel.RefreshAsync();
-
         }
 
         private async void Settings_Activated(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SettingsPage());
         }
+
+		private async void Add_Activated(object sender, EventArgs e)
+		{
+			App.Bootstrapper.PlaceViewModel.CurrentPlace = null;
+			await Navigation.PushAsync(new AddEditPlacePage());
+		}
     }
 }
