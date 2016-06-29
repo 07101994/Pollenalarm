@@ -13,6 +13,13 @@ namespace Pollenalarm.Frontend.Forms.Views
         public PlacePage()
         {
             InitializeComponent();
+            BindingContext = App.Bootstrapper.PlaceViewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Title = App.Bootstrapper.PlaceViewModel.CurrentPlace.Name;
         }
     }
 }

@@ -11,12 +11,15 @@ namespace Pollenalarm.Frontend.Forms
 {
     public partial class App : Application
     {
-        public static Bootstrapper Bootstrapper = new Bootstrapper();
+        public static Bootstrapper Bootstrapper;
 
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+
+            var navigationPage = new NavigationPage(new MainPage());
+            Bootstrapper = new Bootstrapper(navigationPage);
+            MainPage = navigationPage;
         }
     }
 }

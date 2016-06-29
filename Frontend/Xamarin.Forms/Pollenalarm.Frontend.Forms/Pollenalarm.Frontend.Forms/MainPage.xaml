@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Pollenalarm.Frontend.Forms.Views.MainPage"
+    x:Class="Pollenalarm.Frontend.Forms.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
@@ -16,37 +16,38 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Name="Settings"
-            Activated="Settings_Activated"
+            Command="{Binding NavigateToSettingsCommand}"
             Priority="0">
-			<ToolbarItem.Order>
-				<OnPlatform    
-					x:TypeArguments="ToolbarItemOrder"
-	                Android="Secondary"
-	                WinPhone="Secondary"
-	                iOS="Primary" />
-			</ToolbarItem.Order>
-		</ToolbarItem>
-		
-		<ToolbarItem
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Secondary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+
+        <ToolbarItem
             Name="Add"
-            Activated="Add_Activated"
+            Command="{Binding NavigateToAddPlaceCommand}"
             Priority="1">
-			<ToolbarItem.Order>
-				<OnPlatform    
-					x:TypeArguments="ToolbarItemOrder"
-	                Android="Secondary"
-	                WinPhone="Secondary"
-	                iOS="Primary" />
-			</ToolbarItem.Order>
-		</ToolbarItem>
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Secondary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ListView
+        HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsLoading}"
+        ItemSelected="PlacesList_ItemSelected"
         ItemsSource="{Binding Places}"
-        RefreshCommand="{Binding RefreshCommand}"
-		IsVisible="{Binding Places.Count, Converter={StaticResource IntToBooleanConverter}}">
+        RefreshCommand="{Binding RefreshCommand}">
         <ListView.Header>
             <StackLayout>
                 <StackLayout.Padding>
@@ -58,13 +59,35 @@
                 </StackLayout.Padding>
                 <Label FontAttributes="Bold" Text="General Information" />
                 <Label FontSize="Small" Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." />
-                <Label FontAttributes="Bold" Text="Places" Margin="0, 10, 0, 0"/>
+                <Label
+                    Margin="0, 10, 0, 0"
+                    FontAttributes="Bold"
+                    Text="Places" />
                 <Label
                     x:Name="lblNoPlacesWarning"
+                    FontSize="Small"
                     IsVisible="{Binding Places.Count, Converter={StaticResource IntToNegatedBooleanConverter}}"
-					FontSize="Small"
                     Text="It's empty down here. Add your favorite places to keep an overview of their pollen pollution." />
             </StackLayout>
         </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout>
+                            <StackLayout.Padding>
+                                <OnPlatform
+                                    x:TypeArguments="Thickness"
+                                    Android="{StaticResource DefaultSicknessAndroid}"
+                                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                    iOS="{StaticResource DefaultSicknessiOS}" />
+                            </StackLayout.Padding>
+                            <Label FontAttributes="Bold" Text="{Binding Name}" />
+                            <Label FontSize="Small" Text="{Binding Zip}" />
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
     </ListView>
 </ContentPage>

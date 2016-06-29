@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pollenalarm.Frontend.Forms.Views.AddEditPlacePage">
+<ContentPage
+    x:Class="Pollenalarm.Frontend.Forms.Views.AddEditPlacePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <StackLayout>
-		<StackLayout.Padding>
+        <StackLayout.Padding>
             <OnPlatform
                 x:TypeArguments="Thickness"
                 Android="{StaticResource DefaultSicknessAndroid}"
                 WinPhone="{StaticResource DefaultSicknessWinPhone}"
                 iOS="{StaticResource DefaultSicknessiOS}" />
         </StackLayout.Padding>
-		<Entry Placeholder="Name" ></Entry>
-		<Entry Placeholder="Zip" ></Entry>
-		<Button Text="Add" />
-	</StackLayout>
+        <Entry Placeholder="Name" Text="{Binding PlaceName, Mode=TwoWay}" />
+        <Entry Placeholder="Zip" Text="{Binding PlaceZip, Mode=TwoWay}" />
+        <Button Command="{Binding AddEditPlaceCommand}" Text="Add" />
+    </StackLayout>
 </ContentPage>

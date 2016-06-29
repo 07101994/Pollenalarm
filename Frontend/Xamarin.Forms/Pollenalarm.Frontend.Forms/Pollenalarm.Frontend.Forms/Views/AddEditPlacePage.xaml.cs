@@ -14,12 +14,12 @@ namespace Pollenalarm.Frontend.Forms.Views
         {
             InitializeComponent();
 			BindingContext = App.Bootstrapper.PlaceViewModel;
-			Title = (App.Bootstrapper.PlaceViewModel.CurrentPlace != null) ? "Edit" : "New Place";
         }
 
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-		}
+            Title = (App.Bootstrapper.PlaceViewModel.CurrentPlace != null) ? "Edit" : "New Place";
+        }
     }
 }

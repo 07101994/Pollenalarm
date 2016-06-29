@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,25 +11,37 @@ namespace Pollenalarm.Frontend.Forms.Services
 {
     public class NavigationService : INavigationService
     {
-        private INavigation _Navigation;
-        private Dictionary<string, Type> _Pages = new Dictionary<string, Type>();
+        private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
+        private NavigationPage _navigation;
 
-        public NavigationService(INavigation navigation)
+        public NavigationService(NavigationPage navigation)
         {
-            _Navigation = navigation;
+            _navigation = navigation;
         }
 
         public string CurrentPageKey
         {
             get
             {
-                throw new NotImplementedException();
+                lock (_pagesByKey)
+                {
+                    if (_navigation.CurrentPage == null)
+                    {
+                        return null;
+                    }
+
+                    var pageType = _navigation.CurrentPage.GetType();
+
+                    return _pagesByKey.ContainsValue(pageType)
+                        ? _pagesByKey.First(p => p.Value == pageType).Key
+                        : null;
+                }
             }
         }
 
         public void GoBack()
         {
-
+            _navigation.PopAsync();
         }
 
         public void NavigateTo(string pageKey)
@@ -36,23 +49,77 @@ namespace Pollenalarm.Frontend.Forms.Services
             NavigateTo(pageKey, null);
         }
 
-        public async void NavigateTo(string pageKey, object parameter)
+        public void NavigateTo(string pageKey, object parameter)
         {
-            if (!_Pages.ContainsKey(pageKey))
-                throw new KeyNotFoundException();
+            lock (_pagesByKey)
+            {
+                if (_pagesByKey.ContainsKey(pageKey))
+                {
+                    var type = _pagesByKey[pageKey];
+                    ConstructorInfo constructor = null;
+                    object[] parameters = null;
 
+                    if (parameter == null)
+                    {
+                        constructor = type.GetTypeInfo()
+                            .DeclaredConstructors
+                            .FirstOrDefault(c => !c.GetParameters().Any());
 
-            Type pageType = _Pages[pageKey];
-            var x = Activator.CreateInstance(pageType);
-            await _Navigation.PushAsync((Page)x);
+                        parameters = new object[]
+                        {
+                        };
+                    }
+                    else
+                    {
+                        constructor = type.GetTypeInfo()
+                            .DeclaredConstructors
+                            .FirstOrDefault(
+                                c =>
+                                {
+                                    var p = c.GetParameters();
+                                    return p.Count() == 1
+                                           && p[0].ParameterType == parameter.GetType();
+                                });
+
+                        parameters = new[]
+                        {
+                            parameter
+                        };
+                    }
+
+                    if (constructor == null)
+                    {
+                        throw new InvalidOperationException(
+                            "No suitable constructor found for page " + pageKey);
+                    }
+
+                    var page = constructor.Invoke(parameters) as Page;
+                    _navigation.PushAsync(page);
+                }
+                else
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            "No such page: {0}. Did you forget to call NavigationService.Configure?",
+                            pageKey),
+                        "pageKey");
+                }
+            }
         }
 
-        public void Register(string pageKey, Type pageType)
+        public void Configure(string pageKey, Type pageType)
         {
-            if (_Pages.ContainsKey(pageKey))
-                _Pages[pageKey] = pageType;
-            else
-                _Pages.Add(pageKey, pageType);
+            lock (_pagesByKey)
+            {
+                if (_pagesByKey.ContainsKey(pageKey))
+                {
+                    _pagesByKey[pageKey] = pageType;
+                }
+                else
+                {
+                    _pagesByKey.Add(pageKey, pageType);
+                }
+            }
         }
     }
 }
