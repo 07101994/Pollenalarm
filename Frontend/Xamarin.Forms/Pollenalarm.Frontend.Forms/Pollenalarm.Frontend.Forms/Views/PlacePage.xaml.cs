@@ -23,6 +23,7 @@ namespace Pollenalarm.Frontend.Forms.Views
             var pollution = e.SelectedItem as Pollution;
             if (pollution != null && pollution.Pollen != null)
             {
+                ((ListView)sender).SelectedItem = null;
                 App.Bootstrapper.PlaceViewModel.NavigateToPollenCommand.Execute(pollution.Pollen);
             }
         }

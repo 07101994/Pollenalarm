@@ -34,6 +34,7 @@ namespace Pollenalarm.Frontend.Forms
             var selectedPlace = e.SelectedItem as Place;
             if (selectedPlace != null)
             {
+                ((ListView)sender).SelectedItem = null;
                 App.Bootstrapper.MainViewModel.NavigateToPlaceCommand.Execute(selectedPlace);
             }
         }
