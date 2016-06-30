@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Pollenalarm.Core;
 using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _NavigateToSettingsCommand ?? (_NavigateToSettingsCommand = new RelayCommand(() =>
                 {
-                    _NavigationService.NavigateTo("Settings");
+                    _NavigationService.NavigateTo(ViewNames.Settings);
                 }));
             }
         }
@@ -58,7 +59,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 return _NavigateToAddPlaceCommand ?? (_NavigateToAddPlaceCommand = new RelayCommand(() =>
                 {
                     _PlaceViewModel.CurrentPlace = null;
-                    _NavigationService.NavigateTo("AddEditPlace");
+                    _NavigationService.NavigateTo(ViewNames.AddEditPlace);
                 }));
             }
         }
@@ -71,7 +72,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 return _NavigateToPlaceCommand ?? (_NavigateToPlaceCommand = new RelayCommand<Place>((Place place) =>
                 {
                     _PlaceViewModel.CurrentPlace = place;
-                    _NavigationService.NavigateTo("Place");
+                    _NavigationService.NavigateTo(ViewNames.Place);
                 }));
             }
         }

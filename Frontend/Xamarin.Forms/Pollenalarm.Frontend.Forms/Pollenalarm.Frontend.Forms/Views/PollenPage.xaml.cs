@@ -13,6 +13,7 @@ namespace Pollenalarm.Frontend.Forms.Views
         public PollenPage()
         {
             InitializeComponent();
+            BindingContext = App.Bootstrapper.PollenViewModel;
         }
     }
 }

@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pollenalarm.Frontend.Forms.Views.PollenPage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+<ContentPage
+    x:Class="Pollenalarm.Frontend.Forms.Views.PollenPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding CurrentPollen.Name}">
+    <Label
+        HorizontalOptions="Center"
+        Text="{Binding MainText}"
+        VerticalOptions="Center" />
 </ContentPage>

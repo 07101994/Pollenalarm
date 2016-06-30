@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Pollenalarm.Frontend.Shared;
 using Xamarin.Forms;
 using Pollenalarm.Frontend.Forms.Views;
+using Pollenalarm.Frontend.Shared.Misc;
 
 namespace Pollenalarm.Frontend.Forms
 {
@@ -28,18 +29,21 @@ namespace Pollenalarm.Frontend.Forms
 			// ViewModels
 			SimpleIoc.Default.Register<MainViewModel>();
 			SimpleIoc.Default.Register<PlaceViewModel>();
+			SimpleIoc.Default.Register<PollenViewModel>();
         }
 
         public MainViewModel MainViewModel { get { return SimpleIoc.Default.GetInstance<MainViewModel>(); } }
 		public PlaceViewModel PlaceViewModel { get { return SimpleIoc.Default.GetInstance<PlaceViewModel>(); }}
+		public PollenViewModel PollenViewModel { get { return SimpleIoc.Default.GetInstance<PollenViewModel>(); } }
 
         private INavigationService CreateNavigationService(NavigationPage navigationPage)
         {
             var navigationService = new NavigationService(navigationPage);
-            navigationService.Configure("Main", typeof(MainPage));
-            navigationService.Configure("Settings", typeof(SettingsPage));
-            navigationService.Configure("Place", typeof(PlacePage));
-            navigationService.Configure("AddEditPlace", typeof(AddEditPlacePage));
+            navigationService.Configure(ViewNames.Main, typeof(MainPage));
+            navigationService.Configure(ViewNames.Place, typeof(PlacePage));
+            navigationService.Configure(ViewNames.Pollen, typeof(PollenPage));
+            navigationService.Configure(ViewNames.Settings, typeof(SettingsPage));
+            navigationService.Configure(ViewNames.AddEditPlace, typeof(AddEditPlacePage));
             return navigationService;
         }
     }

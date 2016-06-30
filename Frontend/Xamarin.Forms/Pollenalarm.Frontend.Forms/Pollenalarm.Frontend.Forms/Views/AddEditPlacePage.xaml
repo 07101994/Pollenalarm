@@ -13,6 +13,9 @@
         </StackLayout.Padding>
         <Entry Placeholder="Name" Text="{Binding PlaceName, Mode=TwoWay}" />
         <Entry Placeholder="Zip" Text="{Binding PlaceZip, Mode=TwoWay}" />
-        <Button Command="{Binding AddEditPlaceCommand}" Text="Add" />
+        <Button
+            x:Name="AddButton"
+            Command="{Binding AddEditPlaceCommand}"
+            Text="Add" />
     </StackLayout>
 </ContentPage>

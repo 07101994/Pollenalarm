@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System.Linq;
 using GalaSoft.MvvmLight.Ioc;
+using Pollenalarm.Frontend.Shared.Misc;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -54,6 +55,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         {
                             existingPlace.Name = _PlaceName;
                             existingPlace.Zip = _PlaceZip;
+                            _CurrentPlace = existingPlace;
                         }
                     }
                     else
@@ -62,12 +64,40 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         _CurrentPlace.Name = _PlaceName;
                         _CurrentPlace.Zip = _PlaceZip;
                         mainViewModel.Places.Add(_CurrentPlace);
+                        _CurrentPlace = null;
                     }
 
-                    _CurrentPlace = null;
                     _PlaceName = string.Empty;
                     _PlaceZip = string.Empty;
                     _NavigationService.GoBack();
+                }));
+            }
+        }
+
+        private RelayCommand _NavigateToEditPlaceCommand;
+        public RelayCommand NavigateToEditPlaceCommand
+        {
+            get
+            {
+                return _NavigateToEditPlaceCommand ?? (_NavigateToEditPlaceCommand = new RelayCommand(() =>
+                {
+                    _PlaceName = _CurrentPlace.Name;
+                    _PlaceZip = _CurrentPlace.Zip;
+                    _NavigationService.NavigateTo(ViewNames.AddEditPlace);
+                }));
+            }
+        }
+
+        private RelayCommand<Pollen> _NavigateToPollenCommand;
+        public RelayCommand<Pollen> NavigateToPollenCommand
+        {
+            get
+            {
+                return _NavigateToPollenCommand ?? (_NavigateToPollenCommand = new RelayCommand<Pollen>((Pollen pollen) =>
+                {
+                    var pollenViewModel = SimpleIoc.Default.GetInstance<PollenViewModel>();
+                    pollenViewModel.CurrentPollen = pollen;
+                    _NavigationService.NavigateTo(ViewNames.Pollen);
                 }));
             }
         }

@@ -19,7 +19,9 @@ namespace Pollenalarm.Frontend.Forms.Views
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+
             Title = (App.Bootstrapper.PlaceViewModel.CurrentPlace != null) ? "Edit" : "New Place";
+            AddButton.Text = (App.Bootstrapper.PlaceViewModel.CurrentPlace != null) ? "Save" : "Add";
         }
     }
 }
