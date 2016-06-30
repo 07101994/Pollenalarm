@@ -45,6 +45,7 @@ namespace Pollenalarm.Frontend.Forms
             navigationService.Configure(ViewNames.Pollen, typeof(PollenPage));
             navigationService.Configure(ViewNames.Settings, typeof(SettingsPage));
             navigationService.Configure(ViewNames.AddEditPlace, typeof(AddEditPlacePage));
+            navigationService.Configure(ViewNames.About, typeof(AboutPage));
             return navigationService;
         }
     }

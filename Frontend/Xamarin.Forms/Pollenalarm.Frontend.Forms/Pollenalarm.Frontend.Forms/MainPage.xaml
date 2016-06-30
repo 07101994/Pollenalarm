@@ -39,6 +39,18 @@
                     iOS="Primary" />
             </ToolbarItem.Order>
         </ToolbarItem>
+        <ToolbarItem
+            Name="About"
+            Command="{Binding NavigateToAboutCommand}"
+            Priority="3">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Secondary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ListView
