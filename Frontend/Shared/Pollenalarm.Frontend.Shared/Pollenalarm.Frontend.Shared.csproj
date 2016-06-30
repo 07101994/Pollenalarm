@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Misc\ViewNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IFileSystemService.cs" />
     <Compile Include="Services\PollenService.cs" />
     <Compile Include="ViewModels\AsyncViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

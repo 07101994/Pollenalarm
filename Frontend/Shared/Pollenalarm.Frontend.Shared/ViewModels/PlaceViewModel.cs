@@ -6,14 +6,17 @@ using GalaSoft.MvvmLight.Views;
 using System.Linq;
 using GalaSoft.MvvmLight.Ioc;
 using Pollenalarm.Frontend.Shared.Misc;
+using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
 	public class PlaceViewModel : AsyncViewModelBase
 	{
         private INavigationService _NavigationService;
+        private IFileSystemService _FileSystemService;
 
-		private Place _CurrentPlace;
+
+        private Place _CurrentPlace;
 		public Place CurrentPlace
 		{
 			get { return _CurrentPlace; }
@@ -67,6 +70,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         _CurrentPlace = null;
                     }
 
+                    // Save places
+                    _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
+
                     _PlaceName = string.Empty;
                     _PlaceZip = string.Empty;
                     _NavigationService.GoBack();
@@ -102,9 +108,10 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService)
+        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService)
 		{
             _NavigationService = navigationService;
+            _FileSystemService = fileSystemService;
 		}
 	}
 }

@@ -24,6 +24,7 @@ namespace Pollenalarm.Frontend.Forms
 
             // Services
             SimpleIoc.Default.Register<INavigationService>(() => CreateNavigationService(navigationPage));
+            SimpleIoc.Default.Register<IFileSystemService, FileSystemService>();
             SimpleIoc.Default.Register<PollenService>();
 
 			// ViewModels
