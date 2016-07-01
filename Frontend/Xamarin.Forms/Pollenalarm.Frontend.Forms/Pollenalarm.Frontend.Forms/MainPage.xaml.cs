@@ -1,4 +1,5 @@
 ﻿using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Forms.Resources;
 using Pollenalarm.Frontend.Forms.Views;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace Pollenalarm.Frontend.Forms
 
             if (!App.Bootstrapper.MainViewModel.IsLoaded)
                 await App.Bootstrapper.MainViewModel.RefreshAsync();
+
+            Device.OnPlatform(Android: () => { ToolbarItems.Remove(AddItem); });
         }
 
         private void PlacesList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

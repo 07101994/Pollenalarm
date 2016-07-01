@@ -3,8 +3,11 @@
     x:Class="Pollenalarm.Frontend.Forms.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Pollenalarm.Frontend.Forms.CustomRenderers;assembly=Pollenalarm.Frontend.Forms"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
-    Title="Pollenalarm">
+    xmlns:fab="clr-namespace:FAB.Forms;assembly=FAB.Forms"
+    xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
+    Title="{i18n:Translate AppTitle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,7 +18,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Name="Settings"
+            Name="{i18n:Translate Settings}"
             Command="{Binding NavigateToSettingsCommand}"
             Priority="0">
             <ToolbarItem.Order>
@@ -28,7 +31,8 @@
         </ToolbarItem>
 
         <ToolbarItem
-            Name="Add"
+            Name="{i18n:Translate Add}"
+            x:Name="AddItem"
             Command="{Binding NavigateToAddPlaceCommand}"
             Priority="1">
             <ToolbarItem.Order>
@@ -39,8 +43,9 @@
                     iOS="Primary" />
             </ToolbarItem.Order>
         </ToolbarItem>
+
         <ToolbarItem
-            Name="About"
+            Name="{i18n:Translate About}"
             Command="{Binding NavigateToAboutCommand}"
             Priority="3">
             <ToolbarItem.Order>
@@ -53,53 +58,79 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ListView
-        HasUnevenRows="True"
-        IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsLoading}"
-        ItemSelected="PlacesList_ItemSelected"
-        ItemsSource="{Binding Places}"
-        RefreshCommand="{Binding RefreshCommand}">
-        <ListView.Header>
-            <StackLayout>
-                <StackLayout.Padding>
-                    <OnPlatform
-                        x:TypeArguments="Thickness"
-                        Android="{StaticResource DefaultSicknessAndroid}"
-                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                        iOS="{StaticResource DefaultSicknessiOS}" />
-                </StackLayout.Padding>
-                <Label FontAttributes="Bold" Text="General Information" />
-                <Label FontSize="Small" Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." />
-                <Label
-                    Margin="0, 10, 0, 0"
-                    FontAttributes="Bold"
-                    Text="Places" />
-                <Label
-                    x:Name="lblNoPlacesWarning"
-                    FontSize="Small"
-                    IsVisible="{Binding Places.Count, Converter={StaticResource IntToNegatedBooleanConverter}}"
-                    Text="It's empty down here. Add your favorite places to keep an overview of their pollen pollution." />
-            </StackLayout>
-        </ListView.Header>
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <ViewCell.View>
-                        <StackLayout>
-                            <StackLayout.Padding>
-                                <OnPlatform
-                                    x:TypeArguments="Thickness"
-                                    Android="{StaticResource DefaultSicknessAndroid}"
-                                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                                    iOS="{StaticResource DefaultSicknessiOS}" />
-                            </StackLayout.Padding>
-                            <Label FontAttributes="Bold" Text="{Binding Name}" />
-                            <Label FontSize="Small" Text="{Binding Zip}" />
-                        </StackLayout>
-                    </ViewCell.View>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <RelativeLayout>
+
+        <ListView
+            HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsLoading}"
+            ItemSelected="PlacesList_ItemSelected"
+            ItemsSource="{Binding Places}"
+            RefreshCommand="{Binding RefreshCommand}">
+            <ListView.Header>
+                <StackLayout>
+                    <StackLayout.Padding>
+                        <OnPlatform
+                            x:TypeArguments="Thickness"
+                            Android="{StaticResource DefaultSicknessAndroid}"
+                            WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                            iOS="{StaticResource DefaultSicknessiOS}" />
+                    </StackLayout.Padding>
+                    <Label FontAttributes="Bold" Text="{i18n:Translate GeneralInformation}" />
+                    <Label FontSize="Small" Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." />
+                    <Label
+                        Margin="0, 10, 0, 0"
+                        FontAttributes="Bold"
+                        Text="Places" />
+                    <Label
+                        x:Name="lblNoPlacesWarning"
+                        FontSize="Small"
+                        IsVisible="{Binding Places.Count, Converter={StaticResource IntToNegatedBooleanConverter}}"
+                        Text="{i18n:Translate NoPlacesWarning}" />
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <StackLayout.Padding>
+                                    <OnPlatform
+                                        x:TypeArguments="Thickness"
+                                        Android="{StaticResource DefaultSicknessAndroid}"
+                                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                        iOS="{StaticResource DefaultSicknessiOS}" />
+                                </StackLayout.Padding>
+                                <Label FontAttributes="Bold" Text="{Binding Name}" />
+                                <Label FontSize="Small" Text="{Binding Zip}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <android:FormsFloatingActionButton
+            x:Name="AddButton"
+            Margin="{StaticResource DefaultSicknessAndroid}"
+            Command="{Binding NavigateToAddPlaceCommand}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=1,
+                                                              Constant=-100}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=1,
+                                                              Constant=-100}">
+            <android:FormsFloatingActionButton.IsVisible>
+                <OnPlatform
+                    x:TypeArguments="x:Boolean"
+                    Android="True"
+                    WinPhone="False"
+                    iOS="False" />
+            </android:FormsFloatingActionButton.IsVisible>
+        </android:FormsFloatingActionButton>
+
+    </RelativeLayout>
+
 </ContentPage>
