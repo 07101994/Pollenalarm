@@ -20,8 +20,19 @@ namespace Pollenalarm.Frontend.Forms.Views
 		{
 			base.OnAppearing();
 
-            Title = (App.Bootstrapper.PlaceViewModel.CurrentPlace != null) ? "Edit" : "New Place";
-            AddButton.Text = (App.Bootstrapper.PlaceViewModel.CurrentPlace != null) ? "Save" : "Add";
+            if (App.Bootstrapper.PlaceViewModel.CurrentPlace != null)
+            {
+                // Edit existing place
+                Title = "Edit";
+                AddButton.Text = "Save";
+            }
+            else
+            {
+                // Add new place
+                Title = "New Place";
+                AddButton.Text = "Add";
+                ToolbarItems.Remove(DeleteToolbarItem);
+            }
         }
     }
 }

@@ -17,6 +17,14 @@ namespace Pollenalarm.Frontend.Forms.Views
             BindingContext = App.Bootstrapper.PlaceViewModel;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (App.Bootstrapper.PlaceViewModel.CurrentPlace == null)
+                Navigation.PopAsync();
+        }
+
         private void PollutionList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             // Execute ViewModel command in code behind here, since it not possible to bind a Command to a ListView's ItemSelected event in Xamarin.Forms yet

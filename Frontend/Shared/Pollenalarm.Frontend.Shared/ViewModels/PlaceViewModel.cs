@@ -80,6 +80,33 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
+        private RelayCommand _DeletePlaceCommand;
+        public RelayCommand DeletePlaceCommand
+        {
+            get
+            {
+                return _DeletePlaceCommand ?? (_DeletePlaceCommand = new RelayCommand(() =>
+                {
+                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+
+                    if (_CurrentPlace != null)
+                    {
+                        var existingPlace = mainViewModel.Places.FirstOrDefault(x => x.Id == _CurrentPlace.Id);
+                        if (existingPlace != null)
+                        {
+                            mainViewModel.Places.Remove(existingPlace);
+                            _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
+                            _CurrentPlace = null;
+                            _PlaceName = string.Empty;
+                            _PlaceZip = string.Empty;
+                            _NavigationService.GoBack();
+                        }
+                    }
+                }));
+            }
+        }
+
+
         private RelayCommand _NavigateToEditPlaceCommand;
         public RelayCommand NavigateToEditPlaceCommand
         {

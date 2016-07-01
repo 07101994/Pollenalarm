@@ -3,6 +3,23 @@
     x:Class="Pollenalarm.Frontend.Forms.Views.AddEditPlacePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Name="Delete"
+            x:Name="DeleteToolbarItem"
+            Command="{Binding DeletePlaceCommand}"
+            Priority="0">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Primary"
+                    WinPhone="Primary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <StackLayout>
         <StackLayout.Padding>
             <OnPlatform

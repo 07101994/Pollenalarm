@@ -9,5 +9,12 @@ namespace Pollenalarm.Core.Models
     public class Pollen
     {
         public string Name { get; set; }
+        public string Description { get; set; }
+        public string ImageName { get { return $"{Name}.png"; } }
+
+        public Pollen()
+        {
+            Description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.";
+        }
     }
 }

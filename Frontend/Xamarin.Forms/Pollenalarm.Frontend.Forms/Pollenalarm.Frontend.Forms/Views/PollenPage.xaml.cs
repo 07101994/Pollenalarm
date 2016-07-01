@@ -14,6 +14,7 @@ namespace Pollenalarm.Frontend.Forms.Views
         {
             InitializeComponent();
             BindingContext = App.Bootstrapper.PollenViewModel;
+            //PollenImage.Source = ImageSource.FromFile(App.Bootstrapper.PollenViewModel.CurrentPollen.ImageName);
         }
     }
 }

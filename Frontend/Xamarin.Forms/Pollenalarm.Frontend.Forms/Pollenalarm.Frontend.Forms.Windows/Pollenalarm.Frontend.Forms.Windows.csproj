@@ -121,10 +121,24 @@
     <None Include="Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ambrosia.png" />
+    <Content Include="Ampfer.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Beifuss.png" />
+    <Content Include="Birke.png" />
+    <Content Include="Buche.png" />
+    <Content Include="Eiche.png" />
+    <Content Include="Erle.png" />
+    <Content Include="Graeser.png" />
+    <Content Include="Hasel.png" />
+    <Content Include="Pappel.png" />
+    <Content Include="Roggen.png" />
+    <Content Include="Ulme.png" />
+    <Content Include="Wegerich.png" />
+    <Content Include="Weide.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
