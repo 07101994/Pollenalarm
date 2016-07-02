@@ -17,9 +17,12 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Name="{i18n:Translate Settings}"
-            Command="{Binding NavigateToSettingsCommand}"
+
+		<ToolbarItem
+            Name="{i18n:Translate Add}"
+            x:Name="AddItem"
+			Icon="Add"
+            Command="{Binding NavigateToAddPlaceCommand}"
             Priority="0">
             <ToolbarItem.Order>
                 <OnPlatform
@@ -29,31 +32,32 @@
                     iOS="Primary" />
             </ToolbarItem.Order>
         </ToolbarItem>
-
+		
         <ToolbarItem
-            Name="{i18n:Translate Add}"
-            x:Name="AddItem"
-            Command="{Binding NavigateToAddPlaceCommand}"
+            Name="{i18n:Translate Settings}"
+			Icon="Settings"
+            Command="{Binding NavigateToSettingsCommand}"
             Priority="1">
             <ToolbarItem.Order>
                 <OnPlatform
                     x:TypeArguments="ToolbarItemOrder"
                     Android="Secondary"
                     WinPhone="Secondary"
-                    iOS="Primary" />
+                    iOS="Secondary" />
             </ToolbarItem.Order>
         </ToolbarItem>
 
         <ToolbarItem
             Name="{i18n:Translate About}"
+			Icon="Info"
             Command="{Binding NavigateToAboutCommand}"
-            Priority="3">
+            Priority="2">
             <ToolbarItem.Order>
                 <OnPlatform
                     x:TypeArguments="ToolbarItemOrder"
                     Android="Secondary"
                     WinPhone="Secondary"
-                    iOS="Primary" />
+                    iOS="Secondary" />
             </ToolbarItem.Order>
         </ToolbarItem>
     </ContentPage.ToolbarItems>

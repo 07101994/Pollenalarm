@@ -22,7 +22,10 @@ namespace Pollenalarm.Frontend.Forms.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+			UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(33, 150, 243);
+			UINavigationBar.Appearance.TintColor = UIColor.White;
+
+			global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -138,4 +138,7 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
 </root>

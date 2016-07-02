@@ -3,6 +3,7 @@
     x:Class="Pollenalarm.Frontend.Forms.Views.SettingsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="Settings">
     <ScrollView>
         <StackLayout>
@@ -13,7 +14,7 @@
 	                WinPhone="{StaticResource DefaultSicknessWinPhone}"
 	                iOS="{StaticResource DefaultSicknessiOS}" />
 	        </StackLayout.Padding>
-            <Label FontSize="Large" Text="Location" />
+            <Label FontAttributes="Bold" Text="{i18n:Translate Location}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

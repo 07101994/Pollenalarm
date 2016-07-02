@@ -32,6 +32,7 @@
     <TabbedPage.ToolbarItems>
         <ToolbarItem
             Name="Edit place"
+			Icon="Edit"
             Command="{Binding NavigateToEditPlaceCommand}"
             Priority="0">
             <ToolbarItem.Order>
@@ -44,7 +45,7 @@
         </ToolbarItem>
     </TabbedPage.ToolbarItems>
 
-    <ContentPage Title="Today">
+    <ContentPage Title="Today" Icon="Calendar">
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
@@ -52,7 +53,7 @@
             ItemsSource="{Binding CurrentPlace.PollutionToday}" />
     </ContentPage>
 
-    <ContentPage Title="Tomorrow">
+    <ContentPage Title="Tomorrow" Icon="Calendar">
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
@@ -60,7 +61,7 @@
             ItemsSource="{Binding CurrentPlace.PollutionTomorrow}" />
     </ContentPage>
 
-    <ContentPage Title="After tomorrow">
+    <ContentPage Title="After tomorrow" Icon="Calendar">
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"

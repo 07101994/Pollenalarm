@@ -115,6 +115,24 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\Add%402.png" />
+    <BundleResource Include="Resources\Add%403.png" />
+    <BundleResource Include="Resources\Add.png" />
+    <BundleResource Include="Resources\Delete.png" />
+    <BundleResource Include="Resources\Delete%402.png" />
+    <BundleResource Include="Resources\Delete%403.png" />
+    <BundleResource Include="Resources\Edit.png" />
+    <BundleResource Include="Resources\Edit%402.png" />
+    <BundleResource Include="Resources\Edit%403.png" />
+    <BundleResource Include="Resources\Info.png" />
+    <BundleResource Include="Resources\Info%402.png" />
+    <BundleResource Include="Resources\Info%403.png" />
+    <BundleResource Include="Resources\Settings.png" />
+    <BundleResource Include="Resources\Settings%402.png" />
+    <BundleResource Include="Resources\Settings%403.png" />
+    <BundleResource Include="Resources\Calendar.png" />
+    <BundleResource Include="Resources\Calendar%402.png" />
+    <BundleResource Include="Resources\Calendar%403.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">

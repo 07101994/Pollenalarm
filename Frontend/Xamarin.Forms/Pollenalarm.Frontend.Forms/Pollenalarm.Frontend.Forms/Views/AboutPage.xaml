@@ -19,9 +19,9 @@
 
             <Label
                 Margin="0, 10, 0, 0"
-                FontAttributes="Bold"
+                FontAttributes="Bold"	
                 Text="3rd Party Libraries" />
-            <Label Text="PCL Storage: https://github.com/dsplaisted/PCLStorage" />
+            <Label Text="PCL Storage: https://github.com/dsplaisted/PCLStorage" FontSize="Small" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

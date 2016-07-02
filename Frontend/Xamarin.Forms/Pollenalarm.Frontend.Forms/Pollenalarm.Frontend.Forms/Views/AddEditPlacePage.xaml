@@ -8,6 +8,7 @@
         <ToolbarItem
             Name="Delete"
             x:Name="DeleteToolbarItem"
+			Icon="Delete"
             Command="{Binding DeletePlaceCommand}"
             Priority="0">
             <ToolbarItem.Order>
