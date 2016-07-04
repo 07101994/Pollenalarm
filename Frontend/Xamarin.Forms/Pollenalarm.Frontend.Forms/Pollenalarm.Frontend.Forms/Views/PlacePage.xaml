@@ -38,22 +38,36 @@
             <ToolbarItem.Order>
                 <OnPlatform
                     x:TypeArguments="ToolbarItemOrder"
-                    Android="Secondary"
+                    Android="Primary"
                     WinPhone="Secondary"
                     iOS="Primary" />
             </ToolbarItem.Order>
         </ToolbarItem>
     </TabbedPage.ToolbarItems>
 
-    <ContentPage Title="Today" Icon="Calendar">
+    <ContentPage Title="Today">
+		<ContentPage.Icon>
+			<OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar" />
+		</ContentPage.Icon>
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
             ItemTemplate="{StaticResource PollutionItemTemplate}"
             ItemsSource="{Binding CurrentPlace.PollutionToday}" />
-    </ContentPage>
+	</ContentPage>
 
-    <ContentPage Title="Tomorrow" Icon="Calendar">
+    <ContentPage Title="Tomorrow">
+		<ContentPage.Icon>
+			<OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar" />
+		</ContentPage.Icon>
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
@@ -61,7 +75,14 @@
             ItemsSource="{Binding CurrentPlace.PollutionTomorrow}" />
     </ContentPage>
 
-    <ContentPage Title="After tomorrow" Icon="Calendar">
+    <ContentPage Title="After tomorrow">
+		<ContentPage.Icon>
+			<OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar" />
+		</ContentPage.Icon>
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"

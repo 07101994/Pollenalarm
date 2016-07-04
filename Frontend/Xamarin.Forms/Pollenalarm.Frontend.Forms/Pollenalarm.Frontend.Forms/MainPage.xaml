@@ -117,6 +117,7 @@
         <android:FormsFloatingActionButton
             x:Name="AddButton"
             Margin="{StaticResource DefaultSicknessAndroid}"
+			ImageName="Add.png"
             Command="{Binding NavigateToAddPlaceCommand}"
             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                               Property=Width,

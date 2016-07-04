@@ -149,6 +149,20 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Add.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Add.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Add.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Add.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Edit.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Edit.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Edit.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Edit.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Edit.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Delete.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Delete.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Delete.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Delete.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Delete.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
