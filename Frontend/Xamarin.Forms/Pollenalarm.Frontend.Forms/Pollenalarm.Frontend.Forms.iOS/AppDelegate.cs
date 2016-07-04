@@ -24,6 +24,7 @@ namespace Pollenalarm.Frontend.Forms.iOS
         {
 			UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(33, 150, 243);
 			UINavigationBar.Appearance.TintColor = UIColor.White;
+			UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
 
 			global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());

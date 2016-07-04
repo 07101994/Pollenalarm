@@ -92,8 +92,7 @@ namespace Pollenalarm.Frontend.Forms.Droid.CustomRenderers
             {
                 try
                 {
-                    var drawableNameWithoutExtension = Path.GetFileNameWithoutExtension(imageName);
-					drawableNameWithoutExtension = drawableNameWithoutExtension.ToLower(); // Image name must be lower case
+					var drawableNameWithoutExtension = Path.GetFileNameWithoutExtension(imageName).ToLower();
                     var resources = context.Resources;
                     var imageResourceName = resources.GetIdentifier(drawableNameWithoutExtension, "drawable", context.PackageName);
 
