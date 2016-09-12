@@ -10,10 +10,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 {
 	public class AsyncViewModelBase : ViewModelBase
 	{
+        #region Properties
 
-		#region Properties
-
-		private bool _IsLoading = false;
+        private bool _IsLoading = false;
 		public bool IsLoading
 		{
 			get { return _IsLoading; }
@@ -33,5 +32,5 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 		{
 
 		}
-	}
+    }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using GalaSoft.MvvmLight.Ioc;
 using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
+using System.Text.RegularExpressions;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -14,7 +15,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 	{
         private INavigationService _NavigationService;
         private IFileSystemService _FileSystemService;
-
+        private IGeoLoactionService _GeoLoactionService;
 
         private Place _CurrentPlace;
 		public Place CurrentPlace
@@ -39,8 +40,13 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             set { _PlaceZip = value; RaisePropertyChanged(); }
         }
 
-
         #endregion
+
+        public event InvalidEntriesEventHandler OnInvalidEntries;
+        public delegate void InvalidEntriesEventHandler(object sender, EventArgs e);
+
+        public event LocationFailedEventHandler OnLocationFailed;
+        public delegate void LocationFailedEventHandler(object sender, EventArgs e);
 
         private RelayCommand _AddEditPlaceCommand;
         public RelayCommand AddEditPlaceCommand
@@ -49,6 +55,15 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _AddEditPlaceCommand ?? (_AddEditPlaceCommand = new RelayCommand(() =>
                 {
+                    // Check if entered field are valid
+                    if (string.IsNullOrWhiteSpace(_PlaceName) || !Regex.IsMatch(_PlaceZip, "^[0-9]*$") || _PlaceZip.Trim().Length > 5)
+                    {
+                        // Invalid entries
+                        OnInvalidEntries?.Invoke(this, null);
+                        return;
+                    }
+
+
                     var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
 
                     if (_CurrentPlace != null)
@@ -106,7 +121,6 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-
         private RelayCommand _NavigateToEditPlaceCommand;
         public RelayCommand NavigateToEditPlaceCommand
         {
@@ -135,10 +149,25 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService)
+        private RelayCommand _GetCurrentPositionCommand;
+        public RelayCommand GetCurrentPositionCommand
+        {
+            get
+            {
+                return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
+                {
+                    var location = await _GeoLoactionService.GetCurrentLocationAsync();
+                    if (location == null)
+                        OnLocationFailed?.Invoke(this, null);
+                }));
+            }
+        }
+
+        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, IGeoLoactionService geoLocationService)
 		{
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
+            _GeoLoactionService = geoLocationService;
 		}
 	}
 }

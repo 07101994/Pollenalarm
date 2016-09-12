@@ -23,5 +23,5 @@ namespace Pollenalarm.Frontend.Forms.Droid.Services
             var netLanguage = androidLocale.ToString().Replace("_", "-"); // turns pt_BR into pt-BR
             return new System.Globalization.CultureInfo(netLanguage);
         }
-}
+    }
 }

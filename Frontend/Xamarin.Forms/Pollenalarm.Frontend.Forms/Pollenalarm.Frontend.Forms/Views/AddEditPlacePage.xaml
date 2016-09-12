@@ -8,8 +8,22 @@
         <ToolbarItem
             Name="Delete"
             x:Name="DeleteToolbarItem"
-			Icon="Delete"
             Command="{Binding DeletePlaceCommand}"
+            Icon="Delete"
+            Priority="0">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Primary"
+                    WinPhone="Primary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Position"
+            x:Name="CurrentPositionToolbarItem"
+            Command="{Binding GetCurrentPositionCommand}"
+            Icon="Location"
             Priority="0">
             <ToolbarItem.Order>
                 <OnPlatform

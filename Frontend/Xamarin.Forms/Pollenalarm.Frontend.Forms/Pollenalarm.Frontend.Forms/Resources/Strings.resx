@@ -141,4 +141,19 @@
   <data name="Location" xml:space="preserve">
     <value>Location</value>
   </data>
+  <data name="GeoLocationFailedMessage" xml:space="preserve">
+    <value>Oops, something went wrong and we could not locate your current position. Please make sure, that your device has GPS and that it is turned on.</value>
+  </data>
+  <data name="GeoLocationFailedTitle" xml:space="preserve">
+    <value>Where are you?</value>
+  </data>
+  <data name="InvalidEntriesMessage" xml:space="preserve">
+    <value>Sorry, we could not validate your entries. Please check them and try again.</value>
+  </data>
+  <data name="InvalidEntriesTitle" xml:space="preserve">
+    <value>Invalid entries</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>
