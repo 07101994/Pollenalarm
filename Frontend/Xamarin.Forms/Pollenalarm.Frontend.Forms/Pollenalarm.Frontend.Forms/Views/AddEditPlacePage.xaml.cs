@@ -18,25 +18,27 @@ namespace Pollenalarm.Frontend.Forms.Views
 
             App.Bootstrapper.PlaceViewModel.OnInvalidEntries += PlaceViewModel_OnInvalidEntries;
             App.Bootstrapper.PlaceViewModel.OnLocationFailed += PlaceViewModel_OnLocationFailed;
+
+			if (App.Bootstrapper.PlaceViewModel.CurrentPlace != null)
+			{
+				// Edit existing place
+				Title = "Edit";
+				AddButton.Text = "Save";
+			}
+			else
+			{
+				// Add new place
+				Title = "New Place";
+				AddButton.Text = "Add";
+				ToolbarItems.Remove(DeleteToolbarItem);
+			}
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (App.Bootstrapper.PlaceViewModel.CurrentPlace != null)
-            {
-                // Edit existing place
-                Title = "Edit";
-                AddButton.Text = "Save";
-            }
-            else
-            {
-                // Add new place
-                Title = "New Place";
-                AddButton.Text = "Add";
-                ToolbarItems.Remove(DeleteToolbarItem);
-            }
+            
         }
 
         private void PlaceViewModel_OnInvalidEntries(object sender, EventArgs e)
