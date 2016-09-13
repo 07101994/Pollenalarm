@@ -10,7 +10,7 @@ namespace Pollenalarm.Core.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ImageName { get { return $"{Name}.png"; } }
+		public string ImageName { get { return $"{Name.Replace("ß", "ss")}.png"; } }
 
         public Pollen()
         {
