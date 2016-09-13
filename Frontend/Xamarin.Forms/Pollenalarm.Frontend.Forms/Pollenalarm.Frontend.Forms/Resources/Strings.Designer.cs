@@ -143,6 +143,15 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use my current location.
+        /// </summary>
+        public static string LocationSettingsText {
+            get {
+                return ResourceManager.GetString("LocationSettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to It&apos;s empty down here. Add your favorite places to keep an overview of their pollen pollution..
         /// </summary>
         public static string NoPlacesWarning {

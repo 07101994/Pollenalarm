@@ -28,7 +28,11 @@ namespace Pollenalarm.Frontend.Forms
             if (!App.Bootstrapper.MainViewModel.IsLoaded)
                 await App.Bootstrapper.MainViewModel.RefreshAsync();
 
+            // Hide Add button on Android, because we use the Floating Action Button here
             Device.OnPlatform(Android: () => { ToolbarItems.Remove(AddItem); });
+
+            // Hide No-Places-Warning, because Binding does not work
+            lblNoPlacesWarning.IsVisible = !App.Bootstrapper.MainViewModel.Places.Any();
         }
 
         private void PlacesList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

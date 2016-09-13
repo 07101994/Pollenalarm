@@ -158,15 +158,15 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
                 {
 					// Get GPS location
-                    var location = await _GeoLoactionService.GetCurrentLocationAsync();
-					if (location == null)
+                    var geoLocation = await _GeoLoactionService.GetCurrentLocationAsync();
+					if (geoLocation == null)
 					{
 						OnLocationFailed?.Invoke(this, null);
 						return;
 					}
 
 					// Translate GPS to geocode
-					var geocode = await _GoogleMapsService.ReverseGeocodeAsync(location.Longitute, location.Latitute);
+					var geocode = await _GoogleMapsService.ReverseGeocodeAsync(geoLocation);
 					if (geocode == null)
 					{
 						OnLocationFailed?.Invoke(this, null);

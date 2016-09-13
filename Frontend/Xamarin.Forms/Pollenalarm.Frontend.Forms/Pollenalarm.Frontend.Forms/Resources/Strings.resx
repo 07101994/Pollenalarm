@@ -156,4 +156,7 @@
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="LocationSettingsText" xml:space="preserve">
+    <value>Use my current location</value>
+  </data>
 </root>

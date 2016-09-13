@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Pollenalarm.Frontend.Forms.Converters
 {
-    public class IntToBoolConverter : IValueConverter
+    public class IntToBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

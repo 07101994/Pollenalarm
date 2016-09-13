@@ -11,18 +11,18 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converter:IntToNegatedBooleanConverter x:Key="IntToBooleanConverter" />
+            <converter:IntToBooleanConverter x:Key="IntToBooleanConverter" />
             <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
 
-		<ToolbarItem
+        <ToolbarItem
             Name="{i18n:Translate Add}"
             x:Name="AddItem"
-			Icon="Add"
             Command="{Binding NavigateToAddPlaceCommand}"
+            Icon="Add"
             Priority="0">
             <ToolbarItem.Order>
                 <OnPlatform
@@ -32,11 +32,11 @@
                     iOS="Primary" />
             </ToolbarItem.Order>
         </ToolbarItem>
-		
+
         <ToolbarItem
             Name="{i18n:Translate Settings}"
-			Icon="Settings"
             Command="{Binding NavigateToSettingsCommand}"
+            Icon="Settings"
             Priority="1">
             <ToolbarItem.Order>
                 <OnPlatform
@@ -49,8 +49,8 @@
 
         <ToolbarItem
             Name="{i18n:Translate About}"
-			Icon="Info"
             Command="{Binding NavigateToAboutCommand}"
+            Icon="Info"
             Priority="2">
             <ToolbarItem.Order>
                 <OnPlatform
@@ -88,7 +88,9 @@
                         Text="Places" />
                     <Label
                         x:Name="lblNoPlacesWarning"
+                        FontAttributes="Italic"
                         FontSize="Small"
+                        HorizontalTextAlignment="Center"
                         IsVisible="{Binding Places.Count, Converter={StaticResource IntToNegatedBooleanConverter}}"
                         Text="{i18n:Translate NoPlacesWarning}" />
                 </StackLayout>
@@ -117,8 +119,8 @@
         <android:FormsFloatingActionButton
             x:Name="AddButton"
             Margin="{StaticResource DefaultSicknessAndroid}"
-			ImageName="Add.png"
             Command="{Binding NavigateToAddPlaceCommand}"
+            ImageName="Add.png"
             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                               Property=Width,
                                                               Factor=1,
