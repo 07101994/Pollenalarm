@@ -13,6 +13,7 @@ using Pollenalarm.Frontend.Shared;
 using Xamarin.Forms;
 using Pollenalarm.Frontend.Forms.Views;
 using Pollenalarm.Frontend.Shared.Misc;
+using Pollenalarm.Core;
 
 namespace Pollenalarm.Frontend.Forms
 {
@@ -26,7 +27,9 @@ namespace Pollenalarm.Frontend.Forms
             SimpleIoc.Default.Register<INavigationService>(() => CreateNavigationService(navigationPage));
             SimpleIoc.Default.Register<IFileSystemService, FileSystemService>();
             SimpleIoc.Default.Register<PollenService>();
-            SimpleIoc.Default.Register<IGeoLoactionService, GeoLocationService>();
+			SimpleIoc.Default.Register<IGeoLoactionService, GeoLocationService>();
+			SimpleIoc.Default.Register<IHttpService, HttpService>();
+			SimpleIoc.Default.Register<GoogleMapsService>();
 
 			// ViewModels
 			SimpleIoc.Default.Register<MainViewModel>();

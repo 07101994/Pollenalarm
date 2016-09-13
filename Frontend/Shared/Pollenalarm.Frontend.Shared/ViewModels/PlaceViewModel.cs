@@ -16,6 +16,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         private INavigationService _NavigationService;
         private IFileSystemService _FileSystemService;
         private IGeoLoactionService _GeoLoactionService;
+		private GoogleMapsService _GoogleMapsService;
 
         private Place _CurrentPlace;
 		public Place CurrentPlace
@@ -156,18 +157,36 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
                 {
+					// Get GPS location
                     var location = await _GeoLoactionService.GetCurrentLocationAsync();
-                    if (location == null)
-                        OnLocationFailed?.Invoke(this, null);
+					if (location == null)
+					{
+						OnLocationFailed?.Invoke(this, null);
+						return;
+					}
+
+					// Translate GPS to geocode
+					var geocode = await _GoogleMapsService.ReverseGeocodeAsync(location.Longitute, location.Latitute);
+					if (geocode == null)
+					{
+						OnLocationFailed?.Invoke(this, null);
+						return;
+					}
+
+					// Update place fields
+					PlaceName = geocode.Name;
+					PlaceZip = geocode.Zip;
+
                 }));
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, IGeoLoactionService geoLocationService)
+        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, IGeoLoactionService geoLocationService, GoogleMapsService googleMapsService)
 		{
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
             _GeoLoactionService = geoLocationService;
+			_GoogleMapsService = googleMapsService;
 		}
 	}
 }
