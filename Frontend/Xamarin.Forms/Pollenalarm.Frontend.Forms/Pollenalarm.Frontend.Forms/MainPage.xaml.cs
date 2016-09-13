@@ -32,7 +32,7 @@ namespace Pollenalarm.Frontend.Forms
             Device.OnPlatform(Android: () => { ToolbarItems.Remove(AddItem); });
 
             // Hide No-Places-Warning, because Binding does not work
-            lblNoPlacesWarning.IsVisible = !App.Bootstrapper.MainViewModel.Places.Any();
+            //lblNoPlacesWarning.IsVisible = !App.Bootstrapper.MainViewModel.Places.Any();
         }
 
         private void PlacesList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

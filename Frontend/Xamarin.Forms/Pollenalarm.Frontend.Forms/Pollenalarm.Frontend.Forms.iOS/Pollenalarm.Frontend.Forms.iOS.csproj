@@ -133,6 +133,10 @@
     <BundleResource Include="Resources\Info%403x.png" />
     <BundleResource Include="Resources\Settings%402x.png" />
     <BundleResource Include="Resources\Settings%403x.png" />
+    <BundleResource Include="Resources\Header.png" />
+    <BundleResource Include="Resources\Header%402x.png" />
+    <BundleResource Include="Resources\Next.png" />
+    <BundleResource Include="Resources\Next%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">

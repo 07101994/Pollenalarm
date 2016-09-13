@@ -184,6 +184,12 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Delete.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Delete.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Delete.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Header.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\Header.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Header.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Header.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Header.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Header.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
