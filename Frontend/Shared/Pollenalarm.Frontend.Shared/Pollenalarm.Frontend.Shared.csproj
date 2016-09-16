@@ -46,6 +46,7 @@
     <Compile Include="ViewModels\PollenViewModel.cs" />
     <Compile Include="Services\GoogleMapsService.cs" />
     <Compile Include="Models\GoogleGeoLocation.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">

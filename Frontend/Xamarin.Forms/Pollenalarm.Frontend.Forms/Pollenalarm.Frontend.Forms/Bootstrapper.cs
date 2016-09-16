@@ -35,11 +35,13 @@ namespace Pollenalarm.Frontend.Forms
 			SimpleIoc.Default.Register<MainViewModel>();
 			SimpleIoc.Default.Register<PlaceViewModel>();
 			SimpleIoc.Default.Register<PollenViewModel>();
+			SimpleIoc.Default.Register<SettingsViewModel>();
         }
 
         public MainViewModel MainViewModel { get { return SimpleIoc.Default.GetInstance<MainViewModel>(); } }
 		public PlaceViewModel PlaceViewModel { get { return SimpleIoc.Default.GetInstance<PlaceViewModel>(); }}
 		public PollenViewModel PollenViewModel { get { return SimpleIoc.Default.GetInstance<PollenViewModel>(); } }
+		public SettingsViewModel SettingsViewModel { get { return SimpleIoc.Default.GetInstance<SettingsViewModel>(); } }
 
         private INavigationService CreateNavigationService(NavigationPage navigationPage)
         {

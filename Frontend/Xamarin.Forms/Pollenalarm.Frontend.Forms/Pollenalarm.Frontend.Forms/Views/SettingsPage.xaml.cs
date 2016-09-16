@@ -14,5 +14,13 @@ namespace Pollenalarm.Frontend.Forms.Views
         {
             InitializeComponent();
         }
+
+		protected override async void OnAppearing()
+		{
+			base.OnAppearing();
+
+			if (BindingContext == null)
+				BindingContext = App.Bootstrapper.SettingsViewModel;
+		}
     }
 }

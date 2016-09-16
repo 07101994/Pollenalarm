@@ -44,21 +44,7 @@
                     WinPhone="Secondary"
                     iOS="Primary" />
             </ToolbarItem.Order>
-        </ToolbarItem>
-
-        <ToolbarItem
-            Name="{i18n:Translate About}"
-            Command="{Binding NavigateToAboutCommand}"
-            Icon="Info"
-            Priority="2">
-            <ToolbarItem.Order>
-                <OnPlatform
-                    x:TypeArguments="ToolbarItemOrder"
-                    Android="Secondary"
-                    WinPhone="Secondary"
-                    iOS="Primary" />
-            </ToolbarItem.Order>
-        </ToolbarItem>
+        </ToolbarItem>               
     </ContentPage.ToolbarItems>
 
     <RelativeLayout>
@@ -84,7 +70,7 @@
 							HorizontalTextAlignment="Center"
 							FontAttributes="Bold"
 							TextColor="White"
-							Text="Good morning"							/>
+							Text="Good morning"	/>
 						<Label					
 							HorizontalTextAlignment="Center"
 							Margin="0, -6, 0, 0"
@@ -108,15 +94,19 @@
                                 </AbsoluteLayout.Padding>
                                 								
 								<StackLayout>								
-	                                <Label FontAttributes="Bold" Text="{Binding Name}" FontSize="16" />
-                                	<Label Margin="0,-4,0,0" FontSize="12" Text="Pollution: High" />
+	                                <Label FontAttributes="Bold" Text="{Binding Name}" FontSize="{StaticResource DefaultFontSize}" />
+                                	<Label Margin="0,-4,0,0" FontSize="{StaticResource SmallFontSize}" Text="Pollution: High" />
                                 </StackLayout>
 								
 								<Image 
 									Source="Next"
 									HeightRequest="15"
 									AbsoluteLayout.LayoutBounds="1,0.5"
-									AbsoluteLayout.LayoutFlags="PositionProportional"/>
+									AbsoluteLayout.LayoutFlags="PositionProportional">
+									<Image.IsVisible>
+										<OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" WinPhone="False"/>
+									</Image.IsVisible>
+								</Image>
 							</AbsoluteLayout>                            
                         </ViewCell.View>
                     </ViewCell>
