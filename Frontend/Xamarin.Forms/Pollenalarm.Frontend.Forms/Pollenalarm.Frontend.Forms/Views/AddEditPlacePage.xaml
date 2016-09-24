@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="Pollenalarm.Frontend.Forms.Views.AddEditPlacePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -10,20 +10,6 @@
             x:Name="DeleteToolbarItem"
             Command="{Binding DeletePlaceCommand}"
             Icon="Delete"
-            Priority="0">
-            <ToolbarItem.Order>
-                <OnPlatform
-                    x:TypeArguments="ToolbarItemOrder"
-                    Android="Primary"
-                    WinPhone="Primary"
-                    iOS="Primary" />
-            </ToolbarItem.Order>
-        </ToolbarItem>
-        <ToolbarItem
-            Name="Position"
-            x:Name="CurrentPositionToolbarItem"
-            Command="{Binding GetCurrentPositionCommand}"
-            Icon="Location"
             Priority="0">
             <ToolbarItem.Order>
                 <OnPlatform
@@ -45,6 +31,9 @@
         </StackLayout.Padding>
         <Entry Placeholder="Name" Text="{Binding PlaceName, Mode=TwoWay}" />
         <Entry Placeholder="Zip" Text="{Binding PlaceZip, Mode=TwoWay}" />
+		<Button            
+            Command="{Binding GetCurrentPositionCommand}"
+            Text="Use current location" />
         <Button
             x:Name="AddButton"
             Command="{Binding AddEditPlaceCommand}"
