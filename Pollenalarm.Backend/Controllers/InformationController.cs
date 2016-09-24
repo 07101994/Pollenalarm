@@ -14,7 +14,7 @@ namespace Pollenalarm.Backend.Controllers
 		[HttpGet]
 		public IHttpActionResult GetGeneralInformation()
 		{
-			var informationTable = DataContext.GetTable<Information> ();
+			var informationTable = DataContext.GetTable<InformationEntity> ();
 
 			var latestInformation = informationTable.Max (i => i.Date);
 			return Ok (latestInformation);

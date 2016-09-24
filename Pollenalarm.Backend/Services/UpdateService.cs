@@ -10,20 +10,20 @@ namespace Pollenalarm.Backend.Services
 {
     public class UpdateService : ServiceBase
     {
-        private readonly Table<Pollen> pollenTable;
+        private readonly Table<PollenEntity> pollenTable;
         private Table<City> cityTable;
         private Table<PollutionUpdate> pollutionUpdateTable;
-        private Table<Information> informationTable;
+        private Table<InformationEntity> informationTable;
 
         public UpdateService()
         {
-            pollenTable = DataContext.GetTable<Pollen>();
+            pollenTable = DataContext.GetTable<PollenEntity>();
             cityTable = DataContext.GetTable<City>();
             pollutionUpdateTable = DataContext.GetTable<PollutionUpdate>();
-            informationTable = DataContext.GetTable<Information>();
+            informationTable = DataContext.GetTable<InformationEntity>();
         }
 
-        public ServiceResult<List<Pollution>> GetUpdatedPollutions(string zip, List<Pollen> pollenList = null)
+        public ServiceResult<List<PollutionEntity>> GetUpdatedPollutions(string zip, List<PollenEntity> pollenList = null)
         {
             if (pollenList == null)
                 pollenList = pollenTable.ToList();
@@ -34,13 +34,13 @@ namespace Pollenalarm.Backend.Services
 
             // Extract pollution information
             var pollutionList = ExtractPollutionFromPdfContent(pdfContent, zip, pollenList);
-            return new ServiceResult<List<Pollution>>(pollutionList);
+            return new ServiceResult<List<PollutionEntity>>(pollutionList);
         }
 
         public ServiceResult<PollutionUpdate> UpdateFavorites()
         {
             var startTime = DateTime.Now;
-            var pollutions = new List<Pollution>();
+            var pollutions = new List<PollutionEntity>();
             var favCities = cityTable.Where(c => c.IsFavorite == 1);
 
             foreach (var city in favCities)
@@ -74,7 +74,7 @@ namespace Pollenalarm.Backend.Services
 			var pdfContent = PdfService.ExtractTextFromPdf(uri);
 
 			// Prepare information
-			var information = new Information();
+			var information = new InformationEntity();
 			information.Date = DateTime.Now;
 
 			try
@@ -97,13 +97,13 @@ namespace Pollenalarm.Backend.Services
 			return new ServiceResult(true);
 		}
 
-        private List<Pollution> ExtractPollutionFromPdfContent(string pdfContent, string zip, List<Pollen> pollenList)
+        private List<PollutionEntity> ExtractPollutionFromPdfContent(string pdfContent, string zip, List<PollenEntity> pollenList)
         {
             // Split PDF string
             pdfContent = pdfContent.Substring(pdfContent.IndexOf("Ambrosia"), (pdfContent.IndexOf("Stand") - (pdfContent.IndexOf("Ambrosia") + 0)));
             var pollutionTable = pdfContent.Split('\n');
 
-            var pollutionList = new List<Pollution>();
+            var pollutionList = new List<PollutionEntity>();
 
             // Get the pollution information for each pollen
             foreach (var pollutionString in pollutionTable)
@@ -121,7 +121,7 @@ namespace Pollenalarm.Backend.Services
                     continue;
 
                 // Create pollution
-                var pollution = new Pollution();
+                var pollution = new PollutionEntity();
                 pollution.City_Zip = zip;
                 pollution.TimeStamp = DateTime.Now;
                 pollution.Pollen_Id = pollen.Id;

@@ -34,10 +34,5 @@ namespace Pollenalarm.Backend.Models
             IsFavorite = isFavorite;
             UserCount = userCount;
         }
-
-        internal static City FromViewModel(Shared.ViewModels.CityViewModel city)
-        {
-            return new City(city.Zip, city.Name, city.LastUpdate, city.IsFavorite, city.UserCount);
-        }
     }
 }

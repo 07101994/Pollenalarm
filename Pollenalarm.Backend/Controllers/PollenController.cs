@@ -12,6 +12,7 @@ using iTextSharp.text.pdf.parser;
 using System.Web.Http;
 using Pollenalarm.Backend.Controllers.Base;
 using Pollenalarm.Backend.Models;
+using Pollenalarm.Core.Models;
 
 namespace Pollenalarm.Backend.Controllers
 {    
@@ -26,9 +27,15 @@ namespace Pollenalarm.Backend.Controllers
         [HttpGet]
         [ResponseType(typeof(List<Pollen>))]
         public IHttpActionResult GetAllPollen()
-        {            
-            var pollenTable = DataContext.GetTable<Pollen>();
-            return Ok(pollenTable.ToList());
+        {
+            var pollenList = new List<Pollen>();   
+            var pollenTable = DataContext.GetTable<PollenEntity>();
+            foreach (var pollenEntity in pollenTable)
+            {
+                pollenList.Add(pollenEntity.ToPollen());
+            }
+
+            return Ok(pollenList);
         }
 
         // GET: api/Pollen/5
@@ -41,13 +48,12 @@ namespace Pollenalarm.Backend.Controllers
         [ResponseType(typeof(Pollen))]
         public IHttpActionResult Get(int id)
         {
-            var pollenTable = DataContext.GetTable<Pollen>();
-
-            var pollen = pollenTable.FirstOrDefault(p => p.Id == id);
-            if (pollen == null)
+            var pollenTable = DataContext.GetTable<PollenEntity>();
+            var pollenEntity = pollenTable.FirstOrDefault(p => p.Id == id);
+            if (pollenEntity == null)
                 return NotFound();
 
-            return Ok(pollen);
+            return Ok(pollenEntity.ToPollen());
         }
     }
 }

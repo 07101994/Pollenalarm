@@ -3,8 +3,8 @@ using System.Data.Linq.Mapping;
 
 namespace Pollenalarm.Backend
 {	
-	[Table]
-	public class Information
+	[Table (Name = "Information")]
+	public class InformationEntity
 	{
 		[Column(IsPrimaryKey = true, AutoSync = AutoSync.OnInsert, IsDbGenerated = true)]
 		public int Id { get; set; }

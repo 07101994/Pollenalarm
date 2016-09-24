@@ -8,8 +8,8 @@ using System.Web.UI;
 
 namespace Pollenalarm.Backend.Models
 {
-    [Table]
-    public class Pollution
+    [Table (Name = "Pollution")]
+    public class PollutionEntity
     {
         [Column(IsPrimaryKey = true, AutoSync = AutoSync.OnInsert, IsDbGenerated = true)]
         public int Id { get; set; }

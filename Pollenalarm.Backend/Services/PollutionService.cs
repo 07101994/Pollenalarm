@@ -2,26 +2,24 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
-using System.Web;
-using Microsoft.Ajax.Utilities;
 using Pollenalarm.Backend.Helper;
 using Pollenalarm.Backend.Models;
 using Pollenalarm.Backend.Services.Base;
-using Pollenalarm.Shared.ViewModels;
+using Pollenalarm.Core.Models;
 
 namespace Pollenalarm.Backend.Services
 {
     public class PollutionService : ServiceBase
     {
-        private Table<Pollen> pollenTable;
-        private Table<Pollution> pollutionTable;
+        private Table<PollenEntity> pollenTable;
+        private Table<PollutionEntity> pollutionTable;
         private Table<City> cityTable;
         private UpdateService updateService;
 
         public PollutionService()
         {
-            pollutionTable = DataContext.GetTable<Pollution>();
-            pollenTable = DataContext.GetTable<Pollen>();
+            pollutionTable = DataContext.GetTable<PollutionEntity>();
+            pollenTable = DataContext.GetTable<PollenEntity>();
             cityTable = DataContext.GetTable<City>();
             updateService = new UpdateService();
         }
@@ -32,7 +30,7 @@ namespace Pollenalarm.Backend.Services
         /// </summary>
         /// <param name="zip">Zip code of the city</param>
         /// <returns>List of pollution values</returns>
-        public ServiceResult<List<PollutionViewModel>> GetPollutionsForCity(string zip)
+        public ServiceResult<Place> GetPollutionsForPlace(string zip)
         {
             // Get the latest update for this city
             var latestUpdate =
@@ -45,7 +43,7 @@ namespace Pollenalarm.Backend.Services
             var lastAllowedDate = DateTime.Now.AddHours(-12);
             if (latestUpdate == null || latestUpdate < lastAllowedDate)
             {
-                // Upadate this city
+                // Upadate this place
                 var updateResult = updateService.GetUpdatedPollutions(zip, pollenTable.ToList());
                 if (updateResult.Success)
                     // Use the DataTableHelper for Bulk Inserts, because SubmitChanges() updates each row as a single transaction
@@ -68,9 +66,17 @@ namespace Pollenalarm.Backend.Services
                 by pollution.Pollen_Id into grp
                 select grp.OrderByDescending(g => g.pollution.TimeStamp).First();
 
-            var result = pollutions.Select(p => p.pollution.ToPollutionViewModel(p.city, p.pollen));
+            var place = new Place();
+            place.Zip = zip;
 
-            return new ServiceResult<List<PollutionViewModel>>(result.ToList());
+            foreach (var p in pollutions)
+            {
+                place.PollutionToday.Add(new Pollution { Pollen = p.pollen.ToPollen(), Intensity = p.pollution.ValueToday, Date = p.pollution.TimeStamp });
+                place.PollutionTomorrow.Add(new Pollution { Pollen = p.pollen.ToPollen(), Intensity = p.pollution.ValueTomorrow, Date = p.pollution.TimeStamp });
+                place.PollutionAfterTomorrow.Add(new Pollution { Pollen = p.pollen.ToPollen(), Intensity = p.pollution.ValueAfterTomorrow, Date = p.pollution.TimeStamp });
+            }
+
+            return new ServiceResult<Place>(place);
         }
     }
 }
