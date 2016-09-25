@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="Pollenalarm.Frontend.Forms.Views.PlacePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding CurrentPlace.Name}">
+
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="PollutionItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.Padding>
+                            <OnPlatform
+                                x:TypeArguments="Thickness"
+                                Android="{StaticResource DefaultSicknessAndroid}"
+                                WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                iOS="{StaticResource DefaultSicknessiOS}" />
+                        </Grid.Padding>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="{Binding Pollen.Name}" />
+                        <Label Grid.Column="1" Text="{Binding Intensity}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem
+            Name="Edit place"
+            x:Name="EditPlaceButton"
+            Command="{Binding NavigateToEditPlaceCommand}"
+            Icon="Edit"
+            Priority="0">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Primary"
+                    WinPhone="Secondary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage Title="Today">
+        <ContentPage.Icon>
+            <OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar" />
+        </ContentPage.Icon>
+        <ListView
+            HasUnevenRows="True"
+            ItemSelected="PollutionList_ItemSelected"
+            ItemTemplate="{StaticResource PollutionItemTemplate}"
+            ItemsSource="{Binding CurrentPlace.PollutionToday}" />
+    </ContentPage>
+
+    <ContentPage Title="Tomorrow">
+        <ContentPage.Icon>
+            <OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar" />
+        </ContentPage.Icon>
+        <ListView
+            HasUnevenRows="True"
+            ItemSelected="PollutionList_ItemSelected"
+            ItemTemplate="{StaticResource PollutionItemTemplate}"
+            ItemsSource="{Binding CurrentPlace.PollutionTomorrow}" />
+    </ContentPage>
+
+    <ContentPage Title="After tomorrow">
+        <ContentPage.Icon>
+            <OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar" />
+        </ContentPage.Icon>
+        <ListView
+            HasUnevenRows="True"
+            ItemSelected="PollutionList_ItemSelected"
+            ItemTemplate="{StaticResource PollutionItemTemplate}"
+            ItemsSource="{Binding CurrentPlace.PollutionAfterTomorrow}" />
+    </ContentPage>
+</TabbedPage>

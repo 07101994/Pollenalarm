@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pollenalarm.Frontend.Forms.AboutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="About">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.Padding>
+                <OnPlatform
+                    x:TypeArguments="Thickness"
+                    Android="{StaticResource DefaultSicknessAndroid}"
+                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                    iOS="{StaticResource DefaultSicknessiOS}" />
+            </StackLayout.Padding>
+
+            <Label FontAttributes="Bold" Text="Version" />
+            <Label FontSize="Small" Text="0.1 Alpha" />
+
+            <Label
+                Margin="0, 10, 0, 0"
+                FontAttributes="Bold"	
+                Text="3rd Party Libraries" />
+            <Label Text="PCL Storage: https://github.com/dsplaisted/PCLStorage" FontSize="Small" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

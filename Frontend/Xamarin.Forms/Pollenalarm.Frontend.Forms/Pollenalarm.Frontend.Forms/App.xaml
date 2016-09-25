@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="Pollenalarm.Frontend.Forms.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+	    <ResourceDictionary>
+	        <Thickness x:Key="DefaultSicknessiOS" Left="10" Top="10" Right="10" Bottom="10" />	        	        			
+	        <Thickness x:Key="DefaultSicknessAndroid" Left="14" Top="14" Right="14" Bottom="14" />		
+	        <Thickness x:Key="DefaultSicknessWinPhone" Left="20" Top="20" Right="20" Bottom="20" />	       
+
+			<OnPlatform x:Key="DefaultFontSize" x:TypeArguments="x:Double" Android="18" iOS="16" WinPhone="18"  />	
+			<OnPlatform x:Key="SmallFontSize" x:TypeArguments="x:Double" Android="14" iOS="12" WinPhone="14"  />	
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

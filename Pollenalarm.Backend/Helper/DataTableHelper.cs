@@ -33,9 +33,9 @@ namespace Pollenalarm.Backend.Helper
                     foreach (DataColumn dc in dataTable.Columns)
                         bulkCopy.ColumnMappings.Add(new SqlBulkCopyColumnMapping(dc.ColumnName, dc.ColumnName));
 
-                    //  We could use "dataTable.TableName" in the following line, but this does sometimes have problems, as 
+                    //  We could use "dataTable.TableName" in the following line, but this does sometimes have problems, as
                     //  LINQ-to-SQL will drop trailing "s" off table names, so try to insert into [Product], rather than [Products]
-                    bulkCopy.DestinationTableName = dataTable.TableName;
+                    bulkCopy.DestinationTableName = dataTable.TableName.Replace("Entity", "");
                     bulkCopy.WriteToServer(dataTable);
                 }
             }

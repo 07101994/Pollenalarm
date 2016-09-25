@@ -4,6 +4,7 @@ using System.Web.Http.Description;
 using Pollenalarm.Backend.Controllers.Base;
 using Pollenalarm.Backend.Models;
 using Pollenalarm.Backend.Services;
+using Pollenalarm.Core.Models;
 
 namespace Pollenalarm.Backend.Controllers
 {
@@ -24,10 +25,10 @@ namespace Pollenalarm.Backend.Controllers
         /// <param name="zip">Zip </param>
         /// <returns>Pollution values</returns>
         [HttpGet]
-        [ResponseType(typeof(List<Pollution>))]
-        public IHttpActionResult GetPollutionForCity(string zip)
+        [ResponseType(typeof(Place))]
+        public IHttpActionResult GetPollutionForPlace(string zip)
         {
-            var result = pollutionService.GetPollutionsForCity(zip);
+            var result = pollutionService.GetPollutionsForPlace(zip);
             if (!result.Success)
                 return BadRequest(result.Message);
 
