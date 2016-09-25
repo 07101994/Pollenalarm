@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{E3FFEE3A-453E-4DB9-8BC7-81B7194884DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Backend", "Pollenalarm.Backend\Pollenalarm.Backend.csproj", "{E7DF00A8-4492-411C-B80C-FC8974C5BA5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Backend", "Backend\Pollenalarm.Backend\Pollenalarm.Backend.csproj", "{E7DF00A8-4492-411C-B80C-FC8974C5BA5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{F1BF6501-604E-4FE6-8D7C-DA855E7C82EF}"
 EndProject
@@ -34,6 +34,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D9637CFB-4B21-4775-BAFC-3D0D1F33B350}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Core", "Core\Pollenalarm.Core\Pollenalarm.Core.csproj", "{D676E2A1-C502-446B-B7A4-CCD2803467EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xamarin", "Xamarin", "{2D2DAB08-733C-4E91-B079-07DB05F4C53C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -690,5 +692,6 @@ Global
 		{1DDEFE86-2457-40FD-9E6D-445A54CEB27F} = {F1BF6501-604E-4FE6-8D7C-DA855E7C82EF}
 		{F0E761BA-D24A-42DA-A29D-93554D70E416} = {1DDEFE86-2457-40FD-9E6D-445A54CEB27F}
 		{D676E2A1-C502-446B-B7A4-CCD2803467EA} = {D9637CFB-4B21-4775-BAFC-3D0D1F33B350}
+		{2D2DAB08-733C-4E91-B079-07DB05F4C53C} = {F1BF6501-604E-4FE6-8D7C-DA855E7C82EF}
 	EndGlobalSection
 EndGlobal
