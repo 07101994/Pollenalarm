@@ -26,10 +26,10 @@ namespace Pollenalarm.Frontend.Forms
             // Services
             SimpleIoc.Default.Register<INavigationService>(() => CreateNavigationService(navigationPage));
             SimpleIoc.Default.Register<IFileSystemService, FileSystemService>();
-            SimpleIoc.Default.Register<PollenService>();
 			SimpleIoc.Default.Register<IGeoLoactionService, GeoLocationService>();
 			SimpleIoc.Default.Register<IHttpService, HttpService>();
-			SimpleIoc.Default.Register<GoogleMapsService>();
+            SimpleIoc.Default.Register<PollenService>();
+            SimpleIoc.Default.Register<GoogleMapsService>();
 
 			// ViewModels
 			SimpleIoc.Default.Register<MainViewModel>();

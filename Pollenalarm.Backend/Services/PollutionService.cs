@@ -13,14 +13,14 @@ namespace Pollenalarm.Backend.Services
     {
         private Table<PollenEntity> pollenTable;
         private Table<PollutionEntity> pollutionTable;
-        private Table<City> cityTable;
+        private Table<CityEntity> cityTable;
         private UpdateService updateService;
 
         public PollutionService()
         {
             pollutionTable = DataContext.GetTable<PollutionEntity>();
             pollenTable = DataContext.GetTable<PollenEntity>();
-            cityTable = DataContext.GetTable<City>();
+            cityTable = DataContext.GetTable<CityEntity>();
             updateService = new UpdateService();
         }
 

@@ -17,8 +17,15 @@ namespace Pollenalarm.Frontend.Forms
 
 		public async Task<string> GetStringAsync(string url, TimeSpan? cacheTime = default(TimeSpan?), TimeSpan? timeout = default(TimeSpan?))
 		{
-			var result = await _HttpClient.GetStringAsync(url);
-			return result;
+            try
+            {
+                var result = await _HttpClient.GetStringAsync(url);
+                return result;
+            }
+            catch (HttpRequestException)
+            {
+                return null;
+            }
 		}
 	}
 }

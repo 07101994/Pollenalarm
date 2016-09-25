@@ -24,16 +24,6 @@ namespace Pollenalarm.Core.Models
             PollutionToday = new ObservableCollection<Pollution>();
             PollutionTomorrow = new ObservableCollection<Pollution>();
             PollutionAfterTomorrow = new ObservableCollection<Pollution>();
-
-#if DEBUG
-            // Demo data
-            PollutionToday.Add(new Pollution { Pollen = new Pollen { Name = "Ambrosia" }, Intensity = 1 });
-            PollutionToday.Add(new Pollution { Pollen = new Pollen { Name = "Ampfer" }, Intensity = 2 });
-            PollutionTomorrow.Add(new Pollution { Pollen = new Pollen { Name = "Hasel" }, Intensity = 3 });
-            PollutionTomorrow.Add(new Pollution { Pollen = new Pollen { Name = "Weide" }, Intensity = 1 });
-            PollutionAfterTomorrow.Add(new Pollution { Pollen = new Pollen { Name = "Beifuß" }, Intensity = 2 });
-            PollutionAfterTomorrow.Add(new Pollution { Pollen = new Pollen { Name = "Weide" }, Intensity = 2 });
-#endif
         }
     }
 }

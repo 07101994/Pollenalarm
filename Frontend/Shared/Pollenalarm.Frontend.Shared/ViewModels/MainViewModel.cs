@@ -76,13 +76,13 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     _NavigationService.NavigateTo(ViewNames.Place);
                 }));
             }
-        }		      
+        }
 
         public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, PollenService pollenService, PlaceViewModel placeViewModel)
         {
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
-            _PollenService = new PollenService();
+            _PollenService = pollenService;
             _PlaceViewModel = placeViewModel;
 
             Places = new ObservableCollection<Place>();
@@ -101,6 +101,12 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 {
                     Places.Add(place);
                 }
+            }
+
+            // Update
+            foreach (var place in Places)
+            {
+                var success = await _PollenService.GetPollutionsForPlaceAsync(place);
             }
 
             IsLoading = false;

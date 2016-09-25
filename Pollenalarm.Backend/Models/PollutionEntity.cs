@@ -38,7 +38,7 @@ namespace Pollenalarm.Backend.Models
                     break;
                 case 2:
                     ValueAfterTomorrow = value;
-                    break;                    
+                    break;
             }
         }
     }

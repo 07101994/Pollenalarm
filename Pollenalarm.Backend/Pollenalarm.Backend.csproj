@@ -207,7 +207,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataTableHelper.cs" />
-    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\CityEntity.cs" />
     <Compile Include="Models\PollenEntity.cs" />
     <Compile Include="Models\PollutionEntity.cs" />
     <Compile Include="Models\PollutionResult.cs" />

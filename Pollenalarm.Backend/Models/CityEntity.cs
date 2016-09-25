@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Pollenalarm.Backend.Models
 {
-    [Table]
-    public class City
+    [Table (Name = "City")]
+    public class CityEntity
     {
         [Column(IsPrimaryKey = true)]
         public string Zip { get; set; }
@@ -21,12 +21,12 @@ namespace Pollenalarm.Backend.Models
         [Column]
         public int UserCount { get; set; }
 
-        public City()
+        public CityEntity()
         {
 
         }
 
-        public City(string zip, string name, DateTime? lastUpdate, int isFavorite, int userCount)
+        public CityEntity(string zip, string name, DateTime? lastUpdate, int isFavorite, int userCount)
         {
             Zip = zip;
             Name = name;

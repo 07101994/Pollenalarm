@@ -11,14 +11,14 @@ namespace Pollenalarm.Backend.Services
     public class UpdateService : ServiceBase
     {
         private readonly Table<PollenEntity> pollenTable;
-        private Table<City> cityTable;
+        private Table<CityEntity> cityTable;
         private Table<PollutionUpdate> pollutionUpdateTable;
         private Table<InformationEntity> informationTable;
 
         public UpdateService()
         {
             pollenTable = DataContext.GetTable<PollenEntity>();
-            cityTable = DataContext.GetTable<City>();
+            cityTable = DataContext.GetTable<CityEntity>();
             pollutionUpdateTable = DataContext.GetTable<PollutionUpdate>();
             informationTable = DataContext.GetTable<InformationEntity>();
         }
