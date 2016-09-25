@@ -32,8 +32,9 @@
     <TabbedPage.ToolbarItems>
         <ToolbarItem
             Name="Edit place"
-			Icon="Edit"
+            x:Name="EditPlaceButton"
             Command="{Binding NavigateToEditPlaceCommand}"
+            Icon="Edit"
             Priority="0">
             <ToolbarItem.Order>
                 <OnPlatform
@@ -46,28 +47,28 @@
     </TabbedPage.ToolbarItems>
 
     <ContentPage Title="Today">
-		<ContentPage.Icon>
-			<OnPlatform
+        <ContentPage.Icon>
+            <OnPlatform
                 x:TypeArguments="FileImageSource"
                 Android=""
                 WinPhone=""
                 iOS="Calendar" />
-		</ContentPage.Icon>
+        </ContentPage.Icon>
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
             ItemTemplate="{StaticResource PollutionItemTemplate}"
             ItemsSource="{Binding CurrentPlace.PollutionToday}" />
-	</ContentPage>
+    </ContentPage>
 
     <ContentPage Title="Tomorrow">
-		<ContentPage.Icon>
-			<OnPlatform
+        <ContentPage.Icon>
+            <OnPlatform
                 x:TypeArguments="FileImageSource"
                 Android=""
                 WinPhone=""
                 iOS="Calendar" />
-		</ContentPage.Icon>
+        </ContentPage.Icon>
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
@@ -76,13 +77,13 @@
     </ContentPage>
 
     <ContentPage Title="After tomorrow">
-		<ContentPage.Icon>
-			<OnPlatform
+        <ContentPage.Icon>
+            <OnPlatform
                 x:TypeArguments="FileImageSource"
                 Android=""
                 WinPhone=""
                 iOS="Calendar" />
-		</ContentPage.Icon>
+        </ContentPage.Icon>
         <ListView
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"

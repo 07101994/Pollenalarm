@@ -19,8 +19,15 @@ namespace Pollenalarm.Frontend.Forms.Views
 		{
 			base.OnAppearing();
 
+            await App.Bootstrapper.SettingsViewModel.InitializeAsync();
+
 			if (BindingContext == null)
 				BindingContext = App.Bootstrapper.SettingsViewModel;
 		}
+
+        private async void Settings_Changed(object sender, EventArgs e)
+        {
+            await App.Bootstrapper.SettingsViewModel.SaveChangesAsnyc();
+        }
     }
 }

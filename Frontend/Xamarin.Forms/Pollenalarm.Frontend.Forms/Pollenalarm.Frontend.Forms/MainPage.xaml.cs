@@ -26,7 +26,9 @@ namespace Pollenalarm.Frontend.Forms
                 BindingContext = App.Bootstrapper.MainViewModel;
 
             if (!App.Bootstrapper.MainViewModel.IsLoaded)
+            {
                 await App.Bootstrapper.MainViewModel.RefreshAsync();
+            }
 
             // Hide Add button on Android, because we use the Floating Action Button here
             Device.OnPlatform(Android: () => { ToolbarItems.Remove(AddItem); });

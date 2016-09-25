@@ -19,6 +19,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         private INavigationService _NavigationService;
         private IFileSystemService _FileSystemService;
         private PollenService _PollenService;
+        private SettingsService _SettingsService;
+        private PlaceService _PlaceService;
         private PlaceViewModel _PlaceViewModel;
 
         private ObservableCollection<Place> _Places;
@@ -78,11 +80,13 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, PollenService pollenService, PlaceViewModel placeViewModel)
+        public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, SettingsService settingsService, PollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel)
         {
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
             _PollenService = pollenService;
+            _SettingsService = settingsService;
+            _PlaceService = placeService;
             _PlaceViewModel = placeViewModel;
 
             Places = new ObservableCollection<Place>();
@@ -92,11 +96,28 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         {
             IsLoading = true;
 
+            Places.Clear();
+
+            // Check settings
+            await _SettingsService.LoadSettingsAsync();
+            if (_SettingsService.CurrentSettings.UseCurrentLocation)
+            {
+                // Add current location
+                var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
+                if (geolocation != null)
+                {
+                    var currentPlace = new Place();
+                    currentPlace.Name = "Current position";
+                    currentPlace.Zip = geolocation.Zip;
+                    currentPlace.IsCurrentPosition = true;
+                    Places.Add(currentPlace);
+                }
+            }
+
             // Load locally saved places
             var savedPlaces = await _FileSystemService.ReadObjectFromFileAsync<List<Place>>("places.json");
             if (savedPlaces != null)
             {
-                Places.Clear();
                 foreach(var place in savedPlaces)
                 {
                     Places.Add(place);
@@ -107,6 +128,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             foreach (var place in Places)
             {
                 var success = await _PollenService.GetPollutionsForPlaceAsync(place);
+                place.RecalculateMaxPollution();
             }
 
             IsLoading = false;

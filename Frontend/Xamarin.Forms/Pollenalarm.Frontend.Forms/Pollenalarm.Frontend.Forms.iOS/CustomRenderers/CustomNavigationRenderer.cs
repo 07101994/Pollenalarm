@@ -22,7 +22,7 @@ namespace Pollenalarm.Frontend.Forms.iOS.CustomRenderers
 
 			if (TopViewController.NavigationItem.RightBarButtonItems.Length == 1)
 				rightList.Add(TopViewController.NavigationItem.RightBarButtonItems[0]);
-			else 
+			else
 			{
 				var count = 0;
 				foreach (var item in TopViewController.NavigationItem.RightBarButtonItems)

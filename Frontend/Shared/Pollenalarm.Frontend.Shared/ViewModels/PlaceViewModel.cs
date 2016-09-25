@@ -15,8 +15,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 	{
         private INavigationService _NavigationService;
         private IFileSystemService _FileSystemService;
-        private IGeoLoactionService _GeoLoactionService;
-		private GoogleMapsService _GoogleMapsService;
+        private PlaceService _PlaceService;
 
         private Place _CurrentPlace;
 		public Place CurrentPlace
@@ -57,13 +56,12 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 return _AddEditPlaceCommand ?? (_AddEditPlaceCommand = new RelayCommand(() =>
                 {
                     // Check if entered field are valid
-                    if (string.IsNullOrWhiteSpace(_PlaceName) || !Regex.IsMatch(_PlaceZip, "^[0-9]*$") || _PlaceZip.Trim().Length > 5)
+                    if (string.IsNullOrWhiteSpace(_PlaceName) || !Regex.IsMatch(_PlaceZip, "^[0-9]*$") || _PlaceZip.Trim().Length != 5)
                     {
                         // Invalid entries
                         OnInvalidEntries?.Invoke(this, null);
                         return;
                     }
-
 
                     var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
 
@@ -157,36 +155,25 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
                 {
-					// Get GPS location
-                    var geoLocation = await _GeoLoactionService.GetCurrentLocationAsync();
-					if (geoLocation == null)
-					{
-						OnLocationFailed?.Invoke(this, null);
-						return;
-					}
+                    var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
+                    if (geolocation == null)
+                    {
+                        OnLocationFailed?.Invoke(this, null);
+                        return;
+                    }
 
-					// Translate GPS to geocode
-					var geocode = await _GoogleMapsService.ReverseGeocodeAsync(geoLocation);
-					if (geocode == null)
-					{
-						OnLocationFailed?.Invoke(this, null);
-						return;
-					}
-
-					// Update place fields
-					PlaceName = geocode.Name;
-					PlaceZip = geocode.Zip;
-
+                    // Update place fields
+                    PlaceName = geolocation.Name;
+					PlaceZip = geolocation.Zip;
                 }));
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, IGeoLoactionService geoLocationService, GoogleMapsService googleMapsService)
+        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, PlaceService placeService)
 		{
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
-            _GeoLoactionService = geoLocationService;
-			_GoogleMapsService = googleMapsService;
+            _PlaceService = placeService;
 		}
 	}
 }

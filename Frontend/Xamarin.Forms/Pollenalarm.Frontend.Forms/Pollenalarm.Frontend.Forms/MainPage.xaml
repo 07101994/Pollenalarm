@@ -44,70 +44,89 @@
                     WinPhone="Secondary"
                     iOS="Primary" />
             </ToolbarItem.Order>
-        </ToolbarItem>               
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <RelativeLayout>
 
         <ListView
+            x:Name="PlaceList"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
             IsRefreshing="{Binding IsLoading}"
             ItemSelected="PlacesList_ItemSelected"
             ItemsSource="{Binding Places}"
             RefreshCommand="{Binding RefreshCommand}">
-			
-            <ListView.Header>
-            	<AbsoluteLayout HeightRequest="150">
 
- 					<Image Source="Header" Aspect="AspectFill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
-					
-					<StackLayout
-						AbsoluteLayout.LayoutBounds="0.5,0.5"
-						AbsoluteLayout.LayoutFlags="PositionProportional">
-						<Label	
-							FontSize="Large"
-							HorizontalTextAlignment="Center"
-							FontAttributes="Bold"
-							TextColor="White"
-							Text="Good morning"	/>
-						<Label					
-							HorizontalTextAlignment="Center"
-							Margin="0, -6, 0, 0"
-							FontSize="Small"
-							Text="You are lucky, mild pollen today." 
-							TextColor="White"/>
-					</StackLayout>
-				</AbsoluteLayout>							               
+            <ListView.Header>
+                <AbsoluteLayout HeightRequest="150">
+
+                    <Image
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        Aspect="AspectFill"
+                        Source="Header" />
+
+                    <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            HorizontalTextAlignment="Center"
+                            Text="Good morning"
+                            TextColor="White" />
+                        <Label
+                            Margin="0, -6, 0, 0"
+                            FontSize="Small"
+                            HorizontalTextAlignment="Center"
+                            Text="You are lucky, mild pollen today."
+                            TextColor="White" />
+                    </StackLayout>
+                </AbsoluteLayout>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.View>
-							<AbsoluteLayout>
-								<AbsoluteLayout.Padding>
+                            <AbsoluteLayout>
+                                <AbsoluteLayout.Padding>
                                     <OnPlatform
-				                        x:TypeArguments="Thickness"
-				                        Android="{StaticResource DefaultSicknessAndroid}"
-				                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
-				                        iOS="15, 8, 10, 8" />
+                                        x:TypeArguments="Thickness"
+                                        Android="{StaticResource DefaultSicknessAndroid}"
+                                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                        iOS="15, 8, 10, 8" />
                                 </AbsoluteLayout.Padding>
-                                								
-								<StackLayout>								
-	                                <Label FontAttributes="Bold" Text="{Binding Name}" FontSize="{StaticResource DefaultFontSize}" />
-                                	<Label Margin="0,-4,0,0" FontSize="{StaticResource SmallFontSize}" Text="Pollution: High" />
+
+                                <StackLayout>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="{StaticResource DefaultFontSize}"
+                                        Text="{Binding Name}" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            Margin="0,-4,0,0"
+                                            FontSize="{StaticResource SmallFontSize}"
+                                            Text="Pollution:" />
+                                        <Label
+                                            Margin="0,-4,0,0"
+                                            FontSize="{StaticResource SmallFontSize}"
+                                            Text="{Binding MaxPollutionToday}" />
+                                    </StackLayout>
                                 </StackLayout>
-								
-								<Image 
-									Source="Next"
-									HeightRequest="15"
-									AbsoluteLayout.LayoutBounds="1,0.5"
-									AbsoluteLayout.LayoutFlags="PositionProportional">
-									<Image.IsVisible>
-										<OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" WinPhone="False"/>
-									</Image.IsVisible>
-								</Image>
-							</AbsoluteLayout>                            
+
+                                <Image
+                                    AbsoluteLayout.LayoutBounds="1,0.5"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    HeightRequest="15"
+                                    Source="Next">
+                                    <Image.IsVisible>
+                                        <OnPlatform
+                                            x:TypeArguments="x:Boolean"
+                                            Android="False"
+                                            WinPhone="False"
+                                            iOS="True" />
+                                    </Image.IsVisible>
+                                </Image>
+                            </AbsoluteLayout>
                         </ViewCell.View>
                     </ViewCell>
                 </DataTemplate>

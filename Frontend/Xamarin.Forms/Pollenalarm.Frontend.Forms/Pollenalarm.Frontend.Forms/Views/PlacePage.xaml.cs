@@ -15,6 +15,10 @@ namespace Pollenalarm.Frontend.Forms.Views
         {
             InitializeComponent();
             BindingContext = App.Bootstrapper.PlaceViewModel;
+
+            // Hide edit button if selected place is auto-generated current position
+            if (App.Bootstrapper.PlaceViewModel.CurrentPlace.IsCurrentPosition)
+                ToolbarItems.Remove(EditPlaceButton);
         }
 
         protected override void OnAppearing()
