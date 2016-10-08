@@ -161,6 +161,15 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We could not find any pollution information for this place. Please check the zip code..
+        /// </summary>
+        public static string NoPollutionWarningText {
+            get {
+                return ResourceManager.GetString("NoPollutionWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string OK {

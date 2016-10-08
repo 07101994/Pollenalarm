@@ -53,7 +53,7 @@
             x:Name="PlaceList"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
-            IsRefreshing="{Binding IsLoading}"
+            IsRefreshing="{Binding IsLoading, Mode=OneWay}"
             ItemSelected="PlacesList_ItemSelected"
             ItemsSource="{Binding Places}"
             RefreshCommand="{Binding RefreshCommand}">

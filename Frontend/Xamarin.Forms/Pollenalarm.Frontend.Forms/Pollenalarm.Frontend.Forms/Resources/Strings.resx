@@ -159,4 +159,7 @@
   <data name="LocationSettingsText" xml:space="preserve">
     <value>Use my current location</value>
   </data>
+  <data name="NoPollutionWarningText" xml:space="preserve">
+    <value>We could not find any pollution information for this place. Please check the zip code.</value>
+  </data>
 </root>

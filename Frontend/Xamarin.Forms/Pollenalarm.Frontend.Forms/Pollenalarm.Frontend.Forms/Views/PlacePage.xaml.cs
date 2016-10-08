@@ -1,4 +1,5 @@
 ﻿using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Forms.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,12 @@ namespace Pollenalarm.Frontend.Forms.Views
                 ToolbarItems.Remove(EditPlaceButton);
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
             if (App.Bootstrapper.PlaceViewModel.CurrentPlace == null)
-                Navigation.PopAsync();
+                await Navigation.PopAsync();
         }
 
         private void PollutionList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

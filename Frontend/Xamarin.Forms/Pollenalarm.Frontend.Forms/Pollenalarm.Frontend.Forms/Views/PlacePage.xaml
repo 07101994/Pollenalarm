@@ -3,10 +3,14 @@
     x:Class="Pollenalarm.Frontend.Forms.Views.PlacePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="{Binding CurrentPlace.Name}">
 
     <TabbedPage.Resources>
         <ResourceDictionary>
+            <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
+
             <DataTemplate x:Key="PollutionItemTemplate">
                 <ViewCell>
                     <Grid>
@@ -54,11 +58,26 @@
                 WinPhone=""
                 iOS="Calendar" />
         </ContentPage.Icon>
-        <ListView
-            HasUnevenRows="True"
-            ItemSelected="PollutionList_ItemSelected"
-            ItemTemplate="{StaticResource PollutionItemTemplate}"
-            ItemsSource="{Binding CurrentPlace.PollutionToday}" />
+        <StackLayout>
+            <Label
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding CurrentPlace.PollutionToday.Count, Converter={StaticResource IntToNegatedBooleanConverter}}"
+                Text="{i18n:Translate NoPollutionWarningText}">
+                <Label.Margin>
+                    <OnPlatform
+                        x:TypeArguments="Thickness"
+                        Android="{StaticResource DefaultSicknessAndroid}"
+                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                        iOS="{StaticResource DefaultSicknessiOS}" />
+                </Label.Margin>
+            </Label>
+            <ListView
+                HasUnevenRows="True"
+                ItemSelected="PollutionList_ItemSelected"
+                ItemTemplate="{StaticResource PollutionItemTemplate}"
+                ItemsSource="{Binding CurrentPlace.PollutionToday}" />
+        </StackLayout>
+
     </ContentPage>
 
     <ContentPage Title="Tomorrow">
