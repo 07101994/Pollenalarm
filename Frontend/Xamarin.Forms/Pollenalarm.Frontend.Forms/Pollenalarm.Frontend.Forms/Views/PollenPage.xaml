@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="Pollenalarm.Frontend.Forms.Views.PollenPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -18,6 +18,25 @@
                         iOS="{StaticResource DefaultSicknessiOS}" />
                 </StackLayout.Padding>
 
+                <Label FontAttributes="Bold" Text="Allergy" />
+	            <Grid>
+	                <Grid.ColumnDefinitions>
+	                    <ColumnDefinition Width="*" />
+	                    <ColumnDefinition Width="Auto" />
+	                </Grid.ColumnDefinitions>
+
+	                <Label
+	                    Grid.Column="0"
+	                    FontSize="Small"
+	                    Text="Show this pollen"
+	                    VerticalOptions="Center" />
+	                <Switch
+	                    Grid.Column="1"
+	                    IsToggled="{Binding CurrentPollen.IsSelected}"
+	                    Toggled="AllergySwitch_Toggled"
+	                    VerticalOptions="Center" />
+	            </Grid>
+				
                 <Label
                     Margin="0, 10, 0, 0"
                     FontAttributes="Bold"

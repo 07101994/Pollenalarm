@@ -16,5 +16,10 @@ namespace Pollenalarm.Frontend.Forms.Views
             BindingContext = App.Bootstrapper.PollenViewModel;
             //PollenImage.Source = ImageSource.FromFile(App.Bootstrapper.PollenViewModel.CurrentPollen.ImageName);
         }
+
+		private void AllergySwitch_Toggled(object sender, EventArgs e)
+		{
+			
+		}
     }
 }

@@ -32,8 +32,12 @@ namespace Pollenalarm.Backend.Models
         {
             return new Pollen
             {
+				Id = Id,
                 Name = Name,
-                Description = Description
+				Description = Description,
+				BloomStart = BloomStart,
+				BloomEnd = BloomEnd,
+				ImageCredits = ImageCredits
             };
         }
     }
