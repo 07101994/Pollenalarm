@@ -16,6 +16,7 @@ namespace Pollenalarm.Frontend.Forms
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "Go Home");
         }
 
         protected override async void OnAppearing()
