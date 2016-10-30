@@ -9,21 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Backend", "Back
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{F1BF6501-604E-4FE6-8D7C-DA855E7C82EF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{3E2560CF-6C5A-46EE-B4A5-B8C5EC579D45}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xamarin.Forms", "Xamarin.Forms", "{BAF1F2AB-6396-44AC-8ECD-7DB52F52B102}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.Droid", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms\Pollenalarm.Frontend.Forms.Droid\Pollenalarm.Frontend.Forms.Droid.csproj", "{BC635AA4-3E2D-4BB6-8504-F0BC99BD1FF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.Droid", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms.Droid\Pollenalarm.Frontend.Forms.Droid.csproj", "{BC635AA4-3E2D-4BB6-8504-F0BC99BD1FF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.iOS", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms\Pollenalarm.Frontend.Forms.iOS\Pollenalarm.Frontend.Forms.iOS.csproj", "{F5568B4C-2A55-4AD9-8F1D-126EE5D51076}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.iOS", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms.iOS\Pollenalarm.Frontend.Forms.iOS.csproj", "{F5568B4C-2A55-4AD9-8F1D-126EE5D51076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.WinPhone", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms\Pollenalarm.Frontend.Forms.WinPhone\Pollenalarm.Frontend.Forms.WinPhone.csproj", "{2756C7ED-F9A2-47EA-99A2-5ACFADE65832}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.WinPhone", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms.WinPhone\Pollenalarm.Frontend.Forms.WinPhone.csproj", "{2756C7ED-F9A2-47EA-99A2-5ACFADE65832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.UWP", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms\Pollenalarm.Frontend.Forms.UWP\Pollenalarm.Frontend.Forms.UWP.csproj", "{819CF130-6E89-4900-AD7E-1C2B1BE17523}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.UWP", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms.UWP\Pollenalarm.Frontend.Forms.UWP.csproj", "{819CF130-6E89-4900-AD7E-1C2B1BE17523}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.Windows", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms\Pollenalarm.Frontend.Forms.Windows\Pollenalarm.Frontend.Forms.Windows.csproj", "{08947784-046B-4838-86D5-506DF38178A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.Windows", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms.Windows\Pollenalarm.Frontend.Forms.Windows.csproj", "{08947784-046B-4838-86D5-506DF38178A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms\Pollenalarm.Frontend.Forms\Pollenalarm.Frontend.Forms.csproj", "{8506D846-A054-42E5-8B68-54699A561A88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms", "Frontend\Xamarin.Forms\Pollenalarm.Frontend.Forms\Pollenalarm.Frontend.Forms.csproj", "{8506D846-A054-42E5-8B68-54699A561A88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{1DDEFE86-2457-40FD-9E6D-445A54CEB27F}"
 EndProject

@@ -184,11 +184,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Core\Pollenalarm.Core\Pollenalarm.Core.csproj">
+    <ProjectReference Include="..\..\..\Core\Pollenalarm.Core\Pollenalarm.Core.csproj">
       <Project>{d676e2a1-c502-446b-b7a4-ccd2803467ea}</Project>
       <Name>Pollenalarm.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Pollenalarm.Frontend.Shared\Pollenalarm.Frontend.Shared.csproj">
+    <ProjectReference Include="..\..\Shared\Pollenalarm.Frontend.Shared\Pollenalarm.Frontend.Shared.csproj">
       <Project>{f0e761ba-d24a-42da-a29d-93554d70e416}</Project>
       <Name>Pollenalarm.Frontend.Shared</Name>
     </ProjectReference>

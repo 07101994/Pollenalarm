@@ -194,11 +194,11 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Core\Pollenalarm.Core\Pollenalarm.Core.csproj">
+    <ProjectReference Include="..\..\..\Core\Pollenalarm.Core\Pollenalarm.Core.csproj">
       <Project>{d676e2a1-c502-446b-b7a4-ccd2803467ea}</Project>
       <Name>Pollenalarm.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Pollenalarm.Frontend.Shared\Pollenalarm.Frontend.Shared.csproj">
+    <ProjectReference Include="..\..\Shared\Pollenalarm.Frontend.Shared\Pollenalarm.Frontend.Shared.csproj">
       <Project>{f0e761ba-d24a-42da-a29d-93554d70e416}</Project>
       <Name>Pollenalarm.Frontend.Shared</Name>
     </ProjectReference>
@@ -306,9 +306,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Background%402x.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CustomRenderers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
