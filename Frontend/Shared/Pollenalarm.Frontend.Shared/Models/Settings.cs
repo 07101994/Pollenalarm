@@ -16,5 +16,10 @@ namespace Pollenalarm.Frontend.Shared.Models
 		{
 			SelectedPollen = new Dictionary<int, bool>();
 		}
-	}
+
+        public Settings Clone()
+        {
+            return (Settings)MemberwiseClone();
+        }
+    }
 }

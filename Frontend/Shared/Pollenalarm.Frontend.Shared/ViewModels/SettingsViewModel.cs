@@ -5,6 +5,7 @@ using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
 using Pollenalarm.Frontend.Shared.Models;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -19,7 +20,6 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             get { return _Settings; }
             set { _Settings = value; RaisePropertyChanged(); }
         }
-
 
         private RelayCommand _NavigateToAboutCommand;
 		public RelayCommand NavigateToAboutCommand
@@ -42,11 +42,18 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         public async Task InitializeAsync()
         {
             await _SettingsService.LoadSettingsAsync();
-            Settings = _SettingsService.CurrentSettings;
+            Settings = _SettingsService.CurrentSettings.Clone();
         }
 
         public async Task SaveChangesAsnyc()
         {
+            // Trigger MainViewModel refresh on specific changes
+            if (_SettingsService.CurrentSettings.UseCurrentLocation != Settings.UseCurrentLocation)
+            {
+                var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+                mainViewModel.IsLoaded = false;
+            }
+
             _SettingsService.CurrentSettings = Settings;
             await _SettingsService.SaveSettingsAsync();
         }

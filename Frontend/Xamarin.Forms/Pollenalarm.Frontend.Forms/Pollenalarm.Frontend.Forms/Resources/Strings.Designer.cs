@@ -188,6 +188,51 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Low.
+        /// </summary>
+        public static string PollutionNameLow {
+            get {
+                return ResourceManager.GetString("PollutionNameLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        public static string PollutionNameMedium {
+            get {
+                return ResourceManager.GetString("PollutionNameMedium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string PollutionNameNone {
+            get {
+                return ResourceManager.GetString("PollutionNameNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strong.
+        /// </summary>
+        public static string PollutionNameStrong {
+            get {
+                return ResourceManager.GetString("PollutionNameStrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very strong.
+        /// </summary>
+        public static string PollutionNameVeryStrong {
+            get {
+                return ResourceManager.GetString("PollutionNameVeryStrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {

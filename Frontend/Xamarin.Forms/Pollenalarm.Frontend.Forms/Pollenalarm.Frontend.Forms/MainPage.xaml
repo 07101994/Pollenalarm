@@ -12,11 +12,11 @@
         <ResourceDictionary>
             <converter:IntToBooleanConverter x:Key="IntToBooleanConverter" />
             <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
+            <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-
         <ToolbarItem
             Name="{i18n:Translate Add}"
             x:Name="AddItem"
@@ -83,6 +83,7 @@
                     </StackLayout>
                 </AbsoluteLayout>
             </ListView.Header>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -109,7 +110,7 @@
                                         <Label
                                             Margin="0,-4,0,0"
                                             FontSize="{StaticResource SmallFontSize}"
-                                            Text="{Binding MaxPollutionToday}" />
+                                            Text="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionNameConverter}" />
                                     </StackLayout>
                                 </StackLayout>
 

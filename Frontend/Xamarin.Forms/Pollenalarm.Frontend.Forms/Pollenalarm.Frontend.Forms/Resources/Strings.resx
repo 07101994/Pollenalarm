@@ -162,4 +162,19 @@
   <data name="NoPollutionWarningText" xml:space="preserve">
     <value>We could not find any pollution information for this place. Please check the zip code.</value>
   </data>
+  <data name="PollutionNameLow" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="PollutionNameMedium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="PollutionNameNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="PollutionNameStrong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="PollutionNameVeryStrong" xml:space="preserve">
+    <value>Very strong</value>
+  </data>
 </root>

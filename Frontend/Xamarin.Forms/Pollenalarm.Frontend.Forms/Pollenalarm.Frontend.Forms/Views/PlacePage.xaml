@@ -5,11 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
-    Title="{Binding CurrentPlace.Name}">
+    Title="{Binding CurrentPlace.Zip}">
 
     <TabbedPage.Resources>
         <ResourceDictionary>
             <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
+            <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
 
             <DataTemplate x:Key="PollutionItemTemplate">
                 <ViewCell>
@@ -26,7 +27,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="{Binding Pollen.Name}" />
-                        <Label Grid.Column="1" Text="{Binding Intensity}" />
+                        <Label Grid.Column="1" Text="{Binding Intensity, Converter={StaticResource IntToPollutionNameConverter}}" />
                     </Grid>
                 </ViewCell>
             </DataTemplate>

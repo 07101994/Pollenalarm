@@ -31,9 +31,7 @@
         </StackLayout.Padding>
         <Entry Placeholder="Name" Text="{Binding PlaceName, Mode=TwoWay}" />
         <Entry Placeholder="Zip" Text="{Binding PlaceZip, Mode=TwoWay}" />
-		<Button            
-            Command="{Binding GetCurrentPositionCommand}"
-            Text="Use current location" />
+        <Button Command="{Binding GetCurrentPositionCommand}" Text="Use current location" />
         <Button
             x:Name="AddButton"
             Command="{Binding AddEditPlaceCommand}"

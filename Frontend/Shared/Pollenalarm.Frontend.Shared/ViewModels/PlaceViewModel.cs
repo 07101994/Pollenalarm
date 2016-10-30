@@ -67,6 +67,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 
                     if (_CurrentPlace != null)
                     {
+                        // Update existing place
                         var existingPlace = mainViewModel.Places.FirstOrDefault(x => x.Id == _CurrentPlace.Id);
                         if (existingPlace != null)
                         {
@@ -77,10 +78,13 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     }
                     else
                     {
+                        // Add new place
                         _CurrentPlace = new Place();
                         _CurrentPlace.Name = _PlaceName;
                         _CurrentPlace.Zip = _PlaceZip;
                         mainViewModel.Places.Add(_CurrentPlace);
+                        // Set IsLoaded to false to force MainViewModel to refresh and load pollen for the new place
+                        mainViewModel.IsLoaded = false;
                         _CurrentPlace = null;
                     }
 
