@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
-    Title="{Binding CurrentPlace.Name}">
+    Title="{Binding CurrentPlace.Name}"
+    CurrentPageChanged="PlacePage_CurrentPageChanged">
 
     <TabbedPage.Resources>
         <ResourceDictionary>
@@ -105,7 +106,6 @@
                 ItemTemplate="{StaticResource PollutionItemTemplate}"
                 ItemsSource="{Binding CurrentPlace.PollutionToday}" />
         </StackLayout>
-
     </ContentPage>
 
     <ContentPage Title="Tomorrow">

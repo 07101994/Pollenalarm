@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using System.Collections.Specialized;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
@@ -20,6 +21,17 @@ namespace Pollenalarm.Frontend.Forms.Views
             // Hide edit button if selected place is auto-generated current position
             if (App.Bootstrapper.PlaceViewModel.CurrentPlace.IsCurrentPosition)
                 ToolbarItems.Remove(EditPlaceButton);
+        }
+
+        private async void PlacePage_CurrentPageChanged(object sender, EventArgs e)
+        {
+            // Animate Tab change on iOS
+            if (Device.OS == TargetPlatform.iOS)
+            {
+                uint duration = 300;
+                await Task.WhenAll(CurrentPage.TranslateTo(0, 1000, duration), CurrentPage.FadeTo(0, duration));
+                await Task.WhenAll(CurrentPage.TranslateTo(0, 0, duration), CurrentPage.FadeTo(1, duration));
+            }
         }
 
         protected override async void OnAppearing()
