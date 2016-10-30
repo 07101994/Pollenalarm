@@ -19,8 +19,11 @@ namespace Pollenalarm.Frontend.Forms
         {
             InitializeComponent();
 
+            var navigationPage = new NavigationPage(new MainPage());
+            navigationPage.BarTextColor = Color.White;
+
             if (MainPage == null)
-                MainPage = new NavigationPage(new MainPage());
+                MainPage = navigationPage;
 
             if (Bootstrapper == null)
                 Bootstrapper = new Bootstrapper((NavigationPage)MainPage);

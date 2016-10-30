@@ -61,5 +61,9 @@
 	<string>Pollenalarm.Frontend.Forms</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
 </dict>
 </plist>
