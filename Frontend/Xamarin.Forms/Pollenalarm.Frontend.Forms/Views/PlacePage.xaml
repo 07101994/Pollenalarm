@@ -14,21 +14,48 @@
 
             <DataTemplate x:Key="PollutionItemTemplate">
                 <ViewCell>
-                    <Grid>
-                        <Grid.Padding>
-                            <OnPlatform
-                                x:TypeArguments="Thickness"
-                                Android="{StaticResource DefaultSicknessAndroid}"
-                                WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                                iOS="{StaticResource DefaultSicknessiOS}" />
-                        </Grid.Padding>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="{Binding Pollen.Name}" />
-                        <Label Grid.Column="1" Text="{Binding Intensity, Converter={StaticResource IntToPollutionNameConverter}}" />
-                    </Grid>
+                    <ViewCell.View>
+                        <AbsoluteLayout>
+                            <AbsoluteLayout.Padding>
+                                <OnPlatform
+                                    x:TypeArguments="Thickness"
+                                    Android="{StaticResource DefaultSicknessAndroid}"
+                                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                    iOS="15, 8, 10, 8" />
+                            </AbsoluteLayout.Padding>
+
+                            <StackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="{StaticResource DefaultFontSize}"
+                                    Text="{Binding Pollen.Name}" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        Margin="0,-4,0,0"
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Text="Pollution:" />
+                                    <Label
+                                        Margin="-4,-4,0,0"
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Text="{Binding Intensity, Converter={StaticResource IntToPollutionNameConverter}}" />
+                                </StackLayout>
+                            </StackLayout>
+
+                            <Image
+                                AbsoluteLayout.LayoutBounds="1,0.5"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                HeightRequest="15"
+                                Source="Next">
+                                <Image.IsVisible>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Boolean"
+                                        Android="False"
+                                        WinPhone="False"
+                                        iOS="True" />
+                                </Image.IsVisible>
+                            </Image>
+                        </AbsoluteLayout>
+                    </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
         </ResourceDictionary>
