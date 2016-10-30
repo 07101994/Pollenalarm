@@ -26,6 +26,8 @@ namespace Pollenalarm.Frontend.Forms.Views
         {
             base.OnAppearing();
 
+            App.Bootstrapper.PlaceViewModel.Update();
+
             if (App.Bootstrapper.PlaceViewModel.CurrentPlace == null)
                 await Navigation.PopAsync();
         }

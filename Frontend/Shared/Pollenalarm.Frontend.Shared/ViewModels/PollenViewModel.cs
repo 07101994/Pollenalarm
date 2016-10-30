@@ -33,5 +33,17 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			_PollenService = pollenService;
 			_SettingsService = settingsService;
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _SettingsService.LoadSettingsAsync();
+
+            if (_SettingsService.CurrentSettings.SelectedPollen.ContainsKey(CurrentPollen.Id))
+                _SettingsService.CurrentSettings.SelectedPollen[CurrentPollen.Id] = CurrentPollen.IsSelected;
+            else
+                _SettingsService.CurrentSettings.SelectedPollen.Add(CurrentPollen.Id, CurrentPollen.IsSelected);
+
+            await _SettingsService.SaveSettingsAsync();
+        }
     }
 }

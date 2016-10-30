@@ -19,13 +19,14 @@ namespace Pollenalarm.Frontend.Shared.Services
         {
             _HttpService = httpService;
 			_SettingsService = settingsService;
-            _BaseUrl = "https://pollenalarm.azurewebsites.net/api/pollution?zip";
+            _BaseUrl = "https://pollenalarm.azurewebsites.net/api";
         }
 
         public async Task<bool> GetPollutionsForPlaceAsync(Place place)
         {
-			// Download pollutions
-            var result = await _HttpService.GetStringAsync($"{_BaseUrl}/pollutions&zip={place.Zip}");
+            // Download pollutions
+            var url = $"{_BaseUrl}/pollution?zip={place.Zip}";
+            var result = await _HttpService.GetStringAsync(url);
             if (result != null)
             {
 				// Parse pollutions
@@ -37,21 +38,8 @@ namespace Pollenalarm.Frontend.Shared.Services
 				// Init settings
 				await _SettingsService.LoadSettingsAsync();
 
-				// Update pollen selection
-				foreach (var pollution in place.PollutionToday)
-					pollution.Pollen.IsSelected = 
-						_SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollution.Pollen.Id) ? 
-						_SettingsService.CurrentSettings.SelectedPollen[pollution.Pollen.Id] : true;
-
-				foreach (var pollution in place.PollutionTomorrow)
-					pollution.Pollen.IsSelected =
-						_SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollution.Pollen.Id) ?
-						_SettingsService.CurrentSettings.SelectedPollen[pollution.Pollen.Id] : true;
-
-				foreach (var pollution in place.PollutionAfterTomorrow)
-					pollution.Pollen.IsSelected =
-						_SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollution.Pollen.Id) ?
-						_SettingsService.CurrentSettings.SelectedPollen[pollution.Pollen.Id] : true;
+                // Update pollen selection
+                UpdatePollenSelection(place);
 
                 return true;
             }
@@ -79,5 +67,23 @@ namespace Pollenalarm.Frontend.Shared.Services
 
 			return null;
 		}
+
+        public void UpdatePollenSelection(Place place)
+        {
+            foreach (var pollution in place.PollutionToday)
+                pollution.Pollen.IsSelected =
+                    _SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollution.Pollen.Id) ?
+                    _SettingsService.CurrentSettings.SelectedPollen[pollution.Pollen.Id] : true;
+
+            foreach (var pollution in place.PollutionTomorrow)
+                pollution.Pollen.IsSelected =
+                    _SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollution.Pollen.Id) ?
+                    _SettingsService.CurrentSettings.SelectedPollen[pollution.Pollen.Id] : true;
+
+            foreach (var pollution in place.PollutionAfterTomorrow)
+                pollution.Pollen.IsSelected =
+                    _SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollution.Pollen.Id) ?
+                    _SettingsService.CurrentSettings.SelectedPollen[pollution.Pollen.Id] : true;
+        }
 	}
 }

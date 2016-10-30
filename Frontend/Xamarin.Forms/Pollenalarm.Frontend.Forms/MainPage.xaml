@@ -48,7 +48,6 @@
     </ContentPage.ToolbarItems>
 
     <RelativeLayout>
-
         <ListView
             x:Name="PlaceList"
             HasUnevenRows="True"

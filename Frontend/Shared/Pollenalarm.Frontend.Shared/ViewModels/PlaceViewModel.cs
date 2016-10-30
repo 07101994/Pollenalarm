@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -16,6 +17,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         private INavigationService _NavigationService;
         private IFileSystemService _FileSystemService;
         private PlaceService _PlaceService;
+        private PollenService _PollenService;
 
         private Place _CurrentPlace;
 		public Place CurrentPlace
@@ -173,12 +175,19 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, PlaceService placeService)
+        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, PlaceService placeService, PollenService pollenService)
 		{
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
             _PlaceService = placeService;
-		}
+            _PollenService = pollenService;
+
+        }
+
+        public void Update()
+        {
+            _PollenService.UpdatePollenSelection(CurrentPlace);
+        }
 	}
 }
 
