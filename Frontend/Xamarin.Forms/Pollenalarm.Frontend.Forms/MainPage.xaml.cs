@@ -23,6 +23,8 @@ namespace Pollenalarm.Frontend.Forms
         {
             base.OnAppearing();
 
+            //ToolbarItems.On
+
             if (BindingContext == null)
                 BindingContext = App.Bootstrapper.MainViewModel;
 
