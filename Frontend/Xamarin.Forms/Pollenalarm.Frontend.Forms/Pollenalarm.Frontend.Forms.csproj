@@ -77,8 +77,8 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\HttpService.cs" />
-    <Compile Include="Views\PollenListPage.xaml.cs">
-      <DependentUpon>PollenListPage.xaml</DependentUpon>
+    <Compile Include="Views\PollenSelectionPage.xaml.cs">
+      <DependentUpon>PollenSelectionPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +161,7 @@
     <EmbeddedResource Include="Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\PollenListPage.xaml">
+    <EmbeddedResource Include="Views\PollenSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

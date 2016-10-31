@@ -15,7 +15,10 @@
                     iOS="{StaticResource DefaultSicknessiOS}" />
             </StackLayout.Padding>
 
-            <Label FontAttributes="Bold" Text="{i18n:Translate Location}" />
+            <!-- Location -->
+            <Label
+                FontAttributes="Bold"
+                Text="{i18n:Translate Location}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -33,6 +36,33 @@
                     Toggled="Settings_Changed"
                     VerticalOptions="Center" />
             </Grid>
+
+            <!-- Design -->
+            <Label
+                FontAttributes="Bold"
+                Text="{i18n:Translate Design}" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Column="0"
+                    FontSize="Small"
+                    Text="{i18n:Translate ShowSelectedPollenOnlySettingsText}"
+                    VerticalOptions="Center" />
+                <Switch
+                    Grid.Column="1"
+                    IsToggled="{Binding Settings.ShowSelectedPollenOnly}"
+                    Toggled="Settings_Changed"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <Button
+                Command="{Binding NavigateToPollenSelectionCommand}"
+                HorizontalOptions="FillAndExpand"
+                Text="{i18n:Translate PollenSelection}" />
 
             <Button
                 Command="{Binding NavigateToAboutCommand}"

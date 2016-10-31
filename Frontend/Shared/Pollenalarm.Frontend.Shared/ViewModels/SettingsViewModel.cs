@@ -21,6 +21,18 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             set { _Settings = value; RaisePropertyChanged(); }
         }
 
+        private RelayCommand _NavigateToPollenSelectionCommand;
+        public RelayCommand NavigateToPollenSelectionCommand
+        {
+            get
+            {
+                return _NavigateToPollenSelectionCommand ?? (_NavigateToPollenSelectionCommand = new RelayCommand(() =>
+                {
+                    _NavigationService.NavigateTo(ViewNames.PollenSelection);
+                }));
+            }
+        }
+
         private RelayCommand _NavigateToAboutCommand;
 		public RelayCommand NavigateToAboutCommand
 		{
@@ -33,7 +45,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			}
 		}
 
-		public SettingsViewModel(INavigationService navigationService, SettingsService settingsService)
+
+
+        public SettingsViewModel(INavigationService navigationService, SettingsService settingsService)
 		{
 			_NavigationService = navigationService;
             _SettingsService = settingsService;

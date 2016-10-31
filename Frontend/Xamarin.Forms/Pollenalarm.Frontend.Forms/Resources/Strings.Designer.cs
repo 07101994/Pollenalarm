@@ -80,6 +80,15 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allergy.
+        /// </summary>
+        public static string Allergy {
+            get {
+                return ResourceManager.GetString("Allergy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pollenalarm.
         /// </summary>
         public static string AppTitle {
@@ -94,6 +103,33 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         public static string Back {
             get {
                 return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bloom Time.
+        /// </summary>
+        public static string BloomTime {
+            get {
+                return ResourceManager.GetString("BloomTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clinical Pollution.
+        /// </summary>
+        public static string ClinicalPollution {
+            get {
+                return ResourceManager.GetString("ClinicalPollution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design.
+        /// </summary>
+        public static string Design {
+            get {
+                return ResourceManager.GetString("Design", resourceCulture);
             }
         }
         
@@ -121,6 +157,15 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         public static string GeoLocationFailedTitle {
             get {
                 return ResourceManager.GetString("GeoLocationFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        public static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
             }
         }
         
@@ -197,6 +242,24 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Relevant Pollen.
+        /// </summary>
+        public static string PollenRelevant {
+            get {
+                return ResourceManager.GetString("PollenRelevant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pollen selection.
+        /// </summary>
+        public static string PollenSelection {
+            get {
+                return ResourceManager.GetString("PollenSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Low.
         /// </summary>
         public static string PollutionNameLow {
@@ -242,11 +305,38 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select your pollen.
+        /// </summary>
+        public static string SelectPollen {
+            get {
+                return ResourceManager.GetString("SelectPollen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can select the most relevant pollen for you here. In the Settings menu, you can choose to only get these pollen displayed..
+        /// </summary>
+        public static string SelectPollenText {
+            get {
+                return ResourceManager.GetString("SelectPollenText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only show selected pollen.
+        /// </summary>
+        public static string ShowSelectedPollenOnlySettingsText {
+            get {
+                return ResourceManager.GetString("ShowSelectedPollenOnlySettingsText", resourceCulture);
             }
         }
     }

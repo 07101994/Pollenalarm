@@ -33,7 +33,6 @@ namespace Pollenalarm.Frontend.Forms
             SimpleIoc.Default.Register<SettingsService>();
             SimpleIoc.Default.Register<PlaceService>();
 
-
             // ViewModels
             SimpleIoc.Default.Register<MainViewModel>();
 			SimpleIoc.Default.Register<PlaceViewModel>();
@@ -45,6 +44,7 @@ namespace Pollenalarm.Frontend.Forms
 		public PlaceViewModel PlaceViewModel { get { return SimpleIoc.Default.GetInstance<PlaceViewModel>(); }}
 		public PollenViewModel PollenViewModel { get { return SimpleIoc.Default.GetInstance<PollenViewModel>(); } }
 		public SettingsViewModel SettingsViewModel { get { return SimpleIoc.Default.GetInstance<SettingsViewModel>(); } }
+		public SettingsService SettingsService { get { return SimpleIoc.Default.GetInstance<SettingsService>(); } }
 
         private INavigationService CreateNavigationService(NavigationPage navigationPage)
         {
@@ -55,6 +55,7 @@ namespace Pollenalarm.Frontend.Forms
             navigationService.Configure(ViewNames.Settings, typeof(SettingsPage));
             navigationService.Configure(ViewNames.AddEditPlace, typeof(AddEditPlacePage));
             navigationService.Configure(ViewNames.About, typeof(AboutPage));
+            navigationService.Configure(ViewNames.PollenSelection, typeof(PollenSelectionPage));
             return navigationService;
         }
     }

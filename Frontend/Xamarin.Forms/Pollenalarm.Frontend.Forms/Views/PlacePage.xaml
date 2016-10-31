@@ -101,6 +101,7 @@
                 </Label.Margin>
             </Label>
             <ListView
+                x:Name="ListToday"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
                 ItemTemplate="{StaticResource PollutionItemTemplate}"
@@ -117,6 +118,7 @@
                 iOS="Calendar" />
         </ContentPage.Icon>
         <ListView
+            x:Name="ListTomorrow"
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
             ItemTemplate="{StaticResource PollutionItemTemplate}"
@@ -132,6 +134,7 @@
                 iOS="Calendar" />
         </ContentPage.Icon>
         <ListView
+            x:Name="ListAfterTomorrow"
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
             ItemTemplate="{StaticResource PollutionItemTemplate}"

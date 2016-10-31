@@ -32,16 +32,38 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         {
 			_PollenService = pollenService;
 			_SettingsService = settingsService;
+            _Pollen = new ObservableCollection<Pollen>();
+        }
+
+        public async Task RefreshAsync()
+        {
+            IsLoading = true;
+            IsLoaded = false;
+
+            _Pollen.Clear();
+            var allPollen = await _PollenService.GetAllPollenAsync();
+            if (allPollen != null)
+            {
+                foreach (var pollen in allPollen)
+                    _Pollen.Add(pollen);
+
+                IsLoaded = true;
+            }
+
+            IsLoading = false;
         }
 
         public async Task SaveChangesAsync()
         {
             await _SettingsService.LoadSettingsAsync();
 
-            if (_SettingsService.CurrentSettings.SelectedPollen.ContainsKey(CurrentPollen.Id))
+            // Update all Pollen in pollen list
+            foreach (var pollen in _Pollen)
+                _SettingsService.CurrentSettings.SelectedPollen[pollen.Id] = pollen.IsSelected;
+
+            // If CurrentPollen is available (PollenPage), override its entry
+            if (CurrentPollen != null)
                 _SettingsService.CurrentSettings.SelectedPollen[CurrentPollen.Id] = CurrentPollen.IsSelected;
-            else
-                _SettingsService.CurrentSettings.SelectedPollen.Add(CurrentPollen.Id, CurrentPollen.IsSelected);
 
             await _SettingsService.SaveSettingsAsync();
         }

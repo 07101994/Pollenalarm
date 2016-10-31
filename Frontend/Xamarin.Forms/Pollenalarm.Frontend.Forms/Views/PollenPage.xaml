@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="{Binding CurrentPollen.Name}">
     <ScrollView>
         <StackLayout>
@@ -18,7 +19,9 @@
                         iOS="{StaticResource DefaultSicknessiOS}" />
                 </StackLayout.Padding>
 
-                <Label FontAttributes="Bold" Text="Allergy" />
+                <Label
+                    FontAttributes="Bold"
+                    Text="{i18n:Translate Allergy}" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -28,7 +31,7 @@
                     <Label
                         Grid.Column="0"
                         FontSize="Small"
-                        Text="Show this pollen"
+                        Text="{i18n:Translate PollenRelevant}"
                         VerticalOptions="Center" />
                     <Switch
                         Grid.Column="1"
@@ -40,21 +43,27 @@
                 <Label
                     Margin="0, 10, 0, 0"
                     FontAttributes="Bold"
-                    Text="Information" />
+                    Text="{i18n:Translate Information}" />
 
-                <Label FontSize="Small" Text="{Binding CurrentPollen.Description}" />
+                <Label
+                    FontSize="Small"
+                    Text="{Binding CurrentPollen.Description}" />
 
                 <Label
                     Margin="0, 10, 0, 0"
                     FontAttributes="Bold"
-                    Text="Clinical pollution" />
-                <Label FontSize="Small" Text="High" />
+                    Text="{i18n:Translate ClinicalPollution}" />
+                <Label
+                    FontSize="Small"
+                    Text="High" />
 
                 <Label
                     Margin="0, 10, 0, 0"
                     FontAttributes="Bold"
-                    Text="Bloom time" />
-                <Label FontSize="Small" Text="March until September" />
+                    Text="{i18n:Translate BloomTime}" />
+                <Label
+                    FontSize="Small"
+                    Text="March until September" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

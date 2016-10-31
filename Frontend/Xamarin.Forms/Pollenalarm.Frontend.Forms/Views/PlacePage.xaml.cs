@@ -8,15 +8,20 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using System.Collections.Specialized;
+using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
     public partial class PlacePage : TabbedPage
     {
+        private SettingsService _SettingsService;
+
         public PlacePage()
         {
             InitializeComponent();
             BindingContext = App.Bootstrapper.PlaceViewModel;
+
+            _SettingsService = App.Bootstrapper.SettingsService;
 
             // Hide edit button if selected place is auto-generated current position
             if (App.Bootstrapper.PlaceViewModel.CurrentPlace.IsCurrentPosition)
@@ -38,10 +43,23 @@ namespace Pollenalarm.Frontend.Forms.Views
         {
             base.OnAppearing();
 
+            if (App.Bootstrapper.PlaceViewModel.CurrentPlace == null)
+            {
+                await Navigation.PopAsync();
+                return;
+            }
+
+            // Update pollen selections
             App.Bootstrapper.PlaceViewModel.Update();
 
-            if (App.Bootstrapper.PlaceViewModel.CurrentPlace == null)
-                await Navigation.PopAsync();
+            // Filter list by selected pollen when this is activated in the settings by code, because ListView Filters are not supported by Xamarin.Forms yet
+            await _SettingsService.LoadSettingsAsync();
+            if (_SettingsService.CurrentSettings.ShowSelectedPollenOnly)
+            {
+                ListToday.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday.Where(p => p.Pollen.IsSelected);
+                ListTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionTomorrow.Where(p => p.Pollen.IsSelected);
+                ListAfterTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Pollen.IsSelected);
+            }
         }
 
         private void PollutionList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

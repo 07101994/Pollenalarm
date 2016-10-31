@@ -180,4 +180,34 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="Allergy" xml:space="preserve">
+    <value>Allergy</value>
+  </data>
+  <data name="BloomTime" xml:space="preserve">
+    <value>Bloom Time</value>
+  </data>
+  <data name="ClinicalPollution" xml:space="preserve">
+    <value>Clinical Pollution</value>
+  </data>
+  <data name="Design" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="PollenRelevant" xml:space="preserve">
+    <value>Relevant Pollen</value>
+  </data>
+  <data name="PollenSelection" xml:space="preserve">
+    <value>Pollen selection</value>
+  </data>
+  <data name="SelectPollen" xml:space="preserve">
+    <value>Select your pollen</value>
+  </data>
+  <data name="SelectPollenText" xml:space="preserve">
+    <value>You can select the most relevant pollen for you here. In the Settings menu, you can choose to only get these pollen displayed.</value>
+  </data>
+  <data name="ShowSelectedPollenOnlySettingsText" xml:space="preserve">
+    <value>Only show selected pollen</value>
+  </data>
 </root>
