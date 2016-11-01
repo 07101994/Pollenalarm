@@ -210,4 +210,7 @@
   <data name="ShowSelectedPollenOnlySettingsText" xml:space="preserve">
     <value>Only show selected pollen</value>
   </data>
+  <data name="Until" xml:space="preserve">
+    <value>until</value>
+  </data>
 </root>

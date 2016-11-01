@@ -13,7 +13,8 @@ namespace Pollenalarm.Core.Models
         public string Description { get; set; }
 		public DateTime BloomStart { get; set; }
 		public DateTime BloomEnd { get; set; }
-		public string ImageName { get { return $"{Name.Replace("ß", "ss").Replace("ä", "ae")}.png"; } }
+        public int ClinicalPollution { get; set; }
+        public string ImageName { get { return $"{Name.Replace("ß", "ss").Replace("ä", "ae")}.png"; } }
 		public string ImageCredits { get; set; }
 		public bool IsSelected { get; set; }
     }

@@ -339,5 +339,14 @@ namespace Pollenalarm.Frontend.Forms.Resources {
                 return ResourceManager.GetString("ShowSelectedPollenOnlySettingsText", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to until.
+        /// </summary>
+        public static string Until {
+            get {
+                return ResourceManager.GetString("Until", resourceCulture);
+            }
+        }
     }
 }

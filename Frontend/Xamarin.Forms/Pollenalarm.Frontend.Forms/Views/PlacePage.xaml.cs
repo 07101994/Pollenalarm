@@ -19,6 +19,7 @@ namespace Pollenalarm.Frontend.Forms.Views
         public PlacePage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, Strings.Back);
             BindingContext = App.Bootstrapper.PlaceViewModel;
 
             _SettingsService = App.Bootstrapper.SettingsService;

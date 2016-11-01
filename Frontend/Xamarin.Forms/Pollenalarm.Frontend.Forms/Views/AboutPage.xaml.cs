@@ -10,6 +10,6 @@ namespace Pollenalarm.Frontend.Forms
 		public AboutPage()
 		{
 			InitializeComponent();
-		}
+        }
 	}
 }

@@ -66,7 +66,9 @@
                         Aspect="AspectFill"
                         Source="Header" />
 
-                    <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <StackLayout
+                        AbsoluteLayout.LayoutBounds="0.5,0.5"
+                        AbsoluteLayout.LayoutFlags="PositionProportional">
                         <Label
                             FontAttributes="Bold"
                             FontSize="Large"
@@ -109,7 +111,7 @@
                                         <Label
                                             Margin="-4,-4,0,0"
                                             FontSize="{StaticResource SmallFontSize}"
-                                            Text="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionNameConverter}" />
+                                            Text="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionNameConverter}}" />
                                     </StackLayout>
                                 </StackLayout>
 
@@ -154,7 +156,5 @@
                     iOS="False" />
             </android:FormsFloatingActionButton.IsVisible>
         </android:FormsFloatingActionButton>
-
     </RelativeLayout>
-
 </ContentPage>

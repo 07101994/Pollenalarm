@@ -359,6 +359,8 @@ Global
 		{819CF130-6E89-4900-AD7E-1C2B1BE17523}.Debug|ARM.Deploy.0 = Debug|ARM
 		{819CF130-6E89-4900-AD7E-1C2B1BE17523}.Debug|iPhone.ActiveCfg = Debug|x86
 		{819CF130-6E89-4900-AD7E-1C2B1BE17523}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
+		{819CF130-6E89-4900-AD7E-1C2B1BE17523}.Debug|iPhoneSimulator.Build.0 = Debug|x86
+		{819CF130-6E89-4900-AD7E-1C2B1BE17523}.Debug|iPhoneSimulator.Deploy.0 = Debug|x86
 		{819CF130-6E89-4900-AD7E-1C2B1BE17523}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{819CF130-6E89-4900-AD7E-1C2B1BE17523}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{819CF130-6E89-4900-AD7E-1C2B1BE17523}.Debug|Mixed Platforms.Deploy.0 = Debug|x86

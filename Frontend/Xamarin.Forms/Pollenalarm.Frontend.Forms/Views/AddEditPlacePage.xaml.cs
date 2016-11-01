@@ -14,7 +14,7 @@ namespace Pollenalarm.Frontend.Forms.Views
         public AddEditPlacePage()
         {
             InitializeComponent();
-			BindingContext = App.Bootstrapper.PlaceViewModel;
+            BindingContext = App.Bootstrapper.PlaceViewModel;
 
             App.Bootstrapper.PlaceViewModel.OnInvalidEntries += PlaceViewModel_OnInvalidEntries;
             App.Bootstrapper.PlaceViewModel.OnLocationFailed += PlaceViewModel_OnLocationFailed;
@@ -37,8 +37,6 @@ namespace Pollenalarm.Frontend.Forms.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            
         }
 
         private void PlaceViewModel_OnInvalidEntries(object sender, EventArgs e)

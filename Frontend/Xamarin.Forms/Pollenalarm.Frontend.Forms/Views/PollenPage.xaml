@@ -6,6 +6,13 @@
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="{Binding CurrentPollen.Name}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ScrollView>
         <StackLayout>
             <Image Source="{Binding CurrentPollen.ImageName}" />
@@ -55,15 +62,15 @@
                     Text="{i18n:Translate ClinicalPollution}" />
                 <Label
                     FontSize="Small"
-                    Text="High" />
+                    Text="{Binding CurrentPollen.ClinicalPollution, Converter={StaticResource IntToPollutionNameConverter}}" />
 
                 <Label
                     Margin="0, 10, 0, 0"
                     FontAttributes="Bold"
                     Text="{i18n:Translate BloomTime}" />
                 <Label
-                    FontSize="Small"
-                    Text="March until September" />
+                    x:Name="BloomTime"
+                    FontSize="Small" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

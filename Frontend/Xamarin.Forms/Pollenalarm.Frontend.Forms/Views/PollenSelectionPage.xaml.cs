@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pollenalarm.Frontend.Forms.Resources;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -10,7 +11,7 @@ namespace Pollenalarm.Frontend.Forms
 		public PollenSelectionPage()
 		{
 			InitializeComponent();
-		}
+        }
 
         protected override async void OnAppearing()
         {

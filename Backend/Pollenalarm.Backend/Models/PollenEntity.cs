@@ -37,6 +37,7 @@ namespace Pollenalarm.Backend.Models
 				Description = Description,
 				BloomStart = BloomStart,
 				BloomEnd = BloomEnd,
+                ClinicalPollution = ClinicalPollution,
 				ImageCredits = ImageCredits
             };
         }
