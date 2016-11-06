@@ -12,10 +12,10 @@ using Android.Widget;
 using Pollenalarm.Frontend.Forms.Services;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Pollenalarm.Frontend.Forms.Droid.Services.LocalizationService))]
+[assembly: Dependency(typeof(Pollenalarm.Frontend.Forms.Droid.Services.CultureService))]
 namespace Pollenalarm.Frontend.Forms.Droid.Services
 {
-    public class LocalizationService : ILocalizationService
+    public class CultureService : ICultureService
     {
         public System.Globalization.CultureInfo GetCurrentCultureInfo()
         {

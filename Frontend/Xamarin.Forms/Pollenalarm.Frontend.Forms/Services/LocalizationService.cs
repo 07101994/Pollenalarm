@@ -1,4 +1,4 @@
-﻿using Pollenalarm.Frontend.Forms.Services;
+﻿using Pollenalarm.Frontend.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,37 +8,29 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace Pollenalarm.Frontend.Forms.MarkupExtensions
+namespace Pollenalarm.Frontend.Forms.Services
 {
-    [ContentProperty("Text")]
-    public class TranslateExtension : IMarkupExtension
+    public class LocalizationService : ILocalizationService
     {
         readonly CultureInfo ci;
         const string ResourceId = "Pollenalarm.Frontend.Forms.Resources.Strings";
 
-        public TranslateExtension()
+        public LocalizationService()
         {
             ci = DependencyService.Get<ICultureService>().GetCurrentCultureInfo();
         }
 
-        public string Text { get; set; }
-
-        public object ProvideValue(IServiceProvider serviceProvider)
+        public string GetString(string key)
         {
-            if (Text == null)
-                return "";
-
-            ResourceManager resmgr = new ResourceManager(ResourceId, typeof(TranslateExtension).GetTypeInfo().Assembly);
-
-            var translation = resmgr.GetString(Text, ci);
+            ResourceManager resmgr = new ResourceManager(ResourceId, typeof(LocalizationService).GetTypeInfo().Assembly);
+            var translation = resmgr.GetString(key, ci);
 
             if (translation == null)
             {
 #if DEBUG
                 throw new ArgumentException(
-                    String.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, ResourceId, ci.Name),
+                    String.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", key, ResourceId, ci.Name),
                     "Text");
 #else
                 translation = Text; // HACK: returns the key, which GETS DISPLAYED TO THE USER

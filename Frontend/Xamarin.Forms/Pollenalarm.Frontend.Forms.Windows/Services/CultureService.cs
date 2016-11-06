@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Pollenalarm.Frontend.Forms.WinPhone.Services.LocaliationService))]
+[assembly: Dependency(typeof(Pollenalarm.Frontend.Forms.Windows.Services.CultureService))]
 
-namespace Pollenalarm.Frontend.Forms.WinPhone.Services
+namespace Pollenalarm.Frontend.Forms.Windows.Services
 {
-    public class LocaliationService : ILocalizationService
+    public class CultureService : ICultureService
     {
         public System.Globalization.CultureInfo GetCurrentCultureInfo()
         {

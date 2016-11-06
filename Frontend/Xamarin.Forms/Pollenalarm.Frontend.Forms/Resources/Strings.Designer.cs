@@ -116,11 +116,47 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clinical Pollution.
         /// </summary>
         public static string ClinicalPollution {
             get {
                 return ResourceManager.GetString("ClinicalPollution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this place?.
+        /// </summary>
+        public static string DeletePlaceMessage {
+            get {
+                return ResourceManager.GetString("DeletePlaceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Place.
+        /// </summary>
+        public static string DeletePlaceTitle {
+            get {
+                return ResourceManager.GetString("DeletePlaceTitle", resourceCulture);
             }
         }
         

@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Pollenalarm.Frontend.Forms.iOS.Services.LocalizationService))]
+[assembly: Dependency(typeof(Pollenalarm.Frontend.Forms.iOS.Services.CultureService))]
 namespace Pollenalarm.Frontend.Forms.iOS.Services
 {
-    public class LocalizationService : ILocalizationService
+    public class CultureService : ICultureService
     {
         public System.Globalization.CultureInfo GetCurrentCultureInfo()
         {

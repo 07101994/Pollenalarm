@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDialogService = Pollenalarm.Frontend.Shared.Services.IDialogService;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {

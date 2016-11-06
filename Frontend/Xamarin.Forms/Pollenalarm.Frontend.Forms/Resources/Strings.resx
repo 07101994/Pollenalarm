@@ -213,4 +213,16 @@
   <data name="Until" xml:space="preserve">
     <value>until</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeletePlaceMessage" xml:space="preserve">
+    <value>Do you really want to delete this place?</value>
+  </data>
+  <data name="DeletePlaceTitle" xml:space="preserve">
+    <value>Delete Place</value>
+  </data>
 </root>

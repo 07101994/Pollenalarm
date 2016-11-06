@@ -32,6 +32,8 @@ namespace Pollenalarm.Frontend.Forms
             SimpleIoc.Default.Register<GoogleMapsService>();
             SimpleIoc.Default.Register<SettingsService>();
             SimpleIoc.Default.Register<PlaceService>();
+            SimpleIoc.Default.Register<Shared.Services.IDialogService, DialogService>();
+            SimpleIoc.Default.Register<Shared.Services.ILocalizationService, LocalizationService>();
 
             // ViewModels
             SimpleIoc.Default.Register<MainViewModel>();

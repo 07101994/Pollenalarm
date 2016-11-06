@@ -54,9 +54,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\FileSystemService.cs" />
     <Compile Include="Services\GeoLocationService.cs" />
-    <Compile Include="Services\ILocalizationService.cs" />
+    <Compile Include="Services\ICultureService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Views\AddEditPlacePage.xaml.cs">
       <DependentUpon>AddEditPlacePage.xaml</DependentUpon>

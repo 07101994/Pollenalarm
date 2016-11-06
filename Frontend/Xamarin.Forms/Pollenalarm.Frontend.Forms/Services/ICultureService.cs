@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pollenalarm.Frontend.Forms.Services
 {
-    public interface ILocalizationService
+    public interface ICultureService
     {
         CultureInfo GetCurrentCultureInfo();
     }

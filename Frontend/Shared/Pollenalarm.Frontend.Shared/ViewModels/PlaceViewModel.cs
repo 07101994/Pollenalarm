@@ -9,6 +9,7 @@ using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using IDialogService = Pollenalarm.Frontend.Shared.Services.IDialogService;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -16,6 +17,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 	{
         private INavigationService _NavigationService;
         private IFileSystemService _FileSystemService;
+        private IDialogService _DialogService;
+        private ILocalizationService _LocalizationService;
         private PlaceService _PlaceService;
         private PollenService _PollenService;
 
@@ -105,8 +108,12 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         {
             get
             {
-                return _DeletePlaceCommand ?? (_DeletePlaceCommand = new RelayCommand(() =>
+                return _DeletePlaceCommand ?? (_DeletePlaceCommand = new RelayCommand(async () =>
                 {
+                    // Let user confirm deletion
+                    if (!await _DialogService.DisplayConfirmationAsync(_LocalizationService.GetString("DeletePlaceTitle"), _LocalizationService.GetString("DeletePlaceMessage"), _LocalizationService.GetString("Delete"), _LocalizationService.GetString("Cancel")))
+                        return;
+
                     var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
 
                     if (_CurrentPlace != null)
@@ -115,7 +122,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         if (existingPlace != null)
                         {
                             mainViewModel.Places.Remove(existingPlace);
-                            _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
+                            await _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
                             _CurrentPlace = null;
                             _PlaceName = string.Empty;
                             _PlaceZip = string.Empty;
@@ -175,10 +182,12 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, PlaceService placeService, PollenService pollenService)
+        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, IDialogService dialogService, ILocalizationService localizationService, PlaceService placeService, PollenService pollenService)
 		{
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
+            _DialogService = dialogService;
+            _LocalizationService = localizationService;
             _PlaceService = placeService;
             _PollenService = pollenService;
 
