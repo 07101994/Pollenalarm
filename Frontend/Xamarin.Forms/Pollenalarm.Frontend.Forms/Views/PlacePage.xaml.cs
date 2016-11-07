@@ -31,7 +31,7 @@ namespace Pollenalarm.Frontend.Forms.Views
 
         private async void PlacePage_CurrentPageChanged(object sender, EventArgs e)
         {
-            // Animate Tab change on iOS
+            // Animate Tab change on iOS as it is not implemented in Xamarin.Forms yet.
             if (Device.OS == TargetPlatform.iOS)
             {
                 uint duration = 300;
@@ -44,6 +44,8 @@ namespace Pollenalarm.Frontend.Forms.Views
         {
             base.OnAppearing();
 
+            // Navigate back to MainPage, when CurrentPlace is null.
+            // This can happen, after a place has been deleted, for example.
             if (App.Bootstrapper.PlaceViewModel.CurrentPlace == null)
             {
                 await Navigation.PopAsync();

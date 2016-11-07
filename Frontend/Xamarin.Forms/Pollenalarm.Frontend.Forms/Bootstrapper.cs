@@ -14,26 +14,31 @@ using Xamarin.Forms;
 using Pollenalarm.Frontend.Forms.Views;
 using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Core;
+using IDialogService = Pollenalarm.Frontend.Shared.Services.IDialogService;
 
 namespace Pollenalarm.Frontend.Forms
 {
     public class Bootstrapper
     {
-        public Bootstrapper(NavigationPage navigationPage)
+        public Bootstrapper(NavigationPage navigationPage = null)
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            // Navigation
+            if (navigationPage != null)
+                RegisterNavigationService(navigationPage);
+
             // Services
-            SimpleIoc.Default.Register<INavigationService>(() => CreateNavigationService(navigationPage));
             SimpleIoc.Default.Register<IFileSystemService, FileSystemService>();
 			SimpleIoc.Default.Register<IGeoLoactionService, GeoLocationService>();
 			SimpleIoc.Default.Register<IHttpService, HttpService>();
+            SimpleIoc.Default.Register<ILocalizationService, LocalizationService>();
+            SimpleIoc.Default.Register<IDialogService, DialogService>();
+
             SimpleIoc.Default.Register<PollenService>();
             SimpleIoc.Default.Register<GoogleMapsService>();
             SimpleIoc.Default.Register<SettingsService>();
             SimpleIoc.Default.Register<PlaceService>();
-            SimpleIoc.Default.Register<Shared.Services.IDialogService, DialogService>();
-            SimpleIoc.Default.Register<Shared.Services.ILocalizationService, LocalizationService>();
 
             // ViewModels
             SimpleIoc.Default.Register<MainViewModel>();
@@ -48,7 +53,7 @@ namespace Pollenalarm.Frontend.Forms
 		public SettingsViewModel SettingsViewModel { get { return SimpleIoc.Default.GetInstance<SettingsViewModel>(); } }
 		public SettingsService SettingsService { get { return SimpleIoc.Default.GetInstance<SettingsService>(); } }
 
-        private INavigationService CreateNavigationService(NavigationPage navigationPage)
+        public void RegisterNavigationService(NavigationPage navigationPage)
         {
             var navigationService = new NavigationService(navigationPage);
             navigationService.Configure(ViewNames.Main, typeof(MainPage));
@@ -58,7 +63,8 @@ namespace Pollenalarm.Frontend.Forms
             navigationService.Configure(ViewNames.AddEditPlace, typeof(AddEditPlacePage));
             navigationService.Configure(ViewNames.About, typeof(AboutPage));
             navigationService.Configure(ViewNames.PollenSelection, typeof(PollenSelectionPage));
-            return navigationService;
+
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
         }
     }
 }

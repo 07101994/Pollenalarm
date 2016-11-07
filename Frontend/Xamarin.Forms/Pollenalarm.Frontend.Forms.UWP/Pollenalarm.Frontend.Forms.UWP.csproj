@@ -110,11 +110,13 @@
     <None Include="Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AlertIcon.png" />
     <Content Include="Ambrosia.png" />
     <Content Include="Ampfer.png" />
     <Content Include="Beifuss.png" />
     <Content Include="Birke.png" />
     <Content Include="Buche.png" />
+    <Content Include="CheckIcon.png" />
     <Content Include="Eiche.png" />
     <Content Include="Erle.png" />
     <Content Include="Graeser.png" />

@@ -12,20 +12,28 @@
         <ResourceDictionary>
             <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
             <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
+            <converter:IntToPollutionIconConverter x:Key="IntToPollutionIconConverter" />
 
             <DataTemplate x:Key="PollutionItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
-                        <AbsoluteLayout>
-                            <AbsoluteLayout.Padding>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.Padding>
                                 <OnPlatform
                                     x:TypeArguments="Thickness"
                                     Android="{StaticResource DefaultSicknessAndroid}"
                                     WinPhone="{StaticResource DefaultSicknessWinPhone}"
                                     iOS="15, 8, 10, 8" />
-                            </AbsoluteLayout.Padding>
+                            </Grid.Padding>
 
-                            <StackLayout>
+                            <StackLayout Grid.Column="0">
                                 <Label
                                     FontAttributes="Bold"
                                     FontSize="{StaticResource DefaultFontSize}"
@@ -43,10 +51,17 @@
                             </StackLayout>
 
                             <Image
-                                AbsoluteLayout.LayoutBounds="1,0.5"
-                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                Grid.Column="1"
                                 HeightRequest="15"
-                                Source="Next">
+                                Source="{Binding Intensity, Converter={StaticResource IntToPollutionIconConverter}}"
+                                VerticalOptions="Center" />
+
+                            <Image
+                                Grid.Column="2"
+                                Margin="10, 0, 0, 0"
+                                HeightRequest="15"
+                                Source="Next"
+                                VerticalOptions="Center">
                                 <Image.IsVisible>
                                     <OnPlatform
                                         x:TypeArguments="x:Boolean"
@@ -55,7 +70,7 @@
                                         iOS="True" />
                                 </Image.IsVisible>
                             </Image>
-                        </AbsoluteLayout>
+                        </Grid>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
