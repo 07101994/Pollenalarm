@@ -6,9 +6,9 @@
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="Pollen">
     <ContentPage.Content>
-
-
-        <ListView IsRefreshing="{Binding IsLoading, Mode=OneWay}" ItemsSource="{Binding Pollen}">
+        <ListView
+            IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+            ItemsSource="{Binding Pollen}">
             <ListView.Header>
                 <StackLayout>
                     <StackLayout.Padding>
@@ -24,13 +24,17 @@
                         FontAttributes="Bold"
                         Text="{i18n:Translate SelectPollen}" />
 
-                    <Label FontSize="Small" Text="{i18n:Translate SelectPollenText}" />
+                    <Label
+                        FontSize="Small"
+                        Text="{i18n:Translate SelectPollenText}" />
                 </StackLayout>
             </ListView.Header>
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <SwitchCell On="{Binding IsSelected}" Text="{Binding Name}" />
+                    <SwitchCell
+                        On="{Binding IsSelected}"
+                        Text="{Binding Name}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -25,7 +25,7 @@ namespace Pollenalarm.Frontend.Forms.Views
 
         private async void AllergySwitch_Toggled(object sender, EventArgs e)
 		{
-            await App.Bootstrapper.PollenViewModel.SaveChangesAsync();
+            await App.Bootstrapper.PollenViewModel.SaveChangesAsync(App.Bootstrapper.PollenViewModel.CurrentPollen);
 		}
     }
 }

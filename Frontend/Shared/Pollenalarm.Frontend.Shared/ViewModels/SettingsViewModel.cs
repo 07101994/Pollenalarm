@@ -45,8 +45,6 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			}
 		}
 
-
-
         public SettingsViewModel(INavigationService navigationService, SettingsService settingsService)
 		{
 			_NavigationService = navigationService;

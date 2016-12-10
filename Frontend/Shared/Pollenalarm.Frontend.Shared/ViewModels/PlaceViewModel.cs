@@ -190,7 +190,6 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             _LocalizationService = localizationService;
             _PlaceService = placeService;
             _PollenService = pollenService;
-
         }
 
         public void Update()

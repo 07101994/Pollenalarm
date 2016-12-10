@@ -14,6 +14,7 @@ namespace Pollenalarm.Frontend.Shared.Services
         private string _BaseUrl;
         private IHttpService _HttpService;
 		private SettingsService _SettingsService;
+        private List<Pollen> _PollenList;
 
 		public PollenService(IHttpService httpService, SettingsService settingsService)
         {
@@ -49,23 +50,24 @@ namespace Pollenalarm.Frontend.Shared.Services
 
 		public async Task<List<Pollen>> GetAllPollenAsync()
 		{
-			// Download pollutions
-			var result = await _HttpService.GetStringAsync($"{_BaseUrl}/pollen");
-			if (result != null)
-			{
-				// Parse pollen
-				var pollenList = JsonConvert.DeserializeObject<List<Pollen>>(result);
+            if (_PollenList == null || !_PollenList.Any())
+            {
+                // Download pollen
+                var result = await _HttpService.GetStringAsync($"{_BaseUrl}/pollen");
+                if (result != null)
+                {
+                    // Parse pollen
+                    _PollenList = JsonConvert.DeserializeObject<List<Pollen>>(result);
+                }
+            }
 
-				// Update pollen selection
-				foreach (var pollen in pollenList)
-					pollen.IsSelected =
-						_SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollen.Id) ?
-						_SettingsService.CurrentSettings.SelectedPollen[pollen.Id] : true;
+            // Update pollen selection
+            foreach (var pollen in _PollenList)
+                pollen.IsSelected =
+                    _SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollen.Id) ?
+                    _SettingsService.CurrentSettings.SelectedPollen[pollen.Id] : true;
 
-				return pollenList;
-			}
-
-			return null;
+            return _PollenList;
 		}
 
         public void UpdatePollenSelection(Place place)

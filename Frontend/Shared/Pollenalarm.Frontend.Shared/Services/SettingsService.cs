@@ -10,6 +10,7 @@ namespace Pollenalarm.Frontend.Shared.Services
     public class SettingsService
     {
         private IFileSystemService _FileSystemService;
+        private bool _IsLoaded;
 
         public Settings CurrentSettings { get; set; }
 
@@ -25,11 +26,16 @@ namespace Pollenalarm.Frontend.Shared.Services
 
         public async Task LoadSettingsAsync()
         {
-            var settings = await _FileSystemService.ReadObjectFromFileAsync<Settings>("settings.json");
-            if (settings != null)
-                CurrentSettings = settings;
-            else
-                CurrentSettings = new Settings();
+            if (!_IsLoaded)
+            {
+                var settings = await _FileSystemService.ReadObjectFromFileAsync<Settings>("settings.json");
+                if (settings != null)
+                    CurrentSettings = settings;
+                else
+                    CurrentSettings = new Settings();
+
+                _IsLoaded = true;
+            }
         }
     }
 }

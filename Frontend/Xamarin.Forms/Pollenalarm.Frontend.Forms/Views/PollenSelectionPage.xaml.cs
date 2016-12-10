@@ -1,4 +1,5 @@
-﻿using Pollenalarm.Frontend.Forms.Resources;
+﻿using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Forms.Resources;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,7 @@ namespace Pollenalarm.Frontend.Forms
 			InitializeComponent();
         }
 
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -26,8 +28,8 @@ namespace Pollenalarm.Frontend.Forms
 
         protected override async void OnDisappearing()
         {
-            base.OnDisappearing();
             await App.Bootstrapper.PollenViewModel.SaveChangesAsync();
+            base.OnDisappearing();
         }
     }
 }

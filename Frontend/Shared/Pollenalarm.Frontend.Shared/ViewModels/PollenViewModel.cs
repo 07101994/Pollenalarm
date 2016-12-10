@@ -40,10 +40,11 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             IsLoading = true;
             IsLoaded = false;
 
-            _Pollen.Clear();
             var allPollen = await _PollenService.GetAllPollenAsync();
             if (allPollen != null)
             {
+                _Pollen.Clear();
+
                 foreach (var pollen in allPollen)
                     _Pollen.Add(pollen);
 
@@ -53,17 +54,28 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             IsLoading = false;
         }
 
-        public async Task SaveChangesAsync()
+        public async Task SaveChangesAsync(Pollen changedPollen = null)
         {
             await _SettingsService.LoadSettingsAsync();
 
-            // Update all Pollen in pollen list
-            foreach (var pollen in _Pollen)
-                _SettingsService.CurrentSettings.SelectedPollen[pollen.Id] = pollen.IsSelected;
+            if (changedPollen != null)
+            {
+                // If only a single pollen has been changed
+                _SettingsService.CurrentSettings.SelectedPollen[changedPollen.Id] = changedPollen.IsSelected;
+            }
+            else
+            {
+                // Update all Pollen in pollen list
+                foreach (var pollen in _Pollen)
+                    _SettingsService.CurrentSettings.SelectedPollen[pollen.Id] = pollen.IsSelected;
+            }
 
             // If CurrentPollen is available (PollenPage), override its entry
             if (CurrentPollen != null)
                 _SettingsService.CurrentSettings.SelectedPollen[CurrentPollen.Id] = CurrentPollen.IsSelected;
+
+            // Invalidate IsLoaded flag, as selections have changed
+            IsLoaded = false;
 
             await _SettingsService.SaveSettingsAsync();
         }

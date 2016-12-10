@@ -17,7 +17,6 @@
             <DataTemplate x:Key="PollutionItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
-
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -119,8 +118,7 @@
                 x:Name="ListToday"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
-                ItemTemplate="{StaticResource PollutionItemTemplate}"
-                ItemsSource="{Binding CurrentPlace.PollutionToday}" />
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
         </StackLayout>
     </ContentPage>
 
@@ -136,8 +134,7 @@
             x:Name="ListTomorrow"
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
-            ItemTemplate="{StaticResource PollutionItemTemplate}"
-            ItemsSource="{Binding CurrentPlace.PollutionTomorrow}" />
+            ItemTemplate="{StaticResource PollutionItemTemplate}" />
     </ContentPage>
 
     <ContentPage Title="After tomorrow">
@@ -152,7 +149,6 @@
             x:Name="ListAfterTomorrow"
             HasUnevenRows="True"
             ItemSelected="PollutionList_ItemSelected"
-            ItemTemplate="{StaticResource PollutionItemTemplate}"
-            ItemsSource="{Binding CurrentPlace.PollutionAfterTomorrow}" />
+            ItemTemplate="{StaticResource PollutionItemTemplate}" />
     </ContentPage>
 </TabbedPage>
