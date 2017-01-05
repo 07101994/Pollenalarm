@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Pollenalarm.Old.WinPhone.Controls.ConcentrationBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    Height="Auto" Width="Auto" Loaded="UserControl_Loaded" HorizontalAlignment="Left">
+	<UserControl.Resources>
+		<Storyboard x:Name="AnimationStart">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="concentrationBar">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="concentrationBar">
+				<EasingPointKeyFrame KeyTime="0" Value="0.5,0.5"/>
+				<EasingPointKeyFrame KeyTime="0:0:0.5" Value="0.5,0.5"/>
+			</PointAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="concentrationBar">
+				<EasingDoubleKeyFrame KeyTime="0" Value="-94"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationX)" Storyboard.TargetName="concentrationBar">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" HorizontalAlignment="Left">
+        <Border Height="20" Width="200" Background="{StaticResource PhoneBorderBrush}">
+            <Border x:Name="concentrationBar" Width="0" Background="{StaticResource PhoneAccentBrush}" HorizontalAlignment="Left" Margin="2" RenderTransformOrigin="0.5,0.5" >
+            	<Border.Projection>
+            		<PlaneProjection/>
+            	</Border.Projection>
+            	<Border.RenderTransform>
+            		<CompositeTransform/>
+            	</Border.RenderTransform>
+            </Border>
+        </Border>
+    </Grid>
+
+</UserControl>

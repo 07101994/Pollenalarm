@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+    <DefaultLanguage xmlns="" code="de" />
+    <App xmlns="" ProductID="{ab06003e-3104-4573-9e69-b84c7058161d}" Title="Pollenalarm" RuntimeType="Silverlight" Version="2.3.0.0" Genre="apps.normal" Author="Pollenalarm author" Description="Sample description" Publisher="Pollenalarm" PublisherID="{59b5b150-8456-4559-b6be-90db74002ccb}">
+        <IconPath IsRelative="true" IsResource="false">Assets/ApplicationIcon.png</IconPath>
+        <Capabilities>
+            <Capability Name="ID_CAP_LOCATION" />
+            <Capability Name="ID_CAP_NETWORKING" />
+            <Capability Name="ID_CAP_SENSORS" />
+            <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+        </Capabilities>
+        <Tasks>
+            <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+            <ExtendedTask Name="BackgroundTask">
+                <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="TileUpdaterBackgroundTask" Source="Pollenalarm.Old.WinPhone.TileUpdaterBackgroundTask" Type="Pollenalarm.Old.WinPhone.TileUpdaterBackgroundTask.ScheduledAgent" />
+            </ExtendedTask>
+        </Tasks>
+        <Tokens>
+            <PrimaryToken TokenID="PollenalarmToken" TaskName="_default">
+                <TemplateFlip>
+                    <SmallImageURI IsResource="false" IsRelative="true">Assets/Background.png</SmallImageURI>
+                    <Count>0</Count>
+                    <BackgroundImageURI IsResource="false" IsRelative="true">Assets/Background.png</BackgroundImageURI>
+                    <Title>Pollenalarm</Title>
+                    <BackContent>
+                    </BackContent>
+                    <BackBackgroundImageURI>
+                    </BackBackgroundImageURI>
+                    <BackTitle>
+                    </BackTitle>
+                    <DeviceLockImageURI>
+                    </DeviceLockImageURI>
+                    <HasLarge>false</HasLarge>
+                </TemplateFlip>
+            </PrimaryToken>
+        </Tokens>
+        <ScreenResolutions>
+            <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+            <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+            <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+        </ScreenResolutions>
+    </App>
+</Deployment>

@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A9AB26B4-BB1D-48CF-8136-D78646D5473C}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pollenalarm.Old.WinPhone</RootNamespace>
+    <AssemblyName>Pollenalarm.Old.WinPhone</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>Pollenalarm.Old.WinPhone_$(Configuration)_$(Platform).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>Pollenalarm.Old.WinPhone.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ConcentrationBar.xaml.cs">
+      <DependentUpon>ConcentrationBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RemovableAdvert.xaml.cs">
+      <DependentUpon>RemovableAdvert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\ConcentrationToDotsConverter.cs" />
+    <Compile Include="Converter\IntToVisibilityConverter.cs" />
+    <Compile Include="Helper\EditableImage.cs" />
+    <Compile Include="Helper\LowMemoryHelper.cs" />
+    <Compile Include="Helper\PngEncoder.cs" />
+    <Compile Include="Helper\PngHelper.cs" />
+    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MapConcentration.cs" />
+    <Compile Include="Helper\NotifyClass.cs" />
+    <Compile Include="Models\Place.cs" />
+    <Compile Include="Models\Pollen.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\HelpAndInformation.xaml.cs">
+      <DependentUpon>HelpAndInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaceAddEdit.xaml.cs">
+      <DependentUpon>PlaceAddEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaceDetails.xaml.cs">
+      <DependentUpon>PlaceDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PollenDetails.xaml.cs">
+      <DependentUpon>PollenDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PollenSelection.xaml.cs">
+      <DependentUpon>PollenSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Controls\ConcentrationBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RemovableAdvert.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HelpAndInformation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PlaceAddEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PlaceDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PollenDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PollenSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Search.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\AlignmentGrid.png" />
+    <Content Include="Assets\appbar.base.png" />
+    <Content Include="Assets\ApplicationBar\appbar.add.png" />
+    <Content Include="Assets\ApplicationBar\appbar.cancel.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.cart.png" />
+    <Content Include="Assets\ApplicationBar\appbar.delete.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.favs.addto.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.feature.search.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.list.png" />
+    <Content Include="Assets\ApplicationBar\appbar.location.round.png" />
+    <Content Include="Assets\ApplicationBar\appbar.manage.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.pin.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.save.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.sendmessage.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.task.complete.rest.png" />
+    <Content Include="Assets\ApplicationBar\appbar.task.uncheckall.rest.png" />
+    <Content Include="Assets\ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Background.png" />
+    <Content Include="Assets\Background\Background.png" />
+    <Content Include="Assets\Background\PivotBackground.png" />
+    <Content Include="Assets\Background\PivotBackground2.png" />
+    <Content Include="Assets\dandelion.png" />
+    <Content Include="Assets\FaderBottom.png" />
+    <Content Include="Assets\Germany.png" />
+    <Content Include="Assets\grass.png" />
+    <Content Include="Assets\grass_s.png" />
+    <Content Include="Assets\Help\MainPageAppBar.png" />
+    <Content Include="Assets\Help\PollenSelectionexample.png" />
+    <Content Include="Assets\Help\PollenSelectionexample2.png" />
+    <Content Include="Assets\Icons\alert.png" />
+    <Content Include="Assets\Icons\appbar.facebook.png" />
+    <Content Include="Assets\Icons\appbar.information.png" />
+    <Content Include="Assets\Icons\appbar.location.png" />
+    <Content Include="Assets\Icons\dandelion.png" />
+    <Content Include="Assets\Icons\dandelionSmall.png" />
+    <Content Include="Assets\Icons\dandelionSmall2.png" />
+    <Content Include="Assets\Icons\hugeNo.png" />
+    <Content Include="Assets\Icons\hugeOk.png" />
+    <Content Include="Assets\Icons\polle.png" />
+    <Content Include="Assets\Icons\positionMarker.png" />
+    <Content Include="Assets\Icons\positionMarkerPollen.png" />
+    <Content Include="Assets\Icons\positionMarkerPollen2.png" />
+    <Content Include="Assets\Icons\sync.png" />
+    <Content Include="Assets\indicator.png" />
+    <Content Include="Assets\Logo-173.png" />
+    <Content Include="Assets\pfeile.png" />
+    <Content Include="Assets\Pollen\Ambrosia.png" />
+    <Content Include="Assets\Pollen\Ampfer.png" />
+    <Content Include="Assets\Pollen\Beifuss.png" />
+    <Content Include="Assets\Pollen\Birke.png" />
+    <Content Include="Assets\Pollen\Buche.png" />
+    <Content Include="Assets\Pollen\Eiche.png" />
+    <Content Include="Assets\Pollen\Erle.png" />
+    <Content Include="Assets\Pollen\Graeser.png" />
+    <Content Include="Assets\Pollen\Hasel.png" />
+    <Content Include="Assets\Pollen\Pappel.png" />
+    <Content Include="Assets\Pollen\Roggen.png" />
+    <Content Include="Assets\Pollen\Ulme.png" />
+    <Content Include="Assets\Pollen\Wegerich.png" />
+    <Content Include="Assets\Pollen\Weide.png" />
+    <Content Include="Assets\searchButton.png" />
+    <Content Include="Assets\SplashScreenImage.screen-720p.jpg" />
+    <Content Include="Assets\SplashScreenImage.screen-WVGA.jpg" />
+    <Content Include="Assets\SplashScreenImage.screen-WXGA.jpg" />
+    <Content Include="Assets\ThepagedotLogoS.png" />
+    <Content Include="Assets\ThepagedotLogoSmall.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Coding4Fun.Phone.Audio">
+      <HintPath>..\..\packages\Coding4Fun.Phone.Audio.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Audio.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Phone.Controls">
+      <HintPath>..\..\packages\Coding4Fun.Phone.Controls.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Phone.Controls.Toolkit">
+      <HintPath>..\..\packages\Coding4Fun.Phone.Controls.TimeSpan.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Phone.Net">
+      <HintPath>..\..\packages\Coding4Fun.Phone.Net.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Phone.Storage">
+      <HintPath>..\..\packages\Coding4Fun.Phone.Storage.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.4.6\lib\sl4-windowsphone71\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing" />
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\..\packages\WPtoolkit.4.2013.08.16\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="MSAdvertising, Version=6.1">
+      <Name>Microsoft Advertising SDK for Windows Phone 8 %28XAML%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pollenalarm.Old.WinPhone.TileUpdaterBackgroundTask\Pollenalarm.Old.WinPhone.TileUpdaterBackgroundTask.csproj">
+      <Project>{c59db412-bddf-4177-a7c4-064b8da7c9e9}</Project>
+      <Name>Pollenalarm.Old.WinPhone.TileUpdaterBackgroundTask</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

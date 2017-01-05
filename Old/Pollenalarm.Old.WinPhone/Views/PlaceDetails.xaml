@@ -1,0 +1,348 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Pollenalarm.Old.WinPhone.Views.PlaceDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:c4f="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
+    xmlns:Converter="clr-namespace:Pollenalarm.Old.WinPhone.Converter"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.001" xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" Loaded="PhoneApplicationPage_Loaded">
+	<phone:PhoneApplicationPage.Resources>
+        <Converter:ConcentrationToDotsConverter x:Key="ConcentrationToDotsConverter"/>
+        <Converter:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
+
+
+        <Storyboard x:Name="AnimationStart">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="PivotControl">
+				<EasingDoubleKeyFrame KeyTime="0" Value="480"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.8" Value="0" KeySpline="0,0,0,1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TitlePanel">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="AdPanel" d:IsOptimized="True"/>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="AdPanel">
+				<EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationX)" Storyboard.TargetName="border">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="border">
+				<EasingDoubleKeyFrame KeyTime="0" Value="90"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="spnHeader">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="spnHeader">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="appBarPin">
+				<EasingDoubleKeyFrame KeyTime="0" Value="109"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="109"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:1" Value="0" KeySpline="0,0,0,1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="appBarSave">
+				<SplineDoubleKeyFrame KeyTime="0" Value="239"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="239"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.9" Value="0" KeySpline="0,0,0,1"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="AnimationEnd">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="PivotControl">
+				<SplineDoubleKeyFrame KeyTime="0" Value="0" KeySpline="0,0,0,1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="480" KeySpline="0,0,0.49,1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TitlePanel">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="AdPanel" d:IsOptimized="True"/>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="AdPanel">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="250"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationX)" Storyboard.TargetName="border">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="border">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="59.9854"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="90"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="appBarPin">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="141.5"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="spnHeader">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="appBarSave">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="147"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="200*" />
+			<RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+		
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Margin="12,37,0,10" Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Border Width="64" Height="64" Margin="2,-19,0,-19" Background="{StaticResource PhoneForegroundBrush}">
+                    <Border.OpacityMask>
+                        <ImageBrush ImageSource="/Pollenalarm;component/Assets/Logo-173.png" />
+                    </Border.OpacityMask>
+                </Border>
+                <TextBlock x:Name="ApplicationTitle" Text="POLLENALARM" Style="{StaticResource PhoneTextNormalStyle}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,12,0" />
+            </StackPanel>
+        </StackPanel>       
+
+        <Grid Grid.Row="1">			
+        	<Grid>
+        		<Grid.RowDefinitions>
+		            <RowDefinition Height="Auto" />
+		            <RowDefinition Height="*" />
+		        </Grid.RowDefinitions>
+        		
+				
+        		<Grid Margin="24,0,0,0">
+        			<Grid.ColumnDefinitions>
+			            <ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="*" />
+			        </Grid.ColumnDefinitions>		
+					<Grid.RowDefinitions>
+		            <RowDefinition Height="Auto" />
+		            <RowDefinition Height="*" />
+		        </Grid.RowDefinitions>
+								
+        			<Border x:Name="border" Width="100" HorizontalAlignment="Left" Background="{StaticResource PhoneAccentBrush}" Height="100" BorderThickness="0" Margin="0,12,0,0">
+        				<Border.Projection>
+        					<PlaneProjection/>
+        				</Border.Projection>
+        				<Image Source="/Pollenalarm;component/Assets/Icons/appbar.location.png" Margin="0" />
+					</Border>
+					<StackPanel x:Name="spnHeader" Margin="14,0,0,0" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+						<StackPanel.RenderTransform>
+							<CompositeTransform/>
+						</StackPanel.RenderTransform>
+						<TextBlock x:Name="tbkName" Text="Langenfeld" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Margin="-2,0,63,0" />
+						<TextBlock x:Name="tbkPlz" Text="40764" Margin="0,-4,0,9" Foreground="{StaticResource PhoneBorderBrush}" />
+					</StackPanel>
+
+                    <c4f:RoundButton x:Name="appBarPin" Click="appBarPin_Click" Grid.Column="1" VerticalAlignment="Bottom" ImageSource="/Assets/ApplicationBar/appbar.pin.rest.png" Width="100" Margin="0,0,-13,-16" d:LayoutOverrides="VerticalAlignment" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" >
+                    	<c4f:RoundButton.RenderTransform>
+                    		<CompositeTransform/>
+                    	</c4f:RoundButton.RenderTransform>
+                    </c4f:RoundButton>
+					
+					<Border Height="1" Grid.ColumnSpan="3" Background="{StaticResource PhoneForegroundBrush}" Margin="0,15,12,-10" VerticalAlignment="Bottom" Padding="0" Grid.Row="1" />
+                    <c4f:RoundButton x:Name="appBarSave" Grid.Column="1" ImageSource="/Assets/ApplicationBar/appbar.save.rest.png" Width="100" Margin="0,0,-13,50" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="appBarSave_Click" >
+						<c4f:RoundButton.RenderTransform>
+							<CompositeTransform/>
+						</c4f:RoundButton.RenderTransform>
+					</c4f:RoundButton>
+				</Grid>
+				
+	            <!--Pivot Control-->
+	            <controls:Pivot Margin="0" Name="PivotControl" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.Column="0">
+	            	<controls:Pivot.RenderTransform>
+	            		<CompositeTransform/>
+	            	</controls:Pivot.RenderTransform>
+	            	<controls:Pivot.Projection>
+	            		<PlaneProjection/>
+	            	</controls:Pivot.Projection>
+					
+	                <!--Pivot item one-->
+	                <controls:PivotItem Margin="12,10,12,0">
+	                    <controls:PivotItem.Header>
+	                        <TextBlock Text="Heute" FontSize="60" />
+	                    </controls:PivotItem.Header>
+						<Grid>
+							<TextBlock x:Name="tbkNoPollenToday" Text="Es fliegen keine der von Ihnen ausgewählten Pollen." Margin="12,0,0,0" TextWrapping="Wrap" FontSize="32" Visibility="Collapsed" >
+								<TextBlock.Foreground>
+									<SolidColorBrush Color="{StaticResource PhoneBorderColor}"/>
+								</TextBlock.Foreground>
+							</TextBlock>                 
+		                    <ListBox Name="lbxToday" ItemsSource="{Binding Source={StaticResource MainViewModel}, Path=CurrentPlace.PollenList}" >
+								<ListBox.ItemTemplate>
+		                            <DataTemplate>
+                                        <Grid Visibility="{Binding Path=Visibility}" Tap="Pollen_TapTomorrow">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding ImagePath, Mode=OneWay}" Stretch="UniformToFill" Width="80" Height="80" Margin="12,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+		                                    <StackPanel Margin="0,0,0,17" Grid.Column="1">
+		                                        <TextBlock Text="{Binding Path=Name}"                Margin="12,0,12,-8" FontSize="40" Foreground="{StaticResource PhoneForegroundBrush}" />
+		                                        <!--<TextBlock Text="{Binding Path=ConcentrationString}" Margin="12,0,12,0"  FontSize="28" Foreground="{Binding Path=Color}" />-->
+                                                <Image Source="/Assets/indicator.png" Height="25" HorizontalAlignment="Left" Canvas.ZIndex="-2" Margin="13,12,0,0"/>
+                                                <TextBlock Text="{Binding ConcentrationString, Converter={StaticResource ConcentrationToDotsConverter}}" Margin="13,-58,0,-24" FontSize="60" Padding="0" Canvas.ZIndex="-1" >
+                                                    <TextBlock.Foreground>
+                                                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                                                    </TextBlock.Foreground>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+		                            </DataTemplate>
+		                        </ListBox.ItemTemplate>
+		                    </ListBox>
+						</Grid>
+	                </controls:PivotItem>
+
+	                <controls:PivotItem Margin="12,10,12,0">
+	                    <controls:PivotItem.Header>
+	                        <TextBlock Text="Morgen" FontSize="60" />
+	                    </controls:PivotItem.Header>
+						
+						<Grid>
+							<TextBlock x:Name="tbkNoPollenTomorrow" Text="Es fliegen keine der von Ihnen ausgewählten Pollen." Margin="12,0,0,0" TextWrapping="Wrap" FontSize="32" Visibility="Collapsed" >
+								<TextBlock.Foreground>
+									<SolidColorBrush Color="{StaticResource PhoneBorderColor}"/>
+								</TextBlock.Foreground>
+							</TextBlock>
+		                    <ListBox x:Name="lbxTomorrow" ItemsSource="{Binding Source={StaticResource MainViewModel}, Path=CurrentPlace.PollenListTomorrow}">
+		                        <ListBox.ItemTemplate>
+		                            <DataTemplate>
+                                        <Grid Visibility="{Binding Path=Visibility}" Tap="Pollen_TapTomorrow">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding ImagePath, Mode=OneWay}" Stretch="UniformToFill" Width="80" Height="80" Margin="12,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <StackPanel Margin="0,0,0,17" Grid.Column="1">
+                                                <TextBlock Text="{Binding Path=Name}"                Margin="12,0,12,-8" FontSize="40" Foreground="{StaticResource PhoneForegroundBrush}" />
+                                                <!--<TextBlock Text="{Binding Path=ConcentrationString}" Margin="12,0,12,0"  FontSize="28" Foreground="{Binding Path=Color}" />-->
+                                                <Image Source="/Assets/indicator.png" Height="25" HorizontalAlignment="Left" Canvas.ZIndex="-2" Margin="13,12,0,0"/>
+                                                <TextBlock Text="{Binding ConcentrationString, Converter={StaticResource ConcentrationToDotsConverter}}" Margin="13,-58,0,-24" FontSize="60" Padding="0" Canvas.ZIndex="-1" >
+                                                    <TextBlock.Foreground>
+                                                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                                                    </TextBlock.Foreground>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+		                        </ListBox.ItemTemplate>
+		                    </ListBox>
+		                    <StackPanel x:Name="spnBuyTomorrow" HorizontalAlignment="Left" VerticalAlignment="Top">
+		                    	<TextBlock x:Name="tbkNoPollenTomorrow1" Text="Diese Funktion ist in der Testversion leider nicht verfügbar. Kaufen Sie die Vollversion, um den vollen Funktionsumfang nutzen zu können." Margin="12,0,0,0" TextWrapping="Wrap" FontSize="29.333" >
+		                    		<TextBlock.Foreground>
+		                    			<SolidColorBrush Color="{StaticResource PhoneBorderColor}"/>
+		                    		</TextBlock.Foreground>
+		                    	</TextBlock>
+		                    	<Button x:Name="btnBuyTomorrow" Content="Kaufen" Margin="0,5,0,0" Padding="10,5,10,8" Click="btnBuyTomorrow_Click" HorizontalAlignment="Left">
+		                    		<Button.Background>
+		                    			<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+		                    		</Button.Background>
+		                    	</Button>
+		                    </StackPanel>
+						</Grid>
+	                </controls:PivotItem>
+
+	                <controls:PivotItem Margin="12,10,12,0">
+	                    <controls:PivotItem.Header>
+	                        <TextBlock Text="Übermorgen" FontSize="60" />
+	                    </controls:PivotItem.Header>
+						
+						<Grid>
+							<TextBlock x:Name="tbkNoPollenAfterTomorrow" Text="Es fliegen keine der von Ihnen ausgewählten Pollen." Margin="12,0,0,0" TextWrapping="Wrap" FontSize="32" Visibility="Collapsed" >
+								<TextBlock.Foreground>
+									<SolidColorBrush Color="{StaticResource PhoneBorderColor}"/>
+								</TextBlock.Foreground>
+							</TextBlock>
+		                    <ListBox x:Name="lbxAfterTomorrow" ItemsSource="{Binding Source={StaticResource MainViewModel}, Path=CurrentPlace.PollenListDayAfterTomorrow}">
+		                        <ListBox.ItemTemplate>
+		                            <DataTemplate>
+                                        <Grid Visibility="{Binding Path=Visibility}" Tap="Pollen_TapTomorrow">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding ImagePath, Mode=OneWay}" Stretch="UniformToFill" Width="80" Height="80" Margin="12,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <StackPanel Margin="0,0,0,17" Grid.Column="1">
+                                                <TextBlock Text="{Binding Path=Name}"                Margin="12,0,12,-8" FontSize="40" Foreground="{StaticResource PhoneForegroundBrush}" />
+                                                <!--<TextBlock Text="{Binding Path=ConcentrationString}" Margin="12,0,12,0"  FontSize="28" Foreground="{Binding Path=Color}" />-->
+                                                <Image Source="/Assets/indicator.png" Height="25" HorizontalAlignment="Left" Canvas.ZIndex="-2" Margin="13,12,0,0"/>
+                                                <TextBlock Text="{Binding ConcentrationString, Converter={StaticResource ConcentrationToDotsConverter}}" Margin="13,-58,0,-24" FontSize="60" Padding="0" Canvas.ZIndex="-1" >
+                                                    <TextBlock.Foreground>
+                                                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                                                    </TextBlock.Foreground>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+		                        </ListBox.ItemTemplate>
+		                    </ListBox>
+		                    <StackPanel x:Name="spnBuyAfterTomorrow" HorizontalAlignment="Left" VerticalAlignment="Top">
+		                    	<TextBlock x:Name="tbkNoPollenTomorrow2" Text="Diese Funktion ist in der Testversion leider nicht verfügbar. Kaufen Sie die Vollversion, um den vollen Funktionsumfang nutzen zu können." Margin="12,0,0,0" TextWrapping="Wrap" FontSize="29.333" >
+		                    		<TextBlock.Foreground>
+		                    			<SolidColorBrush Color="{StaticResource PhoneBorderColor}"/>
+		                    		</TextBlock.Foreground>
+		                    	</TextBlock>
+		                    	<Button x:Name="btnBuyAfterTomorrow" Content="Kaufen" Margin="0,5,0,0" Padding="10,5,10,8" Click="btnBuyTomorrow_Click" HorizontalAlignment="Left">
+		                    		<Button.Background>
+		                    			<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+		                    		</Button.Background>
+		                    	</Button>
+		                    </StackPanel>
+						</Grid>
+	                </controls:PivotItem>
+	            </controls:Pivot>
+			</Grid>
+        </Grid>
+		
+            <Grid x:Name="AdPanel" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Margin="0" VerticalAlignment="Bottom">
+            	<Grid.RenderTransform>
+            		<CompositeTransform/>
+            	</Grid.RenderTransform>
+            	<Grid.Projection>
+            		<PlaneProjection/>
+            	</Grid.Projection>
+                <!--Advertising is added in Code behind-->
+            </Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Pollenalarm;component/Assets/Background/PivotBackground2.png" Stretch="UniformToFill" x:Name="BackgroundImage" />
+        </Grid.Background>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/ApplicationBar/appbar.pin.rest.png" Text="Auf Startseite" x:Name="appBarPin" Click="appBarPin_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
