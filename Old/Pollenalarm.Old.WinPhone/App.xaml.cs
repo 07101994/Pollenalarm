@@ -30,6 +30,8 @@ namespace Pollenalarm.Old.WinPhone
 {
     public partial class App : Application
     {
+        public static string BaseUri = "http://pollenalarm.azurewebsites.net/api/old";
+
         public static Place CurrentPlace;
         public static Place CurrentPositionPlace;
         public static string[] ConcentrationArray = { "Keine", "Gering", "Mäßig", "Stark" };
@@ -43,7 +45,6 @@ namespace Pollenalarm.Old.WinPhone
         public static LicenseInformation License;
 
         public static IsolatedStorageSettings Settings = IsolatedStorageSettings.ApplicationSettings;
-
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.

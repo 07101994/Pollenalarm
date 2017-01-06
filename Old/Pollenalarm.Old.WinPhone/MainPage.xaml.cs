@@ -76,6 +76,7 @@ namespace Pollenalarm.Old.WinPhone
             MainViewModel.MapDownloadCompleted += new MainViewModel.DownloadedCompletedHandler(MainViewModel_MapDownloadCompleted);
             MainViewModel.Current.LoadData();
 
+            ScheduledActionService.LaunchForTest("TileUpdaterTask", TimeSpan.FromSeconds(60));
         }
 
         void MainViewModel_MapDownloadCompleted(object sender, EventArgs e)
@@ -326,28 +327,28 @@ namespace Pollenalarm.Old.WinPhone
             MainViewModel.Current.CurrentPlace = null;
 
             // Navigate to Place Add/Edit Page
-            NavigationService.Navigate(new Uri("/Pages/PlaceAddEdit.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/PlaceAddEdit.xaml", UriKind.Relative));
         }
 
         // Settings
         private void appBarSettings_Click(object sender, EventArgs e)
         {
             // Navigate to Place Settings Page
-            NavigationService.Navigate(new Uri("/Pages/Settings.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/Settings.xaml", UriKind.Relative));
         }
 
         // Select pollen
         private void appBarPollenSelection_Click(object sender, EventArgs e)
         {
             // Navigate to Pollen Selection
-            NavigationService.Navigate(new Uri("/Pages/PollenSelection.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/PollenSelection.xaml", UriKind.Relative));
         }
 
         // Help and Information
         private void appBarHelp_Click(object sender, EventArgs e)
         {
             // Navigate to Help and Information Selection
-            NavigationService.Navigate(new Uri("/Pages/HelpAndInformation.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/HelpAndInformation.xaml", UriKind.Relative));
         }
 
         // Refresh Data
@@ -390,7 +391,7 @@ namespace Pollenalarm.Old.WinPhone
                 MainViewModel.Current.CurrentPlace = currentPlace;
 
                 // Navigate to Place Add/Edit Page
-                NavigationService.Navigate(new Uri("/Pages/PlaceAddEdit.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Views/PlaceAddEdit.xaml", UriKind.Relative));
             }
         }
 
@@ -439,7 +440,7 @@ namespace Pollenalarm.Old.WinPhone
                 MainViewModel.Current.CurrentPlace = currentPlace;
 
                 // Navigate to Place Details Page
-                NavigationService.Navigate(new Uri("/Pages/PlaceDetails.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Views/PlaceDetails.xaml", UriKind.Relative));
             }
         }
 
@@ -531,7 +532,7 @@ namespace Pollenalarm.Old.WinPhone
         private void appBarSearch_Click(object sender, System.EventArgs e)
         {
             // Navigate to Help and Information Selection
-            NavigationService.Navigate(new Uri("/Pages/Search.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/Search.xaml", UriKind.Relative));
         }
 
         private void cbbBerlin_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -546,7 +547,7 @@ namespace Pollenalarm.Old.WinPhone
         void berlin_LoadingFinished(object sender)
         {
             LoadingInformation.Visibility = Visibility.Collapsed;
-            NavigationService.Navigate(new Uri("/Pages/PlaceDetails.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/PlaceDetails.xaml", UriKind.Relative));
         }
 
         private void cbbBonn_Tap(object sender, System.Windows.Input.GestureEventArgs e)

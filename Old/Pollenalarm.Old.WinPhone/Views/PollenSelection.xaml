@@ -56,7 +56,7 @@
             <StackPanel Orientation="Horizontal">
                 <Border Width="64" Height="64" Margin="2,-19,0,-19" Background="{StaticResource PhoneForegroundBrush}">
                     <Border.OpacityMask>
-                        <ImageBrush ImageSource="/Pollenalarm;component/Assets/Logo-173.png" />
+                        <ImageBrush ImageSource="/Assets/Logo-173.png" />
                     </Border.OpacityMask>
                 </Border>
                 <TextBlock x:Name="ApplicationTitle" Text="POLLENALARM" Style="{StaticResource PhoneTextNormalStyle}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,12,0" />
@@ -87,7 +87,7 @@
             </ScrollViewer>
         </Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Pollenalarm;component/Assets/Background/PivotBackground2.png" Stretch="UniformToFill" x:Name="BackgroundImage" />
+            <ImageBrush ImageSource="/Assets/Background/PivotBackground2.png" Stretch="UniformToFill" x:Name="BackgroundImage" />
         </Grid.Background>
     </Grid>
  

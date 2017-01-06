@@ -213,7 +213,8 @@ namespace Pollenalarm.Old.WinPhone.ViewModels
             // Download Inforamtion for Germany Map
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(mapDownload_DownloadStringCompleted);
-            webClient.DownloadStringAsync(new Uri("http://thepagedot.de/pollenalarm/pollen.php?do=getGermanyConcentration"));
+            //webClient.DownloadStringAsync(new Uri("http://thepagedot.de/pollenalarm/pollen.php?do=getGermanyConcentration"));
+            webClient.DownloadStringAsync(new Uri(App.BaseUri + "/GetMapConcentration"));
         }
 
         // Start HTML Parser
@@ -234,13 +235,19 @@ namespace Pollenalarm.Old.WinPhone.ViewModels
         public static event DownloadedCompletedHandler MapDownloadCompleted;
         private void ParseWebResultForMap(string webResult)
         {
-            int counter = 0;
-            XDocument data = XDocument.Parse(webResult);
-
-            foreach (XElement xmlMapValue in data.Descendants("ort"))
+            try
             {
-                GermanyConcentration.setValue(counter, xmlMapValue.Element("belastung").Value);
-                counter++;
+                int counter = 0;
+                XDocument data = XDocument.Parse(webResult);
+                foreach (XElement xmlMapValue in data.Descendants("ort"))
+                {
+                    GermanyConcentration.setValue(counter, xmlMapValue.Element("belastung").Value);
+                    counter++;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Map Concentration parsing failed.");
             }
 
             // Download Finished
@@ -413,7 +420,8 @@ namespace Pollenalarm.Old.WinPhone.ViewModels
             // Download Pollendata from the mobile HEXAL website
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(webClient_DownloadStringCompleted);
-            webClient.DownloadStringAsync(new Uri("http://thepagedot.de/pollenalarm/pollen.php?do=getInformation"));
+            //webClient.DownloadStringAsync(new Uri("http://thepagedot.de/pollenalarm/pollen.php?do=getInformation"));
+            webClient.DownloadStringAsync(new Uri(App.BaseUri + "/GetGeneralInformation"));
         }
 
         // Start HTML Parser
@@ -431,15 +439,21 @@ namespace Pollenalarm.Old.WinPhone.ViewModels
             }
         }
 
-        // TODO: Cobinate Funktoion with the one from Place
+        // TODO: Cobine Funktion with the one from Place
         private void ParseWebResultForInformation(string webResult)
         {
-            XDocument data = XDocument.Parse(webResult);
-
-            foreach (XElement xmlInformation in data.Descendants("information"))
+            try
             {
-                MainViewModel.Current.GeneralInformation = xmlInformation.Value;
-                App.SaveToSettings("GeneralInformation", xmlInformation.Value);
+                XDocument data = XDocument.Parse(webResult);
+                foreach (XElement xmlInformation in data.Descendants("information"))
+                {
+                    MainViewModel.Current.GeneralInformation = xmlInformation.Value;
+                    App.SaveToSettings("GeneralInformation", xmlInformation.Value);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Parsing General Information failed.");
             }
 
             MainPage.ShellProgessStop();

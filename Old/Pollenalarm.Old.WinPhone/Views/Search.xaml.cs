@@ -150,6 +150,7 @@ namespace Pollenalarm.Old.WinPhone.Views
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 GeocodeQuery geocodeQuery = new GeocodeQuery();
+                geocodeQuery.GeoCoordinate = new GeoCoordinate(51.5167, 9.9167); //Germany
                 geocodeQuery.SearchTerm = search.Trim();
                 geocodeQuery.QueryCompleted += GeocodeQuery_QueryCompleted;
                 geocodeQuery.QueryAsync();
@@ -187,36 +188,35 @@ namespace Pollenalarm.Old.WinPhone.Views
             }
         }
 
+
+        private Queue<MapLocation> searchResultQueue;
+        private ReverseGeocodeQuery reverseGeocodeQuery;
         private void GeocodeQuery_QueryCompleted(object sender, QueryCompletedEventArgs<IList<MapLocation>> e)
         {
-
-            ReverseGeocodeQuery reverseGeocodeQuery = new ReverseGeocodeQuery();
-
             // Create Reverse GeoCode Request to get ZIP Code from Loacation
             //ReverseGeocodeRequest reverseGeocodeRequest = new ReverseGeocodeRequest();
             //reverseGeocodeRequest.Credentials = new MyBingMaps.Credentials();
             //reverseGeocodeRequest.Credentials.ApplicationId = "Aq69-RXbmx-nbDdlZISg__ioXRQH29f2-jgseV9r1acfqU6jFyCWsPfjANiy4o76";
 
-            foreach (var result in e.Result)
+            if (e.Result.Any())
             {
-                reverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(result.GeoCoordinate.Latitude, result.GeoCoordinate.Longitude);
+                // Fill queue
+                searchResultQueue = new Queue<MapLocation>(e.Result.Count);
+                for (var i = 0; i < e.Result.Count; i++)
+                    searchResultQueue.Enqueue(e.Result.ElementAt(i));
+
+                reverseGeocodeQuery = new ReverseGeocodeQuery();
                 reverseGeocodeQuery.QueryCompleted += ReverseGeocodeQuery_QueryCompleted;
+
+                // Work queue                
+                var enqueuedResult = searchResultQueue.Dequeue();
+                reverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(enqueuedResult.GeoCoordinate.Latitude, enqueuedResult.GeoCoordinate.Longitude);
                 reverseGeocodeQuery.QueryAsync();
-
-                // Set Location
-                //Location point = new Location();
-                //point.Latitude = result.Locations.First().Latitude;
-                //point.Longitude = result.Locations.First().Longitude;
-                //reverseGeocodeRequest.Location = point;
-
-                // Send request
-                //GeocodeServiceClient geocodeService = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
-                //geocodeService.ReverseGeocodeCompleted += new EventHandler<ReverseGeocodeCompletedEventArgs>(geocodeService_ReverseGeocodeCompleted);
-                //geocodeService.ReverseGeocodeAsync(reverseGeocodeRequest);
             }
-
-            if (e.Result.Count == 0)
+            else
+            {
                 ShellProgessStop();
+            }
         }
 
         private void ReverseGeocodeQuery_QueryCompleted(object sender, QueryCompletedEventArgs<IList<MapLocation>> e)
@@ -230,6 +230,14 @@ namespace Pollenalarm.Old.WinPhone.Views
                 p.DownloadPollenList();
 
                 MainViewModel.Current.SearchResultPlaces.Add(p);
+            }
+
+            // Remove current query from queue
+            if (searchResultQueue.Count > 0)
+            {
+                var enqueuedResult = searchResultQueue.Dequeue();
+                reverseGeocodeQuery.GeoCoordinate = new GeoCoordinate(enqueuedResult.GeoCoordinate.Latitude, enqueuedResult.GeoCoordinate.Longitude);
+                reverseGeocodeQuery.QueryAsync();
             }
 
             ShellProgessStop();
@@ -277,12 +285,12 @@ namespace Pollenalarm.Old.WinPhone.Views
                 if (isSearchFromAddPlace)
                 {
                     NavigationService.RemoveBackEntry();
-                    NavigationService.Navigate(new Uri("/Pages/PlaceAddEdit.xaml?SaveFromSearch=true", UriKind.Relative));                    
+                    NavigationService.Navigate(new Uri("/Views/PlaceAddEdit.xaml?SaveFromSearch=true", UriKind.Relative));                    
                 }
                 else
                 {
                     // Navigate to Place Details Page
-                    NavigationService.Navigate(new Uri("/Pages/PlaceDetails.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/Views/PlaceDetails.xaml", UriKind.Relative));
                     NavigationService.RemoveBackEntry();
                 }
             }
@@ -299,7 +307,7 @@ namespace Pollenalarm.Old.WinPhone.Views
                 MainViewModel.Current.CurrentPollen = currentPollen;
 
                 // Navigate to Place Details Page
-                NavigationService.Navigate(new Uri("/Pages/PollenDetails.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Views/PollenDetails.xaml", UriKind.Relative));
             }
         }
 
@@ -315,7 +323,7 @@ namespace Pollenalarm.Old.WinPhone.Views
 
                 // Navigate to Place Add/Edit Page
                 NavigationService.RemoveBackEntry();
-                NavigationService.Navigate(new Uri("/Pages/PlaceAddEdit.xaml?SaveFromSearch=true", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Views/PlaceAddEdit.xaml?SaveFromSearch=true", UriKind.Relative));
             }
         }
 

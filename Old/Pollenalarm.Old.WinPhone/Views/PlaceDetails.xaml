@@ -124,7 +124,7 @@
             <StackPanel Orientation="Horizontal">
                 <Border Width="64" Height="64" Margin="2,-19,0,-19" Background="{StaticResource PhoneForegroundBrush}">
                     <Border.OpacityMask>
-                        <ImageBrush ImageSource="/Pollenalarm;component/Assets/Logo-173.png" />
+                        <ImageBrush ImageSource="/Assets/Logo-173.png" />
                     </Border.OpacityMask>
                 </Border>
                 <TextBlock x:Name="ApplicationTitle" Text="POLLENALARM" Style="{StaticResource PhoneTextNormalStyle}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,12,0" />
@@ -153,7 +153,7 @@
         				<Border.Projection>
         					<PlaneProjection/>
         				</Border.Projection>
-        				<Image Source="/Pollenalarm;component/Assets/Icons/appbar.location.png" Margin="0" />
+        				<Image Source="/Assets/Icons/appbar.location.png" Margin="0" />
 					</Border>
 					<StackPanel x:Name="spnHeader" Margin="14,0,0,0" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
 						<StackPanel.RenderTransform>
@@ -334,7 +334,7 @@
                 <!--Advertising is added in Code behind-->
             </Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Pollenalarm;component/Assets/Background/PivotBackground2.png" Stretch="UniformToFill" x:Name="BackgroundImage" />
+            <ImageBrush ImageSource="/Assets/Background/PivotBackground2.png" Stretch="UniformToFill" x:Name="BackgroundImage" />
         </Grid.Background>
     </Grid>
  

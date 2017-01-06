@@ -36,7 +36,8 @@ namespace Pollenalarm.Old.WinPhone.TileUpdaterBackgroundTask
             // Download Pollendata from the mobile HEXAL website
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(webClient_DownloadStringCompleted);
-            webClient.DownloadStringAsync(new Uri("http://thepagedot.de/pollenalarm/pollen.php?do=getPollen&plz=" + Plz));
+            //webClient.DownloadStringAsync(new Uri("http://thepagedot.de/pollenalarm/pollen.php?do=getPollen&plz=" + Plz));
+            webClient.DownloadStringAsync(new Uri(ScheduledAgent.BaseUri + "/pdf?zip=" + Plz));
         }
 
         private void webClient_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)

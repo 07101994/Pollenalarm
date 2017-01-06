@@ -293,7 +293,7 @@ namespace Pollenalarm.Old.WinPhone.Views
                     MainViewModel.Current.CurrentPollen = currentPollen; //MainViewModel.Current.AllPollen[MainViewModel.Current.CurrentPlace.PollenList.IndexOf(currentPollen)];
 
                     // Navigate to PollenDetails
-                    NavigationService.Navigate(new Uri("/Pages/PollenDetails.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/Views/PollenDetails.xaml", UriKind.Relative));
                 }
             }
         }
@@ -312,7 +312,7 @@ namespace Pollenalarm.Old.WinPhone.Views
                     MainViewModel.Current.CurrentPollen = currentPollen; // MainViewModel.Current.AllPollen[MainViewModel.Current.CurrentPlace.PollenListTomorrow.IndexOf(currentPollen)];
 
                     // Navigate to PollenDetails
-                    NavigationService.Navigate(new Uri("/Pages/PollenDetails.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/Views/PollenDetails.xaml", UriKind.Relative));
                 }
             }
         }        
@@ -331,14 +331,14 @@ namespace Pollenalarm.Old.WinPhone.Views
                     MainViewModel.Current.CurrentPollen = currentPollen; // MainViewModel.Current.AllPollen[MainViewModel.Current.CurrentPlace.PollenListDayAfterTomorrow.IndexOf(currentPollen)];
 
                     // Navigate to PollenDetails
-                    NavigationService.Navigate(new Uri("/Pages/PollenDetails.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/Views/PollenDetails.xaml", UriKind.Relative));
                 }
             }
         }
 
         private void appBarSave_Click(object sender, System.Windows.RoutedEventArgs e)
         {        	            
-            NavigationService.Navigate(new Uri("/Pages/PlaceAddEdit.xaml?SaveFromSearch=true", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/PlaceAddEdit.xaml?SaveFromSearch=true", UriKind.Relative));
             //NavigationService.RemoveBackEntry();
         }
 

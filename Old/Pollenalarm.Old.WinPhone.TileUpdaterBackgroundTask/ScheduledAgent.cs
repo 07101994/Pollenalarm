@@ -21,6 +21,8 @@ namespace Pollenalarm.Old.WinPhone.TileUpdaterBackgroundTask
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {
+        public static string BaseUri = "http://pollenalarm.azurewebsites.net/api/old";
+
         public static IsolatedStorageSettings Settings = IsolatedStorageSettings.ApplicationSettings;
         private static volatile bool _classInitialized;
         public static ObservableCollection<TempPollen> AllPollen;

@@ -199,6 +199,7 @@ namespace Pollenalarm.Old.WinPhone.Views
                 if (NetworkInterface.GetIsNetworkAvailable())
                 {
                     GeocodeQuery geocodeQuery = new GeocodeQuery();
+                    geocodeQuery.GeoCoordinate = new GeoCoordinate(51.5167, 9.9167); //Germany
                     geocodeQuery.SearchTerm = tbxPlz.Text;
                     geocodeQuery.QueryCompleted += GeocodeQuery_QueryCompleted;
                     geocodeQuery.QueryAsync();
@@ -484,15 +485,15 @@ namespace Pollenalarm.Old.WinPhone.Views
         {
             if (tbxName.Text.Length != 0)
             {
-                NavigationService.Navigate(new Uri("/Pages/Search.xaml?search=" + tbxName.Text, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Views/Search.xaml?search=" + tbxName.Text, UriKind.Relative));
             }
             else if (tbxPlz.Text.Length != 0)
             {
-                NavigationService.Navigate(new Uri("/Pages/Search.xaml?search=" + tbxPlz.Text, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Views/Search.xaml?search=" + tbxPlz.Text, UriKind.Relative));
             }
             else
             {
-                NavigationService.Navigate(new Uri("/Pages/Search.xaml?search=null", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Views/Search.xaml?search=null", UriKind.Relative));
             }
         }
         

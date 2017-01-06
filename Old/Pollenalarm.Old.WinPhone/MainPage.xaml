@@ -1,102 +1,234 @@
 ﻿<phone:PhoneApplicationPage
+    x:Class="Pollenalarm.Old.WinPhone.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c4f="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-    xmlns:c4f="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
-    xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing" 
-    x:Class="Pollenalarm.Old.WinPhone.MainPage"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.01" Loaded="PhoneApplicationPage_Loaded">
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    d:DesignHeight="696"
+    d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.Opacity="0.01"
+    Loaded="PhoneApplicationPage_Loaded"
+    Orientation="Portrait"
+    SupportedOrientations="Portrait"
+    mc:Ignorable="d">
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="AnimationEnd">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationX)" Storyboard.TargetName="ContentPanel">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="ContentPanel"
+                Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="ContentPanel">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="ContentPanel"
+                Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentPanel">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="ContentPanel"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="TitlePanel">
-                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" KeySpline="0,0,0,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="TitlePanel"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0,1"
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="border"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="200" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ContentPanel">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="501"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="ContentPanel"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="501" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TitlePanel">
-                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" KeySpline="0,0,0,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="TitlePanel"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0,1"
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="border"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="AnimationStart">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationX)" Storyboard.TargetName="ContentPanel">
-                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:1" Value="0" KeySpline="0,0,0,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="ContentPanel"
+                Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.CenterOfRotationX)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0,1"
+                    KeyTime="0:0:1"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="ContentPanel">
-                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:1" Value="0" KeySpline="0,0,0,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="ContentPanel"
+                Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0,1"
+                    KeyTime="0:0:1"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentPanel">
-                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:1" Value="1" KeySpline="0,0,0,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="ContentPanel"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="1" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0,1"
+                    KeyTime="0:0:1"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="TitlePanel">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="TitlePanel"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border">
-                <SplineDoubleKeyFrame KeyTime="0" Value="128"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="128"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:2" Value="0" KeySpline="0,0,0,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="border"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="128" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="128" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0,1"
+                    KeyTime="0:0:2"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ContentPanel">
-                <SplineDoubleKeyFrame KeyTime="0" Value="501"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="501"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:1" Value="0" KeySpline="0,0,0,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="ContentPanel"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="501" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="501" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0,1"
+                    KeyTime="0:0:1"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TitlePanel">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="TitlePanel"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="AdPanel">
-                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="AdPanel"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="250" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="TitlePanel">
-                <EasingDoubleKeyFrame KeyTime="0" Value="3"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="TitlePanel"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="3" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="border">
-                <EasingDoubleKeyFrame KeyTime="0" Value="3"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="border"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="3" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="AnimationRefresh">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="RefreshAlert">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="RefreshAlert"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -123,19 +255,38 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="RefreshAlert">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="80" KeySpline="0,0,0,1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="80"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="RefreshAlert"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0,1"
+                    KeyTime="0:0:0.5"
+                    Value="80" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="80" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="image">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="1800.667"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="image"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.6"
+                    Value="1800.667" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="AnimationWind">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Image.Stretch)" Storyboard.TargetName="polle1">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle1"
+                Storyboard.TargetProperty="(Image.Stretch)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Stretch>UniformToFill</Stretch>
@@ -152,204 +303,524 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle1">
-                <EasingDoubleKeyFrame KeyTime="0" Value="435.181"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="671.571"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="950.571"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle1"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="435.181" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.1"
+                    Value="671.571" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="950.571" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle1">
-                <EasingDoubleKeyFrame KeyTime="0" Value="278.944"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="19.737"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="5.737"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle1"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="278.944" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.1"
+                    Value="19.737" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="5.737" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle1">
-                <EasingDoubleKeyFrame KeyTime="0" Value="18.391"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="-6.661"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-6.661"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle1"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="18.391" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.1"
+                    Value="-6.661" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="-6.661" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="polle1">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.433"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0.629"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0.629"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle1"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0.433" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.1"
+                    Value="0.629" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0.629" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="polle1">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.433"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0.629"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0.629"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle1"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0.433" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.1"
+                    Value="0.629" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0.629" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle1">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle1"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.1"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle2">
-                <EasingDoubleKeyFrame KeyTime="0" Value="158"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="634"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="913"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle2"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="158" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="634" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="913" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle2">
-                <EasingDoubleKeyFrame KeyTime="0" Value="735"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="-246"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-260"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle2"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="735" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="-246" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="-260" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle2">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle2"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle2">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="83.355"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="83.355"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle2"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="83.355" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="83.355" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle3">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-42"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="680.27"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="959.27"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle3"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="-42" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.9"
+                    Value="680.27" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="959.27" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle3">
-                <EasingDoubleKeyFrame KeyTime="0" Value="639"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="-47.99"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-61.99"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle3"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="639" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.9"
+                    Value="-47.99" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="-61.99" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle3">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="386.687"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="386.687"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle3"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.9"
+                    Value="386.687" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="386.687" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle3">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle3"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.3"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.9"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="polle3">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1.63"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1.63"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle3"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.3"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.9"
+                    Value="1.63" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1.63" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="polle3">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1.63"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1.63"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle3"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.3"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.9"
+                    Value="1.63" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1.63" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle4">
-                <EasingDoubleKeyFrame KeyTime="0" Value="199.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="856.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1135.5"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle4"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="199.5" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="856.5" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1135.5" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle4">
-                <EasingDoubleKeyFrame KeyTime="0" Value="391.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="196.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="182.5"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle4"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="391.5" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="196.5" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="182.5" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="polle4">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.73"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="5.673"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="5.673"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle4"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0.73" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="5.673" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="5.673" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="polle4">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.73"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="5.673"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="5.673"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle4"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0.73" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="5.673" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="5.673" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle4">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle4"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle4">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="15"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="45"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="45"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle4"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="15" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="45" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="45" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle5">
-                <EasingDoubleKeyFrame KeyTime="0" Value="441"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-154.204"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-168.204"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle5"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="441" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="-154.204" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="-168.204" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle5">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-39"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="742.755"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1021.755"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle5"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="-39" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="742.755" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1021.755" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle5">
-                <EasingDoubleKeyFrame KeyTime="0" Value="12.935"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-16.036"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-16.036"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle5"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="12.935" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="-16.036" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="-16.036" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="polle5">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="2.231"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="2.231"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle5"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="2.231" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="2.231" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="polle5">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="2.231"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="2.231"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle5"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="2.231" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="2.231" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle6">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-271.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="665.214"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="944.214"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle6"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="-271.5" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="665.214" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="944.214" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle6">
-                <EasingDoubleKeyFrame KeyTime="0" Value="454.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="368.47"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="354.47"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle6"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="454.5" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="368.47" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="354.47" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="polle6">
-                <EasingDoubleKeyFrame KeyTime="0" Value="3.25"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1.426"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1.426"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle6"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="3.25" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="1.426" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1.426" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="polle6">
-                <EasingDoubleKeyFrame KeyTime="0" Value="3.25"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1.426"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1.426"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle6"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="3.25" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="1.426" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1.426" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle6">
-                <EasingDoubleKeyFrame KeyTime="0" Value="19.122"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-8.17518"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-33.163"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="40.788"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="40.788"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle6"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="19.122" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="-8.17518" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.8"
+                    Value="-33.163" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="40.788" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="40.788" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle6">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle6"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle7">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-75"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="777"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1056"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle7"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="-75" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="777" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1056" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle7">
-                <EasingDoubleKeyFrame KeyTime="0" Value="21"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="144"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="130"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle7"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="21" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="144" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="130" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle7">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="45"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="45"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle7"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="45" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="45" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="polle7">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1.679"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1.679"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle7"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="1.679" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1.679" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="polle7">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1.679"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1.679"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle7"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="1.679" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1.679" />
             </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle1">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle1"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -371,7 +842,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle2">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle2"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -393,7 +866,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle3">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle3"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -415,7 +890,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle4">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle4"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -437,7 +914,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle5">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle5"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -454,7 +933,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle6">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle6"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -476,7 +957,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle7">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle7"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -493,160 +976,412 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle5">
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle5"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle7">
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle7"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle8">
-                <EasingDoubleKeyFrame KeyTime="0" Value="131"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="199"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="185"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle8"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="131" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="199" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="185" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle8">
-                <EasingDoubleKeyFrame KeyTime="0" Value="13"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="677"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="956"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle8"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="13" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="677" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="956" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle8">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-29.887"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="21.477"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle8"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="-29.887" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="21.477" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle9">
-                <EasingDoubleKeyFrame KeyTime="0" Value="199"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.7" Value="680"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="959"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle9"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="199" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.7"
+                    Value="680" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="959" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle9">
-                <EasingDoubleKeyFrame KeyTime="0" Value="380"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.7" Value="-86"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-100"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle9"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="380" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.7"
+                    Value="-86" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="-100" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle9">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.7" Value="0.975"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0.975"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle9"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.7"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.7"
+                    Value="0.975" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0.975" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle9">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.7" Value="57.346"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="57.346"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle9"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.7"
+                    Value="57.346" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="57.346" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle10">
-                <SplineDoubleKeyFrame KeyTime="0" Value="190"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="190"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:2" Value="556"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="835"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle10"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="190" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="190" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="556" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="835" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle10">
-                <SplineDoubleKeyFrame KeyTime="0" Value="670"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="670"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:2" Value="-262"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-276"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle10"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="670" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="670" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="-262" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="-276" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle10">
-                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:2" Value="77.185"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="77.185"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle10"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <SplineDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeyTime="0:0:2"
+                    Value="77.185" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="77.185" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle11">
-                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="20"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.9" Value="514"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="793"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle11"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="20" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.6"
+                    Value="20" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.9"
+                    Value="514" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="793" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle11">
-                <EasingDoubleKeyFrame KeyTime="0" Value="376"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="376"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.9" Value="430"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="416"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle11"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="376" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.6"
+                    Value="376" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.9"
+                    Value="430" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="416" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle11">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.9" Value="30.424"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="30.424"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle11"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.6"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.9"
+                    Value="30.424" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="30.424" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle11">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.9" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle11"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.6"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.9"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle12">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-140"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="461.378"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="447.378"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle12"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="-140" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="461.378" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="447.378" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle12">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-56"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="503.221"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="782.221"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle12"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="-56" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="503.221" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="782.221" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle12">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-29.309"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="36.356"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="36.356"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle12"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="-29.309" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="36.356" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="36.356" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="polle12">
-                <EasingDoubleKeyFrame KeyTime="0" Value="2.12"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="0.675"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0.675"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle12"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="2.12" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="0.675" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0.675" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="polle12">
-                <EasingDoubleKeyFrame KeyTime="0" Value="2.12"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="0.675"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0.675"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle12"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="2.12" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="0.675" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0.675" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle12">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle12"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.4"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="polle13">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-34"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-53.756"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="-68"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-82"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle13"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="-34" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="-53.756" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="-68" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="-82" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="polle13">
-                <EasingDoubleKeyFrame KeyTime="0" Value="14"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.739"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="420"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="699"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle13"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="14" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="0.739" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="420" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="699" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="polle13">
-                <EasingDoubleKeyFrame KeyTime="0" Value="11.129"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-19.539"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="15"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="60"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="60"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle13"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="11.129" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="-19.539" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="15" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="60" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="60" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="polle13">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle13"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="polle13">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1.337"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle13"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="1.337" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="polle13">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1.337"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="polle13"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="1.337" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:1.5"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:2.2"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle8">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle8"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -663,7 +1398,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle9">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle9"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -685,7 +1422,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle10">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle10"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -707,7 +1446,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle11">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle11"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -729,7 +1470,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle12">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle12"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -746,7 +1489,9 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="polle13">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="polle13"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -770,228 +1515,519 @@
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="AnimationPopMapPlaces">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbBerlin">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1" KeySpline="0,0,0.51,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbBerlin"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0.51,1"
+                    KeyTime="0:0:0.5"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbBerlin">
-                <EasingDoubleKeyFrame KeyTime="0" Value="22.5"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" KeySpline="0,0,0.51,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbBerlin"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="22.5" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0.51,1"
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbBonn">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.6" Value="1" KeySpline="0,0,0.5,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbBonn"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.1"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0.5,1"
+                    KeyTime="0:0:0.6"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbBonn">
-                <EasingDoubleKeyFrame KeyTime="0" Value="21"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="21"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.6" Value="0" KeySpline="0,0,0.5,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbBonn"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="21" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.1"
+                    Value="21" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0.5,1"
+                    KeyTime="0:0:0.6"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbDresden">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.7" Value="1" KeySpline="0,0,0.5,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbDresden"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.2"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0.5,1"
+                    KeyTime="0:0:0.7"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbDresden">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="22.462"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.7" Value="0" KeySpline="0,0,0.5,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbDresden"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.2"
+                    Value="22.462" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0.5,1"
+                    KeyTime="0:0:0.7"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbFrankfurt">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="1" KeySpline="0,0,0.5,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbFrankfurt"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0.5,1"
+                    KeyTime="0:0:0.4"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbFrankfurt">
-                <EasingDoubleKeyFrame KeyTime="0" Value="22.5"/>
-                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="0" KeySpline="0,0,0.5,1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbFrankfurt"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="22.5" />
+                <SplineDoubleKeyFrame
+                    KeySpline="0,0,0.5,1"
+                    KeyTime="0:0:0.4"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbHamburg">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbHamburg"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.3"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.8"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbHamburg">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="22.485"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbHamburg"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.3"
+                    Value="22.485" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.8"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbHannover">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbHannover"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.1"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.6"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbHannover">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="22.469"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbHannover"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.1"
+                    Value="22.469" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.6"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbMuenchen">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.005"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbMuenchen"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0.005" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.2"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.7"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbMuenchen">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="22.462"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbMuenchen"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.2"
+                    Value="22.462" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.7"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbNuernberg">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbNuernberg"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbNuernberg">
-                <EasingDoubleKeyFrame KeyTime="0" Value="21"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbNuernberg"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="21" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.4"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbSaarbruecken">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbSaarbruecken"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.2"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.7"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbSaarbruecken">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="22.462"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbSaarbruecken"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.2"
+                    Value="22.462" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.7"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbStuttgart">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbStuttgart"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.7"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbStuttgart">
-                <EasingDoubleKeyFrame KeyTime="0" Value="24"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbStuttgart"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="24" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.7"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbRostock">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbRostock"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.2"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.6"
+                    Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cbbRostock">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="20.967"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbRostock"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="0" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.2"
+                    Value="20.967" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.6"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="AnimationMapFadeOut">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbBerlin">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbBerlin"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbBonn">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbBonn"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbDresden">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbDresden"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbFrankfurt">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbFrankfurt"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbHamburg">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbHamburg"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbHannover">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbHannover"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbMuenchen">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbMuenchen"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbNuernberg">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbNuernberg"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbSaarbruecken">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbSaarbruecken"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbStuttgart">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbStuttgart"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="cbbRostock">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="cbbRostock"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame
+                    KeyTime="0"
+                    Value="1" />
+                <EasingDoubleKeyFrame
+                    KeyTime="0:0:0.5"
+                    Value="0" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
     <phone:PhoneApplicationPage.FontFamily>
-        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal" />
     </phone:PhoneApplicationPage.FontFamily>
     <phone:PhoneApplicationPage.FontSize>
-        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
+        <StaticResource ResourceKey="PhoneFontSizeNormal" />
     </phone:PhoneApplicationPage.FontSize>
     <phone:PhoneApplicationPage.Foreground>
-        <StaticResource ResourceKey="PhoneForegroundBrush"/>
+        <StaticResource ResourceKey="PhoneForegroundBrush" />
     </phone:PhoneApplicationPage.Foreground>
     <phone:PhoneApplicationPage.Background>
-        <ImageBrush ImageSource="/Pollenalarm;component/Assets/Background/PivotBackground2.png" Stretch="UniformToFill" />
+        <ImageBrush
+            ImageSource="/Assets/Background/PivotBackground2.png"
+            Stretch="UniformToFill" />
     </phone:PhoneApplicationPage.Background>
 
-    <!--Application Bar-->
+    <!-- Application Bar -->
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBar
+            IsMenuEnabled="True"
+            IsVisible="True">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Aktualisieren" x:Name="appBarRefresh" Click="appBarRefresh_Click" />
-                <shell:ApplicationBarMenuItem Text="Einstellungen" x:Name="appBarSettings" Click="appBarSettings_Click" />
-                <shell:ApplicationBarMenuItem Text="Hilfe und Informationen" x:Name="appBarHelp" Click="appBarHelp_Click" />
+                <shell:ApplicationBarMenuItem
+                    x:Name="appBarRefresh"
+                    Click="appBarRefresh_Click"
+                    Text="Aktualisieren" />
+                <shell:ApplicationBarMenuItem
+                    x:Name="appBarSettings"
+                    Click="appBarSettings_Click"
+                    Text="Einstellungen" />
+                <shell:ApplicationBarMenuItem
+                    x:Name="appBarHelp"
+                    Click="appBarHelp_Click"
+                    Text="Hilfe und Informationen" />
                 <!--<shell:ApplicationBarMenuItem Text="TEST: BACKGROUND TASK" x:Name="appBarTestOfflineUpdate" Click="appBarTestOfflineUpdate_Click" />-->
             </shell:ApplicationBar.MenuItems>
-            <shell:ApplicationBarIconButton IconUri="/Assets/ApplicationBar/appbar.add.png" Text="Hinzufügen" x:Name="appBarAddPlace" Click="appBarAddPlace_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/ApplicationBar/appbar.manage.rest.png" Text="Pollen Auswahl" x:Name="appBarPollenSelection" Click="appBarPollenSelection_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/ApplicationBar/appbar.feature.search.rest.png" Text="Schnell Suche" x:Name="appBarSearch" Click="appBarSearch_Click"/>
+            <shell:ApplicationBarIconButton
+                x:Name="appBarAddPlace"
+                Click="appBarAddPlace_Click"
+                IconUri="/Assets/ApplicationBar/appbar.add.png"
+                Text="Hinzufügen" />
+            <shell:ApplicationBarIconButton
+                x:Name="appBarPollenSelection"
+                Click="appBarPollenSelection_Click"
+                IconUri="/Assets/ApplicationBar/appbar.manage.rest.png"
+                Text="Pollen Auswahl" />
+            <shell:ApplicationBarIconButton
+                x:Name="appBarSearch"
+                Click="appBarSearch_Click"
+                IconUri="/Assets/ApplicationBar/appbar.feature.search.rest.png"
+                Text="Schnell Suche" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" DataContext="{Binding Current}" >
+    <!-- LayoutRoot is the root grid where all page content is placed -->
+    <Grid
+        x:Name="LayoutRoot"
+        DataContext="{Binding Current}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="422*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="422*" />
             <RowDefinition Height="62" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
 
         <Grid.Background>
-            <ImageBrush ImageSource="/Pollenalarm;component/Assets/Background/PivotBackground2.png" Stretch="UniformToFill" x:Name="BackgroundImage" />
+            <ImageBrush
+                x:Name="BackgroundImage"
+                ImageSource="/Assets/Background/PivotBackground2.png"
+                Stretch="UniformToFill" />
         </Grid.Background>
 
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,37,0,5" RenderTransformOrigin="0.5,0.5">
+        <!-- TitlePanel contains the name of the application and page title -->
+        <StackPanel
+            x:Name="TitlePanel"
+            Grid.Row="0"
+            Margin="12,37,0,5"
+            RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </StackPanel.RenderTransform>
             <StackPanel.Projection>
-                <PlaneProjection/>
+                <PlaneProjection />
             </StackPanel.Projection>
             <StackPanel Orientation="Horizontal">
-                <Border Width="64" Height="64" Margin="2,-19,0,-19" Background="{StaticResource PhoneForegroundBrush}">
+                <Border
+                    Width="64"
+                    Height="64"
+                    Margin="2,-19,0,-19"
+                    Background="{StaticResource PhoneForegroundBrush}">
                     <Border.OpacityMask>
-                        <ImageBrush ImageSource="/Pollenalarm;component/Assets/Logo-173.png" />
+                        <ImageBrush ImageSource="/Assets/Logo-173.png" />
                     </Border.OpacityMask>
                 </Border>
-                <TextBlock x:Name="ApplicationTitle" Text="POLLENALARM" Style="{StaticResource PhoneTextNormalStyle}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,12,0" />
+                <TextBlock
+                    x:Name="ApplicationTitle"
+                    Height="Auto"
+                    Margin="0,0,12,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource PhoneTextNormalStyle}"
+                    Text="POLLENALARM" />
             </StackPanel>
         </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5">
+        <!-- ContentPanel - place additional content here -->
+        <Grid
+            x:Name="ContentPanel"
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            Margin="0"
+            RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Grid.RenderTransform>
             <Grid.Projection>
-                <PlaneProjection/>
+                <PlaneProjection />
             </Grid.Projection>
 
-            <controls:Panorama x:Name="pivot" Margin="0,-5,0,0" RenderTransformOrigin="0.5,0.5" Loaded="pivot_Loaded" SelectionChanged="pivot_SelectionChanged">
-                <controls:PanoramaItem Header="Meine Orte" Margin="0">
+            <controls:Panorama
+                x:Name="pivot"
+                Margin="0,-5,0,0"
+                Loaded="pivot_Loaded"
+                RenderTransformOrigin="0.5,0.5"
+                SelectionChanged="pivot_SelectionChanged">
+                <controls:PanoramaItem
+                    Margin="0"
+                    Header="Meine Orte">
 
                     <ScrollViewer Margin="0,-25,0,0">
                         <Grid>
@@ -1001,8 +2037,16 @@
                             </Grid.RowDefinitions>
 
 
-                            <Button BorderThickness="0" Style="{Binding Source={StaticResource CustomButtonStyle}}" Padding="0" Margin="0,-12,0,0">
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,0" x:Name="spnGeneralInformation" Tap="spnGeneralInformation_Tap">
+                            <Button
+                                Margin="0,-12,0,0"
+                                BorderThickness="0"
+                                Padding="0"
+                                Style="{Binding Source={StaticResource CustomButtonStyle}}">
+                                <StackPanel
+                                    x:Name="spnGeneralInformation"
+                                    Margin="0,0,0,0"
+                                    Orientation="Horizontal"
+                                    Tap="spnGeneralInformation_Tap">
                                     <Grid Margin="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
@@ -1010,8 +2054,20 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="Informationen" Margin="0" FontSize="40" FontFamily="Segoe WP SemiLight"/>
-                                        <TextBlock Text="{Binding GeneralInformationShort, Source={StaticResource MainViewModel}}" Margin="1,-5,0,0" TextWrapping="Wrap" Foreground="{StaticResource PhoneBorderBrush}" FontSize="18.667" Grid.Row="1" Width="408" FontFamily="Segoe WP" />
+                                        <TextBlock
+                                            Margin="0"
+                                            FontFamily="Segoe WP SemiLight"
+                                            FontSize="40"
+                                            Text="Informationen" />
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Width="408"
+                                            Margin="1,-5,0,0"
+                                            FontFamily="Segoe WP"
+                                            FontSize="18.667"
+                                            Foreground="{StaticResource PhoneBorderBrush}"
+                                            Text="{Binding GeneralInformationShort, Source={StaticResource MainViewModel}}"
+                                            TextWrapping="Wrap" />
                                     </Grid>
                                 </StackPanel>
                             </Button>
@@ -1033,37 +2089,115 @@
 
                     		</Border>-->
 
-                            <StackPanel Margin="12,10,0,0" MinHeight="0" MinWidth="0" Grid.Row="1" x:Name="tbkShowHelp" HorizontalAlignment="Left" Width="444" >
-                                <TextBlock Text="Oh, so leer hier." Foreground="{StaticResource PhoneBorderBrush}" TextWrapping="Wrap" FontSize="32" Margin="0" />
-                                <TextBlock Text="Fügen Sie Orte hinzu, um Polleninformationen anzuzeigen." Foreground="{StaticResource PhoneBorderBrush}" TextWrapping="Wrap" FontSize="32" />
+                            <StackPanel
+                                x:Name="tbkShowHelp"
+                                Grid.Row="1"
+                                Width="444"
+                                MinWidth="0"
+                                MinHeight="0"
+                                Margin="12,10,0,0"
+                                HorizontalAlignment="Left">
+                                <TextBlock
+                                    Margin="0"
+                                    FontSize="32"
+                                    Foreground="{StaticResource PhoneBorderBrush}"
+                                    Text="Oh, so leer hier."
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    FontSize="32"
+                                    Foreground="{StaticResource PhoneBorderBrush}"
+                                    Text="Fügen Sie Orte hinzu, um Polleninformationen anzuzeigen."
+                                    TextWrapping="Wrap" />
                             </StackPanel>
 
 
 
-                            <ListBox x:Name="lbxPlaces" ItemsSource="{Binding AllPlaces, Source={StaticResource MainViewModel}}" Height="Auto" Margin="12,15,0,0" Grid.RowSpan="1" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:IsHidden="True">
+                            <ListBox
+                                x:Name="lbxPlaces"
+                                Grid.Row="2"
+                                Grid.RowSpan="1"
+                                Height="Auto"
+                                Margin="12,15,0,0"
+                                d:IsHidden="True"
+                                ItemsSource="{Binding AllPlaces, Source={StaticResource MainViewModel}}"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Width="173" Height="173" Background="{StaticResource PhoneAccentBrush}" Margin="0,0,10,10" Tap="Border_Tap">
+                                        <Border
+                                            Width="173"
+                                            Height="173"
+                                            Margin="0,0,10,10"
+                                            Background="{StaticResource PhoneAccentBrush}"
+                                            Tap="Border_Tap">
                                             <Grid>
                                                 <StackPanel Margin="7,0,0,0">
                                                     <!--<TextBlock x:Name="tbkStrongestLabel" Text="Stärkste" Foreground="White" FontFamily="Segoe WP" FontSize="14.667" Margin="-1,25,0,0" />
 			                    					<TextBlock Text="{Binding StrongestPollen}" Foreground="White" FontFamily="Segoe WP Light" FontSize="21.333" Margin="0,-5,0,0" />-->
-                                                    <TextBlock x:Name="tbkStrongest" Text="Belastung" Foreground="White" FontFamily="Segoe WP" FontSize="18" Margin="0,73,0,0" />
+                                                    <TextBlock
+                                                        x:Name="tbkStrongest"
+                                                        Margin="0,73,0,0"
+                                                        FontFamily="Segoe WP"
+                                                        FontSize="18"
+                                                        Foreground="White"
+                                                        Text="Belastung" />
 
-                                                    <Border x:Name="barBorder" BorderBrush="White" BorderThickness="2" Height="19" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0">
-                                                        <Border x:Name="concentrationBar" BorderBrush="Black" BorderThickness="0" Margin="2" Background="White" HorizontalAlignment="Left" Width="{Binding AverageConcentrationWidth}"/>
+                                                    <Border
+                                                        x:Name="barBorder"
+                                                        Width="120"
+                                                        Height="19"
+                                                        Margin="0,5,0,0"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        BorderBrush="White"
+                                                        BorderThickness="2">
+                                                        <Border
+                                                            x:Name="concentrationBar"
+                                                            Width="{Binding AverageConcentrationWidth}"
+                                                            Margin="2"
+                                                            HorizontalAlignment="Left"
+                                                            Background="White"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="0" />
                                                     </Border>
                                                 </StackPanel>
 
-                                                <TextBlock Text="{Binding NameUpper}" Margin="7,0,-7,15" FontFamily="Segoe UI" VerticalAlignment="Bottom" FontSize="23" Foreground="White" FontWeight="SemiBold" />
-                                                <Image Margin="0,-10,10,0" Source="Assets/Icons/positionMarkerPollen2.png" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Stretch="Uniform" Height="108"/>
+                                                <TextBlock
+                                                    Margin="7,0,-7,15"
+                                                    VerticalAlignment="Bottom"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="23"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="White"
+                                                    Text="{Binding NameUpper}" />
+                                                <Image
+                                                    Width="100"
+                                                    Height="108"
+                                                    Margin="0,-10,10,0"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Top"
+                                                    Source="Assets/Icons/positionMarkerPollen2.png"
+                                                    Stretch="Uniform" />
                                             </Grid>
 
                                             <toolkit:ContextMenuService.ContextMenu>
-                                                <toolkit:ContextMenu IsEnabled="{Binding IsContextMenuVisible}" Opened="ContextMenu_Opened" IsZoomEnabled="False">
-                                                    <toolkit:MenuItem Header="Auf Startseite" x:Name="menuPinToStart" Click="menuPinToStart_Click" />
-                                                    <toolkit:MenuItem Header="Bearbeiten" x:Name="menuEdit" Click="menuEdit_Click" Visibility="{Binding MenuVisibility}" />
-                                                    <toolkit:MenuItem Header="Löschen" x:Name="menuDelete" Click="menuDelete_Click" Visibility="{Binding MenuVisibility}" />
+                                                <toolkit:ContextMenu
+                                                    IsEnabled="{Binding IsContextMenuVisible}"
+                                                    IsZoomEnabled="False"
+                                                    Opened="ContextMenu_Opened">
+                                                    <toolkit:MenuItem
+                                                        x:Name="menuPinToStart"
+                                                        Click="menuPinToStart_Click"
+                                                        Header="Auf Startseite" />
+                                                    <toolkit:MenuItem
+                                                        x:Name="menuEdit"
+                                                        Click="menuEdit_Click"
+                                                        Header="Bearbeiten"
+                                                        Visibility="{Binding MenuVisibility}" />
+                                                    <toolkit:MenuItem
+                                                        x:Name="menuDelete"
+                                                        Click="menuDelete_Click"
+                                                        Header="Löschen"
+                                                        Visibility="{Binding MenuVisibility}" />
                                                 </toolkit:ContextMenu>
                                             </toolkit:ContextMenuService.ContextMenu>
                                         </Border>
@@ -1088,7 +2222,9 @@
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <toolkit:WrapPanel ItemWidth="173" ItemHeight="173"/>
+                                        <toolkit:WrapPanel
+                                            ItemHeight="173"
+                                            ItemWidth="173" />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                             </ListBox>
@@ -1097,155 +2233,374 @@
                 </controls:PanoramaItem>
 
                 <controls:PanoramaItem>
-                    <Grid Margin="0,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="587" Width="420">
-                        <Border x:Name="map" Background="{StaticResource PhoneInverseInactiveBrush}" d:IsHidden="True" >
+                    <Grid
+                        Width="420"
+                        Height="587"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+                        <Border
+                            x:Name="map"
+                            d:IsHidden="True"
+                            Background="{StaticResource PhoneInverseInactiveBrush}">
                             <Border.OpacityMask>
-                                <ImageBrush ImageSource="/Pollenalarm;component/Assets/Germany.png" Stretch="Uniform" />
+                                <ImageBrush
+                                    ImageSource="/Assets/Germany.png"
+                                    Stretch="Uniform" />
                             </Border.OpacityMask>
                         </Border>
-                        <Grid x:Name="places" HorizontalAlignment="Right" Height="587" Margin="0" VerticalAlignment="Bottom" Width="420" d:IsHidden="True" >
-                            <c4f:ChatBubble x:Name="cbbBerlin" Margin="0,165,8,0" ChatBubbleDirection="LowerLeft" VerticalAlignment="Top" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Tap="cbbBerlin_Tap">
+                        <Grid
+                            x:Name="places"
+                            Width="420"
+                            Height="587"
+                            Margin="0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            d:IsHidden="True">
+                            <c4f:ChatBubble
+                                x:Name="cbbBerlin"
+                                Margin="0,165,8,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbBerlin_Tap">
                                 <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
+                                    <CompositeTransform />
                                 </c4f:ChatBubble.RenderTransform>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Berlin" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Berlin, Source={StaticResource MainViewModel}}" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Berlin" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Berlin, Source={StaticResource MainViewModel}}" />
                                     </Border>
                                 </StackPanel>
                             </c4f:ChatBubble>
 
-                            <c4f:ChatBubble x:Name="cbbBonn" Margin="51,275,0,0" ChatBubbleDirection="LowerLeft" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Tap="cbbBonn_Tap">
+                            <c4f:ChatBubble
+                                x:Name="cbbBonn"
+                                Margin="51,275,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbBonn_Tap">
                                 <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
+                                    <CompositeTransform />
                                 </c4f:ChatBubble.RenderTransform>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Bonn" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Bonn, Source={StaticResource MainViewModel}}" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Bonn" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Bonn, Source={StaticResource MainViewModel}}" />
                                     </Border>
                                 </StackPanel>
                             </c4f:ChatBubble>
-                            <c4f:ChatBubble x:Name="cbbDresden" Margin="330,237,0,0" ChatBubbleDirection="LowerLeft" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" RenderTransformOrigin="0.5,0.5" Tap="cbbDresden_Tap">
+                            <c4f:ChatBubble
+                                x:Name="cbbDresden"
+                                Margin="330,237,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbDresden_Tap"
+                                d:LayoutOverrides="VerticalAlignment">
                                 <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
+                                    <CompositeTransform />
                                 </c4f:ChatBubble.RenderTransform>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Dresden" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Dresden, Source={StaticResource MainViewModel}}" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Dresden" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Dresden, Source={StaticResource MainViewModel}}" />
                                     </Border>
                                 </StackPanel>
                             </c4f:ChatBubble>
-                            <c4f:ChatBubble x:Name="cbbFrankfurt" Margin="125,336,0,0" ChatBubbleDirection="LowerLeft" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Tap="cbbFrankfurt_Tap">
+                            <c4f:ChatBubble
+                                x:Name="cbbFrankfurt"
+                                Margin="125,336,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbFrankfurt_Tap">
                                 <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
+                                    <CompositeTransform />
                                 </c4f:ChatBubble.RenderTransform>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Frankfurt" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Frankfurt, Source={StaticResource MainViewModel}}" />
-                                    </Border>
-                                </StackPanel>
-                            </c4f:ChatBubble>
-
-                            <c4f:ChatBubble x:Name="cbbHamburg" Margin="179,82,0,0" ChatBubbleDirection="LowerLeft" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Tap="cbbHamburg_Tap">
-                                <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
-                                </c4f:ChatBubble.RenderTransform>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock Text="Hamburg" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Hamburg, Source={StaticResource MainViewModel}}" />
-                                    </Border>
-                                </StackPanel>
-                            </c4f:ChatBubble>
-                            <c4f:ChatBubble x:Name="cbbHannover" Margin="167,187,0,0" ChatBubbleDirection="LowerLeft" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Tap="cbbHannover_Tap">
-                                <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
-                                </c4f:ChatBubble.RenderTransform>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Hannover" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Hannover, Source={StaticResource MainViewModel}}" />
-                                    </Border>
-                                </StackPanel>
-                            </c4f:ChatBubble>
-                            <c4f:ChatBubble x:Name="cbbMuenchen" Margin="267,496,0,0" ChatBubbleDirection="LowerLeft" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Tap="cbbMuenchen_Tap">
-                                <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
-                                </c4f:ChatBubble.RenderTransform>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="München" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Muenchen, Source={StaticResource MainViewModel}}" />
-                                    </Border>
-                                </StackPanel>
-                            </c4f:ChatBubble>
-                            <c4f:ChatBubble x:Name="cbbNuernberg" Margin="239,373,0,0" ChatBubbleDirection="LowerLeft" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Tap="cbbNuernberg_Tap">
-                                <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
-                                </c4f:ChatBubble.RenderTransform>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Nürnberg" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Nuernberg, Source={StaticResource MainViewModel}}" />
-                                    </Border>
-                                </StackPanel>
-                            </c4f:ChatBubble>
-                            <c4f:ChatBubble x:Name="cbbSaarbruecken" Margin="40,387,0,0" ChatBubbleDirection="LowerLeft" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Tap="cbbSaarbruecken_Tap">
-                                <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
-                                </c4f:ChatBubble.RenderTransform>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Saarbrücken" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Saarbruecken, Source={StaticResource MainViewModel}}" />
-                                    </Border>
-                                </StackPanel>
-                            </c4f:ChatBubble>
-                            <c4f:ChatBubble x:Name="cbbStuttgart" Margin="143,462,0,0" ChatBubbleDirection="LowerLeft" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Tap="cbbStuttgart_Tap">
-                                <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
-                                </c4f:ChatBubble.RenderTransform>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Stuttgart" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Stuttgart, Source={StaticResource MainViewModel}}" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Frankfurt" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Frankfurt, Source={StaticResource MainViewModel}}" />
                                     </Border>
                                 </StackPanel>
                             </c4f:ChatBubble>
 
-                            <c4f:ChatBubble x:Name="cbbRostock" Margin="0,42,60,0" ChatBubbleDirection="LowerLeft" VerticalAlignment="Top" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Tap="cbbRostock_Tap">
+                            <c4f:ChatBubble
+                                x:Name="cbbHamburg"
+                                Margin="179,82,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbHamburg_Tap">
                                 <c4f:ChatBubble.RenderTransform>
-                                    <CompositeTransform/>
+                                    <CompositeTransform />
+                                </c4f:ChatBubble.RenderTransform>
+                                <StackPanel
+                                    HorizontalAlignment="Left"
+                                    Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Hamburg" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Hamburg, Source={StaticResource MainViewModel}}" />
+                                    </Border>
+                                </StackPanel>
+                            </c4f:ChatBubble>
+                            <c4f:ChatBubble
+                                x:Name="cbbHannover"
+                                Margin="167,187,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbHannover_Tap">
+                                <c4f:ChatBubble.RenderTransform>
+                                    <CompositeTransform />
                                 </c4f:ChatBubble.RenderTransform>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Rostock" FontSize="14" Foreground="White" />
-                                    <Border Width="10" Height="10" Margin="5,2,0,0" Background="{StaticResource PhoneChromeBrush}">
-                                        <Border Margin="1" Background="{Binding GermanyConcentration.Rostock, Source={StaticResource MainViewModel}}" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Hannover" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Hannover, Source={StaticResource MainViewModel}}" />
+                                    </Border>
+                                </StackPanel>
+                            </c4f:ChatBubble>
+                            <c4f:ChatBubble
+                                x:Name="cbbMuenchen"
+                                Margin="267,496,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbMuenchen_Tap">
+                                <c4f:ChatBubble.RenderTransform>
+                                    <CompositeTransform />
+                                </c4f:ChatBubble.RenderTransform>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="München" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Muenchen, Source={StaticResource MainViewModel}}" />
+                                    </Border>
+                                </StackPanel>
+                            </c4f:ChatBubble>
+                            <c4f:ChatBubble
+                                x:Name="cbbNuernberg"
+                                Margin="239,373,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbNuernberg_Tap">
+                                <c4f:ChatBubble.RenderTransform>
+                                    <CompositeTransform />
+                                </c4f:ChatBubble.RenderTransform>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Nürnberg" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Nuernberg, Source={StaticResource MainViewModel}}" />
+                                    </Border>
+                                </StackPanel>
+                            </c4f:ChatBubble>
+                            <c4f:ChatBubble
+                                x:Name="cbbSaarbruecken"
+                                Margin="40,387,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbSaarbruecken_Tap">
+                                <c4f:ChatBubble.RenderTransform>
+                                    <CompositeTransform />
+                                </c4f:ChatBubble.RenderTransform>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Saarbrücken" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Saarbruecken, Source={StaticResource MainViewModel}}" />
+                                    </Border>
+                                </StackPanel>
+                            </c4f:ChatBubble>
+                            <c4f:ChatBubble
+                                x:Name="cbbStuttgart"
+                                Margin="143,462,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbStuttgart_Tap">
+                                <c4f:ChatBubble.RenderTransform>
+                                    <CompositeTransform />
+                                </c4f:ChatBubble.RenderTransform>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Stuttgart" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Stuttgart, Source={StaticResource MainViewModel}}" />
+                                    </Border>
+                                </StackPanel>
+                            </c4f:ChatBubble>
+
+                            <c4f:ChatBubble
+                                x:Name="cbbRostock"
+                                Margin="0,42,60,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                ChatBubbleDirection="LowerLeft"
+                                RenderTransformOrigin="0.5,0.5"
+                                Tap="cbbRostock_Tap">
+                                <c4f:ChatBubble.RenderTransform>
+                                    <CompositeTransform />
+                                </c4f:ChatBubble.RenderTransform>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Text="Rostock" />
+                                    <Border
+                                        Width="10"
+                                        Height="10"
+                                        Margin="5,2,0,0"
+                                        Background="{StaticResource PhoneChromeBrush}">
+                                        <Border
+                                            Margin="1"
+                                            Background="{Binding GermanyConcentration.Rostock, Source={StaticResource MainViewModel}}" />
                                     </Border>
                                 </StackPanel>
                             </c4f:ChatBubble>
                         </Grid>
                         <Grid x:Name="Loading">
-                            <Border x:Name="map_Copy" Background="{StaticResource PhoneDisabledBrush}" Margin="0" >
+                            <Border
+                                x:Name="map_Copy"
+                                Margin="0"
+                                Background="{StaticResource PhoneDisabledBrush}">
                                 <Border.OpacityMask>
-                                    <ImageBrush ImageSource="Assets/Germany.png" Stretch="Uniform" />
+                                    <ImageBrush
+                                        ImageSource="Assets/Germany.png"
+                                        Stretch="Uniform" />
                                 </Border.OpacityMask>
                             </Border>
                             <Grid>
-                                <toolkit:PerformanceProgressBar Height="10" VerticalAlignment="Center" IsIndeterminate="True" Margin="10,0"/>
+                                <toolkit:PerformanceProgressBar
+                                    Height="10"
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    IsIndeterminate="True" />
                             </Grid>
                         </Grid>
-                        <Grid Name="LoadingInformation" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="200">
+                        <Grid
+                            Name="LoadingInformation"
+                            Width="200"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Visibility="Collapsed">
                             <Grid.Background>
-                                <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                                <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
                             </Grid.Background>
                             <StackPanel Margin="12">
-                                <TextBlock Text="Pollendetails werden geladen" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" />
-                                <toolkit:PerformanceProgressBar Height="10" VerticalAlignment="Center" IsIndeterminate="True" Margin="10,5,10,0" Foreground="White"/>
+                                <TextBlock
+                                    FontSize="24"
+                                    Text="Pollendetails werden geladen"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                                <toolkit:PerformanceProgressBar
+                                    Height="10"
+                                    Margin="10,5,10,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    IsIndeterminate="True" />
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -1253,116 +2608,253 @@
             </controls:Panorama>
         </Grid>
 
-        <Border x:Name="border" Width="480" Height="62" VerticalAlignment="Bottom" Margin="0,0,0,-5" Grid.Row="2" Background="{StaticResource PhoneChromeBrush}" RenderTransformOrigin="0.5,0.5">
+        <Border
+            x:Name="border"
+            Grid.Row="2"
+            Width="480"
+            Height="62"
+            Margin="0,0,0,-5"
+            VerticalAlignment="Bottom"
+            Background="{StaticResource PhoneChromeBrush}"
+            RenderTransformOrigin="0.5,0.5">
             <Border.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Border.RenderTransform>
             <Border.OpacityMask>
-                <ImageBrush ImageSource="/Pollenalarm;component/Assets/grass_s.png" />
+                <ImageBrush ImageSource="/Assets/grass_s.png" />
             </Border.OpacityMask>
         </Border>
 
-        <Grid x:Name="AdPanel" Grid.Row="3" RenderTransformOrigin="0.5,0.5" d:IsHidden="True">
+        <Grid
+            x:Name="AdPanel"
+            Grid.Row="3"
+            d:IsHidden="True"
+            RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Grid.RenderTransform>
             <Grid.Projection>
-                <PlaneProjection/>
+                <PlaneProjection />
             </Grid.Projection>
-            <!--Advertising is added in Code behind-->
+            <!-- Advertising is added in Code behind -->
         </Grid>
 
-        <Grid Background="{StaticResource PhoneAccentBrush}" Height="80" VerticalAlignment="Top" Margin="0,-80,0,0" x:Name="RefreshAlert" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+        <Grid
+            x:Name="RefreshAlert"
+            Height="80"
+            Margin="0,-80,0,0"
+            VerticalAlignment="Top"
+            Background="{StaticResource PhoneAccentBrush}"
+            RenderTransformOrigin="0.5,0.5"
+            Visibility="Visible">
             <Grid.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Grid.RenderTransform>
             <!--<toolkit:PerformanceProgressBar Background="{x:Null}" Foreground="White" IsIndeterminate="True" VerticalAlignment="Top" />-->
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Image x:Name="image" Source="/Pollenalarm;component/Assets/Icons/sync.png" Width="48" Height="48" RenderTransformOrigin="0.5,0.5" >
+            <StackPanel
+                Margin="5"
+                Orientation="Horizontal">
+                <Image
+                    x:Name="image"
+                    Width="48"
+                    Height="48"
+                    RenderTransformOrigin="0.5,0.5"
+                    Source="/Assets/Icons/sync.png">
                     <Image.RenderTransform>
-                        <CompositeTransform/>
+                        <CompositeTransform />
                     </Image.RenderTransform>
                 </Image>
-                <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                <Grid
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Aktualisieren" FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Stretch" />
-                    <TextBlock Text="Tipp: Gerät schütteln um zu aktualisieren." Margin="0,-5,0,0" Visibility="Visible" Grid.Row="1" x:Name="tbkShake" />
+                    <TextBlock
+                        VerticalAlignment="Stretch"
+                        FontSize="{StaticResource PhoneFontSizeLarge}"
+                        Text="Aktualisieren" />
+                    <TextBlock
+                        x:Name="tbkShake"
+                        Grid.Row="1"
+                        Margin="0,-5,0,0"
+                        Text="Tipp: Gerät schütteln um zu aktualisieren."
+                        Visibility="Collapsed" />
                 </Grid>
 
             </StackPanel>
         </Grid>
 
-        <Image x:Name="polle1" Source="/Pollenalarm;component/Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Height="100" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle1"
+            Grid.Row="1"
+            Width="100"
+            Height="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="/Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle2" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle2"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle3" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle3"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle4" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle4"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle5" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle5"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle6" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle6"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle7" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle7"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle8" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle8"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle9" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle9"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle10" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle10"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle11" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle11"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle12" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle12"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="polle13" Source="Assets/Icons/polle.png" Width="100" Margin="-187,20,0,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        <Image
+            x:Name="polle13"
+            Grid.Row="1"
+            Width="100"
+            Margin="-187,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5"
+            Source="Assets/Icons/polle.png">
             <Image.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Image.RenderTransform>
         </Image>
-
-
     </Grid>
-
-
 </phone:PhoneApplicationPage>

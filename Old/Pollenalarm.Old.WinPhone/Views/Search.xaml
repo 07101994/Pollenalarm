@@ -100,7 +100,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" DataContext="{Binding Path=Current}">
     	<Grid.Background>
-            <ImageBrush x:Name="BackgroundImage" Stretch="UniformToFill" ImageSource="/Pollenalarm;component/Assets/Background/PivotBackground2.png"/>
+            <ImageBrush x:Name="BackgroundImage" Stretch="UniformToFill" ImageSource="/Assets/Background/PivotBackground2.png"/>
     	</Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -111,7 +111,7 @@
             <StackPanel Orientation="Horizontal">
                 <Border Width="64" Height="64" Margin="2,-19,0,-19" Background="{StaticResource PhoneForegroundBrush}">
                     <Border.OpacityMask>
-                        <ImageBrush ImageSource="/Pollenalarm;component/Assets/Logo-173.png" />
+                        <ImageBrush ImageSource="/Assets/Logo-173.png" />
                     </Border.OpacityMask>
                 </Border>
                 <TextBlock x:Name="ApplicationTitle" Text="SCHNELLSUCHE" Style="{StaticResource PhoneTextNormalStyle}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,12,0" />
@@ -128,7 +128,7 @@
         		<RowDefinition Height="Auto"/>
         		<RowDefinition Height="*"/>
         	</Grid.RowDefinitions>
-            <toolkit:PhoneTextBox Margin="0" d:LayoutOverrides="Height" ActionIcon="/Pollenalarm;component/Assets/searchButton.png" InputScope="Search" x:Name="tbxSearch" ActionIconTapped="tbxSearch_ActionIconTapped" TextInput="tbxSearch_TextInput" Hint="Suche" RenderTransformOrigin="0.5,0.5" KeyUp="tbxSearch_KeyUp" >
+            <toolkit:PhoneTextBox Margin="0" d:LayoutOverrides="Height" ActionIcon="/Assets/searchButton.png" InputScope="Search" x:Name="tbxSearch" ActionIconTapped="tbxSearch_ActionIconTapped" TextInput="tbxSearch_TextInput" Hint="Suche" RenderTransformOrigin="0.5,0.5" KeyUp="tbxSearch_KeyUp" >
             	<toolkit:PhoneTextBox.RenderTransform>
             		<CompositeTransform/>
             	</toolkit:PhoneTextBox.RenderTransform>
@@ -191,7 +191,7 @@
                                         </Grid.RowDefinitions>
 
                                         <Border x:Name="border" Width="100" HorizontalAlignment="Left" Background="{StaticResource PhoneAccentBrush}" Height="100" BorderThickness="0" Margin="0,0,0,0">
-                                            <Image Source="/Pollenalarm;component/Assets/Icons/appbar.location.png" Margin="0" />
+                                            <Image Source="/Assets/Icons/appbar.location.png" Margin="0" />
                                         </Border>
                                         <StackPanel x:Name="spnHeader" Margin="14,0,0,0" Grid.Column="1" >
                                             <TextBlock x:Name="tbkName" Text="{Binding Path=Name}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,-5,0,0" />
@@ -224,7 +224,7 @@
                                 <DataTemplate>
 	                                <Grid Width="400" Height="173" Margin="0, 0, 0, 20" x:Name="GridPollenResult" Tap="GridPollenResult_Tap" >
 	                            	    <Image Width="400" Height="173" Stretch="UniformToFill" Source="{Binding Path=ImagePath}"/>
-									    <Image Margin="0,0,0,-3" Width="420" Source="/Pollenalarm;component/Assets/FaderBottom.png" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+									    <Image Margin="0,0,0,-3" Width="420" Source="/Assets/FaderBottom.png" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 									    <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,2">
                                             <TextBlock x:Name="tbkName" Foreground="{StaticResource PhoneForegroundBrush}" Margin="12,0,0,0" VerticalAlignment="Bottom" Text="{Binding Path=Name}" FontSize="40" />
 										    <RichTextBox Margin="0,-7,0,0">

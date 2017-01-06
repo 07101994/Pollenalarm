@@ -187,9 +187,5 @@ namespace Pollenalarm.Backend.Controllers
 
             return xPlace;
         }
-
-
-
-
     }
 }

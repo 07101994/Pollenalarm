@@ -200,7 +200,8 @@ namespace Pollenalarm.Old.WinPhone.Models
             // Download Pollendata from the mobile HEXAL website
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(webClient_DownloadStringCompleted);
-            webClient.DownloadStringAsync(new Uri("http://thepagedot.de/pollenalarm/pollen.php?do=getPollen&plz=" + Plz));
+            //webClient.DownloadStringAsync(new Uri("http://thepagedot.de/pollenalarm/pollen.php?do=getPollen&plz=" + Plz));
+            webClient.DownloadStringAsync(new Uri(App.BaseUri + "/pdf?zip=" + Plz));
         }
 
         // Start HTML Parser
@@ -217,7 +218,8 @@ namespace Pollenalarm.Old.WinPhone.Models
                     PollenListDayAfterTomorrow.Clear();
 
                 // Parse Downloaded Web-Result to get Pollen-Information
-                ParseWebResult(HttpUtility.HtmlDecode(e.Result));
+                if (e.Result != "Error")
+                    ParseWebResult(HttpUtility.HtmlDecode(e.Result));
             }
             else
             {
@@ -243,6 +245,10 @@ namespace Pollenalarm.Old.WinPhone.Models
                 foreach (XElement xmlPollen in xmlDay.Descendants("pollen"))
                 {
                     string tempPollenName = xmlPollen.Element("name").Value;
+
+                    if (MainViewModel.Current.AllPollen.FirstOrDefault(x => x.Name.Equals(tempPollenName)) == null)
+                        continue;
+
                     bool tempPollenIsSelected = MainViewModel.Current.AllPollen.Where(x => x.Name.Equals(tempPollenName)).First().IsSelected;
 
                     Pollen tempPollen = new Pollen(tempPollenName, xmlPollen.Element("concentration").Value, tempPollenIsSelected);
