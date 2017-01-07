@@ -124,10 +124,18 @@
 
                                 <Image
                                     Grid.Column="1"
-                                    HeightRequest="15"
                                     Source="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionIconConverter}}"
-                                    VerticalOptions="Center" />
+                                    VerticalOptions="Center">
+                                    <Image.HeightRequest>
+                                        <OnPlatform
+                                            x:TypeArguments="x:Double"
+                                            Android="15"
+                                            WinPhone="20"
+                                            iOS="15" />
+                                    </Image.HeightRequest>
+                                </Image>
 
+                                <!-- iOS only "Next" button on the right border -->
                                 <Image
                                     Grid.Column="2"
                                     Margin="10, 0, 0, 0"
@@ -149,6 +157,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <!-- Android only Floating Action Button -->
         <android:FormsFloatingActionButton
             x:Name="AddButton"
             Margin="{StaticResource DefaultSicknessAndroid}"

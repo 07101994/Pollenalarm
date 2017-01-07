@@ -51,9 +51,16 @@
 
                             <Image
                                 Grid.Column="1"
-                                HeightRequest="15"
                                 Source="{Binding Intensity, Converter={StaticResource IntToPollutionIconConverter}}"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center">
+                                <Image.HeightRequest>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="15"
+                                        WinPhone="20"
+                                        iOS="15" />
+                                </Image.HeightRequest>
+                            </Image>
 
                             <Image
                                 Grid.Column="2"
