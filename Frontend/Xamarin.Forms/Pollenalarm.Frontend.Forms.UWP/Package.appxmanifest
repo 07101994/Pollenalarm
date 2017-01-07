@@ -4,7 +4,7 @@
   <mp:PhoneIdentity PhoneProductId="b3451bd6-2e78-4d4a-aa0b-96d2a1711812" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Pollenalarm.Frontend.Forms.UWP</DisplayName>
-    <PublisherDisplayName>robin</PublisherDisplayName>
+    <PublisherDisplayName>Thepagedot</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Pollenalarm.Frontend.Forms.UWP.App">
-      <uap:VisualElements DisplayName="Pollenalarm.Frontend.Forms.UWP" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Pollenalarm.Frontend.Forms.UWP" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Pollenalarm" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Pollenalarm App for UWP" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

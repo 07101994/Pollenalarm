@@ -7,6 +7,9 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -76,6 +79,35 @@ namespace Pollenalarm.Frontend.Forms.UWP
                 // parameter
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+
+            // Adjust UWP Status Bar color
+            // This has to be done manually, as Xamarin.Forms does not support that for UWP, yet            
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView")) // Desktop
+            {
+                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                if (titleBar != null)
+                {
+                    titleBar.BackgroundColor = (Color)Application.Current.Resources["PollenalarmBlue"];
+                    titleBar.InactiveBackgroundColor = (Color)Application.Current.Resources["PollenalarmBlue"];
+                    titleBar.ForegroundColor = Colors.White;
+                    titleBar.InactiveForegroundColor = Colors.White;
+                    titleBar.ButtonBackgroundColor = (Color)Application.Current.Resources["PollenalarmBlue"];
+                    titleBar.ButtonInactiveBackgroundColor = (Color)Application.Current.Resources["PollenalarmBlue"];
+                    titleBar.ButtonForegroundColor = Colors.White;                    
+                    titleBar.ButtonInactiveForegroundColor = Colors.White;
+                }
+            }
+            else if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) // Mobile
+            {
+                var statusBar = StatusBar.GetForCurrentView();
+                if (statusBar != null)
+                {
+                    statusBar.BackgroundOpacity = 1;
+                    statusBar.BackgroundColor = (Color)Application.Current.Resources["PollenalarmBlue"];
+                    statusBar.ForegroundColor = Colors.White;
+                }
+            }
+
             // Ensure the current window is active
             Window.Current.Activate();
         }
