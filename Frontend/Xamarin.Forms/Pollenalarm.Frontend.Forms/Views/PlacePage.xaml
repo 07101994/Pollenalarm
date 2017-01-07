@@ -81,13 +81,13 @@
             Name="Edit place"
             x:Name="EditPlaceButton"
             Command="{Binding NavigateToEditPlaceCommand}"
-            Icon="Edit"
+            Icon="Edit.png"
             Priority="0">
             <ToolbarItem.Order>
                 <OnPlatform
                     x:TypeArguments="ToolbarItemOrder"
                     Android="Primary"
-                    WinPhone="Secondary"
+                    WinPhone="Primary"
                     iOS="Primary" />
             </ToolbarItem.Order>
         </ToolbarItem>

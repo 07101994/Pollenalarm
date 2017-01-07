@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Pollenalarm.Frontend.Forms
@@ -32,7 +34,10 @@ namespace Pollenalarm.Frontend.Forms
 
             // Spin-up application
             if (MainPage == null)
+            {
                 MainPage = navigationPage;
+                MainPage.On<Xamarin.Forms.PlatformConfiguration.Windows>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+            }
         }
     }
 }
