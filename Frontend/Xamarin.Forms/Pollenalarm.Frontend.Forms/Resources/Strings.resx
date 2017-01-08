@@ -231,4 +231,7 @@
   <data name="Misc" xml:space="preserve">
     <value>Misc</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
 </root>

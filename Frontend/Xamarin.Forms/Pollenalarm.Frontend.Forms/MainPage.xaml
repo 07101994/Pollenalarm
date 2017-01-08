@@ -34,10 +34,25 @@
         </ToolbarItem>
 
         <ToolbarItem
+            Name="{i18n:Translate Refresh}"
+            x:Name="RefreshItem"
+            Command="{Binding RefreshCommand}"
+            Icon="Refresh.png"
+            Priority="1">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Primary"
+                    iOS="Secondary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+
+        <ToolbarItem
             Name="{i18n:Translate Settings}"
             Command="{Binding NavigateToSettingsCommand}"
             Icon="Settings"
-            Priority="1">
+            Priority="2">
             <ToolbarItem.Order>
                 <OnPlatform
                     x:TypeArguments="ToolbarItemOrder"

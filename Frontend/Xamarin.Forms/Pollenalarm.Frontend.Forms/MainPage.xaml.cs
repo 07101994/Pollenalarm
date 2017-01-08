@@ -31,8 +31,19 @@ namespace Pollenalarm.Frontend.Forms
                 await App.Bootstrapper.MainViewModel.RefreshAsync();
             }
 
-            // Hide Add button on Android, because we use the Floating Action Button here
-            Device.OnPlatform(Android: () => { ToolbarItems.Remove(AddItem); });
+            // Platform specific adjustments
+            Device.OnPlatform(Android: () =>
+            {
+                // Hide Add, as we use a Floating Action Button
+                ToolbarItems.Remove(AddItem);
+                // Hide Refresh, as we use pull-to-refresh
+                ToolbarItems.Remove(RefreshItem);
+            });
+            Device.OnPlatform(iOS: () =>
+            {
+                // Hide Refresh, as we use pull-to-refresh
+                ToolbarItems.Remove(RefreshItem);
+            });
 
             // Hide No-Places-Warning, because Binding does not work
             //lblNoPlacesWarning.IsVisible = !App.Bootstrapper.MainViewModel.Places.Any();
