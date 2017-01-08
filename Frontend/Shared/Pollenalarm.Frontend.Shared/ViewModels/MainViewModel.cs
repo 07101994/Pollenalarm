@@ -97,6 +97,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         {
             IsLoading = true;
 
+            Places.Clear();
+
             // Check settings
             await _SettingsService.LoadSettingsAsync();
             if (_SettingsService.CurrentSettings.UseCurrentLocation)
@@ -117,8 +119,6 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             var savedPlaces = await _FileSystemService.ReadObjectFromFileAsync<List<Place>>("places.json");
             if (savedPlaces != null)
             {
-                Places.Clear();
-
                 foreach (var place in savedPlaces)
                 {
                     Places.Add(place);
