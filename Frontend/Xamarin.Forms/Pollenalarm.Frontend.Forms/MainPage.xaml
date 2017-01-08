@@ -37,15 +37,15 @@
             Name="{i18n:Translate Refresh}"
             x:Name="RefreshItem"
             Command="{Binding RefreshCommand}"
-            Icon="Refresh.png"
+			Order="Primary"
             Priority="1">
-            <ToolbarItem.Order>
-                <OnPlatform
-                    x:TypeArguments="ToolbarItemOrder"
-                    Android="Secondary"
-                    WinPhone="Primary"
-                    iOS="Secondary" />
-            </ToolbarItem.Order>
+			<ToolbarItem.Icon>
+				<OnPlatform
+                    x:TypeArguments="FileImageSource"
+                    Android=""
+                    WinPhone="Refresh.png"
+                    iOS="" />
+			</ToolbarItem.Icon>            
         </ToolbarItem>
 
         <ToolbarItem
@@ -89,7 +89,7 @@
                             FontAttributes="Bold"
                             FontSize="Large"
                             HorizontalTextAlignment="Center"
-                            Text="Good morning"
+                            Text="{Binding GreetingHeader, Mode=OneWay}"
                             TextColor="White" />
                         <Label
                             Margin="0, -6, 0, 0"

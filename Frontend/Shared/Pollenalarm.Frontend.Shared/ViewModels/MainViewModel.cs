@@ -19,6 +19,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
     {
         private INavigationService _NavigationService;
         private IFileSystemService _FileSystemService;
+		private ILocalizationService _LocalizationService;
         private PollenService _PollenService;
         private SettingsService _SettingsService;
         private PlaceService _PlaceService;
@@ -31,7 +32,14 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             set { _Places = value; RaisePropertyChanged(); }
         }
 
-        private RelayCommand _RefreshCommand;
+		private string _GreetingHeader;
+		public string GreetingHeader
+		{
+			get { return _GreetingHeader; }
+			set { _GreetingHeader = value; RaisePropertyChanged(); }
+		}
+
+		private RelayCommand _RefreshCommand;
         public RelayCommand RefreshCommand
         {
             get
@@ -81,10 +89,11 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, SettingsService settingsService, PollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel)
+		public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, PollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel)
         {
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
+			_LocalizationService = localizationService;
             _PollenService = pollenService;
             _SettingsService = settingsService;
             _PlaceService = placeService;
@@ -97,6 +106,18 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         {
             IsLoading = true;
 
+			// Update greeting header
+			var now = DateTime.Now;
+			if (now.Hour > 5 && now.Hour < 11)
+				GreetingHeader = _LocalizationService.GetString("GoodMorning");
+			else if (now.Hour >= 11 && now.Hour < 14)
+				GreetingHeader = _LocalizationService.GetString("GoodDay");
+			else if (now.Hour >= 14 && now.Hour < 18)
+				GreetingHeader = _LocalizationService.GetString("GoodEvening");
+			else
+				GreetingHeader = _LocalizationService.GetString("GoodNight");
+
+			// Clear places
             Places.Clear();
 
             // Check settings

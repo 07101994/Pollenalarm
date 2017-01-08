@@ -234,4 +234,16 @@
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="GoodDay" xml:space="preserve">
+    <value>Good day</value>
+  </data>
+  <data name="GoodEvening" xml:space="preserve">
+    <value>Good evening</value>
+  </data>
+  <data name="GoodMorning" xml:space="preserve">
+    <value>Good morning</value>
+  </data>
+  <data name="GoodNight" xml:space="preserve">
+    <value>Good  night</value>
+  </data>
 </root>

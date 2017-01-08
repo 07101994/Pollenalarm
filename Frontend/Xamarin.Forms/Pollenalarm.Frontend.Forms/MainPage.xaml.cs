@@ -17,6 +17,20 @@ namespace Pollenalarm.Frontend.Forms
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, Strings.Back);
+
+			// Platform specific adjustments
+			Device.OnPlatform(Android: () =>
+			{
+				// Hide Add, as we use a Floating Action Button
+				ToolbarItems.Remove(AddItem);
+				// Hide Refresh, as we use pull-to-refresh
+				ToolbarItems.Remove(RefreshItem);
+			});
+			Device.OnPlatform(iOS: () =>
+			{
+				// Hide Refresh, as we use pull-to-refresh
+				ToolbarItems.Remove(RefreshItem);
+			});
         }
 
         protected override async void OnAppearing()
@@ -29,21 +43,7 @@ namespace Pollenalarm.Frontend.Forms
             if (!App.Bootstrapper.MainViewModel.IsLoaded)
             {
                 await App.Bootstrapper.MainViewModel.RefreshAsync();
-            }
-
-            // Platform specific adjustments
-            Device.OnPlatform(Android: () =>
-            {
-                // Hide Add, as we use a Floating Action Button
-                ToolbarItems.Remove(AddItem);
-                // Hide Refresh, as we use pull-to-refresh
-                ToolbarItems.Remove(RefreshItem);
-            });
-            Device.OnPlatform(iOS: () =>
-            {
-                // Hide Refresh, as we use pull-to-refresh
-                ToolbarItems.Remove(RefreshItem);
-            });
+            }			           
 
             // Hide No-Places-Warning, because Binding does not work
             //lblNoPlacesWarning.IsVisible = !App.Bootstrapper.MainViewModel.Places.Any();

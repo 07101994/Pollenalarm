@@ -197,6 +197,42 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Good day.
+        /// </summary>
+        public static string GoodDay {
+            get {
+                return ResourceManager.GetString("GoodDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good evening.
+        /// </summary>
+        public static string GoodEvening {
+            get {
+                return ResourceManager.GetString("GoodEvening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good morning.
+        /// </summary>
+        public static string GoodMorning {
+            get {
+                return ResourceManager.GetString("GoodMorning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good  night.
+        /// </summary>
+        public static string GoodNight {
+            get {
+                return ResourceManager.GetString("GoodNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string Information {
