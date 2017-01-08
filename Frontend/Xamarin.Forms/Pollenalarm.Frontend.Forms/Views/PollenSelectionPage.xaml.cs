@@ -14,7 +14,6 @@ namespace Pollenalarm.Frontend.Forms
 			InitializeComponent();
         }
 
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();

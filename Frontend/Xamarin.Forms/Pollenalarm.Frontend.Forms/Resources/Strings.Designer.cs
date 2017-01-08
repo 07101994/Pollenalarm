@@ -233,11 +233,29 @@ namespace Pollenalarm.Frontend.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By activating this, we can locate you and show you Pollen details for your current location on the main screen..
+        /// </summary>
+        public static string LocationSettingsDetails {
+            get {
+                return ResourceManager.GetString("LocationSettingsDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use my current location.
         /// </summary>
         public static string LocationSettingsText {
             get {
                 return ResourceManager.GetString("LocationSettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Misc.
+        /// </summary>
+        public static string Misc {
+            get {
+                return ResourceManager.GetString("Misc", resourceCulture);
             }
         }
         

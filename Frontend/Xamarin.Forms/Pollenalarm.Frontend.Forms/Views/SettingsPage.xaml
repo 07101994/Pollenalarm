@@ -36,7 +36,15 @@
                     Toggled="Settings_Changed"
                     VerticalOptions="Center" />
             </Grid>
+            <Label
+                FontSize="Micro"
+                Text="{i18n:Translate LocationSettingsDetails}" />
 
+            <!-- Misc -->
+            <Label
+                Margin="0,10,0,0"
+                FontAttributes="Bold"
+                Text="{i18n:Translate Misc}" />
             <Button
                 Command="{Binding NavigateToPollenSelectionCommand}"
                 HorizontalOptions="FillAndExpand"

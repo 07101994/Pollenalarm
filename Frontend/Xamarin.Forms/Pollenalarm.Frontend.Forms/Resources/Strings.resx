@@ -225,4 +225,10 @@
   <data name="DeletePlaceTitle" xml:space="preserve">
     <value>Delete Place</value>
   </data>
+  <data name="LocationSettingsDetails" xml:space="preserve">
+    <value>By activating this, we can locate you and show you Pollen details for your current location on the main screen.</value>
+  </data>
+  <data name="Misc" xml:space="preserve">
+    <value>Misc</value>
+  </data>
 </root>

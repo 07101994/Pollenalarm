@@ -9,13 +9,22 @@
         <ListView
             IsRefreshing="{Binding IsLoading, Mode=OneWay}"
             ItemsSource="{Binding Pollen}">
+            <ListView.Margin>
+                <!-- Add some padding to the left on Windows, as the SwitchCell does not come with any margins for Windows yet -->
+                <OnPlatform
+                    x:TypeArguments="Thickness"
+                    Android="0"
+                    WinPhone="20,0,0,0"
+                    iOS="0" />
+            </ListView.Margin>
             <ListView.Header>
                 <StackLayout>
                     <StackLayout.Padding>
+                        <!-- WinPhone margin has been set for the whole ListView due to SwitchCell issues on Windows-->
                         <OnPlatform
                             x:TypeArguments="Thickness"
                             Android="{StaticResource DefaultSicknessAndroid}"
-                            WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                            WinPhone="0"
                             iOS="15, 8, 10, 8" />
                     </StackLayout.Padding>
 

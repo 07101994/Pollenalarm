@@ -28,7 +28,6 @@ namespace Pollenalarm.Frontend.Forms.Droid
 		{
 			global::PCLStorage.Resource.String.ApplicationName = global::Pollenalarm.Frontend.Forms.Droid.Resource.String.ApplicationName;
 			global::PCLStorage.Resource.String.Hello = global::Pollenalarm.Frontend.Forms.Droid.Resource.String.Hello;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Pollenalarm.Frontend.Forms.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation
