@@ -19,9 +19,9 @@
     <Tokens>
       <PrimaryToken TokenID="PollenalarmToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsResource="false" IsRelative="true">Assets/Background.png</SmallImageURI>
+          <SmallImageURI IsResource="false" IsRelative="true">Assets\TileBackground.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsResource="false" IsRelative="true">Assets/Background.png</BackgroundImageURI>
+          <BackgroundImageURI IsResource="false" IsRelative="true">Assets\TileBackground.png</BackgroundImageURI>
           <Title>Pollenalarm</Title>
           <BackContent>
           </BackContent>

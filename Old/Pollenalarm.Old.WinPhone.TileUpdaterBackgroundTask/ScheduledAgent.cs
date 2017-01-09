@@ -236,7 +236,7 @@ namespace Pollenalarm.Old.WinPhone.TileUpdaterBackgroundTask
                         XDocument xmlPlaces = XDocument.Parse(streamReader.ReadToEnd());
                         streamReader.Close();
 
-                        //XDocument xmlPlaces = XDocument.Load(isolatedStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read));                        
+                        //XDocument xmlPlaces = XDocument.Load(isolatedStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read));
 
                         var xmlPollen = from c in xmlPlaces.Descendants("pollen") select new TempPollen(c.Element("name").Value, "", Convert.ToBoolean(c.Element("isSelected").Value));
 

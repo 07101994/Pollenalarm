@@ -212,10 +212,8 @@
     <Content Include="Assets\ApplicationBar\appbar.sendmessage.rest.png" />
     <Content Include="Assets\ApplicationBar\appbar.task.complete.rest.png" />
     <Content Include="Assets\ApplicationBar\appbar.task.uncheckall.rest.png" />
-    <Content Include="Assets\ApplicationIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Background.png" />
+    <Content Include="Assets\ApplicationIcon.png" />
+    <Content Include="Assets\TileBackground.png" />
     <Content Include="Assets\Background\Background.png" />
     <Content Include="Assets\Background\PivotBackground.png" />
     <Content Include="Assets\Background\PivotBackground2.png" />
@@ -264,21 +262,6 @@
     <Content Include="Assets\SplashScreenImage.screen-WXGA.jpg" />
     <Content Include="Assets\ThepagedotLogoS.png" />
     <Content Include="Assets\ThepagedotLogoSmall.png" />
-    <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Tiles\FlipCycleTileMedium.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Tiles\IconicTileSmall.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
