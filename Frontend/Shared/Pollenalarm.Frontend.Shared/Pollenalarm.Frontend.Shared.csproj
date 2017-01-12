@@ -51,6 +51,7 @@
     <Compile Include="ViewModels\PollenViewModel.cs" />
     <Compile Include="Services\GoogleMapsService.cs" />
     <Compile Include="Models\GoogleGeoLocation.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
