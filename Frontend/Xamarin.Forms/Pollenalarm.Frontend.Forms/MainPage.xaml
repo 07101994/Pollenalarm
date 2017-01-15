@@ -90,7 +90,6 @@
 
             <ListView.Header>
                 <AbsoluteLayout HeightRequest="150">
-
                     <Image
                         AbsoluteLayout.LayoutBounds="0,0,1,1"
                         AbsoluteLayout.LayoutFlags="All"

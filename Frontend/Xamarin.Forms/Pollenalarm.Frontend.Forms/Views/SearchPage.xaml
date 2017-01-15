@@ -15,10 +15,63 @@
             x:Name="searchBar"
             Placeholder="{i18n:Translate SearchBarPlaceholder}"
             SearchCommand="{Binding SearchCommand}"
-            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+            Text="{Binding SearchTerm, Mode=TwoWay}">
+            <SearchBar.Margin>
+                <OnPlatform
+                    x:TypeArguments="Thickness"
+                    WinPhone="{StaticResource DefaultSicknessWinPhone}" />
+            </SearchBar.Margin>
+        </SearchBar>
 
         <ListView
             Grid.Row="1"
-            ItemsSource="{Binding SearchResults}" />
+            GroupDisplayBinding="{Binding Title}"
+            IsGroupingEnabled="True"
+            ItemsSource="{Binding SearchResults}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.Padding>
+                                    <OnPlatform
+                                        x:TypeArguments="Thickness"
+                                        Android="{StaticResource DefaultSicknessAndroid}"
+                                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                        iOS="15, 8, 10, 8" />
+                                </Grid.Padding>
+
+                                <Label
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    FontSize="{StaticResource DefaultFontSize}"
+                                    Text="{Binding Name}" />
+
+                                <!-- iOS only "Next" button on the right border -->
+                                <Image
+                                    Grid.Column="2"
+                                    Margin="10, 0, 0, 0"
+                                    HeightRequest="15"
+                                    Source="Next"
+                                    VerticalOptions="Center">
+                                    <Image.IsVisible>
+                                        <OnPlatform
+                                            x:TypeArguments="x:Boolean"
+                                            Android="False"
+                                            WinPhone="False"
+                                            iOS="True" />
+                                    </Image.IsVisible>
+                                </Image>
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </ContentPage>

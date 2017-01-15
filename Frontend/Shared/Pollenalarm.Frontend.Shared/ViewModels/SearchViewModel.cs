@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using Pollenalarm.Core;
 using Pollenalarm.Frontend.Shared.Services;
+using Pollenalarm.Core.Models;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -15,42 +16,57 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 		private PollenService _PollenService;
         private GoogleMapsService _GoogleMapsService;
 
-		private ObservableCollection<ISearchResult> _SearchResults;
-		public ObservableCollection<ISearchResult> SearchResults
+        private string _SearchTerm;
+        public string SearchTerm
+        {
+            get { return _SearchTerm; }
+            set { _SearchTerm = value; RaisePropertyChanged(); }
+        }
+
+
+        private ObservableCollection<SearchResultGroup> _SearchResults;
+		public ObservableCollection<SearchResultGroup> SearchResults
 		{
 			get { return _SearchResults; }
 			set { _SearchResults = value; RaisePropertyChanged(); }
 		}
 
-		private RelayCommand<string> _SearchCommand;
-		public RelayCommand<string> SearchCommand
+		private RelayCommand _SearchCommand;
+		public RelayCommand SearchCommand
 		{
 			get
 			{
-				return _SearchCommand ?? (_SearchCommand = new RelayCommand<string>(async (string searchTerm) =>
+				return _SearchCommand ?? (_SearchCommand = new RelayCommand(async () =>
 				{
-                    // Trim
-                    var trimmedSearchTerm = searchTerm.Trim();
-
                     SearchResults.Clear();
 
-                    // Search pollen
-                    var allPollen = await _PollenService.GetAllPollenAsync();
-                    var pollenResults = allPollen.Where(p => p.Name.ToLower().Contains(trimmedSearchTerm.ToLower()) || p.Description.ToLower().Contains(trimmedSearchTerm.ToLower()));
+                    // Trim
+                    var trimmedSearchTerm = SearchTerm.Trim();
+                    if (trimmedSearchTerm.Length == 0)
+                        return;
 
-                    if (pollenResults.Any())
+                    // Search pollen
+                    var pollenResults = new SearchResultGroup("Pollen");
+                    var allPollen = await _PollenService.GetAllPollenAsync();
+                    var foundPollen = allPollen.Where(p => p.Name.ToLower().Contains(trimmedSearchTerm.ToLower()) || p.Description.ToLower().Contains(trimmedSearchTerm.ToLower()));
+
+                    if (foundPollen.Any())
                     {
-                        foreach (var result in pollenResults)
-                            SearchResults.Add(result);
+                        foreach (var result in foundPollen)
+                            pollenResults.Add(result);
                     }
 
                     // Search places
-                    var placeResults = await _GoogleMapsService.GeoCodeAsync(trimmedSearchTerm);
-                    if (placeResults != null && placeResults.Any())
+                    var placeResults = new SearchResultGroup("Places");
+                    var foundPlaces = await _GoogleMapsService.GeoCodeAsync(trimmedSearchTerm);
+                    if (foundPlaces != null && foundPlaces.Any())
                     {
-                        foreach (var result in placeResults)
-                            SearchResults.Add(result);
+                        foreach (var result in foundPlaces)
+                            placeResults.Add(result);
                     }
+
+                    SearchResults.Add(pollenResults);
+                    SearchResults.Add(placeResults);
 				}));
 			}
 		}
@@ -60,7 +76,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			_PollenService = pollenService;
             _GoogleMapsService = googleMapsService;
 
-            SearchResults = new ObservableCollection<ISearchResult>();
+            SearchResults = new ObservableCollection<SearchResultGroup>();
         }
 	}
 }
