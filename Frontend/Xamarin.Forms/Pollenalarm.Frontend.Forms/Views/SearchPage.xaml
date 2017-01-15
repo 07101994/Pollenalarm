@@ -1,16 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="Pollenalarm.Frontend.Forms.Views.SearchPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
+    Title="{i18n:Translate Search}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Entry />
+        <SearchBar
+			x:Name="searchBar"
+			Placeholder="{i18n:Translate SearchBarPlaceholder}"
+			SearchCommand="{Binding SearchCommand}"
+			SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
 
-        <ListView Grid.Row="1" />
+        <ListView Grid.Row="1" ItemsSource="{Binding SearchResults}"/>
     </Grid>
 </ContentPage>

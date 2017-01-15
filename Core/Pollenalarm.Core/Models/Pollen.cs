@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pollenalarm.Core.Models
 {
-    public class Pollen
+	public class Pollen : ISearchResult
     {
 		public int Id { get; set; }
         public string Name { get; set; }

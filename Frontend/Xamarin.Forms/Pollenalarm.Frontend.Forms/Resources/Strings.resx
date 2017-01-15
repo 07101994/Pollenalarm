@@ -246,4 +246,11 @@
   <data name="GoodNight" xml:space="preserve">
     <value>Good  night</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchBarPlaceholder" xml:space="preserve">
+    <value>Places or Pollen</value>
+  </data>
 </root>
+

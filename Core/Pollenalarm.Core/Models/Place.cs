@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pollenalarm.Core.Models
 {
-    public class Place
+	public class Place : ISearchResult
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

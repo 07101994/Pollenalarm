@@ -89,6 +89,18 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
+		private RelayCommand _NavigateToSearchCommand;
+		public RelayCommand NavigateToSearchCommand
+		{
+			get
+			{
+				return _NavigateToSearchCommand ?? (_NavigateToSearchCommand = new RelayCommand(() =>
+				{					
+					_NavigationService.NavigateTo(ViewNames.Search);
+				}));
+			}
+		}
+
 		public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, PollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel)
         {
             _NavigationService = navigationService;
