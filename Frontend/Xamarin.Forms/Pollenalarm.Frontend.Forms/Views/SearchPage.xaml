@@ -3,7 +3,7 @@
     x:Class="Pollenalarm.Frontend.Forms.Views.SearchPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="{i18n:Translate Search}">
     <Grid>
         <Grid.RowDefinitions>
@@ -12,11 +12,13 @@
         </Grid.RowDefinitions>
 
         <SearchBar
-			x:Name="searchBar"
-			Placeholder="{i18n:Translate SearchBarPlaceholder}"
-			SearchCommand="{Binding SearchCommand}"
-			SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+            x:Name="searchBar"
+            Placeholder="{i18n:Translate SearchBarPlaceholder}"
+            SearchCommand="{Binding SearchCommand}"
+            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
 
-        <ListView Grid.Row="1" ItemsSource="{Binding SearchResults}"/>
+        <ListView
+            Grid.Row="1"
+            ItemsSource="{Binding SearchResults}" />
     </Grid>
 </ContentPage>

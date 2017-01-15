@@ -13,6 +13,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
     public class SearchViewModel : AsyncViewModelBase
     {
 		private PollenService _PollenService;
+        private GoogleMapsService _GoogleMapsService;
 
 		private ObservableCollection<ISearchResult> _SearchResults;
 		public ObservableCollection<ISearchResult> SearchResults
@@ -28,22 +29,38 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			{
 				return _SearchCommand ?? (_SearchCommand = new RelayCommand<string>(async (string searchTerm) =>
 				{
-					var results = await _PollenService.SearchAsnyc(searchTerm);
-					if (results != null)
-					{
-						if (SearchResults == null)
-							SearchResults = new ObservableCollection<ISearchResult>();
+                    // Trim
+                    var trimmedSearchTerm = searchTerm.Trim();
 
-						foreach (var result in results)
-							SearchResults.Add(result);
-					}
+                    SearchResults.Clear();
+
+                    // Search pollen
+                    var allPollen = await _PollenService.GetAllPollenAsync();
+                    var pollenResults = allPollen.Where(p => p.Name.ToLower().Contains(trimmedSearchTerm.ToLower()) || p.Description.ToLower().Contains(trimmedSearchTerm.ToLower()));
+
+                    if (pollenResults.Any())
+                    {
+                        foreach (var result in pollenResults)
+                            SearchResults.Add(result);
+                    }
+
+                    // Search places
+                    var placeResults = await _GoogleMapsService.GeoCodeAsync(trimmedSearchTerm);
+                    if (placeResults != null && placeResults.Any())
+                    {
+                        foreach (var result in placeResults)
+                            SearchResults.Add(result);
+                    }
 				}));
 			}
 		}
 
-		public SearchViewModel(PollenService pollenService)
+		public SearchViewModel(PollenService pollenService, GoogleMapsService googleMapsService)
 		{
 			_PollenService = pollenService;
-		}
+            _GoogleMapsService = googleMapsService;
+
+            SearchResults = new ObservableCollection<ISearchResult>();
+        }
 	}
 }

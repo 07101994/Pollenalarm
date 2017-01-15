@@ -33,11 +33,11 @@
             </ToolbarItem.Order>
         </ToolbarItem>
 
-		<ToolbarItem
+        <ToolbarItem
             Name="{i18n:Translate Search}"
             x:Name="SearchItem"
             Command="{Binding NavigateToSearchCommand}"
-
+            Icon="Search.png"
             Priority="1">
             <ToolbarItem.Order>
                 <OnPlatform
@@ -52,15 +52,15 @@
             Name="{i18n:Translate Refresh}"
             x:Name="RefreshItem"
             Command="{Binding RefreshCommand}"
-			Order="Primary"
+            Order="Primary"
             Priority="2">
-			<ToolbarItem.Icon>
-				<OnPlatform
+            <ToolbarItem.Icon>
+                <OnPlatform
                     x:TypeArguments="FileImageSource"
                     Android=""
                     WinPhone="Refresh.png"
                     iOS="" />
-			</ToolbarItem.Icon>            
+            </ToolbarItem.Icon>
         </ToolbarItem>
 
         <ToolbarItem

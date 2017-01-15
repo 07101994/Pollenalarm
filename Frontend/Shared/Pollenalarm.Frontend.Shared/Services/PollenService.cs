@@ -87,17 +87,5 @@ namespace Pollenalarm.Frontend.Shared.Services
                     _SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollution.Pollen.Id) ?
                     _SettingsService.CurrentSettings.SelectedPollen[pollution.Pollen.Id] : true;
         }
-
-		public async Task<IEnumerable<ISearchResult>> SearchAsnyc(string searchTerm)
-		{			
-			var result = await _HttpService.GetStringAsync($"{_BaseUrl}/search?term={searchTerm.Trim()}");
-			if (result != null)
-			{
-				var resultList = JsonConvert.DeserializeObject<List<ISearchResult>>(result);
-				return resultList;
-			}
-
-			return null;
-		}
 	}
 }
