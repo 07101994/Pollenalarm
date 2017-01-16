@@ -38,12 +38,16 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			{
 				return _SearchCommand ?? (_SearchCommand = new RelayCommand(async () =>
 				{
+                    IsLoading = true;
                     SearchResults.Clear();
 
                     // Trim
                     var trimmedSearchTerm = SearchTerm.Trim();
                     if (trimmedSearchTerm.Length == 0)
+                    {
+                        IsLoading = false;
                         return;
+                    }
 
                     // Search pollen
                     var pollenResults = new SearchResultGroup("Pollen");
@@ -67,7 +71,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 
                     SearchResults.Add(pollenResults);
                     SearchResults.Add(placeResults);
-				}));
+
+                    IsLoading = false;
+                }));
 			}
 		}
 

@@ -118,69 +118,67 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <ViewCell.View>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                                <Grid.Padding>
-                                    <OnPlatform
-                                        x:TypeArguments="Thickness"
-                                        Android="{StaticResource DefaultSicknessAndroid}"
-                                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                                        iOS="15, 8, 10, 8" />
-                                </Grid.Padding>
+                            <Grid.Padding>
+                                <OnPlatform
+                                    x:TypeArguments="Thickness"
+                                    Android="{StaticResource DefaultSicknessAndroid}"
+                                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                    iOS="15, 8, 10, 8" />
+                            </Grid.Padding>
 
-                                <StackLayout Grid.Column="0">
+                            <StackLayout Grid.Column="0">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="{StaticResource DefaultFontSize}"
+                                    Text="{Binding Name}" />
+                                <StackLayout Orientation="Horizontal">
                                     <Label
-                                        FontAttributes="Bold"
-                                        FontSize="{StaticResource DefaultFontSize}"
-                                        Text="{Binding Name}" />
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label
-                                            Margin="0,-4,0,0"
-                                            FontSize="{StaticResource SmallFontSize}"
-                                            Text="Pollution:" />
-                                        <Label
-                                            Margin="-4,-4,0,0"
-                                            FontSize="{StaticResource SmallFontSize}"
-                                            Text="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionNameConverter}}" />
-                                    </StackLayout>
+                                        Margin="0,-4,0,0"
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Text="Pollution:" />
+                                    <Label
+                                        Margin="-4,-4,0,0"
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Text="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionNameConverter}}" />
                                 </StackLayout>
+                            </StackLayout>
 
-                                <Image
-                                    Grid.Column="1"
-                                    Source="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionIconConverter}}"
-                                    VerticalOptions="Center">
-                                    <Image.HeightRequest>
-                                        <OnPlatform
-                                            x:TypeArguments="x:Double"
-                                            Android="15"
-                                            WinPhone="20"
-                                            iOS="15" />
-                                    </Image.HeightRequest>
-                                </Image>
+                            <Image
+                                Grid.Column="1"
+                                Source="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionIconConverter}}"
+                                VerticalOptions="Center">
+                                <Image.HeightRequest>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="15"
+                                        WinPhone="20"
+                                        iOS="15" />
+                                </Image.HeightRequest>
+                            </Image>
 
-                                <!-- iOS only "Next" button on the right border -->
-                                <Image
-                                    Grid.Column="2"
-                                    Margin="10, 0, 0, 0"
-                                    HeightRequest="15"
-                                    Source="Next"
-                                    VerticalOptions="Center">
-                                    <Image.IsVisible>
-                                        <OnPlatform
-                                            x:TypeArguments="x:Boolean"
-                                            Android="False"
-                                            WinPhone="False"
-                                            iOS="True" />
-                                    </Image.IsVisible>
-                                </Image>
-                            </Grid>
-                        </ViewCell.View>
+                            <!-- iOS only "Next" button on the right border -->
+                            <Image
+                                Grid.Column="2"
+                                Margin="10, 0, 0, 0"
+                                HeightRequest="15"
+                                Source="Next"
+                                VerticalOptions="Center">
+                                <Image.IsVisible>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Boolean"
+                                        Android="False"
+                                        WinPhone="False"
+                                        iOS="True" />
+                                </Image.IsVisible>
+                            </Image>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

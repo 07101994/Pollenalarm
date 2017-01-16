@@ -61,6 +61,7 @@
     <Compile Include="Services\ICultureService.cs" />
     <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="TemplateSelectors\SearchResultDataTemplateSelector.cs" />
     <Compile Include="Views\AddEditPlacePage.xaml.cs">
       <DependentUpon>AddEditPlacePage.xaml</DependentUpon>
     </Compile>
