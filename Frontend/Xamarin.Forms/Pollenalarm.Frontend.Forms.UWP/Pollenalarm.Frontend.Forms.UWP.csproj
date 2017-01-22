@@ -137,6 +137,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Refresh.png" />
     <Content Include="Roggen.png" />
+    <Content Include="Save.png" />
     <Content Include="Search.png" />
     <Content Include="Ulme.png" />
     <Content Include="Wegerich.png" />

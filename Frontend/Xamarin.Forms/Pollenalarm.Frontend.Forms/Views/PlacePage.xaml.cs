@@ -20,10 +20,6 @@ namespace Pollenalarm.Frontend.Forms.Views
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, Strings.Back);
             BindingContext = App.Bootstrapper.PlaceViewModel;
-
-            // Hide edit button if selected place is auto-generated current position
-            if (App.Bootstrapper.PlaceViewModel.CurrentPlace.IsCurrentPosition)
-                ToolbarItems.Remove(EditPlaceButton);
         }
 
         private async void PlacePage_CurrentPageChanged(object sender, EventArgs e)
@@ -49,7 +45,7 @@ namespace Pollenalarm.Frontend.Forms.Views
             }
 
             // Update pollen selections
-            App.Bootstrapper.PlaceViewModel.Update();
+            await App.Bootstrapper.PlaceViewModel.RefreshAsync();
 
             // Filter list by selected pollen by code, because ListView Filters are not supported by Xamarin.Forms yet
             ListToday.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday.Where(p => p.Pollen.IsSelected);

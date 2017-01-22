@@ -19,8 +19,8 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Name="{i18n:Translate Add}"
             x:Name="AddItem"
+            Name="{i18n:Translate Add}"
             Command="{Binding NavigateToAddPlaceCommand}"
             Icon="Add.png"
             Priority="0">
@@ -34,8 +34,8 @@
         </ToolbarItem>
 
         <ToolbarItem
-            Name="{i18n:Translate Search}"
             x:Name="SearchItem"
+            Name="{i18n:Translate Search}"
             Command="{Binding NavigateToSearchCommand}"
             Icon="Search.png"
             Priority="1">
@@ -49,8 +49,8 @@
         </ToolbarItem>
 
         <ToolbarItem
-            Name="{i18n:Translate Refresh}"
             x:Name="RefreshItem"
+            Name="{i18n:Translate Refresh}"
             Command="{Binding RefreshCommand}"
             Order="Primary"
             Priority="2">
@@ -96,9 +96,7 @@
                         Aspect="AspectFill"
                         Source="Header.png" />
 
-                    <StackLayout
-                        AbsoluteLayout.LayoutBounds="0.5,0.5"
-                        AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5" AbsoluteLayout.LayoutFlags="PositionProportional">
                         <Label
                             FontAttributes="Bold"
                             FontSize="Large"
@@ -106,7 +104,7 @@
                             Text="{Binding GreetingHeader, Mode=OneWay}"
                             TextColor="White" />
                         <Label
-                            Margin="0, -6, 0, 0"
+                            Margin="0,-6,0,0"
                             FontSize="Small"
                             HorizontalTextAlignment="Center"
                             Text="You are lucky, mild pollen today."
@@ -163,10 +161,10 @@
                                 </Image.HeightRequest>
                             </Image>
 
-                            <!-- iOS only "Next" button on the right border -->
+                            <!--  iOS only "Next" button on the right border  -->
                             <Image
                                 Grid.Column="2"
-                                Margin="10, 0, 0, 0"
+                                Margin="10,0,0,0"
                                 HeightRequest="15"
                                 Source="Next"
                                 VerticalOptions="Center">
@@ -184,7 +182,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Android only Floating Action Button -->
+        <!--  Android only Floating Action Button  -->
         <android:FormsFloatingActionButton
             x:Name="AddButton"
             Margin="{StaticResource DefaultSicknessAndroid}"

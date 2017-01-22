@@ -14,10 +14,10 @@ namespace Pollenalarm.Frontend.Forms.Views
         public AddEditPlacePage()
         {
             InitializeComponent();
-            BindingContext = App.Bootstrapper.PlaceViewModel;
+            BindingContext = App.Bootstrapper.AddEditPlaceViewModel;
 
-            App.Bootstrapper.PlaceViewModel.OnInvalidEntries += PlaceViewModel_OnInvalidEntries;
-            App.Bootstrapper.PlaceViewModel.OnLocationFailed += PlaceViewModel_OnLocationFailed;
+            App.Bootstrapper.AddEditPlaceViewModel.OnInvalidEntries += PlaceViewModel_OnInvalidEntries;
+            App.Bootstrapper.AddEditPlaceViewModel.OnLocationFailed += PlaceViewModel_OnLocationFailed;
 
 			if (App.Bootstrapper.PlaceViewModel.CurrentPlace != null)
 			{

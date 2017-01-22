@@ -45,6 +45,7 @@
     <Compile Include="Services\PlaceService.cs" />
     <Compile Include="Services\PollenService.cs" />
     <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="ViewModels\AddEditPlaceViewModel.cs" />
     <Compile Include="ViewModels\AsyncViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PlaceViewModel.cs" />

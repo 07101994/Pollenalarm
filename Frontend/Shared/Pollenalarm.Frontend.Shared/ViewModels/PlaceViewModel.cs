@@ -29,110 +29,6 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			set { _CurrentPlace = value; RaisePropertyChanged(); }
         }
 
-        #region Add / Edit fields
-
-        private string _PlaceName;
-        public string PlaceName
-        {
-            get { return _PlaceName; }
-            set { _PlaceName = value; RaisePropertyChanged(); }
-        }
-
-        private string _PlaceZip;
-        public string PlaceZip
-        {
-            get { return _PlaceZip; }
-            set { _PlaceZip = value; RaisePropertyChanged(); }
-        }
-
-        #endregion
-
-        public event InvalidEntriesEventHandler OnInvalidEntries;
-        public delegate void InvalidEntriesEventHandler(object sender, EventArgs e);
-
-        public event LocationFailedEventHandler OnLocationFailed;
-        public delegate void LocationFailedEventHandler(object sender, EventArgs e);
-
-        private RelayCommand _AddEditPlaceCommand;
-        public RelayCommand AddEditPlaceCommand
-        {
-            get
-            {
-                return _AddEditPlaceCommand ?? (_AddEditPlaceCommand = new RelayCommand(() =>
-                {
-                    // Check if entered field are valid
-                    if (string.IsNullOrWhiteSpace(_PlaceName) || !Regex.IsMatch(_PlaceZip, "^[0-9]*$") || _PlaceZip.Trim().Length != 5)
-                    {
-                        // Invalid entries
-                        OnInvalidEntries?.Invoke(this, null);
-                        return;
-                    }
-
-                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
-
-                    if (_CurrentPlace != null)
-                    {
-                        // Update existing place
-                        var existingPlace = mainViewModel.Places.FirstOrDefault(x => x.Id == _CurrentPlace.Id);
-                        if (existingPlace != null)
-                        {
-                            existingPlace.Name = _PlaceName;
-                            existingPlace.Zip = _PlaceZip;
-                            _CurrentPlace = existingPlace;
-                        }
-                    }
-                    else
-                    {
-                        // Add new place
-                        _CurrentPlace = new Place();
-                        _CurrentPlace.Name = _PlaceName;
-                        _CurrentPlace.Zip = _PlaceZip;
-                        mainViewModel.Places.Add(_CurrentPlace);
-                        // Set IsLoaded to false to force MainViewModel to refresh and load pollen for the new place
-                        mainViewModel.IsLoaded = false;
-                        _CurrentPlace = null;
-                    }
-
-                    // Save places
-                    _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
-
-                    _PlaceName = string.Empty;
-                    _PlaceZip = string.Empty;
-                    _NavigationService.GoBack();
-                }));
-            }
-        }
-
-        private RelayCommand _DeletePlaceCommand;
-        public RelayCommand DeletePlaceCommand
-        {
-            get
-            {
-                return _DeletePlaceCommand ?? (_DeletePlaceCommand = new RelayCommand(async () =>
-                {
-                    // Let user confirm deletion
-                    if (!await _DialogService.DisplayConfirmationAsync(_LocalizationService.GetString("DeletePlaceTitle"), _LocalizationService.GetString("DeletePlaceMessage"), _LocalizationService.GetString("Delete"), _LocalizationService.GetString("Cancel")))
-                        return;
-
-                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
-
-                    if (_CurrentPlace != null)
-                    {
-                        var existingPlace = mainViewModel.Places.FirstOrDefault(x => x.Id == _CurrentPlace.Id);
-                        if (existingPlace != null)
-                        {
-                            mainViewModel.Places.Remove(existingPlace);
-                            await _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
-                            _CurrentPlace = null;
-                            _PlaceName = string.Empty;
-                            _PlaceZip = string.Empty;
-                            _NavigationService.GoBack();
-                        }
-                    }
-                }));
-            }
-        }
-
         private RelayCommand _NavigateToEditPlaceCommand;
         public RelayCommand NavigateToEditPlaceCommand
         {
@@ -140,9 +36,17 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _NavigateToEditPlaceCommand ?? (_NavigateToEditPlaceCommand = new RelayCommand(() =>
                 {
-                    _PlaceName = _CurrentPlace.Name;
-                    _PlaceZip = _CurrentPlace.Zip;
+                    var addEditPlaceViewModel = SimpleIoc.Default.GetInstance<AddEditPlaceViewModel>();
+                    addEditPlaceViewModel.CurrentPlace = _CurrentPlace;
+                    addEditPlaceViewModel.PlaceName = CurrentPlace.Name;
+                    addEditPlaceViewModel.PlaceZip = CurrentPlace.Zip;
+
                     _NavigationService.NavigateTo(ViewNames.AddEditPlace);
+                }, () =>
+                {
+                    // Only execute, if place is not current position and already exists
+                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+                    return !_CurrentPlace.IsCurrentPosition && mainViewModel.Places.Contains(_CurrentPlace);
                 }));
             }
         }
@@ -161,23 +65,24 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        private RelayCommand _GetCurrentPositionCommand;
-        public RelayCommand GetCurrentPositionCommand
+        private RelayCommand _SavePlaceCommand;
+        public RelayCommand SavePlaceCommand
         {
             get
             {
-                return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
+                return _SavePlaceCommand ?? (_SavePlaceCommand = new RelayCommand(() =>
                 {
-                    var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
-                    if (geolocation == null)
-                    {
-                        OnLocationFailed?.Invoke(this, null);
-                        return;
-                    }
+                    var addEditPlaceViewModel = SimpleIoc.Default.GetInstance<AddEditPlaceViewModel>();
+                    addEditPlaceViewModel.CurrentPlace = null;
+                    addEditPlaceViewModel.PlaceName = CurrentPlace.Name;
+                    addEditPlaceViewModel.PlaceZip = CurrentPlace.Zip;
 
-                    // Update place fields
-                    PlaceName = geolocation.Name;
-					PlaceZip = geolocation.Zip;
+                    _NavigationService.NavigateTo(ViewNames.AddEditPlace);
+                }, () =>
+                {
+                    // Only execute, if place does not already exist
+                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+                    return !mainViewModel.Places.Contains(_CurrentPlace);
                 }));
             }
         }
@@ -192,9 +97,22 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             _PollenService = pollenService;
         }
 
-        public void Update()
+        public async Task RefreshAsync()
         {
-            _PollenService.UpdatePollenSelection(CurrentPlace);
+            IsLoading = true;
+            IsLoaded = false;
+
+            if (!CurrentPlace.PollutionToday.Any() ||
+                !CurrentPlace.PollutionTomorrow.Any() ||
+                !CurrentPlace.PollutionAfterTomorrow.Any())
+            {
+                await _PollenService.GetPollutionsForPlaceAsync(CurrentPlace);
+            }
+            else
+                _PollenService.UpdatePollenSelection(CurrentPlace);
+
+            IsLoaded = true;
+            IsLoading = false;
         }
 	}
 }

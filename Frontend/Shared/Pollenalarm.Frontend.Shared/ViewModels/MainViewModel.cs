@@ -95,7 +95,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			get
 			{
 				return _NavigateToSearchCommand ?? (_NavigateToSearchCommand = new RelayCommand(() =>
-				{					
+				{
 					_NavigationService.NavigateTo(ViewNames.Search);
 				}));
 			}

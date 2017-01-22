@@ -8,12 +8,16 @@ using GalaSoft.MvvmLight.Command;
 using Pollenalarm.Core;
 using Pollenalarm.Frontend.Shared.Services;
 using Pollenalarm.Core.Models;
+using GalaSoft.MvvmLight.Views;
+using GalaSoft.MvvmLight.Ioc;
+using Pollenalarm.Frontend.Shared.Misc;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
     public class SearchViewModel : AsyncViewModelBase
     {
-		private PollenService _PollenService;
+        private INavigationService _NavigationService;
+        private PollenService _PollenService;
         private GoogleMapsService _GoogleMapsService;
 
         private string _SearchTerm;
@@ -52,7 +56,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     // Search pollen
                     var pollenResults = new SearchResultGroup("Pollen");
                     var allPollen = await _PollenService.GetAllPollenAsync();
-                    var foundPollen = allPollen.Where(p => p.Name.ToLower().Contains(trimmedSearchTerm.ToLower()) || p.Description.ToLower().Contains(trimmedSearchTerm.ToLower()));
+                    var foundPollen = allPollen.Where(p => p.Name.ToLower().Contains(trimmedSearchTerm.ToLower()));
 
                     if (foundPollen.Any())
                     {
@@ -77,8 +81,37 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			}
 		}
 
-		public SearchViewModel(PollenService pollenService, GoogleMapsService googleMapsService)
+        private RelayCommand<Pollen> _NavigateToPollenCommand;
+        public RelayCommand<Pollen> NavigateToPollenCommand
+        {
+            get
+            {
+                return _NavigateToPollenCommand ?? (_NavigateToPollenCommand = new RelayCommand<Pollen>((Pollen pollen) =>
+                {
+                    var pollenViewModel = SimpleIoc.Default.GetInstance<PollenViewModel>();
+                    pollenViewModel.CurrentPollen = pollen;
+                    _NavigationService.NavigateTo(ViewNames.Pollen);
+                }));
+            }
+        }
+
+        private RelayCommand<Place> _NavigateToPlaceCommand;
+        public RelayCommand<Place> NavigateToPlaceCommand
+        {
+            get
+            {
+                return _NavigateToPlaceCommand ?? (_NavigateToPlaceCommand = new RelayCommand<Place>((Place place) =>
+                {
+                    var placeViewModel = SimpleIoc.Default.GetInstance<PlaceViewModel>();
+                    placeViewModel.CurrentPlace = place;
+                    _NavigationService.NavigateTo(ViewNames.Place);
+                }));
+            }
+        }
+
+        public SearchViewModel(INavigationService navigationService, PollenService pollenService, GoogleMapsService googleMapsService)
 		{
+            _NavigationService = navigationService;
 			_PollenService = pollenService;
             _GoogleMapsService = googleMapsService;
 

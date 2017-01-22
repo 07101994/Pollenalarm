@@ -43,7 +43,7 @@ namespace Pollenalarm.Frontend.Forms
             if (!App.Bootstrapper.MainViewModel.IsLoaded)
             {
                 await App.Bootstrapper.MainViewModel.RefreshAsync();
-            }			           
+            }
 
             // Hide No-Places-Warning, because Binding does not work
             //lblNoPlacesWarning.IsVisible = !App.Bootstrapper.MainViewModel.Places.Any();

@@ -64,7 +64,7 @@
 
                             <Image
                                 Grid.Column="2"
-                                Margin="10, 0, 0, 0"
+                                Margin="10,0,0,0"
                                 HeightRequest="15"
                                 Source="Next"
                                 VerticalOptions="Center">
@@ -85,8 +85,8 @@
 
     <TabbedPage.ToolbarItems>
         <ToolbarItem
-            Name="Edit place"
             x:Name="EditPlaceButton"
+            Name="Edit place"
             Command="{Binding NavigateToEditPlaceCommand}"
             Icon="Edit.png"
             Priority="0">
@@ -96,6 +96,21 @@
                     Android="Primary"
                     WinPhone="Primary"
                     iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+
+        <ToolbarItem
+            x:Name="SavePlaceButton"
+            Name="Save place"
+            Command="{Binding SavePlaceCommand}"
+            Icon="Save.png"
+            Priority="1">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Secondary"
+                    iOS="Secondary" />
             </ToolbarItem.Order>
         </ToolbarItem>
     </TabbedPage.ToolbarItems>
