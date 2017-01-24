@@ -36,7 +36,9 @@ namespace Pollenalarm.Frontend.Forms.Views
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+            // Unsubscribe
+            App.Bootstrapper.AddEditPlaceViewModel.OnInvalidEntries -= PlaceViewModel_OnInvalidEntries;
+            App.Bootstrapper.AddEditPlaceViewModel.OnLocationFailed -= PlaceViewModel_OnLocationFailed;
         }
 
         private void PlaceViewModel_OnInvalidEntries(object sender, EventArgs e)

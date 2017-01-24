@@ -86,7 +86,10 @@
             IsRefreshing="{Binding IsLoading, Mode=OneWay}"
             ItemSelected="PlacesList_ItemSelected"
             ItemsSource="{Binding Places}"
-            RefreshCommand="{Binding RefreshCommand}">
+            RefreshCommand="{Binding RefreshCommand}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height,
+                                                                   Factor=1}">
 
             <ListView.Header>
                 <AbsoluteLayout HeightRequest="150">
@@ -185,7 +188,7 @@
         <!--  Android only Floating Action Button  -->
         <android:FormsFloatingActionButton
             x:Name="AddButton"
-            Margin="{StaticResource DefaultSicknessAndroid}"
+            Margin="0"
             Command="{Binding NavigateToAddPlaceCommand}"
             ImageName="Add.png"
             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
