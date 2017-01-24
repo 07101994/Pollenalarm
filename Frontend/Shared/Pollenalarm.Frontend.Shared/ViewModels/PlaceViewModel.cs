@@ -29,6 +29,11 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			set { _CurrentPlace = value; RaisePropertyChanged(); }
         }
 
+        public bool ShowNoPlacesWarningToday { get { return !CurrentPlace.PollutionToday.Any() && !IsLoading; }}
+        public bool ShowNoPlacesWarningTomorrow { get { return !CurrentPlace.PollutionTomorrow.Any() && !IsLoading; }}
+        public bool ShowNoPlacesWarningAfterTomorrow { get { return !CurrentPlace.PollutionAfterTomorrow.Any() && !IsLoading; } }
+
+
         private RelayCommand _NavigateToEditPlaceCommand;
         public RelayCommand NavigateToEditPlaceCommand
         {
@@ -102,6 +107,10 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             IsLoading = true;
             IsLoaded = false;
 
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningToday));
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningTomorrow));
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningAfterTomorrow));
+
             if (!CurrentPlace.PollutionToday.Any() ||
                 !CurrentPlace.PollutionTomorrow.Any() ||
                 !CurrentPlace.PollutionAfterTomorrow.Any())
@@ -110,6 +119,10 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
             else
                 _PollenService.UpdatePollenSelection(CurrentPlace);
+
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningToday));
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningTomorrow));
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningAfterTomorrow));
 
             IsLoaded = true;
             IsLoading = false;

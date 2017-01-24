@@ -24,6 +24,7 @@
                 Right="20"
                 Top="20" />
 
+            <!--  Font  -->
             <OnPlatform
                 x:Key="DefaultFontSize"
                 x:TypeArguments="x:Double"
@@ -36,6 +37,21 @@
                 Android="14"
                 WinPhone="14"
                 iOS="12" />
+
+            <!--  Activity Indicator  -->
+            <OnPlatform
+                x:Key="ActivityIndicatorHeight"
+                x:TypeArguments="x:Double"
+                Android="60"
+                WinPhone="10"
+                iOS="60" />
+            <OnPlatform
+                x:Key="ActivityIndicatorLayoutOptions"
+                x:TypeArguments="LayoutOptions"
+                Android="Center"
+                WinPhone="Start"
+                iOS="Center" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

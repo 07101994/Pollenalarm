@@ -147,17 +147,10 @@
 
         <ActivityIndicator
             Grid.RowSpan="2"
-            HeightRequest="10"
+            HeightRequest="{StaticResource ActivityIndicatorHeight}"
             HorizontalOptions="Fill"
             IsRunning="True"
-            IsVisible="{Binding IsLoading}">
-            <ActivityIndicator.VerticalOptions>
-                <OnPlatform
-                    x:TypeArguments="LayoutOptions"
-                    Android="Center"
-                    WinPhone="Start"
-                    iOS="Center" />
-            </ActivityIndicator.VerticalOptions>
-        </ActivityIndicator>
+            IsVisible="{Binding IsLoading}"
+            VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
     </Grid>
 </ContentPage>

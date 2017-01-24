@@ -123,10 +123,10 @@
                 WinPhone=""
                 iOS="Calendar" />
         </ContentPage.Icon>
-        <StackLayout>
+        <Grid>
             <Label
                 HorizontalTextAlignment="Center"
-                IsVisible="{Binding CurrentPlace.PollutionToday.Count, Converter={StaticResource IntToNegatedBooleanConverter}}"
+                IsVisible="{Binding ShowNoPlacesWarningToday}}"
                 Text="{i18n:Translate NoPollutionWarningText}">
                 <Label.Margin>
                     <OnPlatform
@@ -141,7 +141,13 @@
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
                 ItemTemplate="{StaticResource PollutionItemTemplate}" />
-        </StackLayout>
+            <ActivityIndicator
+                HeightRequest="{StaticResource ActivityIndicatorHeight}"
+                HorizontalOptions="Fill"
+                IsRunning="True"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+        </Grid>
     </ContentPage>
 
     <ContentPage Title="Tomorrow">
@@ -152,11 +158,32 @@
                 WinPhone=""
                 iOS="Calendar" />
         </ContentPage.Icon>
-        <ListView
-            x:Name="ListTomorrow"
-            HasUnevenRows="True"
-            ItemSelected="PollutionList_ItemSelected"
-            ItemTemplate="{StaticResource PollutionItemTemplate}" />
+        <Grid>
+            <Label
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ShowNoPlacesWarningTomorrow}"
+                Text="{i18n:Translate NoPollutionWarningText}">
+                <Label.Margin>
+                    <OnPlatform
+                        x:TypeArguments="Thickness"
+                        Android="{StaticResource DefaultSicknessAndroid}"
+                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                        iOS="{StaticResource DefaultSicknessiOS}" />
+                </Label.Margin>
+            </Label>
+
+            <ListView
+                x:Name="ListTomorrow"
+                HasUnevenRows="True"
+                ItemSelected="PollutionList_ItemSelected"
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
+            <ActivityIndicator
+                HeightRequest="{StaticResource ActivityIndicatorHeight}"
+                HorizontalOptions="Fill"
+                IsRunning="True"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+        </Grid>
     </ContentPage>
 
     <ContentPage Title="After tomorrow">
@@ -167,10 +194,30 @@
                 WinPhone=""
                 iOS="Calendar" />
         </ContentPage.Icon>
-        <ListView
-            x:Name="ListAfterTomorrow"
-            HasUnevenRows="True"
-            ItemSelected="PollutionList_ItemSelected"
-            ItemTemplate="{StaticResource PollutionItemTemplate}" />
+        <Grid>
+            <Label
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ShowNoPlacesWarningAfterTomorrow}"
+                Text="{i18n:Translate NoPollutionWarningText}">
+                <Label.Margin>
+                    <OnPlatform
+                        x:TypeArguments="Thickness"
+                        Android="{StaticResource DefaultSicknessAndroid}"
+                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                        iOS="{StaticResource DefaultSicknessiOS}" />
+                </Label.Margin>
+            </Label>
+            <ListView
+                x:Name="ListAfterTomorrow"
+                HasUnevenRows="True"
+                ItemSelected="PollutionList_ItemSelected"
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
+            <ActivityIndicator
+                HeightRequest="{StaticResource ActivityIndicatorHeight}"
+                HorizontalOptions="Fill"
+                IsRunning="True"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+        </Grid>
     </ContentPage>
 </TabbedPage>
