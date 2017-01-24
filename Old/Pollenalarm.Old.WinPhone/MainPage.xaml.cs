@@ -75,8 +75,6 @@ namespace Pollenalarm.Old.WinPhone
 
             MainViewModel.MapDownloadCompleted += new MainViewModel.DownloadedCompletedHandler(MainViewModel_MapDownloadCompleted);
             MainViewModel.Current.LoadData();
-
-            ScheduledActionService.LaunchForTest("TileUpdaterTask", TimeSpan.FromSeconds(60));
         }
 
         void MainViewModel_MapDownloadCompleted(object sender, EventArgs e)
@@ -256,7 +254,7 @@ namespace Pollenalarm.Old.WinPhone
         //}
 
         // ------------------------------------------------------------------------------
-        // Background Agent 
+        // Background Agent
         // ------------------------------------------------------------------------------
 
         public static void StartPeriodicAgent()

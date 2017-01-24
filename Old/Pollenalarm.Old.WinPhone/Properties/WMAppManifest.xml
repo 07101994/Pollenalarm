@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="de" />
-  <App xmlns="" ProductID="{ab06003e-3104-4573-9e69-b84c7058161d}" Title="Pollenalarm" RuntimeType="Silverlight" Version="2.4.0.0" Genre="apps.normal" Author="Thepagedot" Description="" Publisher="Pollenalarm" PublisherID="{59b5b150-8456-4559-b6be-90db74002ccb}">
+  <App xmlns="" ProductID="{ab06003e-3104-4573-9e69-b84c7058161d}" Title="Pollenalarm" RuntimeType="Silverlight" Version="2.4.1" Genre="apps.normal" Author="Thepagedot" Description="" Publisher="Pollenalarm" PublisherID="{59b5b150-8456-4559-b6be-90db74002ccb}">
     <IconPath IsRelative="true" IsResource="false">Assets/ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_LOCATION" />

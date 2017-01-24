@@ -21,12 +21,8 @@
     mc:Ignorable="d">
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="AnimationStart">
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="border"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
-                <SplineDoubleKeyFrame
-                    KeyTime="0"
-                    Value="-179" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <SplineDoubleKeyFrame KeyTime="0" Value="-179" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0.51,1"
                     KeyTime="0:0:0.4"
@@ -35,239 +31,123 @@
                     KeySpline="0,0,0.51,1"
                     KeyTime="0:0:0.9"
                     Value="0" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.1"
-                    Value="0" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.4"
-                    Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="textBlock"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="295" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="295" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0.5,1"
                     KeyTime="0:0:0.5"
                     Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="textBlock1"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="296" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.2"
-                    Value="296" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="296" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="296" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0.49,1"
                     KeyTime="0:0:0.6"
                     Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="textBlock2"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="0" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.5"
-                    Value="-30.975" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock2" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="-30.975" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0,1"
                     KeyTime="0:0:1.8"
                     Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="textBlock3"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="0" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.4"
-                    Value="-41.915" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock3" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="-41.915" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0,1"
                     KeyTime="0:0:1.7"
                     Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="textBlock2"
-                Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="0" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.5"
-                    Value="0" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0,1"
                     KeyTime="0:0:1.8"
                     Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="textBlock3"
-                Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="0" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.4"
-                    Value="0" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock3" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="0" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0,1"
                     KeyTime="0:0:1.7"
                     Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="image"
-                Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="0" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.4"
-                    Value="0" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,1,0.51"
                     KeyTime="0:0:0.9"
                     Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="image"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.4"
-                    Value="2.44" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="2.44" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,1,0.51"
                     KeyTime="0:0:0.9"
                     Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="image"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.4"
-                    Value="2.44" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="2.44" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,1,0.51"
                     KeyTime="0:0:0.9"
                     Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="pivot"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="480" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pivot" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="480" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0,1"
                     KeyTime="0:0:0.5"
                     Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="TitlePanel"
-                Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="0" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1"
-                    Value="1" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TitlePanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="border"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.4"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.9"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.1"
-                    Value="0.854" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.2"
-                    Value="1.093" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.4"
-                    Value="1" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0.854" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1.093" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="border"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.4"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.9"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.1"
-                    Value="0.854" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.2"
-                    Value="1.093" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:1.4"
-                    Value="1" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0.854" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1.093" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="rbFacebook"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:2.1"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:2.2"
-                    Value="1.057" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:2.3"
-                    Value="1" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rbFacebook" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.1" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1.057" />
+                <EasingDoubleKeyFrame KeyTime="0:0:2.3" Value="1" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="rbFacebook"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:2.1"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:2.2"
-                    Value="1.057" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:2.3"
-                    Value="1" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rbFacebook" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.1" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="1.057" />
+                <EasingDoubleKeyFrame KeyTime="0:0:2.3" Value="1" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="AnimationEnd">
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="TitlePanel"
-                Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="1" />
-                <EasingDoubleKeyFrame
-                    KeyTime="0:0:0.5"
-                    Value="0" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TitlePanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames
-                Storyboard.TargetName="pivot"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
-                <EasingDoubleKeyFrame
-                    KeyTime="0"
-                    Value="0" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pivot" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
                 <SplineDoubleKeyFrame
                     KeySpline="0,0,0.49,1"
                     KeyTime="0:0:0.5"
@@ -276,7 +156,7 @@
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 
-    <!-- LayoutRoot is the root grid where all page content is placed -->
+    <!--  LayoutRoot is the root grid where all page content is placed  -->
     <Grid x:Name="LayoutRoot">
         <StackPanel
             x:Name="TitlePanel"
@@ -303,7 +183,7 @@
             </StackPanel>
         </StackPanel>
 
-        <!-- Pivot Control -->
+        <!--  Pivot Control  -->
         <controls:Pivot
             x:Name="pivot"
             Title=" "
@@ -312,12 +192,10 @@
             <controls:Pivot.RenderTransform>
                 <CompositeTransform />
             </controls:Pivot.RenderTransform>
-            <!-- Pivot item one -->
+            <!--  Pivot item one  -->
             <controls:PivotItem Header="Details">
                 <StackPanel Margin="0,-13,0,0">
-                    <StackPanel
-                        Margin="13,0,0,0"
-                        Orientation="Horizontal">
+                    <StackPanel Margin="13,0,0,0" Orientation="Horizontal">
                         <Border
                             x:Name="border"
                             Width="150"
@@ -342,9 +220,7 @@
                                 </Image.RenderTransform>
                             </Image>
                         </Border>
-                        <StackPanel
-                            Width="266"
-                            Margin="10,0,0,0">
+                        <StackPanel Width="266" Margin="10,0,0,0">
                             <TextBlock
                                 x:Name="textBlock"
                                 Width="266"
@@ -376,7 +252,7 @@
                                 Margin="0,8,0,0"
                                 FontSize="18"
                                 RenderTransformOrigin="0.5,0.5"
-                                Text="Version: 2.4">
+                                Text="Version: 2.4.1">
                                 <TextBlock.RenderTransform>
                                     <CompositeTransform />
                                 </TextBlock.RenderTransform>
@@ -399,6 +275,7 @@
                     <c4f:RoundButton
                         Name="rbFacebook"
                         Margin="2,10,0,0"
+                        Padding="0,3,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         ButtonHeight="60"
@@ -410,7 +287,6 @@
                         ImageSource="/Assets/Icons/appbar.facebook.png"
                         IsEnabled="True"
                         Orientation="Horizontal"
-                        Padding="0,3,0,0"
                         RenderTransformOrigin="0.5,0.5">
                         <c4f:RoundButton.RenderTransform>
                             <CompositeTransform />
@@ -423,9 +299,7 @@
                         FontSize="22">
                         <Paragraph TextAlignment="Left">
                             <Run Text="Diese Windows Phone Anwendung wurde von" />
-                            <Run
-                                Foreground="{StaticResource PhoneAccentBrush}"
-                                Text="Thepagedot" />
+                            <Run Foreground="{StaticResource PhoneAccentBrush}" Text="Thepagedot" />
                             <Run Text="entwickelt." />
                         </Paragraph>
                     </RichTextBox>
@@ -435,9 +309,7 @@
                         FontSize="22">
                         <Paragraph TextAlignment="Left">
                             <Run Text="Sämliche Daten entstammen der Website der" />
-                            <Run
-                                Foreground="{StaticResource PhoneAccentBrush}"
-                                Text="Hexal AG" />
+                            <Run Foreground="{StaticResource PhoneAccentBrush}" Text="Hexal AG" />
                             <Run Text="und werden ohne Gewähr zur Verfügung gestellt." />
                         </Paragraph>
                     </RichTextBox>
@@ -447,9 +319,7 @@
                         FontSize="22">
                         <Paragraph TextAlignment="Left">
                             <Run Text="Die Hintergrundgrafik basiert auf einem Foto von" />
-                            <Run
-                                Foreground="{StaticResource PhoneAccentBrush}"
-                                Text="M. Großmann / pixelio.de" />
+                            <Run Foreground="{StaticResource PhoneAccentBrush}" Text="M. Großmann / pixelio.de" />
                         </Paragraph>
                     </RichTextBox>
 
@@ -466,15 +336,13 @@
                             <CompositeTransform />
                         </Border.RenderTransform>
                         <Border.OpacityMask>
-                            <ImageBrush
-                                ImageSource="/Assets/ThepagedotLogoS.png"
-                                Stretch="Uniform" />
+                            <ImageBrush ImageSource="/Assets/ThepagedotLogoS.png" Stretch="Uniform" />
                         </Border.OpacityMask>
                     </Border>
                 </StackPanel>
             </controls:PivotItem>
 
-            <!-- Pivot item two -->
+            <!--  Pivot item two  -->
             <controls:PivotItem Header="Hilfe">
                 <ScrollViewer>
                     <StackPanel>
@@ -503,14 +371,10 @@
                                     <SolidColorBrush Color="{StaticResource PhoneBorderColor}" />
                                 </TextBlock.Foreground>
                             </TextBlock>
-                            <Border
-                                Margin="0,12,0,10"
-                                Background="{StaticResource PhoneChromeBrush}">
+                            <Border Margin="0,12,0,10" Background="{StaticResource PhoneChromeBrush}">
                                 <Border Margin="2">
                                     <Border.Background>
-                                        <ImageBrush
-                                            ImageSource="/Assets/Background/Background.png"
-                                            Stretch="UniformToFill" />
+                                        <ImageBrush ImageSource="/Assets/Background/Background.png" Stretch="UniformToFill" />
                                     </Border.Background>
                                     <Grid>
                                         <Border
@@ -564,17 +428,13 @@
                                                     Text="BERLIN" />
                                             </Grid>
                                         </Border>
-                                        <Image
-                                            Margin="-11,7,0,-3"
-                                            Source="pfeile2.png" />
+                                        <Image Margin="-11,7,0,-3" Source="pfeile2.png" />
                                     </Grid>
                                 </Border>
                             </Border>
                         </StackPanel>
 
-                        <RichTextBox
-                            Margin="0,40,0,0"
-                            Visibility="Collapsed">
+                        <RichTextBox Margin="0,40,0,0" Visibility="Collapsed">
                             <Paragraph>
                                 <Run
                                     FontFamily="Segoe WP Light"
@@ -617,9 +477,7 @@
                                 <Run Text="Um auch andere für Sie relevante Orte, wie zum Beispiel Ihren Arbeitsplatz im Auge zu behalten, können Sie diese der Startseite hinzufügen." />
                             </Paragraph>
                         </RichTextBox>
-                        <Image
-                            Margin="12,12,12,0"
-                            Source="/Assets/Help/MainPageAppBar.png" />
+                        <Image Margin="12,12,12,0" Source="/Assets/Help/MainPageAppBar.png" />
 
                         <RichTextBox Margin="0,40,0,0">
                             <Paragraph>
@@ -644,33 +502,21 @@
                                 <Run Text="Darüber hinaus haben Sie in den Einstellungen die Möglichkeit, nur blühende Pollen anzuzeigen." />
                             </Paragraph>
                         </RichTextBox>
-                        <Border
-                            Margin="12,12,12,10"
-                            Background="{StaticResource PhoneChromeBrush}">
-                            <Image
-                                Margin="2"
-                                Source="/Assets/Help/PollenSelectionexample2.png" />
+                        <Border Margin="12,12,12,10" Background="{StaticResource PhoneChromeBrush}">
+                            <Image Margin="2" Source="/Assets/Help/PollenSelectionexample2.png" />
                         </Border>
 
                     </StackPanel>
                 </ScrollViewer>
             </controls:PivotItem>
-            <controls:PivotItem
-                x:Name="pivotBuy"
-                Header="Kaufen">
+            <controls:PivotItem x:Name="pivotBuy" Header="Kaufen">
                 <ScrollViewer>
                     <StackPanel>
-                        <RichTextBox
-                            x:Name="tbkPromo"
-                            Visibility="Collapsed">
-                            <Paragraph><Run Text="Sie verfügen über eine " /><Run
-                                    FontWeight="Bold"
-                                    Text="Promo-Lizens" /><Run Text=". Daher verfügen Sie über den vollen Funktionsumfang, ohne die App kaufen zu müssen!" /></Paragraph>
+                        <RichTextBox x:Name="tbkPromo" Visibility="Collapsed">
+                            <Paragraph><Run Text="Sie verfügen über eine " /><Run FontWeight="Bold" Text="Promo-Lizens" /><Run Text=". Daher verfügen Sie über den vollen Funktionsumfang, ohne die App kaufen zu müssen!" /></Paragraph>
                         </RichTextBox>
                         <RichTextBox BorderThickness="0,10,0,0">
-                            <Paragraph
-                                FontFamily="Segoe WP SemiLight"
-                                FontSize="24">
+                            <Paragraph FontFamily="Segoe WP SemiLight" FontSize="24">
                                 <Paragraph.Foreground>
                                     <SolidColorBrush Color="{StaticResource PhoneBorderColor}" />
                                 </Paragraph.Foreground><Run Text="Einige Funktionen dieser App sind in der kostenlosen Testversion " /><Run Text="nicht verfügbar">
@@ -678,9 +524,7 @@
                                         <SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}" />
                                     </Run.Foreground>
                                 </Run><Run Text="." /></Paragraph>
-                            <Paragraph
-                                FontFamily="Segoe WP SemiLight"
-                                FontSize="24">
+                            <Paragraph FontFamily="Segoe WP SemiLight" FontSize="24">
                                 <Paragraph.Foreground>
                                     <SolidColorBrush Color="{StaticResource PhoneBorderColor}" />
                                 </Paragraph.Foreground><Run Text="Kaufen Sie die Vollversion, um den vollen Funktionsumfang nutzen zu können." /></Paragraph>
@@ -700,11 +544,11 @@
                         </RichTextBox>
                         <Button
                             Margin="0,5,0,0"
+                            Padding="10,8"
                             BorderThickness="2"
                             Click="Button_Click"
                             Content="Im Marketplace besuchen"
-                            FontSize="24"
-                            Padding="10,8">
+                            FontSize="24">
                             <Button.Background>
                                 <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
                             </Button.Background>
@@ -715,9 +559,7 @@
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Vorteile der Vollversion" />
-                        <StackPanel
-                            Margin="12,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="12,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -730,9 +572,7 @@
                                 Text="Aktualisierende Live Tiles"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="12,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="12,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -745,9 +585,7 @@
                                 Text="Pollenvorhersage für die nächsten zwei Tage"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="12,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="12,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -775,17 +613,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Sonstiges" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -798,9 +634,7 @@
                                 Text="Einige kleinere Bugfixes"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -813,9 +647,7 @@
                                 Text="App wieder lauffähig gemacht"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -836,17 +668,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Sonstiges" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -859,9 +689,7 @@
                                 Text="Transparente Kacheln"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -882,17 +710,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Hauptveränderungen" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -905,9 +731,7 @@
                                 Text="Orte auf der Übersichtskarte anklickbar"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -926,9 +750,7 @@
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Sonstiges" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -941,9 +763,7 @@
                                 Text="Einige Bugfixes"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -964,17 +784,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Sonstiges" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -995,17 +813,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Hauptveränderungen" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1018,9 +834,7 @@
                                 Text="Übersichtskarte der Pollensituation in Deutschland hinzugefügt"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1033,9 +847,7 @@
                                 Text="Suche nach Orten und Pollen implementiert"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1048,9 +860,7 @@
                                 Text="Ortsdetails erweitert und neu gestaltet "
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1070,9 +880,7 @@
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Sonstiges" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1085,9 +893,7 @@
                                 Text="Animationen hinzugefügt bzw. angepasst"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1100,9 +906,7 @@
                                 Text="Standardmäßige Ortsüberprüfung auf Karte deaktiviert"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1115,9 +919,7 @@
                                 Text="Verhalten bei Verbindungsproblemen verbessert"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1140,17 +942,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Sonstiges" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1163,9 +963,7 @@
                                 Text="Berücksichtigung deaktivierter Ortungsdienste"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1178,9 +976,7 @@
                                 Text="Bug in Hintergrundeinstellungen gefixed"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1193,9 +989,7 @@
                                 Text="Allergene Potenz wird wieder korrekt angezeigt"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1218,17 +1012,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Version 1.3.1" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1241,9 +1033,7 @@
                                 Text="Performance Verbesserungen"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1262,9 +1052,7 @@
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Sonstiges" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1277,9 +1065,7 @@
                                 Text="Fehler in der Pollen-Zuordnung behoben"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1292,9 +1078,7 @@
                                 Text="Farbe der Live Tiles passt sich einer Änderung der Akzentfarbe an"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1307,9 +1091,7 @@
                                 Text="Belastungs-Zusammensetzung erklärt"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1322,9 +1104,7 @@
                                 Text="Voll- und Testversion erklärt"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1347,17 +1127,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Hauptveränderungen" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1370,9 +1148,7 @@
                                 Text="Orte werden beim Anlegen zur Kontrolle auf einer Karte gezeigt"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1395,17 +1171,15 @@
                         <Border
                             Height="1"
                             Margin="2,5,2,2"
-                            Background="{StaticResource PhoneForegroundBrush}"
-                            Padding="0" />
+                            Padding="0"
+                            Background="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock
                             Margin="0,5,0,2"
                             FontFamily="Segoe WP Light"
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Hauptveränderungen" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1425,9 +1199,7 @@
                             FontSize="26.667"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             Text="Sonstiges" />
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1440,9 +1212,7 @@
                                 Text="Hintergrundbild hinzugefügt"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1455,9 +1225,7 @@
                                 Text="Absturz nach Pollenauswahl behoben"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1470,9 +1238,7 @@
                                 Text="Absturz nach Kauf oder Feedback beseitigt"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1485,9 +1251,7 @@
                                 Text="Eingabe für Ortsnamen fängt nun mit Großbuchstaben an"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1500,9 +1264,7 @@
                                 Text="Animationen hinzugefügt"
                                 TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel
-                            Margin="0,0,0,10"
-                            Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
                             <TextBlock
                                 Margin="7,0,-7,0"
                                 Foreground="{StaticResource PhoneBorderBrush}"
@@ -1527,11 +1289,9 @@
         </Grid.Background>
     </Grid>
 
-    <!-- ApplicationBar -->
+    <!--  ApplicationBar  -->
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar
-            IsMenuEnabled="True"
-            IsVisible="True">
+        <shell:ApplicationBar IsMenuEnabled="True" IsVisible="True">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem
                     x:Name="appBarPromoCode"

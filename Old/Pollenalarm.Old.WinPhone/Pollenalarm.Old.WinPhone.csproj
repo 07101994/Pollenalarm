@@ -19,7 +19,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>Pollenalarm.Old.WinPhone_$(Configuration)_$(Platform).xap</XapFilename>
+    <XapFilename>Pollenalarm.Old.WinPhone_Release_AnyCPU_2.4.1.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>Pollenalarm.Old.WinPhone.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>

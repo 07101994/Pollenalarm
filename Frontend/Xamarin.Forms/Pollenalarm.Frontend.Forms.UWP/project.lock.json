@@ -15324,7 +15324,7 @@
       ]
     },
     "Xam.Plugin.Geolocator/3.0.4": {
-      "sha512": "mFAZEQxD+PfPoYu2MAWyzCz1TDgAh1mF/sOVxqUvuMSZuF4YffYooK3OlAODkGQj/aGjuQwwjQ9dI9BveMIhNw==",
+      "sha512": "5UMAwRk+dk+Ar0Ei+Jd0H8G0a0tHsm9gJouCXMuGnvEFU2CzOJJKrNfH2QGi7eVfsd5/XHoJhhk6J0Pi38olXA==",
       "type": "package",
       "path": "Xam.Plugin.Geolocator/3.0.4",
       "files": [
@@ -15384,7 +15384,7 @@
       ]
     },
     "Xamarin.Forms/2.3.2.127": {
-      "sha512": "NYH2p6Z2QGrRZpRXSiLqtapqlsx11pkViEIjDUQFDvsMCZbvsipDXOWjV9sXTrruXTdkNZ24Nsw0lEG0jVRMjA==",
+      "sha512": "5f//6Ot/zh9Rg9QksTKTA8iH5h+9GMLfA0M6aS9dVRq26ChIwmZlBCk6EETGQVSDx+yHZ5h/WHYfnwU08IriMg==",
       "type": "package",
       "path": "Xamarin.Forms/2.3.2.127",
       "files": [
