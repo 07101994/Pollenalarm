@@ -45,7 +45,8 @@ namespace Pollenalarm.Frontend.Shared
         {
             try
             {
-                var url = $"https://maps.googleapis.com/maps/api/geocode/json?address={searchTerm}&key={AccessKeys.GoogleMapsApiKey}";
+                // Search in Germany
+                var url = $"https://maps.googleapis.com/maps/api/geocode/json?address=Germany,+{searchTerm}&key={AccessKeys.GoogleMapsApiKey}";
                 var json = await _HttpService.GetStringAsync(url);
 
                 var googleGeoLocation = JsonConvert.DeserializeObject<GoogleGeoLocation>(json);
@@ -57,6 +58,11 @@ namespace Pollenalarm.Frontend.Shared
                 {
                     var name = location.address_components[0].long_name;
                     var zip = TryGetZipCode(location);
+                    var countryCode = location.address_components.FirstOrDefault(c => c.types.Contains("country"))?.short_name;
+
+                    // Sort out any non-german results
+                    if (countryCode != null && !countryCode.Equals("DE"))
+                        continue;
 
                     // Check if ZIP code could have been identified
                     if (zip == null)
