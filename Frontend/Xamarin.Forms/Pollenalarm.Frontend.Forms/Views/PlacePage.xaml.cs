@@ -10,9 +10,11 @@ using Xamarin.Forms;
 using System.Collections.Specialized;
 using Pollenalarm.Frontend.Shared.Services;
 using System.Collections.ObjectModel;
+using Xamarin.Forms.Xaml;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class PlacePage : TabbedPage
     {
         public PlacePage()

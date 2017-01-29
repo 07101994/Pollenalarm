@@ -138,6 +138,7 @@
             </Label>
             <ListView
                 x:Name="ListToday"
+                CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
                 ItemTemplate="{StaticResource PollutionItemTemplate}" />
@@ -174,6 +175,7 @@
 
             <ListView
                 x:Name="ListTomorrow"
+                CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
                 ItemTemplate="{StaticResource PollutionItemTemplate}" />
@@ -209,6 +211,7 @@
             </Label>
             <ListView
                 x:Name="ListAfterTomorrow"
+                CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
                 ItemTemplate="{StaticResource PollutionItemTemplate}" />

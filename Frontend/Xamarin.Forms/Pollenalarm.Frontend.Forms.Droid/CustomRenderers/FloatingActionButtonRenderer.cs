@@ -17,9 +17,12 @@ using Pollenalarm.Frontend.Forms.Droid.CustomRenderers;
 using System.IO;
 
 [assembly:ExportRenderer(typeof(FormsFloatingActionButton), typeof(FloatingActionButtonenderer))]
-
 namespace Pollenalarm.Frontend.Forms.Droid.CustomRenderers
 {
+    //public class FloatingActionButtonenderer2 : ViewRenderer<FormsFloatingActionButton, View>
+    //{
+    //}
+
     public class FloatingActionButtonenderer : ViewRenderer<FormsFloatingActionButton, FrameLayout>
     {
         private const int MARGIN_DIPS = 16;

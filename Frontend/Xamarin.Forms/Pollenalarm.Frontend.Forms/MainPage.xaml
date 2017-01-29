@@ -81,15 +81,14 @@
     <RelativeLayout>
         <ListView
             x:Name="PlaceList"
+            CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
             IsRefreshing="{Binding IsLoading, Mode=OneWay}"
             ItemSelected="PlacesList_ItemSelected"
             ItemsSource="{Binding Places}"
             RefreshCommand="{Binding RefreshCommand}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                   Property=Height,
-                                                                   Factor=1}">
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
 
             <ListView.Header>
                 <AbsoluteLayout HeightRequest="150">
@@ -97,6 +96,7 @@
                         AbsoluteLayout.LayoutBounds="0,0,1,1"
                         AbsoluteLayout.LayoutFlags="All"
                         Aspect="AspectFill"
+                        IsOpaque="True"
                         Source="Header.png" />
 
                     <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5" AbsoluteLayout.LayoutFlags="PositionProportional">
@@ -164,7 +164,7 @@
                                 </Image.HeightRequest>
                             </Image>
 
-                            <!--  iOS only "Next" button on the right border  -->
+                            <!-- iOS only "Next" button on the right border -->
                             <Image
                                 Grid.Column="2"
                                 Margin="10,0,0,0"
@@ -185,20 +185,14 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!--  Android only Floating Action Button  -->
+        <!-- Android only Floating Action Button -->
         <android:FormsFloatingActionButton
             x:Name="AddButton"
             Margin="0"
             Command="{Binding NavigateToAddPlaceCommand}"
             ImageName="Add.png"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                              Property=Width,
-                                                              Factor=1,
-                                                              Constant=-100}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                              Property=Height,
-                                                              Factor=1,
-                                                              Constant=-100}">
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-100}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-100}">
             <android:FormsFloatingActionButton.IsVisible>
                 <OnPlatform
                     x:TypeArguments="x:Boolean"

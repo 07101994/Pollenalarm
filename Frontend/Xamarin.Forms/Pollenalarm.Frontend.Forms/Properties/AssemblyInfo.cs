@@ -17,9 +17,6 @@ using Xamarin.Forms.Xaml;
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 
-// Enable XAML Compilation
-[assembly: XamlCompilation(XamlCompilationOptions.Skip)]
-
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version

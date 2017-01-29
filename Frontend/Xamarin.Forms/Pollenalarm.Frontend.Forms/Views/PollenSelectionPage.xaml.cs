@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Pollenalarm.Frontend.Forms
 {
-	public partial class PollenSelectionPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PollenSelectionPage : ContentPage
 	{
 		public PollenSelectionPage()
 		{

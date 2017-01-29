@@ -13,6 +13,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Pollenalarm.Frontend.Forms
 {
+    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class App : Application
     {
         public static Bootstrapper Bootstrapper;

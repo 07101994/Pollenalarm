@@ -30,7 +30,7 @@
                             FontSize="{StaticResource DefaultFontSize}"
                             Text="{Binding Name}" />
 
-                        <!--  iOS only "Next" button on the right border  -->
+                        <!-- iOS only "Next" button on the right border -->
                         <Image
                             Grid.Column="2"
                             Margin="10,0,0,0"
@@ -75,7 +75,7 @@
 
                         </StackLayout>
 
-                        <!--  iOS only "Next" button on the right border  -->
+                        <!-- iOS only "Next" button on the right border -->
                         <Image
                             Grid.Column="2"
                             Margin="10,0,0,0"
@@ -119,6 +119,7 @@
 
         <ListView
             Grid.Row="1"
+            CachingStrategy="RecycleElement"
             GroupDisplayBinding="{Binding Title}"
             IsGroupingEnabled="True"
             ItemSelected="ListView_ItemSelected"
