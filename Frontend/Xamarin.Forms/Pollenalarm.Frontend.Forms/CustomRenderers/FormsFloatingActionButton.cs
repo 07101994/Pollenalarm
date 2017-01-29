@@ -10,21 +10,21 @@ namespace Pollenalarm.Frontend.Forms.CustomRenderers
 {
     public class FormsFloatingActionButton : View
     {
-        public static readonly BindableProperty ImageNameProperty = BindableProperty.Create<FormsFloatingActionButton, string>(p => p.ImageName, string.Empty);
+        public static readonly BindableProperty ImageNameProperty = BindableProperty.Create(nameof(ImageName), typeof(string), typeof(FormsFloatingActionButton), null);
         public string ImageName
         {
             get { return (string)GetValue(ImageNameProperty); }
             set { SetValue(ImageNameProperty, value); }
         }
 
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create<FormsFloatingActionButton, ICommand>(p => p.Command, null);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(FormsFloatingActionButton), null);
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
 
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create<FormsFloatingActionButton, object>(p => p.CommandParameter, null);
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(FormsFloatingActionButton), null);
         public object CommandParameter
         {
             get { return GetValue(CommandParameterProperty); }
