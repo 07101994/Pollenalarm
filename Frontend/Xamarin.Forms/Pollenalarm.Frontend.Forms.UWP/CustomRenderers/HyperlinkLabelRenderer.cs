@@ -1,4 +1,4 @@
-﻿using Pollenalarm.Frontend.Forms.CustomRenderers;
+﻿using Pollenalarm.Frontend.Forms.CustomControls;
 using Pollenalarm.Frontend.Forms.UWP.CustomRenderers;
 using System;
 using System.Collections.Generic;
@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Xamarin.Forms;
@@ -21,18 +22,14 @@ namespace Pollenalarm.Frontend.Forms.UWP.CustomRenderers
         {
             base.OnElementChanged(e);
 
-            Control.Foreground = new SolidColorBrush(Colors.Blue);
-            Control.Tapped += LabelTapped;
-        }
-
-        private async void LabelTapped(object sender, TappedRoutedEventArgs e)
-        {
-            var website = Element.Text;
-
-            if (website.IndexOf("http://") == -1)
-                website = "http://" + website;
-
-            await Launcher.LaunchUriAsync(new Uri(website));
+            if (e.NewElement != null)
+            {
+                // Set TextView underlining
+                var underlinedText = new Underline();
+                underlinedText.Inlines.Add(new Run { Text = Control.Text });
+                Control.Text = string.Empty;
+                Control.Inlines.Add(underlinedText);
+            }
         }
     }
 }

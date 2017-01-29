@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Pollenalarm.Frontend.Forms.CustomRenderers
+namespace Pollenalarm.Frontend.Forms.CustomControls
 {
     public class FormsFloatingActionButton : View
     {

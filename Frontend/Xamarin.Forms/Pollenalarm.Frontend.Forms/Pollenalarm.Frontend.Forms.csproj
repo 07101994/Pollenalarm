@@ -41,8 +41,8 @@
     <Compile Include="Converters\IntToPollutionIconConverter.cs" />
     <Compile Include="Converters\IntToPollutionNameConverter.cs" />
     <Compile Include="Converters\IntToBoolConverter.cs" />
-    <Compile Include="CustomRenderers\FormsFloatingActionButton.cs" />
-    <Compile Include="CustomRenderers\HyperlinkLabel.cs" />
+    <Compile Include="CustomControls\FormsFloatingActionButton.cs" />
+    <Compile Include="CustomControls\HyperlinkLabel.cs" />
     <Compile Include="MarkupExtensions\TranslateExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bootstrapper.cs" />

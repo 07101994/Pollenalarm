@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Pollenalarm.Frontend.Forms.CustomRenderers;
+using Pollenalarm.Frontend.Forms.CustomControls;
 using Android.Support.Design.Widget;
 using Pollenalarm.Frontend.Forms.Droid.CustomRenderers;
 using System.IO;

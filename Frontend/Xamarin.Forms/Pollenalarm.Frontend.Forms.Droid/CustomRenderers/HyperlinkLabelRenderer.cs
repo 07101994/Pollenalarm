@@ -13,7 +13,12 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Android.Text.Util;
 using Pollenalarm.Frontend.Forms.Droid.CustomRenderers;
-using Pollenalarm.Frontend.Forms.CustomRenderers;
+using Pollenalarm.Frontend.Forms.CustomControls;
+using Android.Text;
+using Android.Text.Style;
+using Android.Support.V4.Content;
+using Android.Support.V4.Content.Res;
+using Android.Util;
 
 [assembly: ExportRenderer(typeof(HyperlinkLabel), typeof(HyperlinkLabelRenderer))]
 namespace Pollenalarm.Frontend.Forms.Droid.CustomRenderers
@@ -23,7 +28,12 @@ namespace Pollenalarm.Frontend.Forms.Droid.CustomRenderers
         protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
         {
             base.OnElementChanged(e);
-            Linkify.AddLinks(Control, MatchOptions.All);
+
+            if (e.NewElement != null)
+            {
+                // Set TextView underlining
+                Control.PaintFlags |= Android.Graphics.PaintFlags.UnderlineText;
+            }
         }
     }
 }

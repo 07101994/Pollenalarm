@@ -3,8 +3,8 @@
     x:Class="Pollenalarm.Frontend.Forms.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:android="clr-namespace:Pollenalarm.Frontend.Forms.CustomRenderers;assembly=Pollenalarm.Frontend.Forms"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:custom="clr-namespace:Pollenalarm.Frontend.Forms.CustomControls;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="{i18n:Translate AppTitle}">
 
@@ -186,20 +186,20 @@
         </ListView>
 
         <!-- Android only Floating Action Button -->
-        <android:FormsFloatingActionButton
+        <custom:FormsFloatingActionButton
             x:Name="AddButton"
             Margin="0"
             Command="{Binding NavigateToAddPlaceCommand}"
             ImageName="Add.png"
             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-100}"
             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-100}">
-            <android:FormsFloatingActionButton.IsVisible>
+            <custom:FormsFloatingActionButton.IsVisible>
                 <OnPlatform
                     x:TypeArguments="x:Boolean"
                     Android="True"
                     WinPhone="False"
                     iOS="False" />
-            </android:FormsFloatingActionButton.IsVisible>
-        </android:FormsFloatingActionButton>
+            </custom:FormsFloatingActionButton.IsVisible>
+        </custom:FormsFloatingActionButton>
     </RelativeLayout>
 </ContentPage>
