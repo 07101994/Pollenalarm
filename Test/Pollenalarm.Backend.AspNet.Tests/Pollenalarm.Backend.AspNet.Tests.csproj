@@ -52,7 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pollenalarm.Backend.AspNet\Pollenalarm.Backend.AspNet.csproj">
+    <ProjectReference Include="..\..\Backend\Pollenalarm.Backend.AspNet\Pollenalarm.Backend.AspNet.csproj">
       <Project>{976C8449-373A-4339-A0F7-F558D13AF0D6}</Project>
       <Name>Pollenalarm.Backend.AspNet</Name>
     </ProjectReference>
