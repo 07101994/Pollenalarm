@@ -51,8 +51,7 @@ namespace Pollenalarm.Frontend.Forms.Services
 
         public void NavigateTo(string pageKey, object parameter)
         {
-            lock (_pagesByKey)
-            {
+
                 if (_pagesByKey.ContainsKey(pageKey))
                 {
                     var type = _pagesByKey[pageKey];
@@ -104,7 +103,7 @@ namespace Pollenalarm.Frontend.Forms.Services
                             pageKey),
                         "pageKey");
                 }
-            }
+
         }
 
         public void Configure(string pageKey, Type pageType)

@@ -23,10 +23,7 @@ namespace Pollenalarm.Frontend.Forms
         public Bootstrapper(NavigationPage navigationPage = null)
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            // Navigation
-            if (navigationPage != null)
-                RegisterNavigationService(navigationPage);
+            SimpleIoc.Default.Reset();
 
             // Services
             SimpleIoc.Default.Register<IFileSystemService, FileSystemService>();
@@ -61,6 +58,7 @@ namespace Pollenalarm.Frontend.Forms
         public void RegisterNavigationService(NavigationPage navigationPage)
         {
             var navigationService = new NavigationService(navigationPage);
+
             navigationService.Configure(ViewNames.Main, typeof(MainPage));
             navigationService.Configure(ViewNames.Place, typeof(PlacePage));
             navigationService.Configure(ViewNames.Pollen, typeof(PollenPage));
@@ -69,6 +67,9 @@ namespace Pollenalarm.Frontend.Forms
             navigationService.Configure(ViewNames.About, typeof(AboutPage));
             navigationService.Configure(ViewNames.PollenSelection, typeof(PollenSelectionPage));
             navigationService.Configure(ViewNames.Search, typeof(SearchPage));
+
+            if (!SimpleIoc.Default.IsRegistered<INavigationService>())
+                SimpleIoc.Default.Unregister<INavigationService>();
 
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
         }

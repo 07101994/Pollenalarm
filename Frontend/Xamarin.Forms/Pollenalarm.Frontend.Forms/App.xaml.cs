@@ -23,8 +23,7 @@ namespace Pollenalarm.Frontend.Forms
             InitializeComponent();
 
             // Initialize Bootstrapper
-            if (Bootstrapper == null)
-                Bootstrapper = new Bootstrapper((NavigationPage)MainPage);
+            Bootstrapper = new Bootstrapper();
 
             // Create Navigation page
             var navigationPage = new NavigationPage(new MainPage());
@@ -33,12 +32,9 @@ namespace Pollenalarm.Frontend.Forms
             // Initialize NavigationService using the navigation page
             Bootstrapper.RegisterNavigationService(navigationPage);
 
-            // Spin-up application
-            if (MainPage == null)
-            {
-                MainPage = navigationPage;
-                MainPage.On<Xamarin.Forms.PlatformConfiguration.Windows>().SetToolbarPlacement(ToolbarPlacement.Bottom);
-            }
+            // Spin everything up
+            MainPage = navigationPage;
+            MainPage.On<Xamarin.Forms.PlatformConfiguration.Windows>().SetToolbarPlacement(ToolbarPlacement.Bottom);
         }
     }
 }
