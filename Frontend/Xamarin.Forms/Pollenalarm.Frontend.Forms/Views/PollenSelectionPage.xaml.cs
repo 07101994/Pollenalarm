@@ -32,5 +32,11 @@ namespace Pollenalarm.Frontend.Forms
             await App.Bootstrapper.PollenViewModel.SaveChangesAsync();
             base.OnDisappearing();
         }
+
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            // Unselect
+            (sender as ListView).SelectedItem = null;
+        }
     }
 }

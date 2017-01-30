@@ -1,19 +1,35 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pollenalarm.Core.Models
 {
-	public class Place : ISearchResult
+	public class Place : ViewModelBase, ISearchResult
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+
+        private string _Name;
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; RaisePropertyChanged(); }
+        }
+
         public string Zip { get; set; }
-        public int MaxPollutionToday { get; set; }
+
+        private int _MaxPollutionToday;
+        public int MaxPollutionToday
+        {
+            get { return _MaxPollutionToday; }
+            set { _MaxPollutionToday = value; RaisePropertyChanged(); }
+        }
+
         public bool IsCurrentPosition { get; set; }
 
         public ObservableCollection<Pollution> PollutionToday { get; set; }
@@ -34,7 +50,7 @@ namespace Pollenalarm.Core.Models
             if (PollutionToday.Any())
                 MaxPollutionToday = PollutionToday.Max(x => x.Intensity);
             else
-                MaxPollutionToday = -1;
+                MaxPollutionToday = 0;
         }
     }
 }

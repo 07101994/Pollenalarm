@@ -65,8 +65,11 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     }
 
                     IsLoading = true;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
 
-                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+                     var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
 
                     if (_CurrentPlace != null)
                     {
@@ -99,7 +102,10 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     _NavigationService.GoBack();
 
                     IsLoading = false;
-                }));
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                }, () => !IsLoading));
             }
         }
 
@@ -115,6 +121,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         return;
 
                     IsLoading = true;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
 
                     var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
 
@@ -133,6 +142,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     }
 
                     IsLoading = false;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
                 }));
             }
         }
@@ -145,11 +157,18 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
                 {
                     IsLoading = true;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
 
                     var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
                     if (geolocation == null)
                     {
                         OnLocationFailed?.Invoke(this, null);
+                        IsLoading = false;
+                        AddEditPlaceCommand.RaiseCanExecuteChanged();
+                        DeletePlaceCommand.RaiseCanExecuteChanged();
+                        GetCurrentPositionCommand.RaiseCanExecuteChanged();
                         return;
                     }
 
@@ -158,7 +177,10 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     PlaceZip = geolocation.Zip;
 
                     IsLoading = false;
-                }));
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                }, () => !IsLoading));
             }
         }
 

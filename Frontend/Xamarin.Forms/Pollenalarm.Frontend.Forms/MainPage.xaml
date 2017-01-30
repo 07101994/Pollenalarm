@@ -78,7 +78,7 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <RelativeLayout>
+    <Grid>
         <ListView
             x:Name="PlaceList"
             CachingStrategy="RecycleElement"
@@ -190,9 +190,9 @@
             x:Name="AddButton"
             Margin="0"
             Command="{Binding NavigateToAddPlaceCommand}"
-            ImageName="Add.png"
-            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-100}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-100}">
+            HorizontalOptions="End"
+            Icon="Add.png"
+            VerticalOptions="End">
             <custom:FormsFloatingActionButton.IsVisible>
                 <OnPlatform
                     x:TypeArguments="x:Boolean"
@@ -201,5 +201,5 @@
                     iOS="False" />
             </custom:FormsFloatingActionButton.IsVisible>
         </custom:FormsFloatingActionButton>
-    </RelativeLayout>
+    </Grid>
 </ContentPage>

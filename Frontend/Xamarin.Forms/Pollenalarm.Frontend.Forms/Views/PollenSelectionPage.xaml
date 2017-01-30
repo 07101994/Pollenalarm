@@ -7,9 +7,10 @@
     Title="Pollen">
     <ContentPage.Content>
         <ListView
-            CachingStrategy="RecycleElement"
             IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+            ItemSelected="ListView_ItemSelected"
             ItemsSource="{Binding Pollen}">
+
             <ListView.Margin>
                 <!-- Add some padding to the left on Windows, as the SwitchCell does not come with any margins for Windows yet -->
                 <OnPlatform
@@ -18,6 +19,7 @@
                     WinPhone="20,0,0,0"
                     iOS="0" />
             </ListView.Margin>
+
             <ListView.Header>
                 <StackLayout>
                     <StackLayout.Padding>

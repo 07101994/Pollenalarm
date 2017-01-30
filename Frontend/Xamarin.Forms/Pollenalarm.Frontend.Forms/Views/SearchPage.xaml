@@ -111,7 +111,7 @@
             x:Name="searchBar"
             Placeholder="{i18n:Translate SearchBarPlaceholder}"
             SearchCommand="{Binding SearchCommand}"
-            Text="{Binding SearchTerm, Mode=TwoWay}">
+            Text="{Binding SearchTerm}">
             <SearchBar.Margin>
                 <OnPlatform x:TypeArguments="Thickness" WinPhone="{StaticResource DefaultSicknessWinPhone}" />
             </SearchBar.Margin>
@@ -121,6 +121,7 @@
             Grid.Row="1"
             CachingStrategy="RecycleElement"
             GroupDisplayBinding="{Binding Title}"
+            HasUnevenRows="True"
             IsGroupingEnabled="True"
             ItemSelected="ListView_ItemSelected"
             ItemTemplate="{StaticResource SearchResultDataTemplateSelector}"

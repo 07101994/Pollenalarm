@@ -19,10 +19,6 @@ using System.IO;
 [assembly:ExportRenderer(typeof(FormsFloatingActionButton), typeof(FloatingActionButtonenderer))]
 namespace Pollenalarm.Frontend.Forms.Droid.CustomRenderers
 {
-    //public class FloatingActionButtonenderer2 : ViewRenderer<FormsFloatingActionButton, View>
-    //{
-    //}
-
     public class FloatingActionButtonenderer : ViewRenderer<FormsFloatingActionButton, FrameLayout>
     {
         private const int MARGIN_DIPS = 16;
@@ -68,7 +64,7 @@ namespace Pollenalarm.Frontend.Forms.Droid.CustomRenderers
                 this.Element.PropertyChanged += HandlePropertyChanged;
             }
 
-            SetFabImage(Element.ImageName);
+            SetFabImage(Element.Icon);
             fab.Click += Fab_Click;
 
             var frame = new FrameLayout(context);
@@ -83,9 +79,9 @@ namespace Pollenalarm.Frontend.Forms.Droid.CustomRenderers
             {
                 Tracker.UpdateLayout();
             }
-            else if (e.PropertyName == FormsFloatingActionButton.ImageNameProperty.PropertyName)
+            else if (e.PropertyName == FormsFloatingActionButton.IconProperty.PropertyName)
             {
-                SetFabImage(Element.ImageName);
+                SetFabImage(Element.Icon);
             }
         }
 

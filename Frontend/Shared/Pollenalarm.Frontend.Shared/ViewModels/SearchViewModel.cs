@@ -43,6 +43,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 				return _SearchCommand ?? (_SearchCommand = new RelayCommand(async () =>
 				{
                     IsLoading = true;
+                    SearchCommand.RaiseCanExecuteChanged();
+
                     SearchResults.Clear();
 
                     // Trim
@@ -50,6 +52,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     if (trimmedSearchTerm.Length == 0)
                     {
                         IsLoading = false;
+                        SearchCommand.RaiseCanExecuteChanged();
                         return;
                     }
 
@@ -77,7 +80,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     SearchResults.Add(placeResults);
 
                     IsLoading = false;
-                }));
+                    SearchCommand.RaiseCanExecuteChanged();
+                }, () => !IsLoading));
 			}
 		}
 
