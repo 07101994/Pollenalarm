@@ -81,7 +81,7 @@
         <ListView
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
-            IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             ItemSelected="PlacesList_ItemSelected"
             ItemsSource="{Binding Places}"
             RefreshCommand="{Binding RefreshCommand}">

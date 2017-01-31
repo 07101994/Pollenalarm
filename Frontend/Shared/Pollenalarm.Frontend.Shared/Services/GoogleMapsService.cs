@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Pollenalarm.Core;
-using Pollenalarm.Frontend.Shared.Models;
-using Newtonsoft.Json;
-using System.Linq;
 using System.Collections.Generic;
-using System.Collections;
+using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Pollenalarm.Core;
 using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Shared.Models;
 
 namespace Pollenalarm.Frontend.Shared
 {

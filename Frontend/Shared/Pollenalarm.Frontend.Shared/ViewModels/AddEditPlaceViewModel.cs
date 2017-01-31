@@ -53,7 +53,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 						return;
 					}
 
-					IsLoading = true;
+					IsBusy = true;
 					AddEditPlaceCommand.RaiseCanExecuteChanged();
 					DeletePlaceCommand.RaiseCanExecuteChanged();
 					GetCurrentPositionCommand.RaiseCanExecuteChanged();
@@ -90,11 +90,11 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 					_PlaceZip = string.Empty;
 					_NavigationService.GoBack();
 
-					IsLoading = false;
+					IsBusy = false;
 					AddEditPlaceCommand.RaiseCanExecuteChanged();
 					DeletePlaceCommand.RaiseCanExecuteChanged();
 					GetCurrentPositionCommand.RaiseCanExecuteChanged();
-				}, () => !IsLoading));
+				}, () => !IsBusy));
 			}
 		}
 
@@ -109,7 +109,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 					if (!await _DialogService.DisplayConfirmationAsync(_LocalizationService.GetString("DeletePlaceTitle"), _LocalizationService.GetString("DeletePlaceMessage"), _LocalizationService.GetString("Delete"), _LocalizationService.GetString("Cancel")))
 						return;
 
-					IsLoading = true;
+					IsBusy = true;
 					AddEditPlaceCommand.RaiseCanExecuteChanged();
 					DeletePlaceCommand.RaiseCanExecuteChanged();
 					GetCurrentPositionCommand.RaiseCanExecuteChanged();
@@ -130,7 +130,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 						}
 					}
 
-					IsLoading = false;
+					IsBusy = false;
 					AddEditPlaceCommand.RaiseCanExecuteChanged();
 					DeletePlaceCommand.RaiseCanExecuteChanged();
 					GetCurrentPositionCommand.RaiseCanExecuteChanged();
@@ -145,7 +145,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			{
 				return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
 				{
-					IsLoading = true;
+					IsBusy = true;
 					AddEditPlaceCommand.RaiseCanExecuteChanged();
 					DeletePlaceCommand.RaiseCanExecuteChanged();
 					GetCurrentPositionCommand.RaiseCanExecuteChanged();
@@ -153,7 +153,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 					var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
 					if (geolocation == null)
 					{						
-						IsLoading = false;
+						IsBusy = false;
 						AddEditPlaceCommand.RaiseCanExecuteChanged();
 						DeletePlaceCommand.RaiseCanExecuteChanged();
 						GetCurrentPositionCommand.RaiseCanExecuteChanged();
@@ -166,11 +166,11 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 					PlaceName = geolocation.Name;
 					PlaceZip = geolocation.Zip;
 
-					IsLoading = false;
+					IsBusy = false;
 					AddEditPlaceCommand.RaiseCanExecuteChanged();
 					DeletePlaceCommand.RaiseCanExecuteChanged();
 					GetCurrentPositionCommand.RaiseCanExecuteChanged();
-				}, () => !IsLoading));
+				}, () => !IsBusy));
 			}
 		}
 

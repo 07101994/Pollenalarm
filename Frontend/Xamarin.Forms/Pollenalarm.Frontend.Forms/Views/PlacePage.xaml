@@ -108,7 +108,7 @@
                     x:TypeArguments="ToolbarItemOrder"
                     Android="Secondary"
                     WinPhone="Secondary"
-                    iOS="Secondary" />
+                    iOS="Primary" />
             </ToolbarItem.Order>
         </ToolbarItem>
     </TabbedPage.ToolbarItems>
@@ -119,7 +119,7 @@
                 x:TypeArguments="FileImageSource"
                 Android=""
                 WinPhone=""
-                iOS="Calendar" />
+                iOS="Calendar.png" />
         </ContentPage.Icon>
         <Grid>
             <Label
@@ -144,7 +144,7 @@
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
                 IsRunning="True"
-                IsVisible="{Binding IsLoading}"
+                IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
         </Grid>
     </ContentPage>
@@ -181,7 +181,7 @@
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
                 IsRunning="True"
-                IsVisible="{Binding IsLoading}"
+                IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
         </Grid>
     </ContentPage>
@@ -217,7 +217,7 @@
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
                 IsRunning="True"
-                IsVisible="{Binding IsLoading}"
+                IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
         </Grid>
     </ContentPage>

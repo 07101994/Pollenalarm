@@ -151,7 +151,7 @@
             HeightRequest="{StaticResource ActivityIndicatorHeight}"
             HorizontalOptions="Fill"
             IsRunning="True"
-            IsVisible="{Binding IsLoading}"
+            IsVisible="{Binding IsBusy}"
             VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
     </Grid>
 </ContentPage>
