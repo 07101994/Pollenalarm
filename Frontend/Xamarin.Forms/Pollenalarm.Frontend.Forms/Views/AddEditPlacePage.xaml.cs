@@ -1,16 +1,11 @@
-﻿using Pollenalarm.Frontend.Forms.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System;
+using Pollenalarm.Frontend.Forms.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+	[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddEditPlacePage : ContentPage
     {
         public AddEditPlacePage()

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace Pollenalarm.Frontend.Forms.Services
 {
-    public interface ICultureService
-    {
-        CultureInfo GetCurrentCultureInfo();
-    }
+	public interface ICultureService
+	{
+		CultureInfo GetCurrentCultureInfo();
+	}
 }

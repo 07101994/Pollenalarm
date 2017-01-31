@@ -108,7 +108,6 @@
         </Grid.RowDefinitions>
 
         <SearchBar
-            x:Name="searchBar"
             Placeholder="{i18n:Translate SearchBarPlaceholder}"
             SearchCommand="{Binding SearchCommand}"
             Text="{Binding SearchTerm}">
