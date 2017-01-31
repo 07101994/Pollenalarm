@@ -81,14 +81,12 @@
     <Grid>
         <ListView
             x:Name="PlaceList"
-            CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
             IsRefreshing="{Binding IsLoading, Mode=OneWay}"
             ItemSelected="PlacesList_ItemSelected"
             ItemsSource="{Binding Places}"
-            RefreshCommand="{Binding RefreshCommand}"
-            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+            RefreshCommand="{Binding RefreshCommand}">
 
             <ListView.Header>
                 <AbsoluteLayout HeightRequest="150">
