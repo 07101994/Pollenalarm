@@ -26,7 +26,11 @@ namespace Pollenalarm.Frontend.Forms
 			{
 				// Hide Refresh, as we use pull-to-refresh
 				ToolbarItems.Remove(RefreshItem);
+
 			});
+
+
+			var listView = new ListView();
 		}
 
 		protected override async void OnAppearing()
