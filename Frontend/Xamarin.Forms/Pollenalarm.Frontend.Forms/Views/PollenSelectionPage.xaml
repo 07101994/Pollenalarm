@@ -6,6 +6,7 @@
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="Pollen">
     <ContentPage.Content>
+		<Grid>
         <ListView ItemSelected="ListView_ItemSelected" ItemsSource="{Binding Pollen}">
 
 	            <ListView.Margin>

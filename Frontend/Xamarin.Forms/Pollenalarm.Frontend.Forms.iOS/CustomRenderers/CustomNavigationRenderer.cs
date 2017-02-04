@@ -1,6 +1,6 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Pollenalarm.Frontend.Forms.iOS.CustomRenderers;
 using UIKit;
 using Xamarin.Forms;
@@ -9,6 +9,9 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportRenderer(typeof(NavigationPage), typeof(CustomNavigationRenderer))]
 namespace Pollenalarm.Frontend.Forms.iOS.CustomRenderers
 {
+	/// <summary>
+	/// Custom navigation renderer to move the 'Settings' button to the left on iOS
+	/// </summary>
 	public class CustomNavigationRenderer : NavigationRenderer
 	{
 		public override void PushViewController(UIKit.UIViewController viewController, bool animated)
@@ -18,21 +21,24 @@ namespace Pollenalarm.Frontend.Forms.iOS.CustomRenderers
 			var rightList = new List<UIBarButtonItem>();
 			var leftList = new List<UIBarButtonItem>();
 
-			if (TopViewController.NavigationItem.RightBarButtonItems.Length == 1)
-				rightList.Add(TopViewController.NavigationItem.RightBarButtonItems[0]);
-			else
+			foreach (var item in TopViewController.NavigationItem.RightBarButtonItems)
 			{
-                for (var i = 0; i < TopViewController.NavigationItem.RightBarButtonItems.Length; i++)
-                {
-                    if (i % 2 != 0)
-                        rightList.Add(TopViewController.NavigationItem.RightBarButtonItems[i]);
-                    else
-                        leftList.Add(TopViewController.NavigationItem.RightBarButtonItems[i]);
-                }
+				// Get original Xamarin.Forms's ToolBar item through reflection
+				var controller = (ToolbarItem)item.GetType().GetProperty("Controller",
+				   BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).GetValue(item);
+
+				// Check if it is a settings icon by compating 
+				if (controller.AutomationId != null && controller.AutomationId.ToLower().Contains("settings"))
+					leftList.Add(item);
+				else
+					rightList.Add(item);
 			}
 
-			TopViewController.NavigationItem.LeftBarButtonItems = leftList.ToArray();
-			TopViewController.NavigationItem.RightBarButtonItems = rightList.ToArray();
+			if (leftList.Any())
+				TopViewController.NavigationItem.LeftBarButtonItems = leftList.ToArray();
+
+			if (rightList.Any())
+				TopViewController.NavigationItem.RightBarButtonItems = rightList.ToArray();
 		}
 	}
 }
