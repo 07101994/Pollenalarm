@@ -6,12 +6,11 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-//[assembly: ExportRenderer(typeof(NavigationPage), typeof(CustomNavigationRenderer))]
+[assembly: ExportRenderer(typeof(NavigationPage), typeof(CustomNavigationRenderer))]
 namespace Pollenalarm.Frontend.Forms.iOS.CustomRenderers
 {
 	public class CustomNavigationRenderer : NavigationRenderer
 	{
-
 		public override void PushViewController(UIKit.UIViewController viewController, bool animated)
 		{
 			base.PushViewController(viewController, animated);
@@ -23,16 +22,13 @@ namespace Pollenalarm.Frontend.Forms.iOS.CustomRenderers
 				rightList.Add(TopViewController.NavigationItem.RightBarButtonItems[0]);
 			else
 			{
-				var count = 0;
-				foreach (var item in TopViewController.NavigationItem.RightBarButtonItems)
-				{
-					if (count % 2 != 0)
-						rightList.Add(item);
-					else
-						leftList.Add(item);
-
-					count++;
-				}
+                for (var i = 0; i < TopViewController.NavigationItem.RightBarButtonItems.Length; i++)
+                {
+                    if (i % 2 != 0)
+                        rightList.Add(TopViewController.NavigationItem.RightBarButtonItems[i]);
+                    else
+                        leftList.Add(TopViewController.NavigationItem.RightBarButtonItems[i]);
+                }
 			}
 
 			TopViewController.NavigationItem.LeftBarButtonItems = leftList.ToArray();

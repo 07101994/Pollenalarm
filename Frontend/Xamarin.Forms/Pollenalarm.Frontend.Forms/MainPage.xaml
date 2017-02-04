@@ -64,6 +64,7 @@
 
         <ToolbarItem
             Name="{i18n:Translate Settings}"
+            AutomationId="SettingsToolbarItem"
             Command="{Binding NavigateToSettingsCommand}"
             Icon="Settings"
             Priority="3">
@@ -87,7 +88,13 @@
             RefreshCommand="{Binding RefreshCommand}">
 
             <ListView.Header>
-                <AbsoluteLayout HeightRequest="150">
+                <AbsoluteLayout>
+                    <AbsoluteLayout.HeightRequest>
+                        <OnIdiom
+                            x:TypeArguments="x:Double"
+                            Phone="150"
+                            Tablet="300" />
+                    </AbsoluteLayout.HeightRequest>
                     <Image
                         AbsoluteLayout.LayoutBounds="0,0,1,1"
                         AbsoluteLayout.LayoutFlags="All"

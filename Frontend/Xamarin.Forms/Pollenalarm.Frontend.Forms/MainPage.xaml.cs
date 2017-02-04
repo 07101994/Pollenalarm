@@ -28,9 +28,6 @@ namespace Pollenalarm.Frontend.Forms
 				ToolbarItems.Remove(RefreshItem);
 
 			});
-
-
-			var listView = new ListView();
 		}
 
 		protected override async void OnAppearing()
