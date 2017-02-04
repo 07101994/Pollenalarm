@@ -10,29 +10,21 @@
             Name="Delete"
             Command="{Binding DeletePlaceCommand}"
             Icon="Delete.png"
-            Priority="0">
-            <ToolbarItem.Order>
-                <OnPlatform
-                    x:TypeArguments="ToolbarItemOrder"
-                    Android="Primary"
-                    WinPhone="Primary"
-                    iOS="Primary" />
-            </ToolbarItem.Order>
-        </ToolbarItem>
+            Order="Primary"
+            Priority="0" />
+
+        <ToolbarItem
+            Name="Local position"
+            Command="{Binding GetCurrentPositionCommand}"
+            Icon="Location.png"
+            Order="Primary"
+            Priority="1" />
     </ContentPage.ToolbarItems>
 
     <Grid>
-        <StackLayout>
-            <StackLayout.Padding>
-                <OnPlatform
-                    x:TypeArguments="Thickness"
-                    Android="{StaticResource DefaultSicknessAndroid}"
-                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                    iOS="{StaticResource DefaultSicknessiOS}" />
-            </StackLayout.Padding>
+        <StackLayout Padding="{StaticResource DefaultThickness}" Spacing="{StaticResource DefaultMargin}">
             <Entry Placeholder="Name" Text="{Binding PlaceName, Mode=TwoWay}" />
             <Entry Placeholder="Zip" Text="{Binding PlaceZip, Mode=TwoWay}" />
-            <Button Command="{Binding GetCurrentPositionCommand}" Text="Use current location" />
             <Button
                 x:Name="AddButton"
                 Command="{Binding AddEditPlaceCommand}"
@@ -43,7 +35,7 @@
             HeightRequest="{StaticResource ActivityIndicatorHeight}"
             HorizontalOptions="Fill"
             IsRunning="True"
-            IsVisible="{Binding IsLoading}"
+            IsVisible="{Binding IsBusy}"
             VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
     </Grid>
 </ContentPage>

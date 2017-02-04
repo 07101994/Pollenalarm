@@ -5,26 +5,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <Thickness
-                x:Key="DefaultSicknessiOS"
-                Bottom="10"
-                Left="10"
-                Right="10"
-                Top="10" />
-            <Thickness
-                x:Key="DefaultSicknessAndroid"
-                Bottom="14"
-                Left="14"
-                Right="14"
-                Top="14" />
-            <Thickness
-                x:Key="DefaultSicknessWinPhone"
-                Bottom="20"
-                Left="20"
-                Right="20"
-                Top="20" />
+            <!-- Margin -->
+            <OnPlatform
+                x:Key="DefaultMargin"
+                x:TypeArguments="x:Double"
+                Android="14"
+                WinPhone="20"
+                iOS="10" />
 
-            <!--  Font  -->
+            <!-- Thickness -->
+            <Thickness
+                x:Key="DefaultThickness"
+                Bottom="{StaticResource DefaultMargin}"
+                Left="{StaticResource DefaultMargin}"
+                Right="{StaticResource DefaultMargin}"
+                Top="{StaticResource DefaultMargin}" />
+
+            <!-- Font -->
             <OnPlatform
                 x:Key="DefaultFontSize"
                 x:TypeArguments="x:Double"
@@ -38,7 +35,7 @@
                 WinPhone="14"
                 iOS="12" />
 
-            <!--  Activity Indicator  -->
+            <!-- Activity Indicator -->
             <OnPlatform
                 x:Key="ActivityIndicatorHeight"
                 x:TypeArguments="x:Double"

@@ -27,8 +27,8 @@
                             <Grid.Padding>
                                 <OnPlatform
                                     x:TypeArguments="Thickness"
-                                    Android="{StaticResource DefaultSicknessAndroid}"
-                                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                    Android="{StaticResource DefaultThickness}"
+                                    WinPhone="{StaticResource DefaultThickness}"
                                     iOS="15, 8, 10, 8" />
                             </Grid.Padding>
 
@@ -125,17 +125,10 @@
         </ContentPage.Icon>
         <Grid>
             <Label
+                Margin="{StaticResource DefaultThickness}"
                 HorizontalTextAlignment="Center"
                 IsVisible="{Binding ShowNoPlacesWarningToday}}"
-                Text="{i18n:Translate NoPollutionWarningText}">
-                <Label.Margin>
-                    <OnPlatform
-                        x:TypeArguments="Thickness"
-                        Android="{StaticResource DefaultSicknessAndroid}"
-                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                        iOS="{StaticResource DefaultSicknessiOS}" />
-                </Label.Margin>
-            </Label>
+                Text="{i18n:Translate NoPollutionWarningText}" />
             <ListView
                 x:Name="ListToday"
                 CachingStrategy="RecycleElement"
@@ -161,17 +154,10 @@
         </ContentPage.Icon>
         <Grid>
             <Label
+                Margin="{StaticResource DefaultThickness}"
                 HorizontalTextAlignment="Center"
                 IsVisible="{Binding ShowNoPlacesWarningTomorrow}"
-                Text="{i18n:Translate NoPollutionWarningText}">
-                <Label.Margin>
-                    <OnPlatform
-                        x:TypeArguments="Thickness"
-                        Android="{StaticResource DefaultSicknessAndroid}"
-                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                        iOS="{StaticResource DefaultSicknessiOS}" />
-                </Label.Margin>
-            </Label>
+                Text="{i18n:Translate NoPollutionWarningText}" />
 
             <ListView
                 x:Name="ListTomorrow"
@@ -198,17 +184,10 @@
         </ContentPage.Icon>
         <Grid>
             <Label
+                Margin="{StaticResource DefaultThickness}"
                 HorizontalTextAlignment="Center"
                 IsVisible="{Binding ShowNoPlacesWarningAfterTomorrow}"
-                Text="{i18n:Translate NoPollutionWarningText}">
-                <Label.Margin>
-                    <OnPlatform
-                        x:TypeArguments="Thickness"
-                        Android="{StaticResource DefaultSicknessAndroid}"
-                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                        iOS="{StaticResource DefaultSicknessiOS}" />
-                </Label.Margin>
-            </Label>
+                Text="{i18n:Translate NoPollutionWarningText}" />
             <ListView
                 x:Name="ListAfterTomorrow"
                 CachingStrategy="RecycleElement"

@@ -6,19 +6,10 @@
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="Settings">
     <ScrollView>
-        <StackLayout>
-            <StackLayout.Padding>
-                <OnPlatform
-                    x:TypeArguments="Thickness"
-                    Android="{StaticResource DefaultSicknessAndroid}"
-                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                    iOS="{StaticResource DefaultSicknessiOS}" />
-            </StackLayout.Padding>
+        <StackLayout Padding="{StaticResource DefaultThickness}">
 
             <!-- Location -->
-            <Label
-                FontAttributes="Bold"
-                Text="{i18n:Translate Location}" />
+            <Label FontAttributes="Bold" Text="{i18n:Translate Location}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -36,9 +27,7 @@
                     Toggled="Settings_Changed"
                     VerticalOptions="Center" />
             </Grid>
-            <Label
-                FontSize="Micro"
-                Text="{i18n:Translate LocationSettingsDetails}" />
+            <Label FontSize="Micro" Text="{i18n:Translate LocationSettingsDetails}" />
 
             <!-- Misc -->
             <Label

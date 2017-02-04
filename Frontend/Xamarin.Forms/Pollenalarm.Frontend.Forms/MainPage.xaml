@@ -127,8 +127,8 @@
                             <Grid.Padding>
                                 <OnPlatform
                                     x:TypeArguments="Thickness"
-                                    Android="{StaticResource DefaultSicknessAndroid}"
-                                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                    Android="{StaticResource DefaultThickness}"
+                                    WinPhone="{StaticResource DefaultThickness}"
                                     iOS="15, 8, 10, 8" />
                             </Grid.Padding>
 

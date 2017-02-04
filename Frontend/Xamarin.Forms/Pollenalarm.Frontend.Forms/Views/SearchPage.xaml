@@ -20,8 +20,8 @@
                         <Grid.Padding>
                             <OnPlatform
                                 x:TypeArguments="Thickness"
-                                Android="{StaticResource DefaultSicknessAndroid}"
-                                WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                Android="{StaticResource DefaultThickness}"
+                                WinPhone="{StaticResource DefaultThickness}"
                                 iOS="15, 8, 10, 8" />
                         </Grid.Padding>
 
@@ -60,8 +60,8 @@
                         <Grid.Padding>
                             <OnPlatform
                                 x:TypeArguments="Thickness"
-                                Android="{StaticResource DefaultSicknessAndroid}"
-                                WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                Android="{StaticResource DefaultThickness}"
+                                WinPhone="{StaticResource DefaultThickness}"
                                 iOS="15, 8, 10, 8" />
                         </Grid.Padding>
 
@@ -113,7 +113,7 @@
             SearchCommand="{Binding SearchCommand}"
             Text="{Binding SearchTerm}">
             <SearchBar.Margin>
-                <OnPlatform x:TypeArguments="Thickness" WinPhone="{StaticResource DefaultSicknessWinPhone}" />
+                <OnPlatform x:TypeArguments="Thickness" WinPhone="{StaticResource DefaultThickness}" />
             </SearchBar.Margin>
         </SearchBar>
 
@@ -133,8 +133,8 @@
                             <Grid.Padding>
                                 <OnPlatform
                                     x:TypeArguments="Thickness"
-                                    Android="{StaticResource DefaultSicknessAndroid}"
-                                    WinPhone="{StaticResource DefaultSicknessWinPhone}"
+                                    Android="{StaticResource DefaultThickness}"
+                                    WinPhone="{StaticResource DefaultThickness}"
                                     iOS="15, 8, 10, 8" />
                             </Grid.Padding>
                             <Label

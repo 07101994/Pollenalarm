@@ -7,14 +7,7 @@
     Title="About">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Spacing="0,0,0,10">
-                <StackLayout.Padding>
-                    <OnPlatform
-                        x:TypeArguments="Thickness"
-                        Android="{StaticResource DefaultSicknessAndroid}"
-                        WinPhone="{StaticResource DefaultSicknessWinPhone}"
-                        iOS="{StaticResource DefaultSicknessiOS}" />
-                </StackLayout.Padding>
+            <StackLayout Padding="{StaticResource DefaultThickness}" Spacing="0,0,0,10">
 
                 <Label FontAttributes="Bold" Text="Version" />
                 <Label FontSize="Small" Text="0.1 Alpha" />

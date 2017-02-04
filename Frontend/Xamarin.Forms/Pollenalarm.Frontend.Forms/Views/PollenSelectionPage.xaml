@@ -6,10 +6,7 @@
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     Title="Pollen">
     <ContentPage.Content>
-        <ListView
-            IsRefreshing="{Binding IsLoading, Mode=OneWay}"
-            ItemSelected="ListView_ItemSelected"
-            ItemsSource="{Binding Pollen}">
+        <ListView ItemSelected="ListView_ItemSelected" ItemsSource="{Binding Pollen}">
 
             <ListView.Margin>
                 <!-- Add some padding to the left on Windows, as the SwitchCell does not come with any margins for Windows yet -->
@@ -26,7 +23,7 @@
                         <!-- WinPhone margin has been set for the whole ListView due to SwitchCell issues on Windows -->
                         <OnPlatform
                             x:TypeArguments="Thickness"
-                            Android="{StaticResource DefaultSicknessAndroid}"
+                            Android="{StaticResource DefaultThickness}"
                             WinPhone="0"
                             iOS="15, 8, 10, 8" />
                     </StackLayout.Padding>
