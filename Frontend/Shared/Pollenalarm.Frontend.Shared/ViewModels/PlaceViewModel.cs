@@ -1,14 +1,11 @@
-﻿using System;
-using Pollenalarm.Core.Models;
-using Pollenalarm.Frontend.Shared.ViewModels;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using System.Linq;
+using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
+using Pollenalarm.Core.Models;
 using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using IDialogService = Pollenalarm.Frontend.Shared.Services.IDialogService;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
@@ -16,10 +13,6 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 	public class PlaceViewModel : AsyncViewModelBase
 	{
         private INavigationService _NavigationService;
-        private IFileSystemService _FileSystemService;
-        private IDialogService _DialogService;
-        private ILocalizationService _LocalizationService;
-        private PlaceService _PlaceService;
         private PollenService _PollenService;
 
         private Place _CurrentPlace;
@@ -29,9 +22,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			set { _CurrentPlace = value; RaisePropertyChanged(); }
         }
 
-        public bool ShowNoPlacesWarningToday { get { return !CurrentPlace.PollutionToday.Any() && !IsLoading; }}
-        public bool ShowNoPlacesWarningTomorrow { get { return !CurrentPlace.PollutionTomorrow.Any() && !IsLoading; }}
-        public bool ShowNoPlacesWarningAfterTomorrow { get { return !CurrentPlace.PollutionAfterTomorrow.Any() && !IsLoading; } }
+        public bool ShowNoPlacesWarningToday { get { return !CurrentPlace.PollutionToday.Any() && !IsBusy; }}
+        public bool ShowNoPlacesWarningTomorrow { get { return !CurrentPlace.PollutionTomorrow.Any() && !IsBusy; }}
+        public bool ShowNoPlacesWarningAfterTomorrow { get { return !CurrentPlace.PollutionAfterTomorrow.Any() && !IsBusy; } }
 
 
         private RelayCommand _NavigateToEditPlaceCommand;
@@ -92,19 +85,15 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, IDialogService dialogService, ILocalizationService localizationService, PlaceService placeService, PollenService pollenService)
+        public PlaceViewModel(INavigationService navigationService, PollenService pollenService)
 		{
             _NavigationService = navigationService;
-            _FileSystemService = fileSystemService;
-            _DialogService = dialogService;
-            _LocalizationService = localizationService;
-            _PlaceService = placeService;
             _PollenService = pollenService;
         }
 
         public async Task RefreshAsync()
         {
-            IsLoading = true;
+            IsBusy = true;
             IsLoaded = false;
 
             RaisePropertyChanged(nameof(ShowNoPlacesWarningToday));
@@ -125,7 +114,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             RaisePropertyChanged(nameof(ShowNoPlacesWarningAfterTomorrow));
 
             IsLoaded = true;
-            IsLoading = false;
+            IsBusy = false;
         }
 	}
 }

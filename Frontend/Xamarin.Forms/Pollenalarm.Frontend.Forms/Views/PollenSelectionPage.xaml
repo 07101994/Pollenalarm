@@ -8,14 +8,14 @@
     <ContentPage.Content>
         <ListView ItemSelected="ListView_ItemSelected" ItemsSource="{Binding Pollen}">
 
-            <ListView.Margin>
-                <!-- Add some padding to the left on Windows, as the SwitchCell does not come with any margins for Windows yet -->
-                <OnPlatform
-                    x:TypeArguments="Thickness"
-                    Android="0"
-                    WinPhone="20,0,0,0"
-                    iOS="0" />
-            </ListView.Margin>
+	            <ListView.Margin>
+	                <!-- Add some padding to the left on Windows, as the SwitchCell does not come with any margins for Windows yet -->
+	                <OnPlatform
+	                    x:TypeArguments="Thickness"
+	                    Android="0"
+	                    WinPhone="20,0,0,0"
+	                    iOS="0" />
+	            </ListView.Margin>
 
             <ListView.Header>
                 <StackLayout>
@@ -28,20 +28,28 @@
                             iOS="15, 8, 10, 8" />
                     </StackLayout.Padding>
 
-                    <Label
-                        Margin="0,10,0,0"
-                        FontAttributes="Bold"
-                        Text="{i18n:Translate SelectPollen}" />
+	                    <Label
+	                        Margin="0,10,0,0"
+	                        FontAttributes="Bold"
+	                        Text="{i18n:Translate SelectPollen}" />
 
-                    <Label FontSize="Small" Text="{i18n:Translate SelectPollenText}" />
-                </StackLayout>
-            </ListView.Header>
+	                    <Label FontSize="Small" Text="{i18n:Translate SelectPollenText}" />
+	                </StackLayout>
+	            </ListView.Header>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <SwitchCell On="{Binding IsSelected}" Text="{Binding Name}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+	            <ListView.ItemTemplate>
+	                <DataTemplate>
+	                    <SwitchCell On="{Binding IsSelected}" Text="{Binding Name}" />
+	                </DataTemplate>
+	            </ListView.ItemTemplate>
+	        </ListView>
+
+			<ActivityIndicator
+	            HeightRequest="{StaticResource ActivityIndicatorHeight}"
+	            HorizontalOptions="Fill"
+	            IsRunning="True"
+	            IsVisible="{Binding IsBusy}"
+	            VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+		</Grid>
     </ContentPage.Content>
 </ContentPage>

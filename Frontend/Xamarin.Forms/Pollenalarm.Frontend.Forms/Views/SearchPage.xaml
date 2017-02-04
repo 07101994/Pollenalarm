@@ -108,7 +108,6 @@
         </Grid.RowDefinitions>
 
         <SearchBar
-            x:Name="searchBar"
             Placeholder="{i18n:Translate SearchBarPlaceholder}"
             SearchCommand="{Binding SearchCommand}"
             Text="{Binding SearchTerm}">
@@ -152,7 +151,7 @@
             HeightRequest="{StaticResource ActivityIndicatorHeight}"
             HorizontalOptions="Fill"
             IsRunning="True"
-            IsVisible="{Binding IsLoading}"
+            IsVisible="{Binding IsBusy}"
             VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
     </Grid>
 </ContentPage>

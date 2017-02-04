@@ -1,22 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
 	public class AsyncViewModelBase : ViewModelBase
 	{
-        #region Properties
-
-        private bool _IsLoading = false;
-		public bool IsLoading
+		private bool _IsBusy = false;
+		public bool IsBusy
 		{
-			get { return _IsLoading; }
-			set { _IsLoading = value; RaisePropertyChanged(); }
+			get { return _IsBusy; }
+			set { _IsBusy = value; RaisePropertyChanged(); }
 		}
 
 		private bool _IsLoaded = false;
@@ -25,12 +17,5 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			get { return _IsLoaded; }
 			set { _IsLoaded = value; RaisePropertyChanged(); }
 		}
-
-		#endregion
-
-		public AsyncViewModelBase()
-		{
-
-		}
-    }
+	}
 }

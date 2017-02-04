@@ -1,25 +1,17 @@
-﻿using Pollenalarm.Frontend.Forms.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System;
+using Pollenalarm.Frontend.Forms.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+	[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddEditPlacePage : ContentPage
     {
         public AddEditPlacePage()
         {
             InitializeComponent();
             BindingContext = App.Bootstrapper.AddEditPlaceViewModel;
-
-            App.Bootstrapper.AddEditPlaceViewModel.OnInvalidEntries += PlaceViewModel_OnInvalidEntries;
-            App.Bootstrapper.AddEditPlaceViewModel.OnLocationFailed += PlaceViewModel_OnLocationFailed;
 
 			if (App.Bootstrapper.PlaceViewModel.CurrentPlace != null)
 			{
@@ -34,23 +26,6 @@ namespace Pollenalarm.Frontend.Forms.Views
 				AddButton.Text = "Add";
 				ToolbarItems.Remove(DeleteToolbarItem);
 			}
-        }
-
-        protected override void OnDisappearing()
-        {
-            // Unsubscribe
-            App.Bootstrapper.AddEditPlaceViewModel.OnInvalidEntries -= PlaceViewModel_OnInvalidEntries;
-            App.Bootstrapper.AddEditPlaceViewModel.OnLocationFailed -= PlaceViewModel_OnLocationFailed;
-        }
-
-        private void PlaceViewModel_OnInvalidEntries(object sender, EventArgs e)
-        {
-            DisplayAlert(Strings.InvalidEntriesTitle, Strings.InvalidEntriesMessage, Strings.OK);
-        }
-
-        private void PlaceViewModel_OnLocationFailed(object sender, EventArgs e)
-        {
-            DisplayAlert(Strings.GeoLocationFailedTitle, Strings.GeoLocationFailedMessage, Strings.OK);
         }
     }
 }

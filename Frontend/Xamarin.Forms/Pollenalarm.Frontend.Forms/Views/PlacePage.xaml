@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage
     x:Class="Pollenalarm.Frontend.Forms.Views.PlacePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -85,7 +85,6 @@
 
     <TabbedPage.ToolbarItems>
         <ToolbarItem
-            x:Name="EditPlaceButton"
             Name="Edit place"
             Command="{Binding NavigateToEditPlaceCommand}"
             Icon="Edit.png"
@@ -100,7 +99,6 @@
         </ToolbarItem>
 
         <ToolbarItem
-            x:Name="SavePlaceButton"
             Name="Save place"
             Command="{Binding SavePlaceCommand}"
             Icon="Save.png"
@@ -110,7 +108,7 @@
                     x:TypeArguments="ToolbarItemOrder"
                     Android="Secondary"
                     WinPhone="Secondary"
-                    iOS="Secondary" />
+                    iOS="Primary" />
             </ToolbarItem.Order>
         </ToolbarItem>
     </TabbedPage.ToolbarItems>
@@ -121,7 +119,7 @@
                 x:TypeArguments="FileImageSource"
                 Android=""
                 WinPhone=""
-                iOS="Calendar" />
+                iOS="Calendar.png" />
         </ContentPage.Icon>
         <Grid>
             <Label
@@ -139,7 +137,7 @@
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
                 IsRunning="True"
-                IsVisible="{Binding IsLoading}"
+                IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
         </Grid>
     </ContentPage>
@@ -169,7 +167,7 @@
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
                 IsRunning="True"
-                IsVisible="{Binding IsLoading}"
+                IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
         </Grid>
     </ContentPage>
@@ -198,7 +196,7 @@
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
                 IsRunning="True"
-                IsVisible="{Binding IsLoading}"
+                IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
         </Grid>
     </ContentPage>

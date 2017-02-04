@@ -21,7 +21,7 @@
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>Pollenalarm</string>
+	<string>Pollenalarm.Frontend.Forms</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.thepagedot.pollenalarm</string>
 	<key>CFBundleVersion</key>

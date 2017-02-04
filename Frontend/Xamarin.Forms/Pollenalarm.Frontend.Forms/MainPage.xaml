@@ -34,7 +34,6 @@
         </ToolbarItem>
 
         <ToolbarItem
-            x:Name="SearchItem"
             Name="{i18n:Translate Search}"
             Command="{Binding NavigateToSearchCommand}"
             Icon="Search.png"
@@ -80,10 +79,9 @@
 
     <Grid>
         <ListView
-            x:Name="PlaceList"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
-            IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             ItemSelected="PlacesList_ItemSelected"
             ItemsSource="{Binding Places}"
             RefreshCommand="{Binding RefreshCommand}">
@@ -185,7 +183,6 @@
 
         <!-- Android only Floating Action Button -->
         <custom:FormsFloatingActionButton
-            x:Name="AddButton"
             Margin="0"
             Command="{Binding NavigateToAddPlaceCommand}"
             HorizontalOptions="End"

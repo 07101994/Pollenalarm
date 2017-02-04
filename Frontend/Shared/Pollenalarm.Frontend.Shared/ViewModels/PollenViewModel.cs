@@ -1,15 +1,11 @@
-﻿using Pollenalarm.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Pollenalarm.Core.Models;
 using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
-    public class PollenViewModel : AsyncViewModelBase
+	public class PollenViewModel : AsyncViewModelBase
     {
 		private PollenService _PollenService;
 		private SettingsService _SettingsService;
@@ -37,7 +33,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 
         public async Task RefreshAsync()
         {
-            IsLoading = true;
+            IsBusy = true;
             IsLoaded = false;
 
             var allPollen = await _PollenService.GetAllPollenAsync();
@@ -51,7 +47,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 IsLoaded = true;
             }
 
-            IsLoading = false;
+            IsBusy = false;
         }
 
         public async Task SaveChangesAsync(Pollen changedPollen = null)

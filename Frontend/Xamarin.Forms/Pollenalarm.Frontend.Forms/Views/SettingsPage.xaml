@@ -43,7 +43,6 @@
                 Command="{Binding NavigateToAboutCommand}"
                 HorizontalOptions="FillAndExpand"
                 Text="{i18n:Translate About}" />
-
         </StackLayout>
     </ScrollView>
 </ContentPage>
