@@ -60,7 +60,7 @@
                                     x:TypeArguments="x:Double"
                                     Android="15"
                                     WinPhone="20"
-                                    iOS="15" />
+                                    iOS="22" />
                             </Image.HeightRequest>
                         </Image>
 

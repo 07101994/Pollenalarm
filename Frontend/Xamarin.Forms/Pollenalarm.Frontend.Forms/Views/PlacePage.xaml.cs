@@ -17,16 +17,6 @@ namespace Pollenalarm.Frontend.Forms.Views
 			BindingContext = App.Bootstrapper.PlaceViewModel;
 		}
 
-		private async void PlacePage_CurrentPageChanged(object sender, EventArgs e)
-		{
-			// Animate Tab change on iOS as it is not implemented in Xamarin.Forms yet.
-			if (Device.OS == TargetPlatform.iOS)
-			{
-				uint duration = 300;
-				await Task.WhenAll(CurrentPage.TranslateTo(0, 1000, duration), CurrentPage.FadeTo(0, duration));
-				await Task.WhenAll(CurrentPage.TranslateTo(0, 0, duration), CurrentPage.FadeTo(1, duration));
-			}
-		}
 		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
@@ -42,9 +32,16 @@ namespace Pollenalarm.Frontend.Forms.Views
 			// Update pollen selections
 			await App.Bootstrapper.PlaceViewModel.RefreshAsync();
 
-            // Filtering has performance problems currently.
-            // This is why the BoolToTextColorConverter currently paints disabled items gray
+            // Set ItemSource in code-behind, as Binding takes too much performance currently as XAMLC does not work on PlacePage
+            ListToday.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday;
+            ListTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionTomorrow;
+            ListAfterTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionAfterTomorrow;
 
+            // Add Place Changed animation afterwards, sothat it does not trigger on the first time the user enteres the page
+            CurrentPageChanged += PlacePage_CurrentPageChanged;
+
+            // Filtering has performance problems currently
+            // This is why the BoolToTextColorConverter currently paints disabled items gray
             #region Filter Attempts
 
             // Filter list by selected pollen by code, because ListView Filters are not supported by Xamarin.Forms yet
@@ -77,6 +74,24 @@ namespace Pollenalarm.Frontend.Forms.Views
             //ListAfterTomorrow.ItemsSource = afterTomorrowList;
 
             #endregion
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            CurrentPageChanged -= PlacePage_CurrentPageChanged;
+        }
+
+        private async void PlacePage_CurrentPageChanged(object sender, EventArgs e)
+        {
+            // Animate Tab change on iOS as it is not implemented in Xamarin.Forms yet.
+            if (Device.OS == TargetPlatform.iOS)
+            {
+                uint duration = 300;
+                await Task.WhenAll(CurrentPage.TranslateTo(0, 1000, duration), CurrentPage.FadeTo(0, duration));
+                await Task.WhenAll(CurrentPage.TranslateTo(0, 0, duration), CurrentPage.FadeTo(1, duration));
+            }
         }
 
         private void PollutionList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

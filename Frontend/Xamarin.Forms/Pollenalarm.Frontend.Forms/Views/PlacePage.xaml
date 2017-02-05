@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
-    Title="{Binding CurrentPlace.Name}"
-    CurrentPageChanged="PlacePage_CurrentPageChanged">
+    Title="{Binding CurrentPlace.Name}">
 
     <TabbedPage.Resources>
         <ResourceDictionary>
@@ -63,7 +62,7 @@
                                     x:TypeArguments="x:Double"
                                     Android="15"
                                     WinPhone="20"
-                                    iOS="15" />
+                                    iOS="22" />
                             </Image.HeightRequest>
                         </Image>
 
@@ -137,8 +136,7 @@
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
-                ItemTemplate="{StaticResource PollutionItemTemplate}"
-                ItemsSource="{Binding CurrentPlace.PollutionToday}" />
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
             <ActivityIndicator
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
@@ -168,8 +166,7 @@
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
-                ItemTemplate="{StaticResource PollutionItemTemplate}"
-                ItemsSource="{Binding CurrentPlace.PollutionTomorrow}" />
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
             <ActivityIndicator
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
@@ -198,8 +195,7 @@
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
-                ItemTemplate="{StaticResource PollutionItemTemplate}"
-                ItemsSource="{Binding CurrentPlace.PollutionAfterTomorrow}" />
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
             <ActivityIndicator
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"

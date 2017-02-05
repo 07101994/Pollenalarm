@@ -20,8 +20,6 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
-	<key>CFBundleDisplayName</key>
-	<string>Pollenalarm.Frontend.Forms</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.thepagedot.pollenalarm</string>
 	<key>CFBundleVersion</key>
@@ -55,13 +53,15 @@
 	<string>en</string>
 	<key>CFBundleShortVersionString</key>
 	<string></string>
-	<key>CFBundleName</key>
-	<string>Pollenalarm.Frontend.Forms</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleDisplayName</key>
+	<string>Pollenalarm</string>
+	<key>CFBundleName</key>
+	<string>Pollenalarm</string>
 </dict>
 </plist>
