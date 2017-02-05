@@ -44,9 +44,6 @@ namespace Pollenalarm.Frontend.Forms.Views
 
             // Filtering has performance problems currently.
             // This is why the BoolToTextColorConverter currently paints disabled items gray
-            ListToday.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday;
-            ListTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionTomorrow;
-            ListAfterTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionAfterTomorrow;
 
             #region Filter Attempts
 

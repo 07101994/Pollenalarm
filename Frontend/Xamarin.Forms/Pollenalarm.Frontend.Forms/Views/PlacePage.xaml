@@ -137,7 +137,8 @@
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
-                ItemTemplate="{StaticResource PollutionItemTemplate}" />
+                ItemTemplate="{StaticResource PollutionItemTemplate}"
+                ItemsSource="{Binding CurrentPlace.PollutionToday}" />
             <ActivityIndicator
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
@@ -167,7 +168,8 @@
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
-                ItemTemplate="{StaticResource PollutionItemTemplate}" />
+                ItemTemplate="{StaticResource PollutionItemTemplate}"
+                ItemsSource="{Binding CurrentPlace.PollutionTomorrow}" />
             <ActivityIndicator
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
@@ -196,7 +198,8 @@
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
-                ItemTemplate="{StaticResource PollutionItemTemplate}" />
+                ItemTemplate="{StaticResource PollutionItemTemplate}"
+                ItemsSource="{Binding CurrentPlace.PollutionAfterTomorrow}" />
             <ActivityIndicator
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
                 HorizontalOptions="Fill"
