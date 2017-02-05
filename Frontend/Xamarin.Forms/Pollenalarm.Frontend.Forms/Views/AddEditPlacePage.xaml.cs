@@ -13,7 +13,7 @@ namespace Pollenalarm.Frontend.Forms.Views
             InitializeComponent();
             BindingContext = App.Bootstrapper.AddEditPlaceViewModel;
 
-			if (App.Bootstrapper.PlaceViewModel.CurrentPlace != null)
+			if (App.Bootstrapper.AddEditPlaceViewModel.CurrentPlace != null)
 			{
 				// Edit existing place
 				Title = "Edit";

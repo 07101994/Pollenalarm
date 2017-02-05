@@ -19,8 +19,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 		private SettingsService _SettingsService;
 		private PlaceService _PlaceService;
 		private PlaceViewModel _PlaceViewModel;
+		private AddEditPlaceViewModel _AddEditPlaceViewModel;
 
-		private ObservableCollection<Place> _Places;
+        private ObservableCollection<Place> _Places;
 		public ObservableCollection<Place> Places
 		{
 			get { return _Places; }
@@ -65,8 +66,10 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			{
 				return _NavigateToAddPlaceCommand ?? (_NavigateToAddPlaceCommand = new RelayCommand(() =>
 				{
-					_PlaceViewModel.CurrentPlace = null;
-					_NavigationService.NavigateTo(ViewNames.AddEditPlace);
+					_AddEditPlaceViewModel.CurrentPlace = null;
+                    _AddEditPlaceViewModel.PlaceName = string.Empty;
+                    _AddEditPlaceViewModel.PlaceZip = string.Empty;
+                    _NavigationService.NavigateTo(ViewNames.AddEditPlace);
 				}));
 			}
 		}
@@ -96,7 +99,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			}
 		}
 
-		public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, PollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel)
+		public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, PollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel, AddEditPlaceViewModel addEditPlaceViewModel)
 		{
 			_NavigationService = navigationService;
 			_FileSystemService = fileSystemService;
@@ -105,6 +108,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			_SettingsService = settingsService;
 			_PlaceService = placeService;
 			_PlaceViewModel = placeViewModel;
+            _AddEditPlaceViewModel = addEditPlaceViewModel;
 
 			Places = new ObservableCollection<Place>();
 		}

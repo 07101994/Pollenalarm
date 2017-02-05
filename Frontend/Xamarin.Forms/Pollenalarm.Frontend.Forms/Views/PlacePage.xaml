@@ -13,6 +13,7 @@
             <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
             <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
             <converter:IntToPollutionIconConverter x:Key="IntToPollutionIconConverter" />
+            <converter:BoolToTextColorConverter x:Key="BoolToTextColorConverter" />
 
             <DataTemplate x:Key="PollutionItemTemplate">
                 <ViewCell>
@@ -34,20 +35,23 @@
                             Grid.ColumnSpan="2"
                             FontAttributes="Bold"
                             FontSize="{StaticResource DefaultFontSize}"
-                            Text="{Binding Pollen.Name}" />
+                            Text="{Binding Pollen.Name}"
+                            TextColor="{Binding Pollen.IsSelected, Converter={StaticResource BoolToTextColorConverter}" />
 
                         <Label
                             Grid.Row="1"
                             Margin="0,-4,0,0"
                             FontSize="{StaticResource SmallFontSize}"
-                            Text="Pollution:" />
+                            Text="Pollution:"
+                            TextColor="{Binding Pollen.IsSelected, Converter={StaticResource BoolToTextColorConverter}" />
 
                         <Label
                             Grid.Row="1"
                             Grid.Column="1"
                             Margin="-4,-4,0,0"
                             FontSize="{StaticResource SmallFontSize}"
-                            Text="{Binding Intensity, Converter={StaticResource IntToPollutionNameConverter}}" />
+                            Text="{Binding Intensity, Converter={StaticResource IntToPollutionNameConverter}}"
+                            TextColor="{Binding Pollen.IsSelected, Converter={StaticResource BoolToTextColorConverter}" />
 
                         <Image
                             Grid.RowSpan="2"

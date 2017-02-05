@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoolToTextColorConverter.cs" />
     <Compile Include="Converters\IntToPollutionIconConverter.cs" />
     <Compile Include="Converters\IntToPollutionNameConverter.cs" />
     <Compile Include="Converters\IntToBoolConverter.cs" />

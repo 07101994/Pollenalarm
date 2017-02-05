@@ -32,12 +32,19 @@ namespace Pollenalarm.Frontend.Forms.Services
 
 		public async Task SaveObjectToFileAsync(string fileName, object content)
 		{
-			var rootFolder = FileSystem.Current.LocalStorage;
-			var folder = await rootFolder.CreateFolderAsync(_DefaultFolderName, CreationCollisionOption.OpenIfExists);
-			var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting).ConfigureAwait(false);
+            try
+            {
+                var rootFolder = FileSystem.Current.LocalStorage;
+                var folder = await rootFolder.CreateFolderAsync(_DefaultFolderName, CreationCollisionOption.OpenIfExists);
+                var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting).ConfigureAwait(false);
 
-			var json = JsonConvert.SerializeObject(content, Formatting.Indented, _JsonSerializerSettings);
-			await file.WriteAllTextAsync(json);
+                var json = JsonConvert.SerializeObject(content, Formatting.Indented, _JsonSerializerSettings);
+                await file.WriteAllTextAsync(json);
+            }
+            catch (System.IO.IOException)
+            {
+
+            }
 		}
 	}
 }
