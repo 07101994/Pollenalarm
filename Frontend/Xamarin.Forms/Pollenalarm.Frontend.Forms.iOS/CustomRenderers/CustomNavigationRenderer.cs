@@ -27,7 +27,7 @@ namespace Pollenalarm.Frontend.Forms.iOS.CustomRenderers
 				var controller = (ToolbarItem)item.GetType().GetProperty("Controller",
 				   BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).GetValue(item);
 
-				// Check if it is a settings icon by compating 
+				// Check if it is a settings icon by comparing its AutomationId
 				if (controller.AutomationId != null && controller.AutomationId.ToLower().Contains("settings"))
 					leftList.Add(item);
 				else

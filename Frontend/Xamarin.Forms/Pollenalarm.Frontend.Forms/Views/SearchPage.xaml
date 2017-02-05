@@ -9,21 +9,13 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <DataTemplate x:Key="PollenDataTemplate">
+            <DataTemplate x:Key="PollenItemTemplate">
                 <ViewCell>
-                    <Grid>
+                    <Grid Padding="{StaticResource DefaultItemThickness}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-
-                        <Grid.Padding>
-                            <OnPlatform
-                                x:TypeArguments="Thickness"
-                                Android="{StaticResource DefaultThickness}"
-                                WinPhone="{StaticResource DefaultThickness}"
-                                iOS="15, 8, 10, 8" />
-                        </Grid.Padding>
 
                         <Label
                             Grid.Column="0"
@@ -32,7 +24,7 @@
 
                         <!-- iOS only "Next" button on the right border -->
                         <Image
-                            Grid.Column="2"
+                            Grid.Column="1"
                             Margin="10,0,0,0"
                             HeightRequest="15"
                             Source="Next"
@@ -49,35 +41,34 @@
                 </ViewCell>
             </DataTemplate>
 
-            <DataTemplate x:Key="PlaceDataTemplate">
+            <DataTemplate x:Key="PlaceItemTemplate">
                 <ViewCell>
-                    <Grid>
+                    <Grid Padding="{StaticResource DefaultItemThickness}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Grid.Padding>
-                            <OnPlatform
-                                x:TypeArguments="Thickness"
-                                Android="{StaticResource DefaultThickness}"
-                                WinPhone="{StaticResource DefaultThickness}"
-                                iOS="15, 8, 10, 8" />
-                        </Grid.Padding>
+                        <Label
+                            Grid.Row="0"
+                            FontAttributes="Bold"
+                            FontSize="{StaticResource DefaultFontSize}"
+                            Text="{Binding Name}" />
 
-                        <StackLayout Grid.Column="0">
-                            <Label FontSize="{StaticResource DefaultFontSize}" Text="{Binding Name}" />
+                        <Label
+                            Grid.Row="1"
+                            Margin="0,-4,0,0"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="{Binding Zip}" />
 
-                            <Label
-                                Margin="0,-4,0,0"
-                                FontSize="{StaticResource SmallFontSize}"
-                                Text="{Binding Zip}" />
-
-                        </StackLayout>
-
-                        <!-- iOS only "Next" button on the right border -->
                         <Image
-                            Grid.Column="2"
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
                             Margin="10,0,0,0"
                             HeightRequest="15"
                             Source="Next"
@@ -96,8 +87,8 @@
 
             <template:SearchResultDataTemplateSelector
                 x:Key="SearchResultDataTemplateSelector"
-                PlaceTemplate="{StaticResource PlaceDataTemplate}"
-                PollenTemplate="{StaticResource PollenDataTemplate}" />
+                PlaceTemplate="{StaticResource PlaceItemTemplate}"
+                PollenTemplate="{StaticResource PollenItemTemplate}" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -128,14 +119,7 @@
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
-                            <Grid.Padding>
-                                <OnPlatform
-                                    x:TypeArguments="Thickness"
-                                    Android="{StaticResource DefaultThickness}"
-                                    WinPhone="{StaticResource DefaultThickness}"
-                                    iOS="15, 8, 10, 8" />
-                            </Grid.Padding>
+                        <Grid Padding="{StaticResource DefaultItemThickness}">
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="{StaticResource SmallFontSize}"

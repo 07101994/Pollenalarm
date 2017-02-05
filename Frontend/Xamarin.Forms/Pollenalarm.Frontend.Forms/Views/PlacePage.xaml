@@ -16,68 +16,69 @@
 
             <DataTemplate x:Key="PollutionItemTemplate">
                 <ViewCell>
-                    <ViewCell.View>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                    <Grid Padding="{StaticResource DefaultItemThickness}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                            <Grid.Padding>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            FontAttributes="Bold"
+                            FontSize="{StaticResource DefaultFontSize}"
+                            Text="{Binding Pollen.Name}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Margin="0,-4,0,0"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="Pollution:" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="-4,-4,0,0"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="{Binding Intensity, Converter={StaticResource IntToPollutionNameConverter}}" />
+
+                        <Image
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            Source="{Binding Intensity, Converter={StaticResource IntToPollutionIconConverter}}"
+                            VerticalOptions="Center">
+                            <Image.HeightRequest>
                                 <OnPlatform
-                                    x:TypeArguments="Thickness"
-                                    Android="{StaticResource DefaultThickness}"
-                                    WinPhone="{StaticResource DefaultThickness}"
-                                    iOS="15, 8, 10, 8" />
-                            </Grid.Padding>
+                                    x:TypeArguments="x:Double"
+                                    Android="15"
+                                    WinPhone="20"
+                                    iOS="15" />
+                            </Image.HeightRequest>
+                        </Image>
 
-                            <StackLayout Grid.Column="0">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="{StaticResource DefaultFontSize}"
-                                    Text="{Binding Pollen.Name}" />
-                                <StackLayout Orientation="Horizontal">
-                                    <Label
-                                        Margin="0,-4,0,0"
-                                        FontSize="{StaticResource SmallFontSize}"
-                                        Text="Pollution:" />
-                                    <Label
-                                        Margin="-4,-4,0,0"
-                                        FontSize="{StaticResource SmallFontSize}"
-                                        Text="{Binding Intensity, Converter={StaticResource IntToPollutionNameConverter}}" />
-                                </StackLayout>
-                            </StackLayout>
-
-                            <Image
-                                Grid.Column="1"
-                                Source="{Binding Intensity, Converter={StaticResource IntToPollutionIconConverter}}"
-                                VerticalOptions="Center">
-                                <Image.HeightRequest>
-                                    <OnPlatform
-                                        x:TypeArguments="x:Double"
-                                        Android="15"
-                                        WinPhone="20"
-                                        iOS="15" />
-                                </Image.HeightRequest>
-                            </Image>
-
-                            <Image
-                                Grid.Column="2"
-                                Margin="10,0,0,0"
-                                HeightRequest="15"
-                                Source="Next"
-                                VerticalOptions="Center">
-                                <Image.IsVisible>
-                                    <OnPlatform
-                                        x:TypeArguments="x:Boolean"
-                                        Android="False"
-                                        WinPhone="False"
-                                        iOS="True" />
-                                </Image.IsVisible>
-                            </Image>
-                        </Grid>
-                    </ViewCell.View>
+                        <Image
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            Margin="10,0,0,0"
+                            HeightRequest="15"
+                            Source="Next"
+                            VerticalOptions="Center">
+                            <Image.IsVisible>
+                                <OnPlatform
+                                    x:TypeArguments="x:Boolean"
+                                    Android="False"
+                                    WinPhone="False"
+                                    iOS="True" />
+                            </Image.IsVisible>
+                        </Image>
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ResourceDictionary>

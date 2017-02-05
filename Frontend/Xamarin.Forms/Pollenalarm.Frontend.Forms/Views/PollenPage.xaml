@@ -15,7 +15,7 @@
 
     <ScrollView>
         <StackLayout>
-            <Image Source="{Binding CurrentPollen.ImageName}" />
+            <Image Aspect="AspectFill" Source="{Binding CurrentPollen.ImageName}" />
 
             <StackLayout Padding="{StaticResource DefaultThickness}">
 
