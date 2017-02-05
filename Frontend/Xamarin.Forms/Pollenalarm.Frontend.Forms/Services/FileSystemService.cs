@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using PCLStorage;
 using PCLStorage.Exceptions;
 using Pollenalarm.Frontend.Shared.Services;
-using System;
-using System.Threading.Tasks;
 
 namespace Pollenalarm.Frontend.Forms.Services
 {
@@ -20,7 +20,7 @@ namespace Pollenalarm.Frontend.Forms.Services
 				var folder = await rootFolder.GetFolderAsync(_DefaultFolderName);
 				var file = await folder.GetFileAsync(fileName);
 
-				var json = await file.ReadAllTextAsync();
+				var json = await file.ReadAllTextAsync().ConfigureAwait(false);
 				var content = JsonConvert.DeserializeObject<T>(json, _JsonSerializerSettings);
 				return content;
 			}
@@ -34,7 +34,7 @@ namespace Pollenalarm.Frontend.Forms.Services
 		{
 			var rootFolder = FileSystem.Current.LocalStorage;
 			var folder = await rootFolder.CreateFolderAsync(_DefaultFolderName, CreationCollisionOption.OpenIfExists);
-			var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+			var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting).ConfigureAwait(false);
 
 			var json = JsonConvert.SerializeObject(content, Formatting.Indented, _JsonSerializerSettings);
 			await file.WriteAllTextAsync(json);

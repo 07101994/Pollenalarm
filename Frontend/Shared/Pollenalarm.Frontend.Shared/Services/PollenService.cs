@@ -25,7 +25,7 @@ namespace Pollenalarm.Frontend.Shared.Services
 		{
 			// Download pollutions
 			var url = $"{_BaseUrl}/pollution?zip={place.Zip}";
-			var result = await _HttpService.GetStringAsync(url);
+			var result = await _HttpService.GetStringAsync(url).ConfigureAwait(false);
 			if (result != null)
 			{
 				// Parse pollutions
@@ -51,7 +51,7 @@ namespace Pollenalarm.Frontend.Shared.Services
 			if (_PollenList == null || !_PollenList.Any())
 			{
 				// Download pollen
-				var result = await _HttpService.GetStringAsync($"{_BaseUrl}/pollen");
+				var result = await _HttpService.GetStringAsync($"{_BaseUrl}/pollen").ConfigureAwait(false);
 				if (result != null)
 				{
 					// Parse pollen

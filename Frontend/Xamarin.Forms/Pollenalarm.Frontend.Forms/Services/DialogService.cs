@@ -1,6 +1,6 @@
-﻿using Pollenalarm.Frontend.Shared.Services;
-using System.Threading.Tasks;
-using System;
+﻿using System.Threading.Tasks;
+using Pollenalarm.Frontend.Shared.Services;
+using Xamarin.Forms;
 
 namespace Pollenalarm.Frontend.Forms.Services
 {
@@ -8,12 +8,12 @@ namespace Pollenalarm.Frontend.Forms.Services
 	{
 		public async Task DisplayAlertAsync(string title, string message, string ok)
 		{
-			await App.Current.MainPage.DisplayAlert(title, message, ok);
+			await Application.Current.MainPage.DisplayAlert(title, message, ok);
 		}
 
 		public async Task<bool> DisplayConfirmationAsync(string title, string message, string confirm, string cancel)
 		{
-			return await App.Current.MainPage.DisplayAlert(title, message, confirm, cancel);
+			return await Application.Current.MainPage.DisplayAlert(title, message, confirm, cancel);
 		}
 	}
 }

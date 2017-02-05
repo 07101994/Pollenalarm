@@ -1,8 +1,8 @@
-﻿using GalaSoft.MvvmLight.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using GalaSoft.MvvmLight.Views;
 using Xamarin.Forms;
 
 namespace Pollenalarm.Frontend.Forms.Services

@@ -23,7 +23,7 @@ namespace Pollenalarm.Frontend.Forms.Services
 			{
 				_Locator = CrossGeolocator.Current;
 				_Locator.DesiredAccuracy = 50;
-				var position = await _Locator.GetPositionAsync(timeoutMilliseconds: 10000);
+				var position = await _Locator.GetPositionAsync(10000);
 
 				var geoLocation = new GeoLocation();
 				geoLocation.Latitute = position.Latitude;

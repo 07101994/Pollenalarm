@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Pollenalarm.Core.Models;
@@ -49,18 +50,25 @@ namespace Pollenalarm.Frontend.Forms.Views
 			ListAfterTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Pollen.IsSelected);
 
 			// Maybe the part below is more performant, as it does not filter 3 times? Test on a real device / profiler
-			//var todayList = new ObservableCollection<Pollution>(App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday);
-			//var tomorrowList = new ObservableCollection<Pollution>(App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionTomorrow);
-			//var afterTomorrowList = new ObservableCollection<Pollution>(App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionAfterTomorrow);
-			//for (int i = 0; i < App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday.Count() - 1; i++)
+			//var todayList = new ObservableCollection<Pollution>();
+			//var tomorrowList = new ObservableCollection<Pollution>();
+			//var afterTomorrowList = new ObservableCollection<Pollution>();
+			//await Task.Factory.StartNew(() =>
 			//{
-			//    if (!todayList[i].Pollen.IsSelected)
-			//    {
-			//        todayList.RemoveAt(i);
-			//        tomorrowList.RemoveAt(i);
-			//        afterTomorrowList.RemoveAt(i);
-			//    }
-			//}
+			//	todayList = new ObservableCollection<Pollution>(App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday);
+			//	tomorrowList = new ObservableCollection<Pollution>(App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionTomorrow);
+			//	afterTomorrowList = new ObservableCollection<Pollution>(App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionAfterTomorrow);
+			//	for (int i = 0; i < App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday.Count() - 1; i++)
+			//	{
+			//		if (!todayList[i].Pollen.IsSelected)
+			//		{
+			//			todayList.RemoveAt(i);
+			//			tomorrowList.RemoveAt(i);
+			//			afterTomorrowList.RemoveAt(i);
+			//		}
+			//	}
+			//});
+
 			//ListToday.ItemsSource = todayList;
 			//ListTomorrow.ItemsSource = tomorrowList;
 			//ListAfterTomorrow.ItemsSource = afterTomorrowList;
