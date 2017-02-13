@@ -58,7 +58,7 @@
                             <Image.HeightRequest>
                                 <OnPlatform
                                     x:TypeArguments="x:Double"
-                                    Android="15"
+                                    Android="20"
                                     WinPhone="20"
                                     iOS="22" />
                             </Image.HeightRequest>

@@ -13,6 +13,7 @@
             <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
             <converter:IntToPollutionIconConverter x:Key="IntToPollutionIconConverter" />
             <converter:BoolToTextColorConverter x:Key="BoolToTextColorConverter" />
+            <converter:BoolToNegatedBoolConverter x:Key="BoolToNegatedBoolConverter" />
 
             <DataTemplate x:Key="PollutionItemTemplate">
                 <ViewCell>
@@ -60,7 +61,7 @@
                             <Image.HeightRequest>
                                 <OnPlatform
                                     x:TypeArguments="x:Double"
-                                    Android="15"
+                                    Android="20"
                                     WinPhone="20"
                                     iOS="22" />
                             </Image.HeightRequest>
@@ -126,16 +127,12 @@
                 iOS="Calendar.png" />
         </ContentPage.Icon>
         <Grid>
-            <Label
-                Margin="{StaticResource DefaultThickness}"
-                HorizontalTextAlignment="Center"
-                IsVisible="{Binding ShowNoPlacesWarningToday}}"
-                Text="{i18n:Translate NoPollutionWarningText}" />
             <ListView
                 x:Name="ListToday"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
+				IsVisible="{Binding ShowNoPlacesWarningToday, Converter={StaticResource BoolToNegatedBoolConverter}}"
                 ItemTemplate="{StaticResource PollutionItemTemplate}" />
             <ActivityIndicator
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
@@ -143,6 +140,11 @@
                 IsRunning="True"
                 IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+			<Label
+                Margin="{StaticResource DefaultThickness}"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ShowNoPlacesWarningToday}}"
+                Text="{i18n:Translate NoPollutionWarningText}" />
         </Grid>
     </ContentPage>
 
@@ -154,18 +156,13 @@
                 WinPhone=""
                 iOS="Calendar" />
         </ContentPage.Icon>
-        <Grid>
-            <Label
-                Margin="{StaticResource DefaultThickness}"
-                HorizontalTextAlignment="Center"
-                IsVisible="{Binding ShowNoPlacesWarningTomorrow}"
-                Text="{i18n:Translate NoPollutionWarningText}" />
-
+        <Grid>            
             <ListView
                 x:Name="ListTomorrow"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
+				IsVisible="{Binding ShowNoPlacesWarningTomorrow, Converter={StaticResource BoolToNegatedBoolConverter}}"
                 ItemTemplate="{StaticResource PollutionItemTemplate}" />
             <ActivityIndicator
                 HeightRequest="{StaticResource ActivityIndicatorHeight}"
@@ -173,6 +170,11 @@
                 IsRunning="True"
                 IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+			<Label
+                Margin="{StaticResource DefaultThickness}"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ShowNoPlacesWarningTomorrow}"
+                Text="{i18n:Translate NoPollutionWarningText}" />
         </Grid>
     </ContentPage>
 
@@ -185,15 +187,11 @@
                 iOS="Calendar" />
         </ContentPage.Icon>
         <Grid>
-            <Label
-                Margin="{StaticResource DefaultThickness}"
-                HorizontalTextAlignment="Center"
-                IsVisible="{Binding ShowNoPlacesWarningAfterTomorrow}"
-                Text="{i18n:Translate NoPollutionWarningText}" />
             <ListView
                 x:Name="ListAfterTomorrow"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
+				IsVisible="{Binding ShowNoPlacesWarningAfterTomorrow, Converter={StaticResource BoolToNegatedBoolConverter}}"
                 ItemSelected="PollutionList_ItemSelected"
                 ItemTemplate="{StaticResource PollutionItemTemplate}" />
             <ActivityIndicator
@@ -202,6 +200,11 @@
                 IsRunning="True"
                 IsVisible="{Binding IsBusy}"
                 VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+			<Label
+                Margin="{StaticResource DefaultThickness}"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ShowNoPlacesWarningAfterTomorrow}"
+                Text="{i18n:Translate NoPollutionWarningText}" />
         </Grid>
     </ContentPage>
 </TabbedPage>

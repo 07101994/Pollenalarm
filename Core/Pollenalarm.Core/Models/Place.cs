@@ -38,7 +38,7 @@ namespace Pollenalarm.Core.Models
 
         public Place()
         {
-            Id = new Guid();
+			Id = Guid.NewGuid();
 
             PollutionToday = new ObservableCollection<Pollution>();
             PollutionTomorrow = new ObservableCollection<Pollution>();

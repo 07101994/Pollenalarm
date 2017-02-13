@@ -316,5 +316,11 @@ namespace Pollenalarm.Frontend.Forms.Resources {
                 return ResourceManager.GetString("SearchBarPlaceholder", resourceCulture);
             }
         }
+        
+        public static string CurrentPosition {
+            get {
+                return ResourceManager.GetString("CurrentPosition", resourceCulture);
+            }
+        }
     }
 }

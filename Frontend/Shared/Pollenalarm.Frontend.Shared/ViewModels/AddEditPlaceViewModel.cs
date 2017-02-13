@@ -152,7 +152,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 
 					var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
 					if (geolocation == null)
-					{						
+					{
 						IsBusy = false;
 						AddEditPlaceCommand.RaiseCanExecuteChanged();
 						DeletePlaceCommand.RaiseCanExecuteChanged();

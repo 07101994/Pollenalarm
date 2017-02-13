@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,198 +59,200 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="About" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="About" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="Add" xml:space="preserve">
+	<data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="AppTitle" xml:space="preserve">
+	<data name="AppTitle" xml:space="preserve">
     <value>Pollenalarm</value>
   </data>
-  <data name="GeneralInformation" xml:space="preserve">
+	<data name="GeneralInformation" xml:space="preserve">
     <value>General Information</value>
   </data>
-  <data name="NoPlacesWarning" xml:space="preserve">
+	<data name="NoPlacesWarning" xml:space="preserve">
     <value>It's empty down here. Add your favorite places to keep an overview of their pollen pollution.</value>
   </data>
-  <data name="Places" xml:space="preserve">
+	<data name="Places" xml:space="preserve">
     <value>Places</value>
   </data>
-  <data name="Settings" xml:space="preserve">
+	<data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="Location" xml:space="preserve">
+	<data name="Location" xml:space="preserve">
     <value>Location</value>
   </data>
-  <data name="GeoLocationFailedMessage" xml:space="preserve">
+	<data name="GeoLocationFailedMessage" xml:space="preserve">
     <value>Oops, something went wrong and we could not locate your current position. Please make sure, that your device has GPS and that it is turned on.</value>
   </data>
-  <data name="GeoLocationFailedTitle" xml:space="preserve">
+	<data name="GeoLocationFailedTitle" xml:space="preserve">
     <value>Where are you?</value>
   </data>
-  <data name="InvalidEntriesMessage" xml:space="preserve">
+	<data name="InvalidEntriesMessage" xml:space="preserve">
     <value>Sorry, we could not validate your entries. Please check them and try again.</value>
   </data>
-  <data name="InvalidEntriesTitle" xml:space="preserve">
+	<data name="InvalidEntriesTitle" xml:space="preserve">
     <value>Invalid entries</value>
   </data>
-  <data name="OK" xml:space="preserve">
+	<data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="LocationSettingsText" xml:space="preserve">
+	<data name="LocationSettingsText" xml:space="preserve">
     <value>Use my current location</value>
   </data>
-  <data name="NoPollutionWarningText" xml:space="preserve">
+	<data name="NoPollutionWarningText" xml:space="preserve">
     <value>We could not find any pollution information for this place. Please check the zip code.</value>
   </data>
-  <data name="PollutionNameLow" xml:space="preserve">
+	<data name="PollutionNameLow" xml:space="preserve">
     <value>Low</value>
   </data>
-  <data name="PollutionNameMedium" xml:space="preserve">
+	<data name="PollutionNameMedium" xml:space="preserve">
     <value>Medium</value>
   </data>
-  <data name="PollutionNameNone" xml:space="preserve">
+	<data name="PollutionNameNone" xml:space="preserve">
     <value>None</value>
   </data>
-  <data name="PollutionNameStrong" xml:space="preserve">
+	<data name="PollutionNameStrong" xml:space="preserve">
     <value>Strong</value>
   </data>
-  <data name="PollutionNameVeryStrong" xml:space="preserve">
+	<data name="PollutionNameVeryStrong" xml:space="preserve">
     <value>Very strong</value>
   </data>
-  <data name="Back" xml:space="preserve">
+	<data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="Allergy" xml:space="preserve">
+	<data name="Allergy" xml:space="preserve">
     <value>Allergy</value>
   </data>
-  <data name="BloomTime" xml:space="preserve">
+	<data name="BloomTime" xml:space="preserve">
     <value>Bloom Time</value>
   </data>
-  <data name="ClinicalPollution" xml:space="preserve">
+	<data name="ClinicalPollution" xml:space="preserve">
     <value>Clinical Pollution</value>
   </data>
-  <data name="Design" xml:space="preserve">
+	<data name="Design" xml:space="preserve">
     <value>Design</value>
   </data>
-  <data name="Information" xml:space="preserve">
+	<data name="Information" xml:space="preserve">
     <value>Information</value>
   </data>
-  <data name="PollenRelevant" xml:space="preserve">
+	<data name="PollenRelevant" xml:space="preserve">
     <value>Relevant Pollen</value>
   </data>
-  <data name="PollenSelection" xml:space="preserve">
+	<data name="PollenSelection" xml:space="preserve">
     <value>Pollen selection</value>
   </data>
-  <data name="SelectPollen" xml:space="preserve">
+	<data name="SelectPollen" xml:space="preserve">
     <value>Select your pollen</value>
   </data>
-  <data name="SelectPollenText" xml:space="preserve">
+	<data name="SelectPollenText" xml:space="preserve">
     <value>You can select the most relevant pollen for you here. In the Settings menu, you can choose to only get these pollen displayed.</value>
   </data>
-  <data name="ShowSelectedPollenOnlySettingsText" xml:space="preserve">
+	<data name="ShowSelectedPollenOnlySettingsText" xml:space="preserve">
     <value>Only show selected pollen</value>
   </data>
-  <data name="Until" xml:space="preserve">
+	<data name="Until" xml:space="preserve">
     <value>until</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
+	<data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="Delete" xml:space="preserve">
+	<data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="DeletePlaceMessage" xml:space="preserve">
+	<data name="DeletePlaceMessage" xml:space="preserve">
     <value>Do you really want to delete this place?</value>
   </data>
-  <data name="DeletePlaceTitle" xml:space="preserve">
+	<data name="DeletePlaceTitle" xml:space="preserve">
     <value>Delete Place</value>
   </data>
-  <data name="LocationSettingsDetails" xml:space="preserve">
+	<data name="LocationSettingsDetails" xml:space="preserve">
     <value>By activating this, we can locate you and show you Pollen details for your current location on the main screen.</value>
   </data>
-  <data name="Misc" xml:space="preserve">
+	<data name="Misc" xml:space="preserve">
     <value>Misc</value>
   </data>
-  <data name="Refresh" xml:space="preserve">
+	<data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
-  <data name="GoodDay" xml:space="preserve">
+	<data name="GoodDay" xml:space="preserve">
     <value>Good day</value>
   </data>
-  <data name="GoodEvening" xml:space="preserve">
+	<data name="GoodEvening" xml:space="preserve">
     <value>Good evening</value>
   </data>
-  <data name="GoodMorning" xml:space="preserve">
+	<data name="GoodMorning" xml:space="preserve">
     <value>Good morning</value>
   </data>
-  <data name="GoodNight" xml:space="preserve">
+	<data name="GoodNight" xml:space="preserve">
     <value>Good  night</value>
   </data>
-  <data name="Search" xml:space="preserve">
+	<data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="SearchBarPlaceholder" xml:space="preserve">
+	<data name="SearchBarPlaceholder" xml:space="preserve">
     <value>Places or Pollen</value>
   </data>
+	<data name="CurrentPosition" xml:space="preserve">
+    <value>Current Position</value>
+  </data>
 </root>
-

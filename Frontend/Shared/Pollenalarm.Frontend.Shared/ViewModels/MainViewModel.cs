@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Pollenalarm.Core.Models;
@@ -21,7 +22,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 		private PlaceViewModel _PlaceViewModel;
 		private AddEditPlaceViewModel _AddEditPlaceViewModel;
 
-        private ObservableCollection<Place> _Places;
+		private ObservableCollection<Place> _Places;
 		public ObservableCollection<Place> Places
 		{
 			get { return _Places; }
@@ -67,9 +68,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 				return _NavigateToAddPlaceCommand ?? (_NavigateToAddPlaceCommand = new RelayCommand(() =>
 				{
 					_AddEditPlaceViewModel.CurrentPlace = null;
-                    _AddEditPlaceViewModel.PlaceName = string.Empty;
-                    _AddEditPlaceViewModel.PlaceZip = string.Empty;
-                    _NavigationService.NavigateTo(ViewNames.AddEditPlace);
+					_AddEditPlaceViewModel.PlaceName = string.Empty;
+					_AddEditPlaceViewModel.PlaceZip = string.Empty;
+					_NavigationService.NavigateTo(ViewNames.AddEditPlace);
 				}));
 			}
 		}
@@ -108,7 +109,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			_SettingsService = settingsService;
 			_PlaceService = placeService;
 			_PlaceViewModel = placeViewModel;
-            _AddEditPlaceViewModel = addEditPlaceViewModel;
+			_AddEditPlaceViewModel = addEditPlaceViewModel;
 
 			Places = new ObservableCollection<Place>();
 		}
@@ -128,24 +129,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			else
 				GreetingHeader = _LocalizationService.GetString("GoodNight");
 
-			// Clear places
-			Places.Clear();
-
-			// Check settings
+			// Load settings
 			await _SettingsService.LoadSettingsAsync();
-			if (_SettingsService.CurrentSettings.UseCurrentLocation)
-			{
-				// Add current location
-				var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
-				if (geolocation != null)
-				{
-					var currentPlace = new Place();
-					currentPlace.Name = "Current position";
-					currentPlace.Zip = geolocation.Zip;
-					currentPlace.IsCurrentPosition = true;
-					Places.Add(currentPlace);
-				}
-			}
 
 			// Load locally saved places
 			var savedPlaces = await _FileSystemService.ReadObjectFromFileAsync<List<Place>>("places.json");
@@ -153,14 +138,54 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			{
 				foreach (var place in savedPlaces)
 				{
-					Places.Add(place);
+					var existingPlace = Places.FirstOrDefault(p => p.Id == place.Id);
+					if (existingPlace == null)
+						Places.Add(place);
 				}
+			}
+
+			// Add or remove current position
+			// Should be done after loading places from local storage as they contain the current position
+			var currentPosition = Places.FirstOrDefault(p => p.IsCurrentPosition);
+			if (_SettingsService.CurrentSettings.UseCurrentLocation)
+			{
+				// Add current location
+				var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
+				if (geolocation != null)
+				{
+					// Add new zip code to existing current postition
+
+					if (currentPosition != null)
+					{
+						currentPosition.Zip = geolocation.Zip;
+					}
+					else
+					{
+						Places.Insert(0, new Place
+						{
+							Name = _LocalizationService.GetString("CurrentPosition"),
+							Zip = geolocation.Zip,
+							IsCurrentPosition = true
+						});
+					}
+				}
+				else
+				{
+					// Remove current position, if GPS location could not be found
+					if (currentPosition != null)
+						Places.Remove(currentPosition);
+				}
+			}
+			else
+			{
+				if (currentPosition != null)
+					Places.Remove(currentPosition);
 			}
 
 			// Update places
 			foreach (var place in Places)
 			{
-				var success = await _PollenService.GetPollutionsForPlaceAsync(place);
+				await _PollenService.GetPollutionsForPlaceAsync(place);
 				place.RecalculateMaxPollution();
 			}
 
