@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
     xmlns:template="clr-namespace:Pollenalarm.Frontend.Forms.TemplateSelectors"
-    Title="{i18n:Translate Search}">
+    Title="{i18n:Translate Search}"
+	IsBusy="{Binding IsBusy, Mode=OneWay}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

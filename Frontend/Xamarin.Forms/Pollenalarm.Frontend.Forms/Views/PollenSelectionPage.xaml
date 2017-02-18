@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
-    Title="Pollen">
+    Title="Pollen"
+	IsBusy="{Binding IsBusy, Mode=OneWay}">
     <ContentPage.Content>
 		<Grid>
         <ListView ItemSelected="ListView_ItemSelected" ItemsSource="{Binding Pollen}">
@@ -49,7 +50,7 @@
 	            HeightRequest="{StaticResource ActivityIndicatorHeight}"
 	            HorizontalOptions="Fill"
 	            IsRunning="True"
-	            IsVisible="{Binding IsBusy}"
+	            IsVisible="{Binding IsBusy, Mode=OneWay}"
 	            VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
 		</Grid>
     </ContentPage.Content>

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Pollenalarm.Core.Models
 {
-    public class Pollution
-    {
-        public Pollen Pollen { get; set; }
-        public DateTime Date { get; set; }
-        public int Intensity { get; set; }
-    }
+	public class Pollution
+	{
+		public Pollen Pollen { get; set; }
+		public DateTime Date { get; set; }
+		public int Intensity { get; set; }
+	}
 }

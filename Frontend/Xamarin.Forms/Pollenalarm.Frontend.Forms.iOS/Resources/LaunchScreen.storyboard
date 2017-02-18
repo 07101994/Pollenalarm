@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Icon-76.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="262" y="262" width="76" height="76"/>
+                                <rect key="frame" x="346" y="474" width="76" height="76"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                             </imageView>
                         </subviews>
@@ -37,7 +37,7 @@
     <resources>
         <image name="Icon-60.png" width="60" height="60"/>
         <image name="Add.png" width="22" height="22"/>
-        <image name="AlertIcon.png" width="50" height="50"/>
+        <image name="AlertIcon.png" width="25" height="25"/>
         <image name="Ambrosia.png" width="750" height="390"/>
         <image name="Ampfer.png" width="750" height="390"/>
         <image name="Background.png" width="720" height="1280"/>
@@ -45,7 +45,7 @@
         <image name="Birke.png" width="750" height="390"/>
         <image name="Buche.png" width="750" height="390"/>
         <image name="Calendar.png" width="22" height="22"/>
-        <image name="CheckIcon.png" width="50" height="50"/>
+        <image name="CheckIcon.png" width="25" height="25"/>
         <image name="Default-568h.png" width="320" height="568"/>
         <image name="Default-Portrait.png" width="768" height="1004"/>
         <image name="Default.png" width="320" height="480"/>
@@ -71,4 +71,8 @@
         <image name="Wegerich.png" width="750" height="390"/>
         <image name="Weide.png" width="750" height="390"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="iPad"/>
+        <simulatedOrientationMetrics key="orientation"/>
+    </simulatedMetricsContainer>
 </document>

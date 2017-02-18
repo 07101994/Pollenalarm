@@ -6,7 +6,8 @@
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
     xmlns:custom="clr-namespace:Pollenalarm.Frontend.Forms.CustomControls;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
-    Title="{i18n:Translate AppTitle}">
+    Title="{i18n:Translate AppTitle}"
+	IsBusy="{Binding IsBusy, Mode=OneWay}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -91,6 +92,7 @@
             Name="{i18n:Translate Add}"
             Command="{Binding NavigateToAddPlaceCommand}"
             Icon="Add.png"
+			AutomationId="AddButton"
             Priority="0">
             <ToolbarItem.Order>
                 <OnPlatform
@@ -194,6 +196,7 @@
             Margin="0"
             Command="{Binding NavigateToAddPlaceCommand}"
             HorizontalOptions="End"
+			AutomationId="AddButton"
             Icon="Add.png"
             VerticalOptions="End">
             <custom:FormsFloatingActionButton.IsVisible>
