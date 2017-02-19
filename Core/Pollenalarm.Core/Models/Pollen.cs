@@ -1,13 +1,14 @@
-﻿using GalaSoft.MvvmLight;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pollenalarm.Core.Models
 {
-	public class Pollen : ViewModelBase, ISearchResult
+	public class Pollen : INotifyPropertyChanged, ISearchResult
     {
 		public int Id { get; set; }
         public string Name { get; set; }
@@ -23,5 +24,10 @@ namespace Pollenalarm.Core.Models
             get { return _IsSelected; }
             set { _IsSelected = value; RaisePropertyChanged(); }
         }
+
+        // Implementation of INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
     }
 }

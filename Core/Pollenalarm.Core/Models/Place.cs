@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pollenalarm.Core.Models
 {
-	public class Place : ViewModelBase, ISearchResult
+	public class Place : INotifyPropertyChanged, ISearchResult
     {
         public Guid Id { get; set; }
 
@@ -52,5 +52,9 @@ namespace Pollenalarm.Core.Models
             else
                 MaxPollutionToday = 0;
         }
+
+        // Implementation of INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
