@@ -1,7 +1,6 @@
-﻿using System;
-namespace Pollenalarm.Core
+﻿namespace Pollenalarm.Core
 {
-	public interface ISearchResult
-	{		
+    public interface ISearchResult
+	{
 	}
 }
