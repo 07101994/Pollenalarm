@@ -195,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
+    <Compile Include="App_Start\Startup.Swagger.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Controllers\PollenController.cs" />
     <Compile Include="Controllers\PollenTranslationController.cs" />

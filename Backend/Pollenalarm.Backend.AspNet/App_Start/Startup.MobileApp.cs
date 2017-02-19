@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data.Entity;
 using System.Web.Http;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
-using Pollenalarm.Backend.AspNet.DataObjects;
-using Pollenalarm.Backend.AspNet.Models;
 using Owin;
+using Pollenalarm.Backend.AspNet.Models;
 
 namespace Pollenalarm.Backend.AspNet
 {

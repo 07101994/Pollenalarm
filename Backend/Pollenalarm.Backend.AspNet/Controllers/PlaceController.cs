@@ -15,7 +15,7 @@ namespace Pollenalarm.Backend.AspNet.Controllers
         {
             base.Initialize(controllerContext);
             MobileServiceContext context = new MobileServiceContext();
-            DomainManager = new EntityDomainManager<PlaceDto>(context, Request);
+            DomainManager = new EntityDomainManager<PlaceDto>(context, Request, enableSoftDelete: true);
         }
 
         // GET tables/Place
