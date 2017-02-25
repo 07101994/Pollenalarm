@@ -8,18 +8,18 @@ namespace Pollenalarm.Backend.AspNet.Controllers
     [MobileAppController]
     public class PollutionController : ApiController
     {
-        private readonly PollutionService pollutionService;
+        private readonly PollutionService _PollutionService;
 
         public PollutionController()
         {
             MobileServiceContext context = new MobileServiceContext();
-            pollutionService = new PollutionService(context);
+            _PollutionService = new PollutionService(context);
         }
 
         //GET api/Pollution
         public IHttpActionResult Get(string zip)
         {
-            var pollutions = pollutionService.GetPollutionForPlace(zip);
+            var pollutions = _PollutionService.GetPollutionForPlace(zip);
             if (pollutions == null)
                 return InternalServerError();
 

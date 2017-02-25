@@ -9,20 +9,20 @@ namespace Pollenalarm.Backend.AspNet.Services
 {
     public class UpdateService
     {
-        private MobileServiceContext context;
-        private PdfService pdfService;
+        private MobileServiceContext _Context;
+        private PdfService _PdfService;
 
         public UpdateService(MobileServiceContext context)
         {
-            this.context = context;
-            this.pdfService = new PdfService();
+            _Context = context;
+            _PdfService = new PdfService();
         }
 
         public List<PollutionDto> GetUpdatedPollutions(string zip)
         {
             // Download pollen PDF
             var uri = new Uri(ConfigurationManager.AppSettings["PollenInformationSourceUrl"].ToString() + zip);
-            var pdfContent = pdfService.ExtractTextFromPdf(uri);
+            var pdfContent = _PdfService.ExtractTextFromPdf(uri);
 
             // Extract pollution information
             var pollutionList = ExtractPollutionFromPdfContent(pdfContent, zip);
@@ -32,7 +32,7 @@ namespace Pollenalarm.Backend.AspNet.Services
         private List<PollutionDto> ExtractPollutionFromPdfContent(string pdfContent, string zip)
         {
             var pollutionList = new List<PollutionDto>();
-            var pollenList = context.PollenTable.ToArray();
+            var pollenList = _Context.PollenTable.ToArray();
 
             // Shrink PDF string down to the table only, which starts with 'Ambrosia' and ends with 'Stand'
             pdfContent = pdfContent.Substring(pdfContent.IndexOf("Ambrosia"), (pdfContent.IndexOf("Stand") - (pdfContent.IndexOf("Ambrosia") + 0)));
@@ -74,7 +74,7 @@ namespace Pollenalarm.Backend.AspNet.Services
         {
             // Download pollen PDF
             var uri = new Uri(ConfigurationManager.AppSettings["PollenInformationSourceUrl"].ToString() + "40764");
-            var pdfContent = pdfService.ExtractTextFromPdf(uri);
+            var pdfContent = _PdfService.ExtractTextFromPdf(uri);
 
             // Prepare information
             var information = new InformationDto();

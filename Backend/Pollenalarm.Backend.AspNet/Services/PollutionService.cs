@@ -10,13 +10,13 @@ namespace Pollenalarm.Backend.AspNet.Services
 {
     public class PollutionService
     {
-        private MobileServiceContext context;
-        private UpdateService updateService;
+        private MobileServiceContext _Context;
+        private UpdateService _UpdateService;
 
         public PollutionService(MobileServiceContext context)
         {
-            this.context = context;
-            this.updateService = new UpdateService(context);
+            _Context = context;
+            _UpdateService = new UpdateService(context);
         }
 
         public List<PollutionDto> GetPollutionForPlace(string zip)
@@ -25,7 +25,7 @@ namespace Pollenalarm.Backend.AspNet.Services
 
             // Get the latest update for this city
             var latestUpdate = (
-                from p in context.PollutionTable
+                from p in _Context.PollutionTable
                 where p.Zip == zip
                 orderby p.Date descending
                 select p.Date).FirstOrDefault();
@@ -34,13 +34,13 @@ namespace Pollenalarm.Backend.AspNet.Services
             if (latestUpdate == null || latestUpdate < DateTime.Now.AddHours(-12))
             {
                 // Existing update is not exitant or too old. Update this place
-                pollutions = updateService.GetUpdatedPollutions(zip);
+                pollutions = _UpdateService.GetUpdatedPollutions(zip);
 
                 // Insert updated pollutions to the database
                 if (pollutions.Any())
                 {
-                    context.Set<PollutionDto>().AddRange(pollutions);
-                    context.SaveChanges();
+                    _Context.Set<PollutionDto>().AddRange(pollutions);
+                    _Context.SaveChanges();
                 }
             }
             else
@@ -51,7 +51,7 @@ namespace Pollenalarm.Backend.AspNet.Services
                 var afterTomorrow = DateTime.Now.Date.AddDays(2);
 
                 var pollutionQuery =
-                    from p in context.PollutionTable
+                    from p in _Context.PollutionTable
                     where p.Zip == zip && (p.Date.Date == today || p.Date.Date == tomorrow || p.Date.Date == afterTomorrow)
                     select p;
 

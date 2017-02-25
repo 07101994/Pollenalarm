@@ -5,6 +5,9 @@ using Pollenalarm.Backend.AspNet.Services;
 
 namespace Pollenalarm.Backend.AspNet.Controllers
 {
+    /// <summary>
+    /// Responsible for updating data periodically
+    /// </summary>
     [MobileAppController]
     [RoutePrefix("api/update")]
     public class UpdateController : ApiController
@@ -17,9 +20,8 @@ namespace Pollenalarm.Backend.AspNet.Controllers
             _InformationService = new InformationService(context);
         }
 
-        // GET api/Update
         /// <summary>
-        /// Updates the information table by downloading the latest message
+        /// Updates the information table by downloading the latest message if required
         /// </summary>
         /// <returns></returns>
         [HttpGet]
