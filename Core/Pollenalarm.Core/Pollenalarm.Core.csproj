@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\IInformation.cs" />
     <Compile Include="Models\IPlace.cs" />
     <Compile Include="Models\IPollen.cs" />
     <Compile Include="Models\IPollenTranslation.cs" />

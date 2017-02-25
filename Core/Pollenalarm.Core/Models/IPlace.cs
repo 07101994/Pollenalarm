@@ -11,5 +11,5 @@ namespace Pollenalarm.Core.Models
         string Id { get; set; }
         string Name { get; set; }
         string Zip { get; set; }
-    }    
+    }
 }

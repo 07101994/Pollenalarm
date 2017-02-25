@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{E3FFEE3A-453E-4DB9-8BC7-81B7194884DD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Backend", "02 Backend", "{E3FFEE3A-453E-4DB9-8BC7-81B7194884DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Backend", "Backend\Pollenalarm.Backend\Pollenalarm.Backend.csproj", "{E7DF00A8-4492-411C-B80C-FC8974C5BA5D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{F1BF6501-604E-4FE6-8D7C-DA855E7C82EF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Frontend", "03 Frontend", "{F1BF6501-604E-4FE6-8D7C-DA855E7C82EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xamarin.Forms", "Xamarin.Forms", "{BAF1F2AB-6396-44AC-8ECD-7DB52F52B102}"
 EndProject
@@ -27,11 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{1DDEFE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Shared", "Frontend\Shared\Pollenalarm.Frontend.Shared\Pollenalarm.Frontend.Shared.csproj", "{F0E761BA-D24A-42DA-A29D-93554D70E416}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D9637CFB-4B21-4775-BAFC-3D0D1F33B350}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Core", "01 Core", "{D9637CFB-4B21-4775-BAFC-3D0D1F33B350}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Core", "Core\Pollenalarm.Core\Pollenalarm.Core.csproj", "{D676E2A1-C502-446B-B7A4-CCD2803467EA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{FB2FE770-4C2A-426A-A1C1-E1CED2AE015F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 Test", "04 Test", "{FB2FE770-4C2A-426A-A1C1-E1CED2AE015F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollenalarm.Frontend.Forms.UITests", "Test\Pollenalarm.Backend.Forms.UITests\Pollenalarm.Frontend.Forms.UITests.csproj", "{806078A4-7F83-41C2-86B0-2EB9C6E24ED3}"
 EndProject

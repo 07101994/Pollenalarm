@@ -19,7 +19,6 @@ namespace Pollenalarm.Backend.AspNet.Services
             this.updateService = new UpdateService(context);
         }
 
-
         public List<PollutionDto> GetPollutionForPlace(string zip)
         {
             List<PollutionDto> pollutions;
@@ -46,6 +45,7 @@ namespace Pollenalarm.Backend.AspNet.Services
             }
             else
             {
+                // Last update is younger than 12 hours, so get the latest pollutions from the database
                 var today = DateTime.Now.Date;
                 var tomorrow = DateTime.Now.Date.AddDays(1);
                 var afterTomorrow = DateTime.Now.Date.AddDays(2);

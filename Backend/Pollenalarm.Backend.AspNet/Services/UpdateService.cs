@@ -20,9 +20,7 @@ namespace Pollenalarm.Backend.AspNet.Services
 
         public List<PollutionDto> GetUpdatedPollutions(string zip)
         {
-
             // Download pollen PDF
-            //var uri = new Uri("http://www.allergie.hexal.de/pollenflug/vorhersage/pdf_create.php?plz=" + zip);
             var uri = new Uri(ConfigurationManager.AppSettings["PollenInformationSourceUrl"].ToString() + zip);
             var pdfContent = pdfService.ExtractTextFromPdf(uri);
 
@@ -70,6 +68,34 @@ namespace Pollenalarm.Backend.AspNet.Services
             }
 
             return pollutionList;
+        }
+
+        public InformationDto GetUpdatedInformation()
+        {
+            // Download pollen PDF
+            var uri = new Uri(ConfigurationManager.AppSettings["PollenInformationSourceUrl"].ToString() + "40764");
+            var pdfContent = pdfService.ExtractTextFromPdf(uri);
+
+            // Prepare information
+            var information = new InformationDto();
+            information.Date = DateTime.Now;
+            information.Language = "DE";
+
+            try
+            {
+                // Extract Information
+                information.Text =
+                    pdfContent.Substring(
+                        pdfContent.IndexOf("Für Deutschland:") + 17,
+                        (pdfContent.IndexOf("Für Postleitzahl") - (pdfContent.IndexOf("Für Deutschland:") + 17)));
+            }
+            catch (Exception)
+            {
+                // Recovery Text
+                information.Text = "Derzeit sind keine weiteren Informationen vorhanden. Wir wünschen eine Pollenfreie Zeit!";
+            }
+
+            return information;
         }
 
         private int GetIntensity(string value)

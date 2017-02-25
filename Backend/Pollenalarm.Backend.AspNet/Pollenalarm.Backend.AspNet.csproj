@@ -200,16 +200,21 @@
   <ItemGroup>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
     <Compile Include="App_Start\Startup.Swagger.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Controllers\PollenController.cs" />
     <Compile Include="Controllers\PollenTranslationController.cs" />
     <Compile Include="Controllers\PollutionController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
+    <Compile Include="DataObjects\InformationDto.cs" />
     <Compile Include="DataObjects\PlaceDto.cs" />
     <Compile Include="DataObjects\PollenDto.cs" />
     <Compile Include="DataObjects\PollenTranslationDto.cs" />
     <Compile Include="DataObjects\PollutionDto.cs" />
     <Compile Include="Models\MobileServiceContext.cs" />
+    <Compile Include="Models\UpdateResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\InformationService.cs" />
     <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\PollutionService.cs" />
     <Compile Include="Services\UpdateService.cs" />
