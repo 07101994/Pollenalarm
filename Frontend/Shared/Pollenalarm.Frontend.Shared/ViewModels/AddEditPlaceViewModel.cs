@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Shared.Models;
 using Pollenalarm.Frontend.Shared.Services;
 using IDialogService = Pollenalarm.Frontend.Shared.Services.IDialogService;
 

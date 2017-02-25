@@ -1,6 +1,5 @@
-﻿using Pollenalarm.Core.Models;
-using Pollenalarm.Frontend.Forms.Resources;
-
+﻿using Pollenalarm.Frontend.Forms.Resources;
+using Pollenalarm.Frontend.Shared.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

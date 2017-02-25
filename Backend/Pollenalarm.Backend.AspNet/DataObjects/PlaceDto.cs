@@ -6,14 +6,21 @@ using Pollenalarm.Core.Models;
 
 namespace Pollenalarm.Backend.AspNet.DataObjects
 {
-    [Table(nameof(Place))]
-    public class PlaceDto : Place, ITableData
+    [Table("Place")]
+    public class PlaceDto : IPlace, ITableData
     {
-        #region ITableData implementation for Azure Mobile App
+        #region Implementation of IPlace
+
+        public string Name { get; set; }
+        public string Zip { get; set; }
+
+        #endregion
+
+        #region Implementation of ITableData  for Azure Mobile App
 
         [Key]
         [TableColumn(TableColumnType.Id)]
-        public new string Id { get; set; }
+        public string Id { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Index(IsClustered = true)]

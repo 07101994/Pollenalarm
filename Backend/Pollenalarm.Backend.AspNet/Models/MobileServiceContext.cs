@@ -33,10 +33,12 @@ namespace Pollenalarm.Backend.AspNet.Models
                     "ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
         }
 
-        public System.Data.Entity.DbSet<Pollenalarm.Backend.AspNet.DataObjects.PollenDto> PollenDtoes { get; set; }
+        public DbSet<PollenDto> PollenTable { get; set; }
 
-        public System.Data.Entity.DbSet<Pollenalarm.Backend.AspNet.DataObjects.PlaceDto> PlaceDtoes { get; set; }
+        public DbSet<PlaceDto> PlaceTable { get; set; }
 
-        public System.Data.Entity.DbSet<Pollenalarm.Backend.AspNet.DataObjects.PollenTranslationDto> PollenTranslationDtoes { get; set; }
+        public DbSet<PollenTranslationDto> PollenTranslationTable { get; set; }
+
+        public DbSet<PollutionDto> PollutionTable { get; set; }
     }
 }

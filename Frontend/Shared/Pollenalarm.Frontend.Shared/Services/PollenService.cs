@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Pollenalarm.Core;
 using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Shared.Models;
 
 namespace Pollenalarm.Frontend.Shared.Services
 {

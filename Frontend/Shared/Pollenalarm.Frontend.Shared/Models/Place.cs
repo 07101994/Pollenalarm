@@ -1,23 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using Pollenalarm.Core;
+using Pollenalarm.Core.Models;
 
-namespace Pollenalarm.Core.Models
+namespace Pollenalarm.Frontend.Shared.Models
 {
-    public class Place : INotifyPropertyChanged, ISearchResult
+    public class Place : IPlace, INotifyPropertyChanged, ISearchResult
     {
-        public Guid Id { get; set; }
+        #region Implementation of IPlace
 
+        public string Id { get; set; }
         private string _Name;
         public string Name
         {
             get { return _Name; }
             set { _Name = value; RaisePropertyChanged(); }
         }
-
         public string Zip { get; set; }
+
+        #endregion
 
         private int _MaxPollutionToday;
         public int MaxPollutionToday
@@ -34,7 +41,7 @@ namespace Pollenalarm.Core.Models
 
         public Place()
         {
-			Id = Guid.NewGuid();
+            Id = Guid.NewGuid().ToString();
 
             PollutionToday = new ObservableCollection<Pollution>();
             PollutionTomorrow = new ObservableCollection<Pollution>();

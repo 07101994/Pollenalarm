@@ -53,6 +53,10 @@
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Azure.Mobile.Server.2.0.0\lib\net46\Microsoft.Azure.Mobile.Server.dll</HintPath>
       <Private>True</Private>
@@ -199,11 +203,16 @@
     <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Controllers\PollenController.cs" />
     <Compile Include="Controllers\PollenTranslationController.cs" />
+    <Compile Include="Controllers\PollutionController.cs" />
     <Compile Include="DataObjects\PlaceDto.cs" />
     <Compile Include="DataObjects\PollenDto.cs" />
     <Compile Include="DataObjects\PollenTranslationDto.cs" />
+    <Compile Include="DataObjects\PollutionDto.cs" />
     <Compile Include="Models\MobileServiceContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PdfService.cs" />
+    <Compile Include="Services\PollutionService.cs" />
+    <Compile Include="Services\UpdateService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

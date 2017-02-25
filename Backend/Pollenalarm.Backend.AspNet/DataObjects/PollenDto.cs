@@ -6,14 +6,26 @@ using Pollenalarm.Core.Models;
 
 namespace Pollenalarm.Backend.AspNet.DataObjects
 {
-    [Table(nameof(Pollen))]
-    public class PollenDto : Pollen, ITableData
+    [Table("Pollen")]
+    public class PollenDto : IPollen, ITableData
     {
-        #region ITableData implementation for Azure Mobile App
+        #region Implementation of IPollen
+
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime BloomStart { get; set; }
+        public DateTime BloomEnd { get; set; }
+        public int ClinicalPollution { get; set; }
+        public string ImageCredits { get; set; }
+
+        #endregion
+
+        #region Implementation of ITableData  for Azure Mobile App
 
         [Key]
         [TableColumn(TableColumnType.Id)]
-        public new string Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string Id { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Index(IsClustered = true)]

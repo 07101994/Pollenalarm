@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Pollenalarm.Core.Models
+namespace Pollenalarm.Frontend.Shared.Models
 {
     public class SearchResultGroup : ObservableCollection<ISearchResult>
     {

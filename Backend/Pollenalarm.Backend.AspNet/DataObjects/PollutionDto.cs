@@ -6,15 +6,15 @@ using Pollenalarm.Core.Models;
 
 namespace Pollenalarm.Backend.AspNet.DataObjects
 {
-    [Table("PollenTranslation")]
-    public class PollenTranslationDto : IPollenTranslation, ITableData
+    [Table("Pollution")]
+    public class PollutionDto : IPollution, ITableData
     {
-        #region Implementation of IPollenTranslation
+        #region Implementation of IPollution
 
+        public string Zip { get; set; }
         public string PollenId { get; set; }
-        public string Language { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public DateTime Date { get; set; }
+        public int Intensity { get; set; }
 
         #endregion
 
@@ -22,6 +22,7 @@ namespace Pollenalarm.Backend.AspNet.DataObjects
 
         [Key]
         [TableColumn(TableColumnType.Id)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

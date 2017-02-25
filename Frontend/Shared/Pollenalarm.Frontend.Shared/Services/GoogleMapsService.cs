@@ -79,7 +79,7 @@ namespace Pollenalarm.Frontend.Shared
 							continue;
 					}
 
-					places.Add(new Place { Id = new Guid(), Name = name, Zip = zip });
+					places.Add(new Place { Id = Guid.NewGuid().ToString(), Name = name, Zip = zip });
 				}
 
 				return places;

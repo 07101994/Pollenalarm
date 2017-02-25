@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Pollenalarm.Core.Models;
 using Pollenalarm.Frontend.Shared.Misc;
+using Pollenalarm.Frontend.Shared.Models;
 using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
