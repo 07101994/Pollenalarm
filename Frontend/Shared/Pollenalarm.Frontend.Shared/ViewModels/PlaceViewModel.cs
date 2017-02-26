@@ -14,7 +14,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 	public class PlaceViewModel : AsyncViewModelBase
 	{
         private INavigationService _NavigationService;
-        private PollenService _PollenService;
+        private IPollenService _PollenService;
 
         private Place _CurrentPlace;
 		public Place CurrentPlace
@@ -86,7 +86,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService, PollenService pollenService)
+        public PlaceViewModel(INavigationService navigationService, IPollenService pollenService)
 		{
             _NavigationService = navigationService;
             _PollenService = pollenService;

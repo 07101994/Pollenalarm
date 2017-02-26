@@ -5,6 +5,7 @@ using Pollenalarm.Backend.Controllers.Base;
 using Pollenalarm.Backend.Models;
 using Pollenalarm.Backend.Services;
 using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Shared.Models;
 
 namespace Pollenalarm.Backend.Controllers
 {

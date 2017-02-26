@@ -13,7 +13,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 	public class SearchViewModel : AsyncViewModelBase
 	{
 		private INavigationService _NavigationService;
-		private PollenService _PollenService;
+		private IPollenService _PollenService;
 		private GoogleMapsService _GoogleMapsService;
 
 		private string _SearchTerm;
@@ -109,7 +109,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			}
 		}
 
-		public SearchViewModel(INavigationService navigationService, PollenService pollenService, GoogleMapsService googleMapsService)
+		public SearchViewModel(INavigationService navigationService, IPollenService pollenService, GoogleMapsService googleMapsService)
 		{
 			_NavigationService = navigationService;
 			_PollenService = pollenService;

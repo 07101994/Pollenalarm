@@ -13,7 +13,7 @@ namespace Pollenalarm.Backend.AspNet
             config.Services.Replace(typeof(IApiExplorer), new MobileAppApiExplorer(config));
             config.EnableSwagger(c =>
             {
-                c.SingleApiVersion("1.0.0.0", "Pollenalarm Backend");
+                c.SingleApiVersion("v1", "Pollenalarm Backend");
 
                 // Tells the Swagger doc that any MobileAppController needs a
                 // ZUMO-API-VERSION header with default 2.0.0
@@ -22,6 +22,9 @@ namespace Pollenalarm.Backend.AspNet
                 // Looks at attributes on properties to decide whether they are readOnly.
                 // Right now, this only applies to the DatabaseGeneratedAttribute.
                 c.SchemaFilter<MobileAppSchemaFilter>();
+
+                // Include XML Documentation
+                c.IncludeXmlComments($"{System.AppDomain.CurrentDomain.BaseDirectory}\\bin\\Documentation.xml");
 
                 // 1. Adds an OAuth implicit flow description that points to App Service Auth with the specified provdier
                 // 2. Adds a Swashbuckle filter that applies this Oauth description to any Action with [Authorize]

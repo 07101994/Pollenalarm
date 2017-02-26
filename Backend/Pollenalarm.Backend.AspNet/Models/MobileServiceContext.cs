@@ -38,6 +38,5 @@ namespace Pollenalarm.Backend.AspNet.Models
         public DbSet<PollenTranslationDto> PollenTranslationTable { get; set; }
         public DbSet<PollutionDto> PollutionTable { get; set; }
         public DbSet<InformationDto> InformationTable { get; set; }
-
     }
 }

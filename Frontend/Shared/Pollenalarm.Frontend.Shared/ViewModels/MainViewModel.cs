@@ -17,7 +17,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 		private INavigationService _NavigationService;
 		private IFileSystemService _FileSystemService;
 		private ILocalizationService _LocalizationService;
-		private PollenService _PollenService;
+		private IPollenService _PollenService;
 		private SettingsService _SettingsService;
 		private PlaceService _PlaceService;
 		private PlaceViewModel _PlaceViewModel;
@@ -101,7 +101,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 			}
 		}
 
-		public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, PollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel, AddEditPlaceViewModel addEditPlaceViewModel)
+		public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, IPollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel, AddEditPlaceViewModel addEditPlaceViewModel)
 		{
 			_NavigationService = navigationService;
 			_FileSystemService = fileSystemService;

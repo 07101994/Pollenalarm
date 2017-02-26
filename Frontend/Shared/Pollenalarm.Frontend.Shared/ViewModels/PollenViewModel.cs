@@ -8,7 +8,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 {
 	public class PollenViewModel : AsyncViewModelBase
     {
-		private PollenService _PollenService;
+		private IPollenService _PollenService;
 		private SettingsService _SettingsService;
 
 		private ObservableCollection<Pollen> _Pollen;
@@ -25,7 +25,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             set { _CurrentPollen = value; RaisePropertyChanged(); }
         }
 
-		public PollenViewModel(PollenService pollenService, SettingsService settingsService)
+		public PollenViewModel(IPollenService pollenService, SettingsService settingsService)
         {
 			_PollenService = pollenService;
 			_SettingsService = settingsService;

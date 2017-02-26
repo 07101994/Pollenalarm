@@ -18,7 +18,7 @@ namespace Pollenalarm.Backend.AspNet.Services
 
         public UpdateResult<InformationDto> UpdateInformation()
         {
-            UpdateResult<InformationDto> result = new UpdateResult<InformationDto>();
+            var result = new UpdateResult<InformationDto>();
 
             // Get the latest update for this city
             var latestInformation = (

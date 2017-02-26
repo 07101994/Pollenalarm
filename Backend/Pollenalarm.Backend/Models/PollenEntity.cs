@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Shared.Models;
 
 namespace Pollenalarm.Backend.Models
 {
@@ -32,7 +33,7 @@ namespace Pollenalarm.Backend.Models
         {
             return new Pollen
             {
-				Id = Id,
+				Id = Id.ToString(),
                 Name = Name,
 				Description = Description,
 				BloomStart = BloomStart,
