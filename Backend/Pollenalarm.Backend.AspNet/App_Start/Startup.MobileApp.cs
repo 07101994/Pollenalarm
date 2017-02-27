@@ -24,7 +24,8 @@ namespace Pollenalarm.Backend.AspNet
                 .ApplyTo(config);
 
             // Use Entity Framework Code First to create database tables based on your DbContext
-            Database.SetInitializer(new MobileServiceInitializerDropCreateDatabaseAlways());
+            //Database.SetInitializer(new MobileServiceInitializerDropCreateDatabaseAlways());
+            Database.SetInitializer(new MobileServiceInitializerCreateDatabaseIfNotExists());
 
             MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
