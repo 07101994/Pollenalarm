@@ -24,8 +24,8 @@ namespace Pollenalarm.Backend.AspNet
                 .ApplyTo(config);
 
             // Use Entity Framework Code First to create database tables based on your DbContext
+            Database.SetInitializer(new MobileServiceInitializer());
             //Database.SetInitializer(new MobileServiceInitializerDropCreateDatabaseAlways());
-            Database.SetInitializer(new MobileServiceInitializerCreateDatabaseIfNotExists());
 
             MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
@@ -49,7 +49,7 @@ namespace Pollenalarm.Backend.AspNet
         }
     }
 
-    public class MobileServiceInitializerCreateDatabaseIfNotExists : CreateDatabaseIfNotExists<MobileServiceContext>
+    public class MobileServiceInitializer : CreateDatabaseIfNotExists<MobileServiceContext>
     {
         protected override void Seed(MobileServiceContext context)
         {

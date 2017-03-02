@@ -24,40 +24,50 @@ namespace Pollenalarm.Backend.AspNet.Services
         {
             List<PollutionDto> pollutions;
 
+            // Get exisitng pollutions for the next three days
             var today = DateTime.Now.Date;
             var tomorrow = DateTime.Now.Date.AddDays(1);
             var afterTomorrow = DateTime.Now.Date.AddDays(2);
-
             var pollutionQuery =
                 from p in _Context.PollutionTable
-                where p.Zip == zip && (DbFunctions.TruncateTime(p.Date) == today ||
-                                       DbFunctions.TruncateTime(p.Date) == tomorrow ||
-                                       DbFunctions.TruncateTime(p.Date) == afterTomorrow)
+                where p.Zip == zip && (
+                    DbFunctions.TruncateTime(p.Date) == today ||
+                    DbFunctions.TruncateTime(p.Date) == tomorrow ||
+                    DbFunctions.TruncateTime(p.Date) == afterTomorrow)
                 select p;
 
             // Check if pollution is available and younger than 12 hours
-            if (true) //!pollutionQuery.Any() || pollutionQuery.Min(p => p.Updated) < DateTime.Now.AddHours(-12))
+            if (!pollutionQuery.Any() || DateTime.Compare(pollutionQuery.Min(p => p.Updated), DateTime.Now.AddHours(-12)) > 0)
             {
-                // Existing update is not exitant or too old. Update this place
-                pollutions = _UpdateService.GetUpdatedPollutions(zip);
-
-                foreach (var pollution in pollutions)
+                try
                 {
-                    var existingPollution = pollutionQuery.Where(p => p.Date == pollution.Date).FirstOrDefault();
-                    if (existingPollution != null)
-                        _Context.Set<PollutionDto>().Remove(existingPollution);
+                    // Existing update is not exitant or too old, so get updated ones
+                    pollutions = _UpdateService.GetUpdatedPollutions(zip);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    // Parsing PDF failed, return existing pollutions from the database when available
+                    pollutions = pollutionQuery.ToList();
                 }
 
-                // Insert updated pollutions to the database
                 if (pollutions.Any())
                 {
-                    // Add updated pollutions
+                    // Delete existing pollutions from database
+                    foreach (var pollution in pollutions)
+                    {
+                        var existingPollution = pollutionQuery.Where(p => p.PollenId == pollution.PollenId && p.Date == pollution.Date).FirstOrDefault();
+                        if (existingPollution != null)
+                            _Context.Set<PollutionDto>().Remove(existingPollution);
+                    }
+
+                    // Add updated pollutions to database
                     _Context.Set<PollutionDto>().AddRange(pollutions);
                     _Context.SaveChanges();
                 }
             }
             else
             {
+                // Existing pollutions are updated less than 12h ago, so re-use them
                 pollutions = pollutionQuery.ToList();
             }
 
