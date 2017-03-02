@@ -287,7 +287,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\pollenalarm - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\pollenalarm - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\pollenalarm - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\pollenalarm - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\pollenalarm - Web Deploy %283%29.pubxml" />

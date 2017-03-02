@@ -15,6 +15,7 @@ namespace Pollenalarm.Frontend.Shared.Models
         public string Zip { get; set; }
         public string PollenId { get; set; }
         public DateTime Date { get; set; }
+        public DateTime Updated { get; set; }
         public int Intensity { get; set; }
 
         #endregion

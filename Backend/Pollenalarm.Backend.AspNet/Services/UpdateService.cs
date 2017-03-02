@@ -39,6 +39,7 @@ namespace Pollenalarm.Backend.AspNet.Services
             var pdfPollutionTable = pdfContent.Split('\n');
 
             // Get the pollution information for each pollen
+            var updated = DateTime.Now;
             foreach (var pollutionString in pdfPollutionTable)
             {
                 // Skip empty ines
@@ -62,6 +63,7 @@ namespace Pollenalarm.Backend.AspNet.Services
                         PollenId = pollen.Id,
                         Zip = zip,
                         Date = DateTime.Now.Date.AddDays(i),
+                        Updated = updated,
                         Intensity = GetIntensity(columns[i + 1])
                     });
                 }

@@ -9,6 +9,7 @@ namespace Pollenalarm.Core.Models
         string Zip { get; set; }
         string PollenId { get; set; }
         DateTime Date { get; set; }
+        DateTime Updated { get; set; }
         int Intensity { get; set; }
     }
 }

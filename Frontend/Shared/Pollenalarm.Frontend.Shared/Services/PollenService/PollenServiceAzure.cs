@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
@@ -20,7 +21,7 @@ namespace Pollenalarm.Frontend.Shared.Services
 
         public PollenServiceAzure(SettingsService settingsService) : base(settingsService)
         {
-            _MobileClient = new MobileServiceClient("");
+            _MobileClient = new MobileServiceClient("https://pollenalarmbackend.azurewebsites.net");
         }
 
         private async Task InitializeAsync()
@@ -51,13 +52,47 @@ namespace Pollenalarm.Frontend.Shared.Services
             // Sync changes to local store
             await SyncAsync();
 
-            // Return form local store
-            return await _PollenTable.ToListAsync();
+            // Get form local store
+            var pollenList = await _PollenTable.ToListAsync();
+
+            // Init settings
+            await _SettingsService.LoadSettingsAsync();
+
+            // Update pollen selection
+            if (pollenList != null && pollenList.Any())
+            {
+                foreach (var pollen in pollenList)
+                    pollen.IsSelected =
+                        _SettingsService.CurrentSettings.SelectedPollen.ContainsKey(pollen.Id) ?
+                        _SettingsService.CurrentSettings.SelectedPollen[pollen.Id] : true;
+            }
+
+            return pollenList;
         }
 
         public override async Task<bool> GetPollutionsForPlaceAsync(Place place)
         {
-            throw new NotImplementedException();
+            // Get pollutions
+            var pollutions = await _MobileClient.InvokeApiAsync<List<Pollution>>("Pollution", HttpMethod.Get, new Dictionary<string, string> {{ "zip", place.Zip }});
+
+            // Sort pollutions into place's lists
+            foreach (var pollution in pollutions)
+            {
+                if (pollution.Date.Date == DateTime.Now.Date)
+                    place.PollutionToday.Add(pollution);
+                else if (pollution.Date.Date == DateTime.Now.AddDays(1).Date)
+                    place.PollutionTomorrow.Add(pollution);
+                else if (pollution.Date.Date == DateTime.Now.AddDays(1).Date)
+                    place.PollutionTomorrow.Add(pollution);
+            }
+
+            // Init settings
+            await _SettingsService.LoadSettingsAsync();
+
+            // Update pollen selection
+            UpdatePollenSelection(place);
+
+            return true;
         }
 
         private async Task SyncAsync()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Pollenalarm.Backend.AspNet.DataObjects;
@@ -23,38 +24,40 @@ namespace Pollenalarm.Backend.AspNet.Services
         {
             List<PollutionDto> pollutions;
 
-            // Get the latest update for this city
-            var latestUpdate = (
+            var today = DateTime.Now.Date;
+            var tomorrow = DateTime.Now.Date.AddDays(1);
+            var afterTomorrow = DateTime.Now.Date.AddDays(2);
+
+            var pollutionQuery =
                 from p in _Context.PollutionTable
-                where p.Zip == zip
-                orderby p.Date descending
-                select p.Date).FirstOrDefault();
+                where p.Zip == zip && (DbFunctions.TruncateTime(p.Date) == today ||
+                                       DbFunctions.TruncateTime(p.Date) == tomorrow ||
+                                       DbFunctions.TruncateTime(p.Date) == afterTomorrow)
+                select p;
 
             // Check if pollution is available and younger than 12 hours
-            if (latestUpdate == null || latestUpdate < DateTime.Now.AddHours(-12))
+            if (true) //!pollutionQuery.Any() || pollutionQuery.Min(p => p.Updated) < DateTime.Now.AddHours(-12))
             {
                 // Existing update is not exitant or too old. Update this place
                 pollutions = _UpdateService.GetUpdatedPollutions(zip);
 
+                foreach (var pollution in pollutions)
+                {
+                    var existingPollution = pollutionQuery.Where(p => p.Date == pollution.Date).FirstOrDefault();
+                    if (existingPollution != null)
+                        _Context.Set<PollutionDto>().Remove(existingPollution);
+                }
+
                 // Insert updated pollutions to the database
                 if (pollutions.Any())
                 {
+                    // Add updated pollutions
                     _Context.Set<PollutionDto>().AddRange(pollutions);
                     _Context.SaveChanges();
                 }
             }
             else
             {
-                // Last update is younger than 12 hours, so get the latest pollutions from the database
-                var today = DateTime.Now.Date;
-                var tomorrow = DateTime.Now.Date.AddDays(1);
-                var afterTomorrow = DateTime.Now.Date.AddDays(2);
-
-                var pollutionQuery =
-                    from p in _Context.PollutionTable
-                    where p.Zip == zip && (p.Date.Date == today || p.Date.Date == tomorrow || p.Date.Date == afterTomorrow)
-                    select p;
-
                 pollutions = pollutionQuery.ToList();
             }
 
