@@ -15,15 +15,14 @@ namespace Pollenalarm.Frontend.Forms.Services
 		public GeoLocationService()
 		{
 			_Locator = CrossGeolocator.Current;
-		}
+            _Locator.DesiredAccuracy = 2000;
+        }
 
 		public async Task<GeoLocation> GetCurrentLocationAsync()
 		{
 			try
 			{
-				_Locator.DesiredAccuracy = 2000;
-
-				var position = await _Locator.GetPositionAsync(TimeSpan.FromMilliseconds(1000));
+				var position = await _Locator.GetPositionAsync(TimeSpan.FromSeconds(5));
 
 				var geoLocation = new GeoLocation();
 				geoLocation.Latitute = position.Latitude;
