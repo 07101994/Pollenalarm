@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -12,186 +12,189 @@ using Pollenalarm.Frontend.Shared.Models;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
-	public class MainViewModel : AsyncViewModelBase
-	{
-		private INavigationService _NavigationService;
-		private IFileSystemService _FileSystemService;
-		private ILocalizationService _LocalizationService;
-		private IPollenService _PollenService;
-		private SettingsService _SettingsService;
-		private PlaceService _PlaceService;
-		private PlaceViewModel _PlaceViewModel;
-		private AddEditPlaceViewModel _AddEditPlaceViewModel;
+    public class MainViewModel : AsyncViewModelBase
+    {
+        private INavigationService _NavigationService;
+        private IFileSystemService _FileSystemService;
+        private ILocalizationService _LocalizationService;
+        private IPollenService _PollenService;
+        private SettingsService _SettingsService;
+        private PlaceService _PlaceService;
 
-		private ObservableCollection<Place> _Places;
-		public ObservableCollection<Place> Places
-		{
-			get { return _Places; }
-			set { _Places = value; RaisePropertyChanged(); }
-		}
+        private ObservableCollection<PlaceRowViewModel> _Places;
+        public ObservableCollection<PlaceRowViewModel> Places
+        {
+            get { return _Places; }
+            set { _Places = value; RaisePropertyChanged(); }
+        }
 
-		private string _GreetingHeader;
-		public string GreetingHeader
-		{
-			get { return _GreetingHeader; }
-			set { _GreetingHeader = value; RaisePropertyChanged(); }
-		}
+        private string _GreetingHeader;
+        public string GreetingHeader
+        {
+            get { return _GreetingHeader; }
+            set { _GreetingHeader = value; RaisePropertyChanged(); }
+        }
 
-		private RelayCommand _RefreshCommand;
-		public RelayCommand RefreshCommand
-		{
-			get
-			{
-				return _RefreshCommand ?? (_RefreshCommand = new RelayCommand(async () =>
-				{
-					await RefreshAsync();
-				}));
-			}
-		}
+        private RelayCommand _RefreshCommand;
+        public RelayCommand RefreshCommand
+        {
+            get
+            {
+                return _RefreshCommand ?? (_RefreshCommand = new RelayCommand(async () =>
+                {
+                    await RefreshAsync();
+                }));
+            }
+        }
 
-		private RelayCommand _NavigateToSettingsCommand;
-		public RelayCommand NavigateToSettingsCommand
-		{
-			get
-			{
-				return _NavigateToSettingsCommand ?? (_NavigateToSettingsCommand = new RelayCommand(() =>
-				{
-					_NavigationService.NavigateTo(ViewNames.Settings);
-				}));
-			}
-		}
+        private RelayCommand _NavigateToSettingsCommand;
+        public RelayCommand NavigateToSettingsCommand
+        {
+            get
+            {
+                return _NavigateToSettingsCommand ?? (_NavigateToSettingsCommand = new RelayCommand(() =>
+                {
+                    _NavigationService.NavigateTo(ViewNames.Settings);
+                }));
+            }
+        }
 
-		private RelayCommand _NavigateToAddPlaceCommand;
-		public RelayCommand NavigateToAddPlaceCommand
-		{
-			get
-			{
-				return _NavigateToAddPlaceCommand ?? (_NavigateToAddPlaceCommand = new RelayCommand(() =>
-				{
-					_AddEditPlaceViewModel.CurrentPlace = null;
-					_AddEditPlaceViewModel.PlaceName = string.Empty;
-					_AddEditPlaceViewModel.PlaceZip = string.Empty;
-					_NavigationService.NavigateTo(ViewNames.AddEditPlace);
-				}));
-			}
-		}
+        private RelayCommand _NavigateToAddPlaceCommand;
+        public RelayCommand NavigateToAddPlaceCommand
+        {
+            get
+            {
+                return _NavigateToAddPlaceCommand ?? (_NavigateToAddPlaceCommand = new RelayCommand(() =>
+                {
+                    _PlaceService.CurrentPlace = null;
+                    _NavigationService.NavigateTo(ViewNames.AddEditPlace);
+                }));
+            }
+        }
 
-		private RelayCommand<Place> _NavigateToPlaceCommand;
-		public RelayCommand<Place> NavigateToPlaceCommand
-		{
-			get
-			{
-				return _NavigateToPlaceCommand ?? (_NavigateToPlaceCommand = new RelayCommand<Place>((Place place) =>
-				{
-					_PlaceViewModel.CurrentPlace = place;
-					_NavigationService.NavigateTo(ViewNames.Place);
-				}));
-			}
-		}
+        private RelayCommand<string> _NavigateToPlaceCommand;
+        public RelayCommand<string> NavigateToPlaceCommand
+        {
+            get
+            {
+                return _NavigateToPlaceCommand ?? (_NavigateToPlaceCommand = new RelayCommand<string>((string placeId) =>
+                {
+                    _PlaceService.CurrentPlace = _PlaceService.Places.FirstOrDefault(p => p.Id == placeId);
+                    _NavigationService.NavigateTo(ViewNames.Place);
+                }));
+            }
+        }
 
-		private RelayCommand _NavigateToSearchCommand;
-		public RelayCommand NavigateToSearchCommand
-		{
-			get
-			{
-				return _NavigateToSearchCommand ?? (_NavigateToSearchCommand = new RelayCommand(() =>
-				{
-					_NavigationService.NavigateTo(ViewNames.Search);
-				}));
-			}
-		}
+        private RelayCommand _NavigateToSearchCommand;
+        public RelayCommand NavigateToSearchCommand
+        {
+            get
+            {
+                return _NavigateToSearchCommand ?? (_NavigateToSearchCommand = new RelayCommand(() =>
+                {
+                    _NavigationService.NavigateTo(ViewNames.Search);
+                }));
+            }
+        }
 
-		public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, IPollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel, AddEditPlaceViewModel addEditPlaceViewModel)
-		{
-			_NavigationService = navigationService;
-			_FileSystemService = fileSystemService;
-			_LocalizationService = localizationService;
-			_PollenService = pollenService;
-			_SettingsService = settingsService;
-			_PlaceService = placeService;
-			_PlaceViewModel = placeViewModel;
-			_AddEditPlaceViewModel = addEditPlaceViewModel;
+        public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, IPollenService pollenService, PlaceService placeService)
+        {
+            _NavigationService = navigationService;
+            _FileSystemService = fileSystemService;
+            _LocalizationService = localizationService;
+            _PollenService = pollenService;
+            _SettingsService = settingsService;
+            _PlaceService = placeService;
 
-			Places = new ObservableCollection<Place>();
-		}
+            Places = new ObservableCollection<PlaceRowViewModel>();
+        }
 
-		public async Task RefreshAsync()
-		{
-			IsBusy = true;
+        public async Task RefreshAsync()
+        {
+            IsBusy = true;
 
-			// Update greeting header
-			var now = DateTime.Now;
-			if (now.Hour > 5 && now.Hour < 11)
-				GreetingHeader = _LocalizationService.GetString("GoodMorning");
-			else if (now.Hour >= 11 && now.Hour < 14)
-				GreetingHeader = _LocalizationService.GetString("GoodDay");
-			else if (now.Hour >= 14 && now.Hour < 18)
-				GreetingHeader = _LocalizationService.GetString("GoodEvening");
-			else
-				GreetingHeader = _LocalizationService.GetString("GoodNight");
+            // Update greeting header
+            UpdateGreetingHeader();
 
-			// Load settings
-			await _SettingsService.LoadSettingsAsync();
+            // Initialize Services if needed
+            await _SettingsService.InitializeAsync();
+            await _PlaceService.InitializeAsync();
 
-			// Load locally saved places
-			var savedPlaces = await _FileSystemService.ReadObjectFromFileAsync<List<Place>>("places.json");
-			if (savedPlaces != null)
-			{
-				foreach (var place in savedPlaces)
-				{
-					var existingPlace = Places.FirstOrDefault(p => p.Id == place.Id);
-					if (existingPlace == null)
-						Places.Add(place);
-				}
-			}
+            // Add places from PlaceService to list or update existing ones
+            foreach (var place in _PlaceService.Places)
+            {
+                var placeViewModel = Places.FirstOrDefault(p => p.Id == place.Id);
 
-			// Add or remove current position
-			// Should be done after loading places from local storage as they contain the current position
-			var currentPosition = Places.FirstOrDefault(p => p.IsCurrentPosition);
-			if (_SettingsService.CurrentSettings.UseCurrentLocation)
-			{
-				// Add current location
-				var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
-				if (geolocation != null)
-				{
-					// Add new zip code to existing current postition
+                // Update place if it has already been existant
+                placeViewModel?.UpdateProperties(place);
 
-					if (currentPosition != null)
-					{
-						currentPosition.Zip = geolocation.Zip;
-					}
-					else
-					{
-						Places.Insert(0, new Place
-						{
-							Name = _LocalizationService.GetString("CurrentPosition"),
-							Zip = geolocation.Zip,
-							IsCurrentPosition = true
-						});
-					}
-				}
-				else
-				{
-					// Remove current position, if GPS location could not be found
-					if (currentPosition != null)
-						Places.Remove(currentPosition);
-				}
-			}
-			else
-			{
-				if (currentPosition != null)
-					Places.Remove(currentPosition);
-			}
+                // Add ViewModel if not existant
+                if (placeViewModel == null)
+                {
+                    placeViewModel = new PlaceRowViewModel(_PollenService, place);
+                    Places.Add(placeViewModel);
+                }
+            }
 
-			// Update places
-			foreach (var place in Places)
-			{
-				await _PollenService.GetPollutionsForPlaceAsync(place);
-				place.RecalculateMaxPollution();
-			}
+            // Add or remove current position
+            // Should be done after loading places from local storage as they contain the current position
+            var currentPosition = _PlaceService.Places.FirstOrDefault(p => p.IsCurrentPosition);
+            var currentPositionViewModel = currentPosition != null ? Places.FirstOrDefault(vm => vm.Id == currentPosition.Id) : null;
 
-			IsBusy = false;
-			IsLoaded = true;
-		}
-	}
+            if (_SettingsService.CurrentSettings.UseCurrentLocation)
+            {
+                // Get current user location's zip code
+                var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
+                if (geolocation == null && currentPosition != null)
+                {
+                    // Fetching zip code failed. Remove current position's view model
+                    Places.Remove(currentPositionViewModel);
+                }
+                else
+                {
+                    // Fetching zip code succeded
+                    if (currentPosition != null)
+                    {
+                        // Current position has aleady been in the list. Just update
+                        currentPosition.Zip = geolocation.Zip;
+                        currentPositionViewModel.UpdateProperties(currentPosition);
+                    }
+                    else
+                    {
+                        currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
+                        currentPositionViewModel = new PlaceRowViewModel(_PollenService, currentPosition);
+                    }
+                }
+            }
+            else if (currentPositionViewModel != null)
+            {
+                // Usage of current position has been disabled but view model is still there, so remove it
+                Places.Remove(currentPositionViewModel);
+            }
+
+
+            // Update all places
+            foreach (var placeViewModel in Places)
+            {
+                await placeViewModel.RefreshAsync();
+            }
+
+            IsBusy = false;
+            IsLoaded = true;
+        }
+
+
+        private void UpdateGreetingHeader()
+        {
+            var now = DateTime.Now;
+            if (now.Hour > 5 && now.Hour < 11)
+                GreetingHeader = _LocalizationService.GetString("GoodMorning");
+            else if (now.Hour >= 11 && now.Hour < 14)
+                GreetingHeader = _LocalizationService.GetString("GoodDay");
+            else if (now.Hour >= 14 && now.Hour < 18)
+                GreetingHeader = _LocalizationService.GetString("GoodEvening");
+            else
+                GreetingHeader = _LocalizationService.GetString("GoodNight");
+        }
+    }
 }

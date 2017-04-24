@@ -6,10 +6,11 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Pollenalarm.Core.Models;
+using Microsoft.WindowsAzure.MobileServices.Sync;
 
 namespace Pollenalarm.Frontend.Shared.Models
 {
-    public class Pollen : IPollen, INotifyPropertyChanged, ISearchResult
+    public class Pollen : IPollen, ISearchResult
     {
         #region Implementation of IPollen
 
@@ -24,16 +25,6 @@ namespace Pollenalarm.Frontend.Shared.Models
         #endregion
 
         public string ImageName { get { return $"{Name.Replace("ß", "ss").Replace("ä", "ae")}.png"; } }
-        private bool _IsSelected;
-        public bool IsSelected
-        {
-            get { return _IsSelected; }
-            set { _IsSelected = value; RaisePropertyChanged(); }
-        }
-
-        // Implementation of INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
+        public bool IsSelected { get; set; }
     }
 }

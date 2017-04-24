@@ -8,9 +8,9 @@ using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
-	public class SettingsViewModel : AsyncViewModelBase
-	{
-		private INavigationService _NavigationService;
+    public class SettingsViewModel : AsyncViewModelBase
+    {
+        private INavigationService _NavigationService;
         private SettingsService _SettingsService;
 
         private Settings _Settings;
@@ -20,49 +20,37 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             set { _Settings = value; RaisePropertyChanged(); }
         }
 
-        private RelayCommand _NavigateToPollenSelectionCommand;
-        public RelayCommand NavigateToPollenSelectionCommand
+        private RelayCommand _NavigateToAboutCommand;
+        public RelayCommand NavigateToAboutCommand
         {
             get
             {
-                return _NavigateToPollenSelectionCommand ?? (_NavigateToPollenSelectionCommand = new RelayCommand(() =>
+                return _NavigateToAboutCommand ?? (_NavigateToAboutCommand = new RelayCommand(() =>
                 {
-                    _NavigationService.NavigateTo(ViewNames.PollenSelection);
+                    _NavigationService.NavigateTo(ViewNames.About);
                 }));
             }
         }
 
-        private RelayCommand _NavigateToAboutCommand;
-		public RelayCommand NavigateToAboutCommand
-		{
-			get
-			{
-				return _NavigateToAboutCommand ?? (_NavigateToAboutCommand = new RelayCommand(() =>
-				{
-					_NavigationService.NavigateTo(ViewNames.About);
-				}));
-			}
-		}
-
         public SettingsViewModel(INavigationService navigationService, SettingsService settingsService)
-		{
-			_NavigationService = navigationService;
+        {
+            _NavigationService = navigationService;
             _SettingsService = settingsService;
-		}
+        }
 
         public async Task InitializeAsync()
         {
-			IsBusy = true;
+            IsBusy = true;
 
-            await _SettingsService.LoadSettingsAsync();
+            await _SettingsService.InitializeAsync();
             Settings = _SettingsService.CurrentSettings.Clone();
 
-			IsBusy = false;
+            IsBusy = false;
         }
 
         public async Task SaveChangesAsnyc()
         {
-			IsBusy = true;
+            IsBusy = true;
 
             // Trigger MainViewModel refresh on specific changes
             if (_SettingsService.CurrentSettings.UseCurrentLocation != Settings.UseCurrentLocation)
@@ -74,7 +62,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             _SettingsService.CurrentSettings = Settings;
             await _SettingsService.SaveSettingsAsync();
 
-			IsBusy = false;
+            IsBusy = false;
         }
-	}
+    }
 }

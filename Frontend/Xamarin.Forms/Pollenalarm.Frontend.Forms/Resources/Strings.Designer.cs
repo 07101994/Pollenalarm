@@ -322,5 +322,17 @@ namespace Pollenalarm.Frontend.Forms.Resources {
                 return ResourceManager.GetString("CurrentPosition", resourceCulture);
             }
         }
+        
+        public static string BloomingGroupName {
+            get {
+                return ResourceManager.GetString("BloomingGroupName", resourceCulture);
+            }
+        }
+        
+        public static string NonBloomingGroupName {
+            get {
+                return ResourceManager.GetString("NonBloomingGroupName", resourceCulture);
+            }
+        }
     }
 }

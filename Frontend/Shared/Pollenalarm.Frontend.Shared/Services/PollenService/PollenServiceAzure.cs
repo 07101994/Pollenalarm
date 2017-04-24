@@ -56,7 +56,7 @@ namespace Pollenalarm.Frontend.Shared.Services
             var pollenList = await _PollenTable.ToListAsync();
 
             // Init settings
-            await _SettingsService.LoadSettingsAsync();
+            await _SettingsService.InitializeAsync();
 
             // Update pollen selection
             if (pollenList != null && pollenList.Any())
@@ -87,7 +87,7 @@ namespace Pollenalarm.Frontend.Shared.Services
             }
 
             // Init settings
-            await _SettingsService.LoadSettingsAsync();
+            await _SettingsService.InitializeAsync();
 
             // Update pollen selection
             UpdatePollenSelection(place);

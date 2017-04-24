@@ -5,38 +5,43 @@ using Pollenalarm.Frontend.Forms.Resources;
 using Pollenalarm.Frontend.Shared.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
+using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
     [XamlCompilation(XamlCompilationOptions.Skip)]
-	public partial class PlacePage : TabbedPage
-	{
-		public PlacePage()
-		{
-			InitializeComponent();
-			NavigationPage.SetBackButtonTitle(this, Strings.Back);
-			BindingContext = App.Bootstrapper.PlaceViewModel;
-		}
+    public partial class PlacePage : TabbedPage
+    {
+        public PlacePage()
+        {
+            InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, Strings.Back);
+            BindingContext = App.Bootstrapper.PlaceViewModel;
+        }
 
-		protected override async void OnAppearing()
-		{
-			base.OnAppearing();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-			// Navigate back to MainPage, when CurrentPlace is null.
-			// This can happen, after a place has been deleted, for example.
-			if (App.Bootstrapper.PlaceViewModel.CurrentPlace == null)
-			{
-				await Navigation.PopAsync();
-				return;
-			}
+            // Navigate back to MainPage, when CurrentPlace is null.
+            // This can happen, after a place has been deleted, for example.
+            var placeService = SimpleIoc.Default.GetInstance<PlaceService>();
+            if (placeService.CurrentPlace == null)
+            {
+                await Navigation.PopAsync();
+                return;
+            }
 
-			// Update pollen selections
-			await App.Bootstrapper.PlaceViewModel.RefreshAsync();
+            // Update pollen selections
+            await App.Bootstrapper.PlaceViewModel.RefreshAsync();
 
             // Set ItemSource in code-behind, as Binding takes too much performance currently as XAMLC does not work on PlacePage
-            ListToday.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday;
-            ListTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionTomorrow;
-            ListAfterTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionAfterTomorrow;
+            //ListToday.ItemsSource = App.Bootstrapper.PlaceViewModel.CurrentPlace.PollutionToday;
+            ListToday.ItemsSource = App.Bootstrapper.PlaceViewModel.PollutionToday;
+            ListTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.PollutionTomorrow;
+            ListAfterTomorrow.ItemsSource = App.Bootstrapper.PlaceViewModel.PollutionAfterTomorrow;
 
             // Add Place Changed animation afterwards, sothat it does not trigger on the first time the user enteres the page
             CurrentPageChanged += PlacePage_CurrentPageChanged;
@@ -96,14 +101,15 @@ namespace Pollenalarm.Frontend.Forms.Views
         }
 
         private void PollutionList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-		{
-			// Execute ViewModel command in code behind here, since it not possible to bind a Command to a ListView's ItemSelected event in Xamarin.Forms yet
-			var pollution = e.SelectedItem as Pollution;
-			if (pollution != null && pollution.Pollen != null)
-			{
-				((ListView)sender).SelectedItem = null;
-				App.Bootstrapper.PlaceViewModel.NavigateToPollenCommand.Execute(pollution.Pollen);
-			}
-		}
-	}
+        {
+            // Execute ViewModel command in code behind here, since it not possible to bind a Command to a ListView's ItemSelected event in Xamarin.Forms yet
+            var pollution = e.SelectedItem as Pollution;
+            if (pollution != null && pollution.Pollen != null)
+            {
+                ((ListView)sender).SelectedItem = null;
+                App.Bootstrapper.PlaceViewModel.NavigateToPollenCommand.Execute(pollution.Pollen);
+            }
+        }
+
+    }
 }

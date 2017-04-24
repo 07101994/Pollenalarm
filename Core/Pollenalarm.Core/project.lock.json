@@ -1,5 +1,4 @@
 {
-  "locked": false,
   "version": 2,
   "targets": {
     ".NETPortable,Version=v4.5,Profile=Profile259": {}
@@ -9,6 +8,19 @@
     "": [],
     ".NETPortable,Version=v4.5,Profile=Profile259": []
   },
-  "tools": {},
-  "projectFileToolGroups": {}
+  "packageFolders": {
+    "/Users/robinmanuelthiel/.nuget/packages/": {}
+  },
+  "project": {
+    "restore": {
+      "projectUniqueName": "/Users/robinmanuelthiel/Source/Thepagedot/Pollenalarm/Core/Pollenalarm.Core/Pollenalarm.Core.csproj",
+      "projectName": "Pollenalarm.Core",
+      "projectPath": "/Users/robinmanuelthiel/Source/Thepagedot/Pollenalarm/Core/Pollenalarm.Core/Pollenalarm.Core.csproj",
+      "projectJsonPath": "/Users/robinmanuelthiel/Source/Thepagedot/Pollenalarm/Core/Pollenalarm.Core/project.json",
+      "projectStyle": "ProjectJson"
+    },
+    "frameworks": {
+      "portable45-net45+win8+wp8+wpa81": {}
+    }
+  }
 }

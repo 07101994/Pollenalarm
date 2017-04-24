@@ -11,41 +11,41 @@ using Pollenalarm.Core.Models;
 
 namespace Pollenalarm.Frontend.Shared.Models
 {
-    public class Place : IPlace, INotifyPropertyChanged, ISearchResult
+    public class Place : IPlace, ISearchResult
     {
         #region Implementation of IPlace
 
         public string Id { get; set; }
-        private string _Name;
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; RaisePropertyChanged(); }
-        }
+        public string Name { get; set; }
         public string Zip { get; set; }
 
         #endregion
 
-        private int _MaxPollutionToday;
-        public int MaxPollutionToday
-        {
-            get { return _MaxPollutionToday; }
-            set { _MaxPollutionToday = value; RaisePropertyChanged(); }
-        }
-
+        public int MaxPollutionToday { get; set; }
         public bool IsCurrentPosition { get; set; }
-
-        public ObservableCollection<Pollution> PollutionToday { get; set; }
-        public ObservableCollection<Pollution> PollutionTomorrow { get; set; }
-        public ObservableCollection<Pollution> PollutionAfterTomorrow { get; set; }
+        public List<Pollution> PollutionToday { get; set; }
+        public List<Pollution> PollutionTomorrow { get; set; }
+        public List<Pollution> PollutionAfterTomorrow { get; set; }
 
         public Place()
         {
             Id = Guid.NewGuid().ToString();
 
-            PollutionToday = new ObservableCollection<Pollution>();
-            PollutionTomorrow = new ObservableCollection<Pollution>();
-            PollutionAfterTomorrow = new ObservableCollection<Pollution>();
+            PollutionToday = new List<Pollution>();
+            PollutionTomorrow = new List<Pollution>();
+            PollutionAfterTomorrow = new List<Pollution>();
+        }
+
+        public Place(string name, string zip, bool isCurrentPosition)
+        {
+            Id = Guid.NewGuid().ToString();
+            Name = name;
+            Zip = zip;
+            IsCurrentPosition = isCurrentPosition;
+
+            PollutionToday = new List<Pollution>();
+            PollutionTomorrow = new List<Pollution>();
+            PollutionAfterTomorrow = new List<Pollution>();
         }
 
         public void RecalculateMaxPollution()
@@ -55,9 +55,5 @@ namespace Pollenalarm.Frontend.Shared.Models
             else
                 MaxPollutionToday = 0;
         }
-
-        // Implementation of INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

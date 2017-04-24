@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
-    Title="{Binding CurrentPlace.Name}"
+    Title="{Binding Name}"
 	IsBusy="{Binding IsBusy, Mode=OneWay}">
 
     <TabbedPage.Resources>
@@ -131,6 +131,8 @@
             <ListView
                 x:Name="ListToday"
                 CachingStrategy="RecycleElement"
+                GroupDisplayBinding="{Binding Title}"
+                IsGroupingEnabled="True"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
 				IsVisible="{Binding ShowNoPlacesWarningToday, Converter={StaticResource BoolToNegatedBoolConverter}}"
@@ -161,6 +163,8 @@
             <ListView
                 x:Name="ListTomorrow"
                 CachingStrategy="RecycleElement"
+                GroupDisplayBinding="{Binding Title}"
+                IsGroupingEnabled="True"
                 HasUnevenRows="True"
                 ItemSelected="PollutionList_ItemSelected"
 				IsVisible="{Binding ShowNoPlacesWarningTomorrow, Converter={StaticResource BoolToNegatedBoolConverter}}"
@@ -191,6 +195,8 @@
             <ListView
                 x:Name="ListAfterTomorrow"
                 CachingStrategy="RecycleElement"
+                GroupDisplayBinding="{Binding Title}"
+                IsGroupingEnabled="True"
                 HasUnevenRows="True"
 				IsVisible="{Binding ShowNoPlacesWarningAfterTomorrow, Converter={StaticResource BoolToNegatedBoolConverter}}"
                 ItemSelected="PollutionList_ItemSelected"

@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Pollenalarm.Core.Models;
 using Pollenalarm.Frontend.Shared.Models;
@@ -6,75 +6,111 @@ using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
-	public class PollenViewModel : AsyncViewModelBase
+    public class PollenViewModel : AsyncViewModelBase
     {
-		private IPollenService _PollenService;
-		private SettingsService _SettingsService;
+        private IPollenService _PollenService;
+        private ILocalizationService _LocalizationService;
+        private SettingsService _SettingsService;
 
-		private ObservableCollection<Pollen> _Pollen;
-		public ObservableCollection<Pollen> Pollen
-		{
-			get { return _Pollen; }
-			set { _Pollen = value; RaisePropertyChanged(); }
-		}
-
-        private Pollen _CurrentPollen;
-        public Pollen CurrentPollen
+        public string _Name;
+        public string Name
         {
-            get { return _CurrentPollen; }
-            set { _CurrentPollen = value; RaisePropertyChanged(); }
+            get { return _Name; }
+            set { _Name = value; RaisePropertyChanged(); }
         }
 
-		public PollenViewModel(IPollenService pollenService, SettingsService settingsService)
+        public string _Description;
+        public string Description
         {
-			_PollenService = pollenService;
-			_SettingsService = settingsService;
-            _Pollen = new ObservableCollection<Pollen>();
+            get { return _Description; }
+            set { _Description = value; RaisePropertyChanged(); }
         }
 
-        public async Task RefreshAsync()
+        public string _ImageName;
+        public string ImageName
+        {
+            get { return _ImageName; }
+            set { _ImageName = value; RaisePropertyChanged(); }
+        }
+
+        public string _ImageCredits;
+        public string ImageCredits
+        {
+            get { return _ImageCredits; }
+            set { _ImageCredits = value; RaisePropertyChanged(); }
+        }
+
+        public string _BloomTime;
+        public string BloomTime
+        {
+            get { return _BloomTime; }
+            set { _BloomTime = value; RaisePropertyChanged(); }
+        }
+
+        public string _ClinicalPollution;
+        public string ClinicalPollution
+        {
+            get { return _ClinicalPollution; }
+            set { _ClinicalPollution = value; RaisePropertyChanged(); }
+        }
+
+        public bool _IsSelected;
+        public bool IsSelected
+        {
+            get { return _IsSelected; }
+            set { _IsSelected = value; RaisePropertyChanged(); }
+        }
+
+        public PollenViewModel(IPollenService pollenService, ILocalizationService localizationService, SettingsService settingsService)
+        {
+            _PollenService = pollenService;
+            _LocalizationService = localizationService;
+            _SettingsService = settingsService;
+        }
+
+        public void Refresh()
         {
             IsBusy = true;
             IsLoaded = false;
 
-            var allPollen = await _PollenService.GetAllPollenAsync();
-            if (allPollen != null)
+            Name = _PollenService.CurrentPollen.Name;
+            Description = _PollenService.CurrentPollen.Description;
+            ImageName = _PollenService.CurrentPollen.ImageName;
+            ImageCredits = _PollenService.CurrentPollen.ImageCredits;
+            BloomTime = $"{_PollenService.CurrentPollen.BloomStart.ToString("MMMM")} {_LocalizationService.GetString("Until")} {_PollenService.CurrentPollen.BloomEnd.ToString("MMMM")}";
+            IsSelected = _PollenService.CurrentPollen.IsSelected;
+
+            switch (_PollenService.CurrentPollen.ClinicalPollution)
             {
-                _Pollen.Clear();
-
-                foreach (var pollen in allPollen)
-                    _Pollen.Add(pollen);
-
-                IsLoaded = true;
+                default:
+                case 0:
+                    ClinicalPollution = _LocalizationService.GetString("PollutionNameNone");
+                    break;
+                case 1:
+                    ClinicalPollution = _LocalizationService.GetString("PollutionNameLow");
+                    break;
+                case 2:
+                    ClinicalPollution = _LocalizationService.GetString("PollutionNameMedium");
+                    break;
+                case 3:
+                    ClinicalPollution = _LocalizationService.GetString("PollutionNameStrong");
+                    break;
+                case 4:
+                    ClinicalPollution = _LocalizationService.GetString("PollutionNameVeryStrong");
+                    break;
             }
 
             IsBusy = false;
         }
 
-        public async Task SaveChangesAsync(Pollen changedPollen = null)
+        public async Task SaveChangesAsync()
         {
-            await _SettingsService.LoadSettingsAsync();
+            IsBusy = true;
 
-            if (changedPollen != null)
-            {
-                // If only a single pollen has been changed
-                _SettingsService.CurrentSettings.SelectedPollen[changedPollen.Id] = changedPollen.IsSelected;
-            }
-            else
-            {
-                // Update all Pollen in pollen list
-                foreach (var pollen in _Pollen)
-                    _SettingsService.CurrentSettings.SelectedPollen[pollen.Id] = pollen.IsSelected;
-            }
+            _PollenService.CurrentPollen.IsSelected = IsSelected;
+            await _PollenService.UpdatePollenAsync(_PollenService.CurrentPollen);
 
-            // If CurrentPollen is available (PollenPage), override its entry
-            if (CurrentPollen != null)
-                _SettingsService.CurrentSettings.SelectedPollen[CurrentPollen.Id] = CurrentPollen.IsSelected;
-
-            // Invalidate IsLoaded flag, as selections have changed
-            IsLoaded = false;
-
-            await _SettingsService.SaveSettingsAsync();
+            IsBusy = false;
         }
     }
 }

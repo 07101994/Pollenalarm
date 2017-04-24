@@ -5,17 +5,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
-    Title="{Binding CurrentPollen.Name}">
+    Title="{Binding Name}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
+            <converter:BoolToNegatedBoolConverter x:Key="BoolToNegatedBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ScrollView>
         <StackLayout>
-            <Image Aspect="AspectFill" Source="{Binding CurrentPollen.ImageName}" />
+            <Image Aspect="AspectFill" Source="{Binding ImageName}" />
 
             <StackLayout Padding="{StaticResource DefaultThickness}">
 
@@ -35,7 +36,8 @@
                     <Switch
                         x:Name="AllergySwitch"
                         Grid.Column="1"
-                        IsToggled="{Binding CurrentPollen.IsSelected}"
+                        IsToggled="{Binding IsSelected}"
+                        IsEnabled="{Binding IsBusy, Converter={StaticResource BoolToNegatedBoolConverter}}"
                         Toggled="AllergySwitch_Toggled"
                         VerticalOptions="Center" />
                 </Grid>
@@ -45,19 +47,19 @@
                     FontAttributes="Bold"
                     Text="{i18n:Translate Information}" />
 
-                <Label FontSize="Small" Text="{Binding CurrentPollen.Description}" />
+                <Label FontSize="Small" Text="{Binding Description}" />
 
                 <Label
                     Margin="0,10,0,0"
                     FontAttributes="Bold"
                     Text="{i18n:Translate ClinicalPollution}" />
-                <Label FontSize="Small" Text="{Binding CurrentPollen.ClinicalPollution, Converter={StaticResource IntToPollutionNameConverter}}" />
+                <Label FontSize="Small" Text="{Binding ClinicalPollution}" />
 
                 <Label
                     Margin="0,10,0,0"
                     FontAttributes="Bold"
                     Text="{i18n:Translate BloomTime}" />
-                <Label x:Name="BloomTime" FontSize="Small" />
+                <Label FontSize="Small" Text="{Binding BloomTime}" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

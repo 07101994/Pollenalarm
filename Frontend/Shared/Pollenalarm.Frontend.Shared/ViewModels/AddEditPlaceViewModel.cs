@@ -10,178 +10,165 @@ using IDialogService = Pollenalarm.Frontend.Shared.Services.IDialogService;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
-	public class AddEditPlaceViewModel : AsyncViewModelBase
-	{
-		private INavigationService _NavigationService;
-		private IFileSystemService _FileSystemService;
-		private IDialogService _DialogService;
-		private ILocalizationService _LocalizationService;
-		private PlaceService _PlaceService;
+    public class AddEditPlaceViewModel : AsyncViewModelBase
+    {
+        private INavigationService _NavigationService;
+        private IFileSystemService _FileSystemService;
+        private IDialogService _DialogService;
+        private ILocalizationService _LocalizationService;
+        private PlaceService _PlaceService;
+        private IPollenService _PollenService;
 
-		private Place _CurrentPlace;
-		public Place CurrentPlace
-		{
-			get { return _CurrentPlace; }
-			set { _CurrentPlace = value; RaisePropertyChanged(); }
-		}
+        private string _PlaceName;
+        public string PlaceName
+        {
+            get { return _PlaceName; }
+            set { _PlaceName = value; RaisePropertyChanged(); }
+        }
 
-		private string _PlaceName;
-		public string PlaceName
-		{
-			get { return _PlaceName; }
-			set { _PlaceName = value; RaisePropertyChanged(); }
-		}
+        private string _PlaceZip;
+        public string PlaceZip
+        {
+            get { return _PlaceZip; }
+            set { _PlaceZip = value; RaisePropertyChanged(); }
+        }
 
-		private string _PlaceZip;
-		public string PlaceZip
-		{
-			get { return _PlaceZip; }
-			set { _PlaceZip = value; RaisePropertyChanged(); }
-		}
+        private RelayCommand _AddEditPlaceCommand;
+        public RelayCommand AddEditPlaceCommand
+        {
+            get
+            {
+                return _AddEditPlaceCommand ?? (_AddEditPlaceCommand = new RelayCommand(async () =>
+                {
+                    // Check if entered field are valid
+                    if (string.IsNullOrWhiteSpace(_PlaceName) || !Regex.IsMatch(_PlaceZip, "^[0-9]*$") || _PlaceZip.Trim().Length != 5)
+                    {
+                        // Invalid entries
+                        await _DialogService.DisplayAlertAsync(_LocalizationService.GetString("InvalidEntriesTitle"), _LocalizationService.GetString("InvalidEntriesMessage"), _LocalizationService.GetString("OK"));
+                        return;
+                    }
 
-		private RelayCommand _AddEditPlaceCommand;
-		public RelayCommand AddEditPlaceCommand
-		{
-			get
-			{
-				return _AddEditPlaceCommand ?? (_AddEditPlaceCommand = new RelayCommand(async () =>
-				{
-					// Check if entered field are valid
-					if (string.IsNullOrWhiteSpace(_PlaceName) || !Regex.IsMatch(_PlaceZip, "^[0-9]*$") || _PlaceZip.Trim().Length != 5)
-					{
-						// Invalid entries
-						await _DialogService.DisplayAlertAsync(_LocalizationService.GetString("InvalidEntriesTitle"), _LocalizationService.GetString("InvalidEntriesMessage"), _LocalizationService.GetString("OK"));
-						return;
-					}
+                    IsBusy = true;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
 
-					IsBusy = true;
-					AddEditPlaceCommand.RaiseCanExecuteChanged();
-					DeletePlaceCommand.RaiseCanExecuteChanged();
-					GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                    if (_PlaceService.CurrentPlace != null)
+                    {
+                        // Update existing place
+                        _PlaceService.CurrentPlace.Name = _PlaceName;
+                        _PlaceService.CurrentPlace.Zip = _PlaceZip;
+                        await _PlaceService.UpdatePlaceAsync(_PlaceService.CurrentPlace);
+                    }
+                    else
+                    {
+                        // Add new place
+                        var place = new Place();
+                        place.Name = _PlaceName;
+                        place.Zip = _PlaceZip;
+                        await _PlaceService.AddPlaceAsync(place);
+                    }
 
-					var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+                    _PlaceName = string.Empty;
+                    _PlaceZip = string.Empty;
+                    _NavigationService.GoBack();
 
-					if (_CurrentPlace != null)
-					{
-						// Update existing place
-						var existingPlace = mainViewModel.Places.FirstOrDefault(x => x.Id == _CurrentPlace.Id);
-						if (existingPlace != null)
-						{
-							existingPlace.Name = _PlaceName;
-							existingPlace.Zip = _PlaceZip;
-							_CurrentPlace = existingPlace;
-						}
-					}
-					else
-					{
-						// Add new place
-						_CurrentPlace = new Place();
-						_CurrentPlace.Name = _PlaceName;
-						_CurrentPlace.Zip = _PlaceZip;
-						mainViewModel.Places.Add(_CurrentPlace);
-						// Set IsLoaded to false to force MainViewModel to refresh and load pollen for the new place
-						mainViewModel.IsLoaded = false;
-						_CurrentPlace = null;
-					}
+                    IsBusy = false;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                }, () => !IsBusy));
+            }
+        }
 
-					// Save places
-					await _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
+        private RelayCommand _DeletePlaceCommand;
+        public RelayCommand DeletePlaceCommand
+        {
+            get
+            {
+                return _DeletePlaceCommand ?? (_DeletePlaceCommand = new RelayCommand(async () =>
+                {
+                    // Let user confirm deletion
+                    if (!await _DialogService.DisplayConfirmationAsync(_LocalizationService.GetString("DeletePlaceTitle"), _LocalizationService.GetString("DeletePlaceMessage"), _LocalizationService.GetString("Delete"), _LocalizationService.GetString("Cancel")))
+                        return;
 
-					_PlaceName = string.Empty;
-					_PlaceZip = string.Empty;
-					_NavigationService.GoBack();
+                    IsBusy = true;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
 
-					IsBusy = false;
-					AddEditPlaceCommand.RaiseCanExecuteChanged();
-					DeletePlaceCommand.RaiseCanExecuteChanged();
-					GetCurrentPositionCommand.RaiseCanExecuteChanged();
-				}, () => !IsBusy));
-			}
-		}
+                    await _PlaceService.DeletePlaceAsync(_PlaceService.CurrentPlace);
 
-		private RelayCommand _DeletePlaceCommand;
-		public RelayCommand DeletePlaceCommand
-		{
-			get
-			{
-				return _DeletePlaceCommand ?? (_DeletePlaceCommand = new RelayCommand(async () =>
-				{
-					// Let user confirm deletion
-					if (!await _DialogService.DisplayConfirmationAsync(_LocalizationService.GetString("DeletePlaceTitle"), _LocalizationService.GetString("DeletePlaceMessage"), _LocalizationService.GetString("Delete"), _LocalizationService.GetString("Cancel")))
-						return;
+                    _PlaceName = string.Empty;
+                    _PlaceZip = string.Empty;
+                    _NavigationService.GoBack();
 
-					IsBusy = true;
-					AddEditPlaceCommand.RaiseCanExecuteChanged();
-					DeletePlaceCommand.RaiseCanExecuteChanged();
-					GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                    IsBusy = false;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                }));
+            }
+        }
 
-					var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+        private RelayCommand _GetCurrentPositionCommand;
+        public RelayCommand GetCurrentPositionCommand
+        {
+            get
+            {
+                return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
+                {
+                    IsBusy = true;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
 
-					if (_CurrentPlace != null)
-					{
-						var existingPlace = mainViewModel.Places.FirstOrDefault(x => x.Id == _CurrentPlace.Id);
-						if (existingPlace != null)
-						{
-							mainViewModel.Places.Remove(existingPlace);
-							await _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
-							_CurrentPlace = null;
-							_PlaceName = string.Empty;
-							_PlaceZip = string.Empty;
-							_NavigationService.GoBack();
-						}
-					}
+                    var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
+                    if (geolocation == null)
+                    {
+                        IsBusy = false;
+                        AddEditPlaceCommand.RaiseCanExecuteChanged();
+                        DeletePlaceCommand.RaiseCanExecuteChanged();
+                        GetCurrentPositionCommand.RaiseCanExecuteChanged();
 
-					IsBusy = false;
-					AddEditPlaceCommand.RaiseCanExecuteChanged();
-					DeletePlaceCommand.RaiseCanExecuteChanged();
-					GetCurrentPositionCommand.RaiseCanExecuteChanged();
-				}));
-			}
-		}
+                        await _DialogService.DisplayAlertAsync(_LocalizationService.GetString("GeoLocationFailedTitle"), _LocalizationService.GetString("GeoLocationFailedMessage"), _LocalizationService.GetString("OK"));
+                        return;
+                    }
 
-		private RelayCommand _GetCurrentPositionCommand;
-		public RelayCommand GetCurrentPositionCommand
-		{
-			get
-			{
-				return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
-				{
-					IsBusy = true;
-					AddEditPlaceCommand.RaiseCanExecuteChanged();
-					DeletePlaceCommand.RaiseCanExecuteChanged();
-					GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                    // Update place fields
+                    PlaceName = geolocation.Name;
+                    PlaceZip = geolocation.Zip;
 
-					var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
-					if (geolocation == null)
-					{
-						IsBusy = false;
-						AddEditPlaceCommand.RaiseCanExecuteChanged();
-						DeletePlaceCommand.RaiseCanExecuteChanged();
-						GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                    IsBusy = false;
+                    AddEditPlaceCommand.RaiseCanExecuteChanged();
+                    DeletePlaceCommand.RaiseCanExecuteChanged();
+                    GetCurrentPositionCommand.RaiseCanExecuteChanged();
+                }, () => !IsBusy));
+            }
+        }
 
-						await _DialogService.DisplayAlertAsync(_LocalizationService.GetString("GeoLocationFailedTitle"), _LocalizationService.GetString("GeoLocationFailedMessage"), _LocalizationService.GetString("OK"));
-						return;
-					}
+        public AddEditPlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, IDialogService dialogService, ILocalizationService localizationService, PlaceService placeService, IPollenService pollenService)
+        {
+            _NavigationService = navigationService;
+            _FileSystemService = fileSystemService;
+            _DialogService = dialogService;
+            _LocalizationService = localizationService;
+            _PlaceService = placeService;
+            _PollenService = pollenService;
+        }
 
-					// Update place fields
-					PlaceName = geolocation.Name;
-					PlaceZip = geolocation.Zip;
-
-					IsBusy = false;
-					AddEditPlaceCommand.RaiseCanExecuteChanged();
-					DeletePlaceCommand.RaiseCanExecuteChanged();
-					GetCurrentPositionCommand.RaiseCanExecuteChanged();
-				}, () => !IsBusy));
-			}
-		}
-
-		public AddEditPlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, IDialogService dialogService, ILocalizationService localizationService, PlaceService placeService)
-		{
-			_NavigationService = navigationService;
-			_FileSystemService = fileSystemService;
-			_DialogService = dialogService;
-			_LocalizationService = localizationService;
-			_PlaceService = placeService;
-		}
-	}
+        public void Refresh()
+        {
+            if (_PlaceService.CurrentPlace != null)
+            {
+                PlaceName = _PlaceService.CurrentPlace.Name;
+                PlaceZip = _PlaceService.CurrentPlace.Zip;
+            }
+            else
+            {
+                PlaceName = string.Empty;
+                PlaceZip = string.Empty;
+            }
+        }
+    }
 }

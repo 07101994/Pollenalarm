@@ -88,6 +88,20 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
+            Name="{i18n:Translate Search}"
+            Command="{Binding NavigateToSearchCommand}"
+            Icon="Search.png"
+            Priority="1">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Primary"
+                    WinPhone="Primary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+        
+        <ToolbarItem
             x:Name="AddItem"
             Name="{i18n:Translate Add}"
             Command="{Binding NavigateToAddPlaceCommand}"
@@ -98,20 +112,6 @@
                 <OnPlatform
                     x:TypeArguments="ToolbarItemOrder"
                     Android="Secondary"
-                    WinPhone="Primary"
-                    iOS="Primary" />
-            </ToolbarItem.Order>
-        </ToolbarItem>
-
-        <ToolbarItem
-            Name="{i18n:Translate Search}"
-            Command="{Binding NavigateToSearchCommand}"
-            Icon="Search.png"
-            Priority="1">
-            <ToolbarItem.Order>
-                <OnPlatform
-                    x:TypeArguments="ToolbarItemOrder"
-                    Android="Primary"
                     WinPhone="Primary"
                     iOS="Primary" />
             </ToolbarItem.Order>
@@ -153,7 +153,7 @@
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-            ItemSelected="PlacesList_ItemSelected"
+            ItemTapped="Handle_ItemTapped"
             ItemTemplate="{StaticResource PlaceItemTemplate}"
             ItemsSource="{Binding Places}"
             RefreshCommand="{Binding RefreshCommand}">
