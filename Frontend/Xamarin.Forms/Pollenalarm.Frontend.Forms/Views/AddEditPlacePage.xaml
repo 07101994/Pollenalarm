@@ -29,6 +29,7 @@
             <Button
                 x:Name="AddButton"
                 Command="{Binding AddEditPlaceCommand}"
+                AutomationId="AddButton"
                 Text="Add" />
         </StackLayout>
 

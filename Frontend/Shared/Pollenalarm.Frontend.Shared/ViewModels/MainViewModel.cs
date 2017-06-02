@@ -109,18 +109,22 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             Places = new ObservableCollection<PlaceRowViewModel>();
         }
 
-        public async Task RefreshAsync()
+        public async Task RefreshAsync(bool force = false)
         {
             IsBusy = true;
 
-            // Update greeting header
-            UpdateGreetingHeader();
+            // -------------------------------------------------------------------
+            // 1. Step: Things to do every time the user navigates to the MainPage
+            // -------------------------------------------------------------------
 
             // Initialize Services if needed
             await _SettingsService.InitializeAsync();
             await _PlaceService.InitializeAsync();
 
-            // Add places from PlaceService to list or update existing ones
+            // Update greeting header
+            UpdateGreetingHeader();
+
+            // Add places from PlaceService to list and update existing ones
             foreach (var place in _PlaceService.Places)
             {
                 var placeViewModel = Places.FirstOrDefault(p => p.Id == place.Id);
@@ -136,47 +140,62 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 }
             }
 
-            // Add or remove current position
-            // Should be done after loading places from local storage as they contain the current position
-            var currentPosition = _PlaceService.Places.FirstOrDefault(p => p.IsCurrentPosition);
-            var currentPositionViewModel = currentPosition != null ? Places.FirstOrDefault(vm => vm.Id == currentPosition.Id) : null;
-
-            if (_SettingsService.CurrentSettings.UseCurrentLocation)
+            // Remove deleted places from list
+            foreach (var placeViewModel in Places)
             {
-                // Get current user location's zip code
-                var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
-                if (geolocation == null && currentPosition != null)
+                var place = _PlaceService.Places.FirstOrDefault(p => p.Id == placeViewModel.Id);
+                if (place == null)
+                    Places.Remove(placeViewModel);
+            }
+
+
+            // -------------------------------------------------------------------
+            // 2. Step: Things to do only when refresh is needed
+            // -------------------------------------------------------------------
+            if (IsLoaded == false || force == true)
+            {
+                // Add or remove current position
+                // Should be done after loading places from local storage as they contain the current position
+                var currentPosition = _PlaceService.Places.FirstOrDefault(p => p.IsCurrentPosition);
+                var currentPositionViewModel = currentPosition != null ? Places.FirstOrDefault(vm => vm.Id == currentPosition.Id) : null;
+
+                if (_SettingsService.CurrentSettings.UseCurrentLocation)
                 {
-                    // Fetching zip code failed. Remove current position's view model
-                    Places.Remove(currentPositionViewModel);
-                }
-                else
-                {
-                    // Fetching zip code succeded
-                    if (currentPosition != null)
+                    // Get current user location's zip code
+                    var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
+                    if (geolocation == null && currentPosition != null)
                     {
-                        // Current position has aleady been in the list. Just update
-                        currentPosition.Zip = geolocation.Zip;
-                        currentPositionViewModel.UpdateProperties(currentPosition);
+                        // Fetching zip code failed. Remove current position's view model
+                        Places.Remove(currentPositionViewModel);
                     }
                     else
                     {
-                        currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
-                        currentPositionViewModel = new PlaceRowViewModel(_PollenService, currentPosition);
+                        // Fetching zip code succeded
+                        if (currentPosition != null)
+                        {
+                            // Current position has aleady been in the list. Just update
+                            currentPosition.Zip = geolocation.Zip;
+                            currentPositionViewModel.UpdateProperties(currentPosition);
+                        }
+                        else
+                        {
+                            currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
+                            currentPositionViewModel = new PlaceRowViewModel(_PollenService, currentPosition);
+                        }
                     }
                 }
-            }
-            else if (currentPositionViewModel != null)
-            {
-                // Usage of current position has been disabled but view model is still there, so remove it
-                Places.Remove(currentPositionViewModel);
-            }
+                else if (currentPositionViewModel != null)
+                {
+                    // Usage of current position has been disabled but view model is still there, so remove it
+                    Places.Remove(currentPositionViewModel);
+                }
 
 
-            // Update all places
-            foreach (var placeViewModel in Places)
-            {
-                await placeViewModel.RefreshAsync();
+                // Update all places
+                foreach (var placeViewModel in Places)
+                {
+                    await placeViewModel.RefreshAsync();
+                }
             }
 
             IsBusy = false;

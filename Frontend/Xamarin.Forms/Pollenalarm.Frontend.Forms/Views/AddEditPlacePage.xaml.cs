@@ -8,7 +8,7 @@ using Pollenalarm.Frontend.Shared.ViewModels;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddEditPlacePage : ContentPage
     {
         private AddEditPlaceViewModel viewModel;

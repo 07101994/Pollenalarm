@@ -3,7 +3,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Pollenalarm.Frontend.Forms
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PollenSelectionPage : ContentPage
     {
         public PollenSelectionPage()

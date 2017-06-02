@@ -11,7 +11,7 @@ using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Skip)]
+    //[XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class PlacePage : TabbedPage
     {
         public PlacePage()
@@ -92,7 +92,7 @@ namespace Pollenalarm.Frontend.Forms.Views
         private async void PlacePage_CurrentPageChanged(object sender, EventArgs e)
         {
             // Animate Tab change on iOS as it is not implemented in Xamarin.Forms yet.
-            if (Device.OS == TargetPlatform.iOS)
+            if (Device.RuntimePlatform == Device.iOS)
             {
                 uint duration = 300;
                 await Task.WhenAll(CurrentPage.TranslateTo(0, 1000, duration), CurrentPage.FadeTo(0, duration));
