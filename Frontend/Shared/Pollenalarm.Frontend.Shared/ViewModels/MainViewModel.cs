@@ -121,9 +121,6 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             await _SettingsService.InitializeAsync();
             await _PlaceService.InitializeAsync();
 
-            // Update greeting header
-            UpdateGreetingHeader();
-
             // Add places from PlaceService to list and update existing ones
             foreach (var place in _PlaceService.Places)
             {
@@ -148,6 +145,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     Places.Remove(placeViewModel);
             }
 
+            // Update greeting header
+            UpdateGreetingHeader();
 
             // -------------------------------------------------------------------
             // 2. Step: Things to do only when refresh is needed

@@ -14,6 +14,8 @@ namespace Pollenalarm.Frontend.Forms
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, Strings.Back);
 
+
+
             // Platform specific adjustments
             switch (Device.RuntimePlatform)
             {
