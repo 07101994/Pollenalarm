@@ -21,8 +21,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         private SettingsService _SettingsService;
         private PlaceService _PlaceService;
 
-        private ObservableCollection<PlaceRowViewModel> _Places;
-        public ObservableCollection<PlaceRowViewModel> Places
+        private ObservableCollection<Place> _Places;
+        public ObservableCollection<Place> Places
         {
             get { return _Places; }
             set { _Places = value; RaisePropertyChanged(); }
@@ -42,7 +42,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _RefreshCommand ?? (_RefreshCommand = new RelayCommand(async () =>
                 {
-                    await RefreshAsync();
+                    await RefreshAsync(true);
                 }));
             }
         }
@@ -106,7 +106,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             _SettingsService = settingsService;
             _PlaceService = placeService;
 
-            Places = new ObservableCollection<PlaceRowViewModel>();
+            Places = new ObservableCollection<Place>();
         }
 
         public async Task RefreshAsync(bool force = false)
@@ -121,29 +121,39 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             await _SettingsService.InitializeAsync();
             await _PlaceService.InitializeAsync();
 
-            // Add places from PlaceService to list and update existing ones
+            Places.Clear();
             foreach (var place in _PlaceService.Places)
             {
-                var placeViewModel = Places.FirstOrDefault(p => p.Id == place.Id);
-
-                // Update place if it has already been existant
-                placeViewModel?.UpdateProperties(place);
-
-                // Add ViewModel if not existant
-                if (placeViewModel == null)
-                {
-                    placeViewModel = new PlaceRowViewModel(_PollenService, place);
-                    Places.Add(placeViewModel);
-                }
+                Places.Add(place);
             }
 
-            // Remove deleted places from list
-            foreach (var placeViewModel in Places)
-            {
-                var place = _PlaceService.Places.FirstOrDefault(p => p.Id == placeViewModel.Id);
-                if (place == null)
-                    Places.Remove(placeViewModel);
-            }
+
+
+
+
+            //// Add places from PlaceService to list and update existing ones
+            //foreach (var place in _PlaceService.Places)
+            //{
+            //    var placeViewModel = Places.FirstOrDefault(p => p.Id == place.Id);
+
+            //    // Update place if it has already been existant
+            //    placeViewModel?.UpdateProperties(place);
+
+            //    // Add ViewModel if not existant
+            //    if (placeViewModel == null)
+            //    {
+            //        placeViewModel = new PlaceRowViewModel(_PollenService, place);
+            //        Places.Add(placeViewModel);
+            //    }
+            //}
+
+            //// Remove deleted places from list
+            //foreach (var placeViewModel in Places)
+            //{
+            //    var place = _PlaceService.Places.FirstOrDefault(p => p.Id == placeViewModel.Id);
+            //    if (place == null)
+            //        Places.Remove(placeViewModel);
+            //}
 
             // Update greeting header
             UpdateGreetingHeader();
@@ -151,13 +161,11 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             // -------------------------------------------------------------------
             // 2. Step: Things to do only when refresh is needed
             // -------------------------------------------------------------------
+
+
             if (IsLoaded == false || force == true)
             {
-                // Add or remove current position
-                // Should be done after loading places from local storage as they contain the current position
-                var currentPosition = _PlaceService.Places.FirstOrDefault(p => p.IsCurrentPosition);
-                var currentPositionViewModel = currentPosition != null ? Places.FirstOrDefault(vm => vm.Id == currentPosition.Id) : null;
-
+                var currentPosition = Places.FirstOrDefault(p => p.IsCurrentPosition);
                 if (_SettingsService.CurrentSettings.UseCurrentLocation)
                 {
                     // Get current user location's zip code
@@ -165,7 +173,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     if (geolocation == null && currentPosition != null)
                     {
                         // Fetching zip code failed. Remove current position's view model
-                        Places.Remove(currentPositionViewModel);
+                        Places.Remove(currentPosition);
                     }
                     else
                     {
@@ -174,28 +182,71 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         {
                             // Current position has aleady been in the list. Just update
                             currentPosition.Zip = geolocation.Zip;
-                            currentPositionViewModel.UpdateProperties(currentPosition);
                         }
                         else
                         {
                             currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
-                            currentPositionViewModel = new PlaceRowViewModel(_PollenService, currentPosition);
+                            Places.Insert(0, currentPosition);
                         }
                     }
                 }
-                else if (currentPositionViewModel != null)
-                {
-                    // Usage of current position has been disabled but view model is still there, so remove it
-                    Places.Remove(currentPositionViewModel);
-                }
-
 
                 // Update all places
-                foreach (var placeViewModel in Places)
+                foreach (var place in Places)
                 {
-                    await placeViewModel.RefreshAsync();
+                    await _PollenService.GetPollutionsForPlaceAsync(place);
+                    place.RecalculateMaxPollution();
                 }
             }
+
+
+
+
+            //if (IsLoaded == false || force == true)
+            //{
+            //    // Add or remove current position
+            //    // Should be done after loading places from local storage as they contain the current position
+            //    var currentPosition = _PlaceService.Places.FirstOrDefault(p => p.IsCurrentPosition);
+            //    var currentPositionViewModel = currentPosition != null ? Places.FirstOrDefault(vm => vm.Id == currentPosition.Id) : null;
+
+            //    if (_SettingsService.CurrentSettings.UseCurrentLocation)
+            //    {
+            //        // Get current user location's zip code
+            //        var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
+            //        if (geolocation == null && currentPosition != null)
+            //        {
+            //            // Fetching zip code failed. Remove current position's view model
+            //            Places.Remove(currentPositionViewModel);
+            //        }
+            //        else
+            //        {
+            //            // Fetching zip code succeded
+            //            if (currentPosition != null)
+            //            {
+            //                // Current position has aleady been in the list. Just update
+            //                currentPosition.Zip = geolocation.Zip;
+            //                currentPositionViewModel.UpdateProperties(currentPosition);
+            //            }
+            //            else
+            //            {
+            //                currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
+            //                currentPositionViewModel = new PlaceRowViewModel(_PollenService, currentPosition);
+            //            }
+            //        }
+            //    }
+            //    else if (currentPositionViewModel != null)
+            //    {
+            //        // Usage of current position has been disabled but view model is still there, so remove it
+            //        Places.Remove(currentPositionViewModel);
+            //    }
+
+
+            //    // Update all places
+            //    foreach (var placeViewModel in Places)
+            //    {
+            //        await placeViewModel.RefreshAsync();
+            //    }
+            //}
 
             IsBusy = false;
             IsLoaded = true;

@@ -22930,22 +22930,22 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "Y:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms.UWP\\Pollenalarm.Frontend.Forms.UWP.csproj",
+      "projectUniqueName": "D:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms.UWP\\Pollenalarm.Frontend.Forms.UWP.csproj",
       "projectName": "Pollenalarm.Frontend.Forms.UWP",
-      "projectPath": "Y:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms.UWP\\Pollenalarm.Frontend.Forms.UWP.csproj",
-      "projectJsonPath": "Y:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms.UWP\\project.json",
+      "projectPath": "D:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms.UWP\\Pollenalarm.Frontend.Forms.UWP.csproj",
+      "projectJsonPath": "D:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms.UWP\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "Y:\\Source\\Thepagedot\\Pollenalarm\\Core\\Pollenalarm.Core\\Pollenalarm.Core.csproj": {
-              "projectPath": "Y:\\Source\\Thepagedot\\Pollenalarm\\Core\\Pollenalarm.Core\\Pollenalarm.Core.csproj"
+            "D:\\Source\\Thepagedot\\Pollenalarm\\Core\\Pollenalarm.Core\\Pollenalarm.Core.csproj": {
+              "projectPath": "D:\\Source\\Thepagedot\\Pollenalarm\\Core\\Pollenalarm.Core\\Pollenalarm.Core.csproj"
             },
-            "Y:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Shared\\Pollenalarm.Frontend.Shared\\Pollenalarm.Frontend.Shared.csproj": {
-              "projectPath": "Y:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Shared\\Pollenalarm.Frontend.Shared\\Pollenalarm.Frontend.Shared.csproj"
+            "D:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Shared\\Pollenalarm.Frontend.Shared\\Pollenalarm.Frontend.Shared.csproj": {
+              "projectPath": "D:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Shared\\Pollenalarm.Frontend.Shared\\Pollenalarm.Frontend.Shared.csproj"
             },
-            "Y:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms\\Pollenalarm.Frontend.Forms.csproj": {
-              "projectPath": "Y:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms\\Pollenalarm.Frontend.Forms.csproj"
+            "D:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms\\Pollenalarm.Frontend.Forms.csproj": {
+              "projectPath": "D:\\Source\\Thepagedot\\Pollenalarm\\Frontend\\Xamarin.Forms\\Pollenalarm.Frontend.Forms\\Pollenalarm.Frontend.Forms.csproj"
             }
           }
         }
@@ -22956,7 +22956,7 @@
       "MvvmLightLibs": "5.3.0",
       "PCLStorage": "1.0.2",
       "Xam.Plugin.Geolocator": "4.0.0.53-beta",
-      "Xamarin.Forms": "[2.3.4.231, )"
+      "Xamarin.Forms": "2.3.4.231"
     },
     "frameworks": {
       "uap10.0": {}

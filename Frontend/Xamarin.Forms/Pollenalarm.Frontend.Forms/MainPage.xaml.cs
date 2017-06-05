@@ -48,7 +48,7 @@ namespace Pollenalarm.Frontend.Forms
 
         void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
-            var selectedPlace = e.Item as PlaceRowViewModel;
+            var selectedPlace = e.Item as Place;
             if (selectedPlace != null)
             {
                 App.Bootstrapper.MainViewModel.NavigateToPlaceCommand.Execute(selectedPlace.Id);
