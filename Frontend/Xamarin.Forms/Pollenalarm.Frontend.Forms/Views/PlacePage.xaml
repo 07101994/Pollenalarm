@@ -130,7 +130,7 @@
         <Grid>
             <ListView
                 x:Name="ListToday"
-                CachingStrategy="RecycleElement"
+                
                 GroupDisplayBinding="{Binding Title}"
                 IsGroupingEnabled="True"
                 HasUnevenRows="True"
@@ -162,7 +162,7 @@
         <Grid>            
             <ListView
                 x:Name="ListTomorrow"
-                CachingStrategy="RecycleElement"
+                
                 GroupDisplayBinding="{Binding Title}"
                 IsGroupingEnabled="True"
                 HasUnevenRows="True"
@@ -194,7 +194,7 @@
         <Grid>
             <ListView
                 x:Name="ListAfterTomorrow"
-                CachingStrategy="RecycleElement"
+                
                 GroupDisplayBinding="{Binding Title}"
                 IsGroupingEnabled="True"
                 HasUnevenRows="True"
