@@ -11,7 +11,7 @@ namespace Pollenalarm.Frontend.Forms
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -22,7 +22,7 @@ namespace Pollenalarm.Frontend.Forms
             //await App.Bootstrapper.PollenViewModel.RefreshAsync();
         }
 
-        protected override async void OnDisappearing()
+        protected override void OnDisappearing()
         {
             //await App.Bootstrapper.PollenViewModel.SaveChangesAsync();
             //base.OnDisappearing();

@@ -9,6 +9,7 @@ using Pollenalarm.Core.Models;
 using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
 using Pollenalarm.Frontend.Shared.Models;
+using MvvmHelpers;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -21,8 +22,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
         private SettingsService _SettingsService;
         private PlaceService _PlaceService;
 
-        private ObservableCollection<Place> _Places;
-        public ObservableCollection<Place> Places
+        private ObservableRangeCollection<Place> _Places;
+        public ObservableRangeCollection<Place> Places
         {
             get { return _Places; }
             set { _Places = value; RaisePropertyChanged(); }
@@ -106,7 +107,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             _SettingsService = settingsService;
             _PlaceService = placeService;
 
-            Places = new ObservableCollection<Place>();
+            Places = new ObservableRangeCollection<Place>();
         }
 
         public async Task RefreshAsync(bool force = false)
@@ -121,11 +122,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             await _SettingsService.InitializeAsync();
             await _PlaceService.InitializeAsync();
 
-            Places.Clear();
-            foreach (var place in _PlaceService.Places)
-            {
-                Places.Add(place);
-            }            
+            Places.ReplaceRange(_PlaceService.Places);
 
             // Update greeting header
             UpdateGreetingHeader();
@@ -169,7 +166,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     await _PollenService.GetPollutionsForPlaceAsync(place);
                     place.RecalculateMaxPollution();
                 }
-            }            
+            }
 
             IsBusy = false;
             IsLoaded = true;
