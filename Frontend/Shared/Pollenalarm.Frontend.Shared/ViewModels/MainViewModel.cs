@@ -36,6 +36,13 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             set { _GreetingHeader = value; RaisePropertyChanged(); }
         }
 
+        private bool _ShowNoPlacesWarning;
+        public bool ShowNoPlacesWarning
+        {
+            get { return _ShowNoPlacesWarning; }
+            set { _ShowNoPlacesWarning = value; RaisePropertyChanged(); }
+        }
+
         private RelayCommand _RefreshCommand;
         public RelayCommand RefreshCommand
         {
@@ -123,6 +130,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             await _PlaceService.InitializeAsync();
 
             Places.ReplaceRange(_PlaceService.Places);
+            ShowNoPlacesWarning = Places.Count == 0;
 
             // Update greeting header
             UpdateGreetingHeader();
@@ -155,7 +163,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         {
                             // Create a place for current GPS position
                             currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
-                            
+
                             // Add place to service
                             await _PlaceService.AddPlaceAsync(currentPosition);
 
@@ -172,7 +180,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         // TODO: Hande failed GPS locating
                     }
                 }
-                
+
 
                 // Update all places
                 foreach (var place in Places)
