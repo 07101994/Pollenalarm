@@ -177,7 +177,7 @@
 	<data
 		name="About"
 		xml:space="preserve">
-    <value>About</value>
+    <value>About the app</value>
   </data>
 	<data
 		name="Add"
@@ -197,7 +197,7 @@
 	<data
 		name="NoPlacesWarning"
 		xml:space="preserve">
-    <value>It's empty down here. Add your favorite places to keep an overview of their pollen pollution.</value>
+    <value>It's empty down here. Add your favorite places to keep an overview of their pollution.</value>
   </data>
 	<data
 		name="Places"

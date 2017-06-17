@@ -55,13 +55,9 @@
                     HorizontalOptions="FillAndExpand"
                     Text="{i18n:Translate PollenSelection}" />-->
 
-                <Button
-                    Command="{Binding NavigateToAboutCommand}"
-                    HorizontalOptions="FillAndExpand"
-                    Text="{i18n:Translate About}" />
-
                 <custom:HyperlinkLabel    
                     Command="{Binding NavigateToAboutCommand}"
+                    FontSize="Small"
                     Text="{i18n:Translate About}" />
             </StackLayout>
         </StackLayout>
