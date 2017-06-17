@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Pollenalarm.Core;
 using Pollenalarm.Core.Models;
+using Pollenalarm.Frontend.Shared.ViewModels;
 
 namespace Pollenalarm.Frontend.Shared.Models
 {
-    public class Place : IPlace, ISearchResult
+    public class Place : AsyncViewModelBase, IPlace, ISearchResult
     {
         #region Implementation of IPlace
 
@@ -21,7 +22,13 @@ namespace Pollenalarm.Frontend.Shared.Models
 
         #endregion
 
-        public int MaxPollutionToday { get; set; }
+        private int _MaxPollutionToday;
+        public int MaxPollutionToday
+        {
+            get { return _MaxPollutionToday; }
+            set { _MaxPollutionToday = value; RaisePropertyChanged(); }
+        }
+
         public bool IsCurrentPosition { get; set; }
         public List<Pollution> PollutionToday { get; set; }
         public List<Pollution> PollutionTomorrow { get; set; }

@@ -59,9 +59,13 @@ namespace Pollenalarm.Frontend.Shared.Services
 
         public async Task AddPlaceAsync(Place place)
         {
-            Places.Add(place);
+            // Add place to list of all places
+            if (place.IsCurrentPosition)
+                Places.Insert(0, place);
+            else
+                Places.Add(place);
 
-            // Save changes
+            // Save changes locally
             await _FileSystemService.SaveObjectToFileAsync("places.json", Places.ToList());
         }
 

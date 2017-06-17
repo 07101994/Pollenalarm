@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Pollenalarm.Frontend.Shared.Services;
+using Pollenalarm.Frontend.Shared.ViewModels;
 
 namespace Pollenalarm.Frontend.Forms.Views
 {
@@ -19,6 +20,10 @@ namespace Pollenalarm.Frontend.Forms.Views
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, Strings.Back);
             BindingContext = App.Bootstrapper.PlaceViewModel;
+
+            // Current place cannot be edited. Remove toolbar item when not needed
+            if (App.Bootstrapper.PlaceViewModel.IsCurrentPosition)
+                ToolbarItems.Remove(EditPlaceToolbarItem);
         }
 
         protected override async void OnAppearing()

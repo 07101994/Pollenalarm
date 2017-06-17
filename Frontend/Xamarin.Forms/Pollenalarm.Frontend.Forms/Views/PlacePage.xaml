@@ -92,13 +92,14 @@
     <TabbedPage.ToolbarItems>
         <ToolbarItem
             Name="Edit place"
-            Command="{Binding NavigateToEditPlaceCommand}"
+            x:Name="EditPlaceToolbarItem"
+            Command="{Binding NavigateToEditPlaceCommand}"            
             Icon="Edit.png"
             Priority="0">
             <ToolbarItem.Order>
                 <OnPlatform
                     x:TypeArguments="ToolbarItemOrder"
-                    Android="Primary"
+                    Android="Secondary"
                     WinPhone="Primary"
                     iOS="Primary" />
             </ToolbarItem.Order>
@@ -107,6 +108,7 @@
         <ToolbarItem
             Name="Save place"
             Command="{Binding SavePlaceCommand}"
+            x:Name="SavePlaceToolbarItem"
             Icon="Save.png"
             Priority="1">
             <ToolbarItem.Order>

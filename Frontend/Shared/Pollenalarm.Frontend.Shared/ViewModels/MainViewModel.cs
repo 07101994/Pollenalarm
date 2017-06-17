@@ -127,38 +127,52 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             // Update greeting header
             UpdateGreetingHeader();
 
+            // Get place for current GPS position out of list of places
+            var currentPosition = Places.FirstOrDefault(p => p.IsCurrentPosition);
+            if (currentPosition != null && _SettingsService.CurrentSettings.UseCurrentLocation == false)
+            {
+                // Place for current position found but GPS has been disabled in the settings
+                // Remove place from service
+                await _PlaceService.DeletePlaceAsync(currentPosition);
+
+                // Remove place from list
+                Places.Remove(currentPosition);
+            }
+
             // -------------------------------------------------------------------
             // 2. Step: Things to do only when refresh is needed
             // -------------------------------------------------------------------
 
-
             if (IsLoaded == false || force == true)
             {
-                var currentPosition = Places.FirstOrDefault(p => p.IsCurrentPosition);
                 if (_SettingsService.CurrentSettings.UseCurrentLocation)
                 {
-                    // Get current user location's zip code
+                    // User activated use of GPS in the settings
                     var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
-                    if (geolocation == null && currentPosition != null)
+                    if (geolocation != null)
                     {
-                        // Fetching zip code failed. Remove current position's view model
-                        Places.Remove(currentPosition);
-                    }
-                    else
-                    {
-                        // Fetching zip code succeded
-                        if (currentPosition != null)
+                        if (currentPosition == null)
                         {
-                            // Current position has aleady been in the list. Just update
-                            currentPosition.Zip = geolocation.Zip;
+                            // Create a place for current GPS position
+                            currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
+                            
+                            // Add place to service
+                            await _PlaceService.AddPlaceAsync(currentPosition);
+
+                            // Add place to top of the list
+                            Places.Insert(0, currentPosition);
                         }
                         else
                         {
-                            currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
-                            Places.Insert(0, currentPosition);
+                            currentPosition.Zip = geolocation.Zip;
                         }
                     }
+                    else
+                    {
+                        // TODO: Hande failed GPS locating
+                    }
                 }
+                
 
                 // Update all places
                 foreach (var place in Places)

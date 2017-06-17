@@ -10,6 +10,7 @@ using Pollenalarm.Frontend.Shared.Services;
 using IDialogService = Pollenalarm.Frontend.Shared.Services.IDialogService;
 using System.Collections.ObjectModel;
 using System.Reflection;
+using MvvmHelpers;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -27,22 +28,30 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             set { _Name = value; RaisePropertyChanged(); }
         }
 
-        public ObservableCollection<PollutionGroup> _PollutionToday;
-        public ObservableCollection<PollutionGroup> PollutionToday
+        private bool _IsCurrentPosition;
+        public bool IsCurrentPosition
+        {
+            get { return _IsCurrentPosition; }
+            set { _IsCurrentPosition = value; }
+        }
+
+
+        public ObservableRangeCollection<PollutionGroup> _PollutionToday;
+        public ObservableRangeCollection<PollutionGroup> PollutionToday
         {
             get { return _PollutionToday; }
             set { _PollutionToday = value; RaisePropertyChanged(); }
         }
 
-        public ObservableCollection<PollutionGroup> _PollutionTomorrow;
-        public ObservableCollection<PollutionGroup> PollutionTomorrow
+        public ObservableRangeCollection<PollutionGroup> _PollutionTomorrow;
+        public ObservableRangeCollection<PollutionGroup> PollutionTomorrow
         {
             get { return _PollutionTomorrow; }
             set { _PollutionTomorrow = value; RaisePropertyChanged(); }
         }
 
-        public ObservableCollection<PollutionGroup> _PollutionAfterTomorrow;
-        public ObservableCollection<PollutionGroup> PollutionAfterTomorrow
+        public ObservableRangeCollection<PollutionGroup> _PollutionAfterTomorrow;
+        public ObservableRangeCollection<PollutionGroup> PollutionAfterTomorrow
         {
             get { return _PollutionAfterTomorrow; }
             set { _PollutionAfterTomorrow = value; RaisePropertyChanged(); }
@@ -105,9 +114,9 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             _LocalizationService = localizationService;
             _PlaceService = placeService;
 
-            PollutionToday = new ObservableCollection<PollutionGroup>();
-            PollutionTomorrow = new ObservableCollection<PollutionGroup>();
-            PollutionAfterTomorrow = new ObservableCollection<PollutionGroup>();
+            PollutionToday = new ObservableRangeCollection<PollutionGroup>();
+            PollutionTomorrow = new ObservableRangeCollection<PollutionGroup>();
+            PollutionAfterTomorrow = new ObservableRangeCollection<PollutionGroup>();
         }
 
         public async Task RefreshAsync()
@@ -120,62 +129,39 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             RaisePropertyChanged(nameof(ShowNoPlacesWarningAfterTomorrow));
 
             Name = _PlaceService.CurrentPlace.Name;
+            IsCurrentPosition = _PlaceService.CurrentPlace.IsCurrentPosition;
 
             if (!PollutionToday.Any() || !PollutionTomorrow.Any() || !PollutionAfterTomorrow.Any())
                 await _PollenService.GetPollutionsForPlaceAsync(_PlaceService.CurrentPlace);
             else
                 _PollenService.UpdatePollenSelection(_PlaceService.CurrentPlace);
-
-            PollutionToday.Clear();
-            PollutionTomorrow.Clear();
-            PollutionAfterTomorrow.Clear();
+            
+            var blooming = new PollutionGroup(_LocalizationService.GetString("BloomingGroupName"));
+            var nonBlooming = new PollutionGroup(_LocalizationService.GetString("NonBloomingGroupName"));            
 
             // Today
-            var blooming = new PollutionGroup(_LocalizationService.GetString("BloomingGroupName"));
-            var nonBlooming = new PollutionGroup(_LocalizationService.GetString("NonBloomingGroupName"));
-            foreach (var pollution in _PlaceService.CurrentPlace.PollutionToday)
-            {
-                if (pollution.Intensity > 0)
-                    blooming.Add(pollution);
-                else
-                    nonBlooming.Add(pollution);
-            }
-
+            blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionToday.Where(p => p.Intensity > 0));
+            nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionToday.Where(p => p.Intensity == 0));
             if (blooming.Any())
                 PollutionToday.Add(blooming);
             if (nonBlooming.Any())
                 PollutionToday.Add(nonBlooming);
 
             // Tomorrow
-            blooming = new PollutionGroup(_LocalizationService.GetString("BloomingGroupName"));
-            nonBlooming = new PollutionGroup(_LocalizationService.GetString("NonBloomingGroupName"));
-            foreach (var pollution in _PlaceService.CurrentPlace.PollutionTomorrow)
-            {
-                if (pollution.Intensity > 0)
-                    blooming.Add(pollution);
-                else
-                    nonBlooming.Add(pollution);
-            }
+            blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionTomorrow.Where(p => p.Intensity > 0));
+            nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionTomorrow.Where(p => p.Intensity == 0));
             if (blooming.Any())
                 PollutionTomorrow.Add(blooming);
             if (nonBlooming.Any())
                 PollutionTomorrow.Add(nonBlooming);
 
             // After Tomorrow
-            blooming = new PollutionGroup(_LocalizationService.GetString("BloomingGroupName"));
-            nonBlooming = new PollutionGroup(_LocalizationService.GetString("NonBloomingGroupName"));
-            foreach (var pollution in _PlaceService.CurrentPlace.PollutionAfterTomorrow)
-            {
-                if (pollution.Intensity > 0)
-                    blooming.Add(pollution);
-                else
-                    nonBlooming.Add(pollution);
-            }
+            blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Intensity > 0));
+            nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Intensity == 0));            
             if (blooming.Any())
                 PollutionAfterTomorrow.Add(blooming);
             if (nonBlooming.Any())
                 PollutionAfterTomorrow.Add(nonBlooming);
-
 
             RaisePropertyChanged(nameof(ShowNoPlacesWarningToday));
             RaisePropertyChanged(nameof(ShowNoPlacesWarningTomorrow));

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MvvmHelpers;
+using System;
 using System.Collections.ObjectModel;
 namespace Pollenalarm.Frontend.Shared.Models
 {
-    public class PollutionGroup : ObservableCollection<Pollution>
+    public class PollutionGroup : ObservableRangeCollection<Pollution>
     {
         public string Title { get; set; }
 
@@ -11,7 +12,7 @@ namespace Pollenalarm.Frontend.Shared.Models
             this.Title = title;
         }
 
-        public static ObservableCollection<Pollution> All { get; private set; }
+        public static ObservableRangeCollection<Pollution> All { get; private set; }
 
     }
 }

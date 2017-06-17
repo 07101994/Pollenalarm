@@ -69,6 +69,10 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                         await _PlaceService.AddPlaceAsync(place);
                     }
 
+                    // Trigger MainViewModel refresh on specific changes
+                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+                    mainViewModel.IsLoaded = false;
+
                     _PlaceName = string.Empty;
                     _PlaceZip = string.Empty;
                     _NavigationService.GoBack();
@@ -98,6 +102,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                     GetCurrentPositionCommand.RaiseCanExecuteChanged();
 
                     await _PlaceService.DeletePlaceAsync(_PlaceService.CurrentPlace);
+                    _PlaceService.CurrentPlace = null;
 
                     _PlaceName = string.Empty;
                     _PlaceZip = string.Empty;
