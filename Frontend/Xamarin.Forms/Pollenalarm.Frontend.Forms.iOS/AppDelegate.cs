@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Microsoft.Azure.Mobile.Distribute;
 
 namespace Pollenalarm.Frontend.Forms.iOS
 {
@@ -31,7 +32,11 @@ namespace Pollenalarm.Frontend.Forms.iOS
 #endif
 
 			global::Xamarin.Forms.Forms.Init();
-			LoadApplication(new App());
+
+            // Disable Visual Studio Mobile Center Distribute for DEBUG mode
+            Distribute.DontCheckForUpdatesInDebug();
+
+            LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);
 		}

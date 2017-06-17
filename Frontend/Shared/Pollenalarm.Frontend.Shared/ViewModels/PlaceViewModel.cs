@@ -142,6 +142,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             // Today
             blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionToday.Where(p => p.Intensity > 0));
             nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionToday.Where(p => p.Intensity == 0));
+            PollutionToday.Clear();
             if (blooming.Any())
                 PollutionToday.Add(blooming);
             if (nonBlooming.Any())
@@ -150,6 +151,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             // Tomorrow
             blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionTomorrow.Where(p => p.Intensity > 0));
             nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionTomorrow.Where(p => p.Intensity == 0));
+            PollutionTomorrow.Clear();
             if (blooming.Any())
                 PollutionTomorrow.Add(blooming);
             if (nonBlooming.Any())
@@ -157,7 +159,8 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
 
             // After Tomorrow
             blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Intensity > 0));
-            nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Intensity == 0));            
+            nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Intensity == 0));
+            PollutionAfterTomorrow.Clear();
             if (blooming.Any())
                 PollutionAfterTomorrow.Add(blooming);
             if (nonBlooming.Any())
