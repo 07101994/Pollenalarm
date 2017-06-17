@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Pollenalarm.Frontend.Shared.Models
 {
-    public class Settings
-    {
-        public bool UseCurrentLocation { get; set; }
-    }
+	public class Settings
+	{
+		public bool UseCurrentLocation { get; set; }
+		public Dictionary<string, bool> SelectedPollen { get; set; }
+
+		public Settings()
+		{
+			SelectedPollen = new Dictionary<string, bool>();
+		}
+
+		public Settings Clone()
+		{
+			return (Settings)MemberwiseClone();
+		}
+	}
 }

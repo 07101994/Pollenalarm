@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Pollenalarm.Frontend.Forms.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:custom="clr-namespace:Pollenalarm.Frontend.Forms.CustomControls;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
+    Title="{i18n:Translate AppTitle}"
+	IsBusy="{Binding IsBusy, Mode=OneWay}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:IntToBooleanConverter x:Key="IntToBooleanConverter" />
+            <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
+            <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
+            <converter:IntToPollutionIconConverter x:Key="IntToPollutionIconConverter" />
+
+            <DataTemplate x:Key="PlaceItemTemplate">
+                <ViewCell>
+                    <Grid Padding="{StaticResource DefaultItemThickness}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            FontAttributes="Bold"
+                            FontSize="{StaticResource DefaultFontSize}"
+                            Text="{Binding Name}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Margin="0,-4,0,0"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="Pollution:" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="-4,-4,0,0"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionNameConverter}}" />
+
+                        <Image
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            Source="{Binding MaxPollutionToday, Converter={StaticResource IntToPollutionIconConverter}}"
+                            VerticalOptions="Center">
+                            <Image.HeightRequest>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    Android="20"
+                                    WinPhone="20"
+                                    iOS="22" />
+                            </Image.HeightRequest>
+                        </Image>
+
+                        <Image
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            Margin="10,0,0,0"
+                            HeightRequest="15"
+                            Source="Next"
+                            VerticalOptions="Center">
+                            <Image.IsVisible>
+                                <OnPlatform
+                                    x:TypeArguments="x:Boolean"
+                                    Android="False"
+                                    WinPhone="False"
+                                    iOS="True" />
+                            </Image.IsVisible>
+                        </Image>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Name="{i18n:Translate Search}"
+            Command="{Binding NavigateToSearchCommand}"
+            Icon="Search.png"
+            Priority="1">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Primary"
+                    WinPhone="Primary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+        
+        <ToolbarItem
+            x:Name="AddItem"
+            Name="{i18n:Translate Add}"
+            Command="{Binding NavigateToAddPlaceCommand}"
+            Icon="Add.png"
+			AutomationId="AddButton"
+            Priority="0">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Primary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+
+        <ToolbarItem
+            x:Name="RefreshItem"
+            Name="{i18n:Translate Refresh}"
+            Command="{Binding RefreshCommand}"
+            Order="Primary"
+            Priority="2">
+            <ToolbarItem.Icon>
+                <OnPlatform
+                    x:TypeArguments="FileImageSource"
+                    Android=""
+                    WinPhone="Refresh.png"
+                    iOS="" />
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+
+        <ToolbarItem
+            Name="{i18n:Translate Settings}"
+            AutomationId="SettingsToolbarItem"
+            Command="{Binding NavigateToSettingsCommand}"
+            Icon="Settings"
+            Priority="3">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Secondary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <ListView
+            HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            ItemTapped="Handle_ItemTapped"
+            ItemTemplate="{StaticResource PlaceItemTemplate}"
+            ItemsSource="{Binding Places}"
+            RefreshCommand="{Binding RefreshCommand}">
+
+            <ListView.Header>
+                <AbsoluteLayout>
+                    <AbsoluteLayout.HeightRequest>
+                        <OnIdiom
+                            x:TypeArguments="x:Double"
+                            Phone="170"
+                            Tablet="300" />
+                    </AbsoluteLayout.HeightRequest>
+                    <Image
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        Aspect="AspectFill"
+                        IsOpaque="True"
+                        Source="Header.png" />
+
+                    <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding GreetingHeader, Mode=OneWay}"
+                            TextColor="White" />
+                        <Label
+                            Margin="0,-6,0,0"
+                            FontSize="Small"
+                            HorizontalTextAlignment="Center"
+                            Text="You are lucky, mild pollen today."
+                            TextColor="White" />
+                    </StackLayout>
+                </AbsoluteLayout>
+            </ListView.Header>
+        </ListView>
+
+        <!-- Android only Floating Action Button -->
+        <custom:FormsFloatingActionButton
+            Margin="0"
+            Command="{Binding NavigateToAddPlaceCommand}"
+            HorizontalOptions="End"
+			AutomationId="AddButton"
+            Icon="Add.png"
+            VerticalOptions="End">
+            <custom:FormsFloatingActionButton.IsVisible>
+                <OnPlatform
+                    x:TypeArguments="x:Boolean"
+                    Android="True"
+                    WinPhone="False"
+                    iOS="False" />
+            </custom:FormsFloatingActionButton.IsVisible>
+        </custom:FormsFloatingActionButton>
+    </Grid>
+</ContentPage>

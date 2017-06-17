@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Pollenalarm.Frontend.Forms.Views.SearchPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:template="clr-namespace:Pollenalarm.Frontend.Forms.TemplateSelectors"
+    Title="{i18n:Translate Search}"
+	IsBusy="{Binding IsBusy, Mode=OneWay}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="PollenItemTemplate">
+                <ViewCell>
+                    <Grid Padding="{StaticResource DefaultItemThickness}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Column="0"
+                            FontSize="{StaticResource DefaultFontSize}"
+                            Text="{Binding Name}" />
+
+                        <!-- iOS only "Next" button on the right border -->
+                        <Image
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            HeightRequest="15"
+                            Source="Next"
+                            VerticalOptions="Center">
+                            <Image.IsVisible>
+                                <OnPlatform
+                                    x:TypeArguments="x:Boolean"
+                                    Android="False"
+                                    WinPhone="False"
+                                    iOS="True" />
+                            </Image.IsVisible>
+                        </Image>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="PlaceItemTemplate">
+                <ViewCell>
+                    <Grid Padding="{StaticResource DefaultItemThickness}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            FontAttributes="Bold"
+                            FontSize="{StaticResource DefaultFontSize}"
+                            Text="{Binding Name}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Margin="0,-4,0,0"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="{Binding Zip}" />
+
+                        <Image
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            HeightRequest="15"
+                            Source="Next"
+                            VerticalOptions="Center">
+                            <Image.IsVisible>
+                                <OnPlatform
+                                    x:TypeArguments="x:Boolean"
+                                    Android="False"
+                                    WinPhone="False"
+                                    iOS="True" />
+                            </Image.IsVisible>
+                        </Image>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <template:SearchResultDataTemplateSelector
+                x:Key="SearchResultDataTemplateSelector"
+                PlaceTemplate="{StaticResource PlaceItemTemplate}"
+                PollenTemplate="{StaticResource PollenItemTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <SearchBar
+            Placeholder="{i18n:Translate SearchBarPlaceholder}"
+            SearchCommand="{Binding SearchCommand}"
+            Text="{Binding SearchTerm}">
+            <SearchBar.Margin>
+                <OnPlatform x:TypeArguments="Thickness" WinPhone="{StaticResource DefaultThickness}" />
+            </SearchBar.Margin>
+        </SearchBar>
+
+        <ListView
+            Grid.Row="1"
+            CachingStrategy="RecycleElement"
+            GroupDisplayBinding="{Binding Title}"
+            HasUnevenRows="True"
+            IsGroupingEnabled="True"
+            ItemSelected="ListView_ItemSelected"
+            ItemTemplate="{StaticResource SearchResultDataTemplateSelector}"
+            ItemsSource="{Binding SearchResults}">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="{StaticResource DefaultItemThickness}">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="{StaticResource SmallFontSize}"
+                                Text="{Binding Title}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+        </ListView>
+
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            HeightRequest="{StaticResource ActivityIndicatorHeight}"
+            HorizontalOptions="Fill"
+            IsRunning="True"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+    </Grid>
+</ContentPage>

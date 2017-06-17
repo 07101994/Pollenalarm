@@ -1,16 +1,15 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Pollenalarm.Core;
 using Pollenalarm.Core.Models;
 using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pollenalarm.Frontend.Shared.Models;
+using MvvmHelpers;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -18,16 +17,23 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
     {
         private INavigationService _NavigationService;
         private IFileSystemService _FileSystemService;
-        private PollenService _PollenService;
+        private ILocalizationService _LocalizationService;
+        private IPollenService _PollenService;
         private SettingsService _SettingsService;
         private PlaceService _PlaceService;
-        private PlaceViewModel _PlaceViewModel;
 
-        private ObservableCollection<Place> _Places;
-        public ObservableCollection<Place> Places
+        private ObservableRangeCollection<Place> _Places;
+        public ObservableRangeCollection<Place> Places
         {
             get { return _Places; }
             set { _Places = value; RaisePropertyChanged(); }
+        }
+
+        private string _GreetingHeader;
+        public string GreetingHeader
+        {
+            get { return _GreetingHeader; }
+            set { _GreetingHeader = value; RaisePropertyChanged(); }
         }
 
         private RelayCommand _RefreshCommand;
@@ -37,7 +43,7 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _RefreshCommand ?? (_RefreshCommand = new RelayCommand(async () =>
                 {
-                    await RefreshAsync();
+                    await RefreshAsync(true);
                 }));
             }
         }
@@ -61,78 +67,137 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _NavigateToAddPlaceCommand ?? (_NavigateToAddPlaceCommand = new RelayCommand(() =>
                 {
-                    _PlaceViewModel.CurrentPlace = null;
+                    _PlaceService.CurrentPlace = null;
                     _NavigationService.NavigateTo(ViewNames.AddEditPlace);
                 }));
             }
         }
 
-        private RelayCommand<Place> _NavigateToPlaceCommand;
-        public RelayCommand<Place> NavigateToPlaceCommand
+        private RelayCommand<string> _NavigateToPlaceCommand;
+        public RelayCommand<string> NavigateToPlaceCommand
         {
             get
             {
-                return _NavigateToPlaceCommand ?? (_NavigateToPlaceCommand = new RelayCommand<Place>((Place place) =>
+                return _NavigateToPlaceCommand ?? (_NavigateToPlaceCommand = new RelayCommand<string>((string placeId) =>
                 {
-                    _PlaceViewModel.CurrentPlace = place;
+                    _PlaceService.CurrentPlace = _PlaceService.Places.FirstOrDefault(p => p.Id == placeId);
                     _NavigationService.NavigateTo(ViewNames.Place);
                 }));
             }
         }
 
-        public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, SettingsService settingsService, PollenService pollenService, PlaceService placeService, PlaceViewModel placeViewModel)
+        private RelayCommand _NavigateToSearchCommand;
+        public RelayCommand NavigateToSearchCommand
+        {
+            get
+            {
+                return _NavigateToSearchCommand ?? (_NavigateToSearchCommand = new RelayCommand(() =>
+                {
+                    _NavigationService.NavigateTo(ViewNames.Search);
+                }));
+            }
+        }
+
+        public MainViewModel(INavigationService navigationService, IFileSystemService fileSystemService, ILocalizationService localizationService, SettingsService settingsService, IPollenService pollenService, PlaceService placeService)
         {
             _NavigationService = navigationService;
             _FileSystemService = fileSystemService;
+            _LocalizationService = localizationService;
             _PollenService = pollenService;
             _SettingsService = settingsService;
             _PlaceService = placeService;
-            _PlaceViewModel = placeViewModel;
 
-            Places = new ObservableCollection<Place>();
+            Places = new ObservableRangeCollection<Place>();
         }
 
-        public async Task RefreshAsync()
+        public async Task RefreshAsync(bool force = false)
         {
-            IsLoading = true;
+            IsBusy = true;
 
-            Places.Clear();
+            // -------------------------------------------------------------------
+            // 1. Step: Things to do every time the user navigates to the MainPage
+            // -------------------------------------------------------------------
 
-            // Check settings
-            await _SettingsService.LoadSettingsAsync();
-            if (_SettingsService.CurrentSettings.UseCurrentLocation)
+            // Initialize Services if needed
+            await _SettingsService.InitializeAsync();
+            await _PlaceService.InitializeAsync();
+
+            Places.ReplaceRange(_PlaceService.Places);
+
+            // Update greeting header
+            UpdateGreetingHeader();
+
+            // Get place for current GPS position out of list of places
+            var currentPosition = Places.FirstOrDefault(p => p.IsCurrentPosition);
+            if (currentPosition != null && _SettingsService.CurrentSettings.UseCurrentLocation == false)
             {
-                // Add current location
-                var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
-                if (geolocation != null)
+                // Place for current position found but GPS has been disabled in the settings
+                // Remove place from service
+                await _PlaceService.DeletePlaceAsync(currentPosition);
+
+                // Remove place from list
+                Places.Remove(currentPosition);
+            }
+
+            // -------------------------------------------------------------------
+            // 2. Step: Things to do only when refresh is needed
+            // -------------------------------------------------------------------
+
+            if (IsLoaded == false || force == true)
+            {
+                if (_SettingsService.CurrentSettings.UseCurrentLocation)
                 {
-                    var currentPlace = new Place();
-                    currentPlace.Name = "Current position";
-                    currentPlace.Zip = geolocation.Zip;
-                    currentPlace.IsCurrentPosition = true;
-                    Places.Add(currentPlace);
+                    // User activated use of GPS in the settings
+                    var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
+                    if (geolocation != null)
+                    {
+                        if (currentPosition == null)
+                        {
+                            // Create a place for current GPS position
+                            currentPosition = new Place(_LocalizationService.GetString("CurrentPosition"), geolocation.Zip, true);
+                            
+                            // Add place to service
+                            await _PlaceService.AddPlaceAsync(currentPosition);
+
+                            // Add place to top of the list
+                            Places.Insert(0, currentPosition);
+                        }
+                        else
+                        {
+                            currentPosition.Zip = geolocation.Zip;
+                        }
+                    }
+                    else
+                    {
+                        // TODO: Hande failed GPS locating
+                    }
+                }
+                
+
+                // Update all places
+                foreach (var place in Places)
+                {
+                    await _PollenService.GetPollutionsForPlaceAsync(place);
+                    place.RecalculateMaxPollution();
                 }
             }
 
-            // Load locally saved places
-            var savedPlaces = await _FileSystemService.ReadObjectFromFileAsync<List<Place>>("places.json");
-            if (savedPlaces != null)
-            {
-                foreach(var place in savedPlaces)
-                {
-                    Places.Add(place);
-                }
-            }
-
-            // Update
-            foreach (var place in Places)
-            {
-                var success = await _PollenService.GetPollutionsForPlaceAsync(place);
-                place.RecalculateMaxPollution();
-            }
-
-            IsLoading = false;
+            IsBusy = false;
             IsLoaded = true;
+        }
+
+
+        private void UpdateGreetingHeader()
+        {
+            var now = DateTime.Now;
+            if (now.Hour > 5 && now.Hour < 11)
+                GreetingHeader = _LocalizationService.GetString("GoodMorning");
+            else if (now.Hour >= 11 && now.Hour < 14)
+                GreetingHeader = _LocalizationService.GetString("GoodDay");
+            else if (now.Hour >= 14 && now.Hour < 18)
+                GreetingHeader = _LocalizationService.GetString("GoodEvening");
+            else
+                GreetingHeader = _LocalizationService.GetString("GoodNight");
         }
     }
 }

@@ -1,124 +1,65 @@
-﻿using System;
-using Pollenalarm.Core.Models;
-using Pollenalarm.Frontend.Shared.ViewModels;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
-using System.Linq;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
+using Pollenalarm.Core.Models;
 using Pollenalarm.Frontend.Shared.Misc;
+using Pollenalarm.Frontend.Shared.Models;
 using Pollenalarm.Frontend.Shared.Services;
-using System.Text.RegularExpressions;
+using IDialogService = Pollenalarm.Frontend.Shared.Services.IDialogService;
+using System.Collections.ObjectModel;
+using System.Reflection;
+using MvvmHelpers;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
-	public class PlaceViewModel : AsyncViewModelBase
-	{
+    public class PlaceViewModel : AsyncViewModelBase
+    {
         private INavigationService _NavigationService;
-        private IFileSystemService _FileSystemService;
+        private IPollenService _PollenService;
+        private ILocalizationService _LocalizationService;
         private PlaceService _PlaceService;
 
-        private Place _CurrentPlace;
-		public Place CurrentPlace
-		{
-			get { return _CurrentPlace; }
-			set { _CurrentPlace = value; RaisePropertyChanged(); }
-        }
-
-        #region Add / Edit fields
-
-        private string _PlaceName;
-        public string PlaceName
+        public string _Name;
+        public string Name
         {
-            get { return _PlaceName; }
-            set { _PlaceName = value; RaisePropertyChanged(); }
+            get { return _Name; }
+            set { _Name = value; RaisePropertyChanged(); }
         }
 
-        private string _PlaceZip;
-        public string PlaceZip
+        private bool _IsCurrentPosition;
+        public bool IsCurrentPosition
         {
-            get { return _PlaceZip; }
-            set { _PlaceZip = value; RaisePropertyChanged(); }
+            get { return _IsCurrentPosition; }
+            set { _IsCurrentPosition = value; }
         }
 
-        #endregion
 
-        public event InvalidEntriesEventHandler OnInvalidEntries;
-        public delegate void InvalidEntriesEventHandler(object sender, EventArgs e);
-
-        public event LocationFailedEventHandler OnLocationFailed;
-        public delegate void LocationFailedEventHandler(object sender, EventArgs e);
-
-        private RelayCommand _AddEditPlaceCommand;
-        public RelayCommand AddEditPlaceCommand
+        public ObservableRangeCollection<PollutionGroup> _PollutionToday;
+        public ObservableRangeCollection<PollutionGroup> PollutionToday
         {
-            get
-            {
-                return _AddEditPlaceCommand ?? (_AddEditPlaceCommand = new RelayCommand(() =>
-                {
-                    // Check if entered field are valid
-                    if (string.IsNullOrWhiteSpace(_PlaceName) || !Regex.IsMatch(_PlaceZip, "^[0-9]*$") || _PlaceZip.Trim().Length != 5)
-                    {
-                        // Invalid entries
-                        OnInvalidEntries?.Invoke(this, null);
-                        return;
-                    }
-
-                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
-
-                    if (_CurrentPlace != null)
-                    {
-                        var existingPlace = mainViewModel.Places.FirstOrDefault(x => x.Id == _CurrentPlace.Id);
-                        if (existingPlace != null)
-                        {
-                            existingPlace.Name = _PlaceName;
-                            existingPlace.Zip = _PlaceZip;
-                            _CurrentPlace = existingPlace;
-                        }
-                    }
-                    else
-                    {
-                        _CurrentPlace = new Place();
-                        _CurrentPlace.Name = _PlaceName;
-                        _CurrentPlace.Zip = _PlaceZip;
-                        mainViewModel.Places.Add(_CurrentPlace);
-                        _CurrentPlace = null;
-                    }
-
-                    // Save places
-                    _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
-
-                    _PlaceName = string.Empty;
-                    _PlaceZip = string.Empty;
-                    _NavigationService.GoBack();
-                }));
-            }
+            get { return _PollutionToday; }
+            set { _PollutionToday = value; RaisePropertyChanged(); }
         }
 
-        private RelayCommand _DeletePlaceCommand;
-        public RelayCommand DeletePlaceCommand
+        public ObservableRangeCollection<PollutionGroup> _PollutionTomorrow;
+        public ObservableRangeCollection<PollutionGroup> PollutionTomorrow
         {
-            get
-            {
-                return _DeletePlaceCommand ?? (_DeletePlaceCommand = new RelayCommand(() =>
-                {
-                    var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
-
-                    if (_CurrentPlace != null)
-                    {
-                        var existingPlace = mainViewModel.Places.FirstOrDefault(x => x.Id == _CurrentPlace.Id);
-                        if (existingPlace != null)
-                        {
-                            mainViewModel.Places.Remove(existingPlace);
-                            _FileSystemService.SaveObjectToFileAsync("places.json", mainViewModel.Places.ToList());
-                            _CurrentPlace = null;
-                            _PlaceName = string.Empty;
-                            _PlaceZip = string.Empty;
-                            _NavigationService.GoBack();
-                        }
-                    }
-                }));
-            }
+            get { return _PollutionTomorrow; }
+            set { _PollutionTomorrow = value; RaisePropertyChanged(); }
         }
+
+        public ObservableRangeCollection<PollutionGroup> _PollutionAfterTomorrow;
+        public ObservableRangeCollection<PollutionGroup> PollutionAfterTomorrow
+        {
+            get { return _PollutionAfterTomorrow; }
+            set { _PollutionAfterTomorrow = value; RaisePropertyChanged(); }
+        }
+
+        public bool ShowNoPlacesWarningToday { get { return !PollutionToday.Any() && !IsBusy; } }
+        public bool ShowNoPlacesWarningTomorrow { get { return !PollutionTomorrow.Any() && !IsBusy; } }
+        public bool ShowNoPlacesWarningAfterTomorrow { get { return !PollutionAfterTomorrow.Any() && !IsBusy; } }
 
         private RelayCommand _NavigateToEditPlaceCommand;
         public RelayCommand NavigateToEditPlaceCommand
@@ -127,9 +68,12 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _NavigateToEditPlaceCommand ?? (_NavigateToEditPlaceCommand = new RelayCommand(() =>
                 {
-                    _PlaceName = _CurrentPlace.Name;
-                    _PlaceZip = _CurrentPlace.Zip;
                     _NavigationService.NavigateTo(ViewNames.AddEditPlace);
+                }, () =>
+                {
+                    // Only execute, if place is not current position and already exists
+                    //var places = await _PlaceService.GetPlacesAsync();
+                    return !_PlaceService.CurrentPlace.IsCurrentPosition && _PlaceService.Places.Contains(_PlaceService.CurrentPlace);
                 }));
             }
         }
@@ -141,40 +85,94 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             {
                 return _NavigateToPollenCommand ?? (_NavigateToPollenCommand = new RelayCommand<Pollen>((Pollen pollen) =>
                 {
-                    var pollenViewModel = SimpleIoc.Default.GetInstance<PollenViewModel>();
-                    pollenViewModel.CurrentPollen = pollen;
+                    _PollenService.CurrentPollen = pollen;
                     _NavigationService.NavigateTo(ViewNames.Pollen);
                 }));
             }
         }
 
-        private RelayCommand _GetCurrentPositionCommand;
-        public RelayCommand GetCurrentPositionCommand
+        private RelayCommand _SavePlaceCommand;
+        public RelayCommand SavePlaceCommand
         {
             get
             {
-                return _GetCurrentPositionCommand ?? (_GetCurrentPositionCommand = new RelayCommand(async () =>
+                return _SavePlaceCommand ?? (_SavePlaceCommand = new RelayCommand(() =>
                 {
-                    var geolocation = await _PlaceService.GetCurrentGeoLocationAsync();
-                    if (geolocation == null)
-                    {
-                        OnLocationFailed?.Invoke(this, null);
-                        return;
-                    }
-
-                    // Update place fields
-                    PlaceName = geolocation.Name;
-					PlaceZip = geolocation.Zip;
+                    _NavigationService.NavigateTo(ViewNames.AddEditPlace);
+                }, () =>
+                {
+                    // Only execute, if place does not already exist
+                    return !_PlaceService.Places.Contains(_PlaceService.CurrentPlace);
                 }));
             }
         }
 
-        public PlaceViewModel(INavigationService navigationService, IFileSystemService fileSystemService, PlaceService placeService)
-		{
+        public PlaceViewModel(INavigationService navigationService, IPollenService pollenService, ILocalizationService localizationService, PlaceService placeService)
+        {
             _NavigationService = navigationService;
-            _FileSystemService = fileSystemService;
+            _PollenService = pollenService;
+            _LocalizationService = localizationService;
             _PlaceService = placeService;
-		}
-	}
+
+            PollutionToday = new ObservableRangeCollection<PollutionGroup>();
+            PollutionTomorrow = new ObservableRangeCollection<PollutionGroup>();
+            PollutionAfterTomorrow = new ObservableRangeCollection<PollutionGroup>();
+        }
+
+        public async Task RefreshAsync()
+        {
+            IsBusy = true;
+            IsLoaded = false;
+
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningToday));
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningTomorrow));
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningAfterTomorrow));
+
+            Name = _PlaceService.CurrentPlace.Name;
+            IsCurrentPosition = _PlaceService.CurrentPlace.IsCurrentPosition;
+
+            if (!PollutionToday.Any() || !PollutionTomorrow.Any() || !PollutionAfterTomorrow.Any())
+                await _PollenService.GetPollutionsForPlaceAsync(_PlaceService.CurrentPlace);
+            else
+                _PollenService.UpdatePollenSelection(_PlaceService.CurrentPlace);
+            
+            var blooming = new PollutionGroup(_LocalizationService.GetString("BloomingGroupName"));
+            var nonBlooming = new PollutionGroup(_LocalizationService.GetString("NonBloomingGroupName"));            
+
+            // Today
+            blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionToday.Where(p => p.Intensity > 0));
+            nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionToday.Where(p => p.Intensity == 0));
+            PollutionToday.Clear();
+            if (blooming.Any())
+                PollutionToday.Add(blooming);
+            if (nonBlooming.Any())
+                PollutionToday.Add(nonBlooming);
+
+            // Tomorrow
+            blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionTomorrow.Where(p => p.Intensity > 0));
+            nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionTomorrow.Where(p => p.Intensity == 0));
+            PollutionTomorrow.Clear();
+            if (blooming.Any())
+                PollutionTomorrow.Add(blooming);
+            if (nonBlooming.Any())
+                PollutionTomorrow.Add(nonBlooming);
+
+            // After Tomorrow
+            blooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Intensity > 0));
+            nonBlooming.ReplaceRange(_PlaceService.CurrentPlace.PollutionAfterTomorrow.Where(p => p.Intensity == 0));
+            PollutionAfterTomorrow.Clear();
+            if (blooming.Any())
+                PollutionAfterTomorrow.Add(blooming);
+            if (nonBlooming.Any())
+                PollutionAfterTomorrow.Add(nonBlooming);
+
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningToday));
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningTomorrow));
+            RaisePropertyChanged(nameof(ShowNoPlacesWarningAfterTomorrow));
+
+            IsLoaded = true;
+            IsBusy = false;
+        }
+    }
 }
 

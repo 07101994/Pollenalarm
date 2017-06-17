@@ -1,9 +1,5 @@
-﻿using Pollenalarm.Frontend.Shared.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Pollenalarm.Frontend.Shared.Models;
 
 namespace Pollenalarm.Frontend.Shared.Services
 {
@@ -23,13 +19,20 @@ namespace Pollenalarm.Frontend.Shared.Services
             await _FileSystemService.SaveObjectToFileAsync("settings.json", CurrentSettings);
         }
 
-        public async Task LoadSettingsAsync()
+        /// <summary>
+        /// Loads the local settings if needed.
+        /// </summary>
+        /// <returns></returns>
+        public async Task InitializeAsync()
         {
-            var settings = await _FileSystemService.ReadObjectFromFileAsync<Settings>("settings.json");
-            if (settings != null)
-                CurrentSettings = settings;
-            else
-                CurrentSettings = new Settings();
+            if (CurrentSettings == null)
+            {
+                var settings = await _FileSystemService.ReadObjectFromFileAsync<Settings>("settings.json");
+                if (settings != null)
+                    CurrentSettings = settings;
+                else
+                    CurrentSettings = new Settings();
+            }
         }
     }
 }

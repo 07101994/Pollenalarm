@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 
@@ -15,7 +14,7 @@ namespace Pollenalarm.Backend
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            var cors = new EnableCorsAttribute("*", "*", "*");
+            //var cors = new EnableCorsAttribute("*", "*", "*");
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -26,7 +25,7 @@ namespace Pollenalarm.Backend
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.EnableCors(cors);
+            //config.EnableCors(cors);
 
             // Ensure that JSON is returned
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));

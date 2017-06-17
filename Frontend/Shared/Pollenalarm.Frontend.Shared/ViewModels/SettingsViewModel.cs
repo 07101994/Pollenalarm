@@ -1,16 +1,16 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Pollenalarm.Frontend.Shared.Misc;
-using Pollenalarm.Frontend.Shared.Services;
 using Pollenalarm.Frontend.Shared.Models;
-using System.Threading.Tasks;
+using Pollenalarm.Frontend.Shared.Services;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
-	public class SettingsViewModel : AsyncViewModelBase
-	{
-		private INavigationService _NavigationService;
+    public class SettingsViewModel : AsyncViewModelBase
+    {
+        private INavigationService _NavigationService;
         private SettingsService _SettingsService;
 
         private Settings _Settings;
@@ -20,35 +20,49 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
             set { _Settings = value; RaisePropertyChanged(); }
         }
 
-
         private RelayCommand _NavigateToAboutCommand;
-		public RelayCommand NavigateToAboutCommand
-		{
-			get
-			{
-				return _NavigateToAboutCommand ?? (_NavigateToAboutCommand = new RelayCommand(() =>
-				{
-					_NavigationService.NavigateTo(ViewNames.About);
-				}));
-			}
-		}
+        public RelayCommand NavigateToAboutCommand
+        {
+            get
+            {
+                return _NavigateToAboutCommand ?? (_NavigateToAboutCommand = new RelayCommand(() =>
+                {
+                    _NavigationService.NavigateTo(ViewNames.About);
+                }));
+            }
+        }
 
-		public SettingsViewModel(INavigationService navigationService, SettingsService settingsService)
-		{
-			_NavigationService = navigationService;
+        public SettingsViewModel(INavigationService navigationService, SettingsService settingsService)
+        {
+            _NavigationService = navigationService;
             _SettingsService = settingsService;
-		}
+        }
 
         public async Task InitializeAsync()
         {
-            await _SettingsService.LoadSettingsAsync();
-            Settings = _SettingsService.CurrentSettings;
+            IsBusy = true;
+
+            await _SettingsService.InitializeAsync();
+            Settings = _SettingsService.CurrentSettings.Clone();
+
+            IsBusy = false;
         }
 
         public async Task SaveChangesAsnyc()
         {
+            IsBusy = true;
+
+            // Trigger MainViewModel refresh on specific changes
+            if (_SettingsService.CurrentSettings.UseCurrentLocation != Settings.UseCurrentLocation)
+            {
+                var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+                mainViewModel.IsLoaded = false;
+            }
+
             _SettingsService.CurrentSettings = Settings;
             await _SettingsService.SaveSettingsAsync();
+
+            IsBusy = false;
         }
-	}
+    }
 }

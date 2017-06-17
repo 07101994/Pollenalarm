@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="Pollenalarm.Frontend.Forms.Views.PlacePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
+    Title="{Binding Name}"
+	IsBusy="{Binding IsBusy, Mode=OneWay}">
+
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <converter:IntToNegatedBooleanConverter x:Key="IntToNegatedBooleanConverter" />
+            <converter:IntToPollutionNameConverter x:Key="IntToPollutionNameConverter" />
+            <converter:IntToPollutionIconConverter x:Key="IntToPollutionIconConverter" />
+            <converter:BoolToTextColorConverter x:Key="BoolToTextColorConverter" />
+            <converter:BoolToNegatedBoolConverter x:Key="BoolToNegatedBoolConverter" />
+
+            <DataTemplate x:Key="PollutionItemTemplate">
+                <ViewCell>
+                    <Grid Padding="{StaticResource DefaultItemThickness}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            FontAttributes="Bold"
+                            FontSize="{StaticResource DefaultFontSize}"
+                            Text="{Binding Pollen.Name}"
+                            TextColor="{Binding Pollen.IsSelected, Converter={StaticResource BoolToTextColorConverter}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Margin="0,-4,0,0"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="Pollution:"
+                            TextColor="{Binding Pollen.IsSelected, Converter={StaticResource BoolToTextColorConverter}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="-4,-4,0,0"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="{Binding Intensity, Converter={StaticResource IntToPollutionNameConverter}}"
+                            TextColor="{Binding Pollen.IsSelected, Converter={StaticResource BoolToTextColorConverter}" />
+
+                        <Image
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            Source="{Binding Intensity, Converter={StaticResource IntToPollutionIconConverter}}"
+                            VerticalOptions="Center">
+                            <Image.HeightRequest>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    Android="20"
+                                    WinPhone="20"
+                                    iOS="22" />
+                            </Image.HeightRequest>
+                        </Image>
+
+                        <Image
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            Margin="10,0,0,0"
+                            HeightRequest="15"
+                            Source="Next"
+                            VerticalOptions="Center">
+                            <Image.IsVisible>
+                                <OnPlatform
+                                    x:TypeArguments="x:Boolean"
+                                    Android="False"
+                                    WinPhone="False"
+                                    iOS="True" />
+                            </Image.IsVisible>
+                        </Image>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem
+            Name="Edit place"
+            x:Name="EditPlaceToolbarItem"
+            Command="{Binding NavigateToEditPlaceCommand}"            
+            Icon="Edit.png"
+            Priority="0">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Primary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+
+        <ToolbarItem
+            Name="Save place"
+            Command="{Binding SavePlaceCommand}"
+            x:Name="SavePlaceToolbarItem"
+            Icon="Save.png"
+            Priority="1">
+            <ToolbarItem.Order>
+                <OnPlatform
+                    x:TypeArguments="ToolbarItemOrder"
+                    Android="Secondary"
+                    WinPhone="Secondary"
+                    iOS="Primary" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage Title="Today">
+        <ContentPage.Icon>
+            <OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar.png" />
+        </ContentPage.Icon>
+        <Grid>
+            <ListView
+                x:Name="ListToday"
+                
+                GroupDisplayBinding="{Binding Title}"
+                IsGroupingEnabled="True"
+                HasUnevenRows="True"
+                ItemSelected="PollutionList_ItemSelected"
+				IsVisible="{Binding ShowNoPlacesWarningToday, Converter={StaticResource BoolToNegatedBoolConverter}}"
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
+            <ActivityIndicator
+                HeightRequest="{StaticResource ActivityIndicatorHeight}"
+                HorizontalOptions="Fill"
+                IsRunning="True"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+			<Label
+                Margin="{StaticResource DefaultThickness}"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ShowNoPlacesWarningToday}}"
+                Text="{i18n:Translate NoPollutionWarningText}" />
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="Tomorrow">
+        <ContentPage.Icon>
+            <OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar" />
+        </ContentPage.Icon>
+        <Grid>            
+            <ListView
+                x:Name="ListTomorrow"
+                
+                GroupDisplayBinding="{Binding Title}"
+                IsGroupingEnabled="True"
+                HasUnevenRows="True"
+                ItemSelected="PollutionList_ItemSelected"
+				IsVisible="{Binding ShowNoPlacesWarningTomorrow, Converter={StaticResource BoolToNegatedBoolConverter}}"
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
+            <ActivityIndicator
+                HeightRequest="{StaticResource ActivityIndicatorHeight}"
+                HorizontalOptions="Fill"
+                IsRunning="True"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+			<Label
+                Margin="{StaticResource DefaultThickness}"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ShowNoPlacesWarningTomorrow}"
+                Text="{i18n:Translate NoPollutionWarningText}" />
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="After tomorrow">
+        <ContentPage.Icon>
+            <OnPlatform
+                x:TypeArguments="FileImageSource"
+                Android=""
+                WinPhone=""
+                iOS="Calendar" />
+        </ContentPage.Icon>
+        <Grid>
+            <ListView
+                x:Name="ListAfterTomorrow"
+                
+                GroupDisplayBinding="{Binding Title}"
+                IsGroupingEnabled="True"
+                HasUnevenRows="True"
+				IsVisible="{Binding ShowNoPlacesWarningAfterTomorrow, Converter={StaticResource BoolToNegatedBoolConverter}}"
+                ItemSelected="PollutionList_ItemSelected"
+                ItemTemplate="{StaticResource PollutionItemTemplate}" />
+            <ActivityIndicator
+                HeightRequest="{StaticResource ActivityIndicatorHeight}"
+                HorizontalOptions="Fill"
+                IsRunning="True"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+			<Label
+                Margin="{StaticResource DefaultThickness}"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ShowNoPlacesWarningAfterTomorrow}"
+                Text="{i18n:Translate NoPollutionWarningText}" />
+        </Grid>
+    </ContentPage>
+</TabbedPage>
