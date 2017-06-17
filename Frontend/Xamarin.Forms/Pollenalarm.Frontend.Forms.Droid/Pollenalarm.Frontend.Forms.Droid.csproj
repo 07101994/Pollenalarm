@@ -17,7 +17,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
@@ -50,6 +50,11 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>/Users/robinmanuelthiel/OneDrive/Dateien/Certificates/Thepagedot-Pollenalarm/Android/PollenalarmKey.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>!iR2SrV$cz5HS$F5eycjHf5shhPGhj^B</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>PollenalarmKey</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>!iR2SrV$cz5HS$F5eycjHf5shhPGhj^B</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

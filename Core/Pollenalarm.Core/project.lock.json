@@ -9,14 +9,14 @@
     ".NETPortable,Version=v4.5,Profile=Profile259": []
   },
   "packageFolders": {
-    "C:\\Users\\robinmanuelthiel\\.nuget\\packages\\": {}
+    "/Users/robinmanuelthiel/.nuget/packages/": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "D:\\Source\\Thepagedot\\Pollenalarm\\Core\\Pollenalarm.Core\\Pollenalarm.Core.csproj",
+      "projectUniqueName": "/Users/robinmanuelthiel/Source/Thepagedot/Pollenalarm/Core/Pollenalarm.Core/Pollenalarm.Core.csproj",
       "projectName": "Pollenalarm.Core",
-      "projectPath": "D:\\Source\\Thepagedot\\Pollenalarm\\Core\\Pollenalarm.Core\\Pollenalarm.Core.csproj",
-      "projectJsonPath": "D:\\Source\\Thepagedot\\Pollenalarm\\Core\\Pollenalarm.Core\\project.json",
+      "projectPath": "/Users/robinmanuelthiel/Source/Thepagedot/Pollenalarm/Core/Pollenalarm.Core/Pollenalarm.Core.csproj",
+      "projectJsonPath": "/Users/robinmanuelthiel/Source/Thepagedot/Pollenalarm/Core/Pollenalarm.Core/project.json",
       "projectStyle": "ProjectJson"
     },
     "frameworks": {
