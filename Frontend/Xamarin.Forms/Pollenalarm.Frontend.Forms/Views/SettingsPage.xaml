@@ -4,7 +4,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
+    xmlns:custom="clr-namespace:Pollenalarm.Frontend.Forms.CustomControls"
     Title="Settings">
+    
     <ScrollView>
 		<StackLayout Spacing="{StaticResource DefaultItemMargin}">
 			<!-- Location -->
@@ -53,11 +55,11 @@
                     HorizontalOptions="FillAndExpand"
                     Text="{i18n:Translate PollenSelection}" />-->
 
-                <Button
+                <custom:HyperlinkLabel    
                     Command="{Binding NavigateToAboutCommand}"
-                    HorizontalOptions="FillAndExpand"
+                    FontSize="Small"
                     Text="{i18n:Translate About}" />
-			</StackLayout>
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

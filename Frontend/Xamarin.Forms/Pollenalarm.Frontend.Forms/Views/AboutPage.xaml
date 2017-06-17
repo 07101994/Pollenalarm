@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     x:Class="Pollenalarm.Frontend.Forms.AboutPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -10,7 +10,7 @@
             <StackLayout Padding="{StaticResource DefaultThickness}" Spacing="0,0,0,10">
 
                 <Label FontAttributes="Bold" Text="Version" />
-                <Label FontSize="Small" Text="0.1 Alpha" />
+                <Label FontSize="{StaticResource SmallFontSize}" Text="0.1.1" />
 
                 <Label
                     Margin="0,10,0,0"
@@ -18,11 +18,11 @@
                     Text="Libraries" />
                 <Label FontSize="Small" Text="Thanks to the wonderful authors of all these 3rd party libraries!" />
                 <custom:HyperlinkLabel
-                    FontSize="{StaticResource SmallFontSize}"
+                    FontSize="Small"
                     Text="PCLStorage"
                     Uri="https://github.com/dsplaisted/PCLStorage" />
                 <custom:HyperlinkLabel
-                    FontSize="{StaticResource SmallFontSize}"
+                    FontSize="Small"
                     Text="GeolocatorPlugin"
                     Uri="https://github.com/jamesmontemagno/GeolocatorPlugin" />
 
@@ -32,7 +32,7 @@
                     Text="Icons" />
                 <Label FontSize="Small" Text="All non-standard icons come from Icons8." />
                 <custom:HyperlinkLabel
-                    FontSize="{StaticResource SmallFontSize}"
+                    FontSize="Small"
                     Text="Visit Icons8"
                     Uri="https://icons8.com" />
             </StackLayout>

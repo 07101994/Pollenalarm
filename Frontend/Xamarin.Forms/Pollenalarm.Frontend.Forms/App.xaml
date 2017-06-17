@@ -54,7 +54,10 @@
                 x:TypeArguments="x:Double"
                 Android="14"
                 WinPhone="14"
-                iOS="12" />
+                iOS="14" />
+
+            <!-- Colors -->
+            <Color x:Key="SecondaryFontColor">#cccccc</Color>
 
             <!-- Activity Indicator -->
             <OnPlatform

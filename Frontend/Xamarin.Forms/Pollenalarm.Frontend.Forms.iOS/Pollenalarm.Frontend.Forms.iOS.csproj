@@ -104,6 +104,7 @@
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
     <Compile Include="CustomRenderers\CustomNavigationRenderer.cs" />
+    <Compile Include="CustomRenderers\HyperlinkLabelRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -176,12 +177,6 @@
     <Reference Include="Microsoft.Azure.Mobile.Crashes.iOS.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Azure.Mobile.Crashes.0.12.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Crashes.iOS.Bindings.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Distribute, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Azure.Mobile.Distribute.0.12.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Distribute.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Distribute.iOS.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Azure.Mobile.Distribute.0.12.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Distribute.iOS.Bindings.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Azure.Mobile.iOS.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Azure.Mobile.0.12.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.iOS.Bindings.dll</HintPath>
     </Reference>
@@ -200,14 +195,6 @@
       <HintPath>..\..\..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Plugin.Geolocator, Version=4.0.0.53, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Xam.Plugin.Geolocator.4.0.0.53-beta\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Plugin.Geolocator.Abstractions, Version=4.0.0.53, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Xam.Plugin.Geolocator.4.0.0.53-beta\lib\Xamarin.iOS10\Plugin.Geolocator.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -224,6 +211,18 @@
       <HintPath>..\..\..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Plugin.Geolocator.Abstractions">
+      <HintPath>..\..\..\packages\Xam.Plugin.Geolocator.4.0.0.55-beta\lib\Xamarin.iOS10\Plugin.Geolocator.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator">
+      <HintPath>..\..\..\packages\Xam.Plugin.Geolocator.4.0.0.55-beta\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Pollenalarm.Core\Pollenalarm.Core.csproj">
@@ -382,4 +381,5 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
   </Target>
+  <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
 </Project>

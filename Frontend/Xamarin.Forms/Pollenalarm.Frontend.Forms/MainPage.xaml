@@ -159,35 +159,50 @@
             RefreshCommand="{Binding RefreshCommand}">
 
             <ListView.Header>
-                <AbsoluteLayout>
-                    <AbsoluteLayout.HeightRequest>
-                        <OnIdiom
-                            x:TypeArguments="x:Double"
-                            Phone="170"
-                            Tablet="300" />
-                    </AbsoluteLayout.HeightRequest>
-                    <Image
-                        AbsoluteLayout.LayoutBounds="0,0,1,1"
-                        AbsoluteLayout.LayoutFlags="All"
-                        Aspect="AspectFill"
-                        IsOpaque="True"
-                        Source="Header.png" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                
+                    <AbsoluteLayout Grid.Row="0">
+                        <AbsoluteLayout.HeightRequest>
+                            <OnIdiom
+                                x:TypeArguments="x:Double"
+                                Phone="170"
+                                Tablet="300" />
+                        </AbsoluteLayout.HeightRequest>
+                        <Image
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            Aspect="AspectFill"
+                            IsOpaque="True"
+                            Source="Header.png" />
 
-                    <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5" AbsoluteLayout.LayoutFlags="PositionProportional">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Large"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding GreetingHeader, Mode=OneWay}"
-                            TextColor="White" />
-                        <Label
-                            Margin="0,-6,0,0"
-                            FontSize="Small"
-                            HorizontalTextAlignment="Center"
-                            Text="You are lucky, mild pollen today."
-                            TextColor="White" />
-                    </StackLayout>
-                </AbsoluteLayout>
+                        <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5" AbsoluteLayout.LayoutFlags="PositionProportional">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding GreetingHeader, Mode=OneWay}"
+                                TextColor="White" />
+                            <Label
+                                Margin="0,-6,0,0"
+                                FontSize="Small"
+                                HorizontalTextAlignment="Center"
+                                Text="You are lucky, mild pollen today."
+                                TextColor="White" />
+                        </StackLayout>
+                    </AbsoluteLayout>
+
+                    <Label
+                        Text="{i18n:Translate NoPlacesWarning}"
+                        IsVisible="{Binding ShowNoPlacesWarning}"
+                        Margin="{StaticResource DefaultThickness}"
+                        TextColor="{StaticResource SecondaryFontColor}"
+                        Grid.Row="1" />
+                    
+                    </Grid>
             </ListView.Header>
         </ListView>
 

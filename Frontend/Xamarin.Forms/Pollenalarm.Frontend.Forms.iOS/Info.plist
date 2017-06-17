@@ -19,11 +19,9 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.0</string>
+	<string>8.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.thepagedot.pollenalarm</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-60@2x</string>
@@ -52,7 +50,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleShortVersionString</key>
-	<string></string>
+	<string>0.1.0</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIStatusBarStyle</key>
@@ -63,5 +61,7 @@
 	<string>Pollenalarm</string>
 	<key>CFBundleName</key>
 	<string>Pollenalarm</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>

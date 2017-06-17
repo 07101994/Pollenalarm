@@ -134,14 +134,6 @@
     <Reference Include="ModernHttpClient">
       <HintPath>..\..\..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Geolocator, Version=4.0.0.53, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Xam.Plugin.Geolocator.4.0.0.53-beta\lib\portable-net45+wp80+win8+wpa81\Plugin.Geolocator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Plugin.Geolocator.Abstractions, Version=4.0.0.53, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Xam.Plugin.Geolocator.4.0.0.53-beta\lib\portable-net45+wp80+win8+wpa81\Plugin.Geolocator.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
@@ -156,6 +148,12 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions">
+      <HintPath>..\..\..\packages\Xam.Plugin.Geolocator.4.0.0.55-beta\lib\portable-net45+wp80+win8+wpa81\Plugin.Geolocator.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator">
+      <HintPath>..\..\..\packages\Xam.Plugin.Geolocator.4.0.0.55-beta\lib\portable-net45+wp80+win8+wpa81\Plugin.Geolocator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -132,7 +132,6 @@
         <Grid>
             <ListView
                 x:Name="ListToday"
-                
                 GroupDisplayBinding="{Binding Title}"
                 IsGroupingEnabled="True"
                 HasUnevenRows="True"
