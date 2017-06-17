@@ -43,10 +43,9 @@ namespace Pollenalarm.Frontend.Forms
             MobileCenter.Start(
                 "ios=85f19b77-10f3-464a-802d-4c8d9b0eac04;" +
                 "android=6be5a535-4b44-4c69-b4ca-73ff82dd96c9;" +
-                "uwp=f435af68-e540-4688-845f-435e0a1079f3;", 
+                "uwp=f435af68-e540-4688-845f-435e0a1079f3;",
                 typeof(Analytics),
-                typeof(Crashes),
-                typeof(Distribute));
+                typeof(Crashes));
 #endif
         }
     }
