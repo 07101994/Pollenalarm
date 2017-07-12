@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Plugin.Connectivity;
 
 
 namespace Pollenalarm.Frontend.Forms.iOS
