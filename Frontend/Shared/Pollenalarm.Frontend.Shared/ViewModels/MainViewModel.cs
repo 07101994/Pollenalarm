@@ -10,6 +10,8 @@ using Pollenalarm.Frontend.Shared.Misc;
 using Pollenalarm.Frontend.Shared.Services;
 using Pollenalarm.Frontend.Shared.Models;
 using MvvmHelpers;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
 
 namespace Pollenalarm.Frontend.Shared.ViewModels
 {
@@ -182,11 +184,18 @@ namespace Pollenalarm.Frontend.Shared.ViewModels
                 }
 
 
-                // Update all places
-                foreach (var place in Places)
+                // Update all places if internet connection is available
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    await _PollenService.GetPollutionsForPlaceAsync(place);
-                    place.RecalculateMaxPollution();
+                    foreach (var place in Places)
+                    {
+                        await _PollenService.GetPollutionsForPlaceAsync(place);
+                        place.RecalculateMaxPollution();
+                    }
+                }
+                else
+                {
+                    //TODO: Show offline indicator
                 }
             }
 

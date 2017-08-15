@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Plugin.Connectivity;
 
 
 namespace Pollenalarm.Frontend.Forms.iOS
@@ -27,9 +28,9 @@ namespace Pollenalarm.Frontend.Forms.iOS
             UINavigationBar.Appearance.TintColor = UIColor.White;
             UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
 
-#if ENABLE_TEST_CLOUD
-				Xamarin.Calabash.Start();
-#endif
+
+            Xamarin.Calabash.Start();
+
 
             global::Xamarin.Forms.Forms.Init();
 
