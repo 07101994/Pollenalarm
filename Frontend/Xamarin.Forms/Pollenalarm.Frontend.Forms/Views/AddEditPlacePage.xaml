@@ -24,8 +24,8 @@
 
     <Grid>
         <StackLayout Padding="{StaticResource DefaultThickness}" Spacing="{StaticResource DefaultMargin}">
-            <Entry Placeholder="Name" Text="{Binding PlaceName, Mode=TwoWay}" />
-            <Entry Placeholder="Zip" Keyboard="Numeric" Text="{Binding PlaceZip, Mode=TwoWay}" />
+            <Entry Placeholder="Name" Text="{Binding PlaceName, Mode=TwoWay}" AutomationId="NameEntry" />
+            <Entry Placeholder="Zip" Keyboard="Numeric" Text="{Binding PlaceZip, Mode=TwoWay}" AutomationId="ZipEntry" />
             <Button
                 x:Name="AddButton"
                 Command="{Binding AddEditPlaceCommand}"
