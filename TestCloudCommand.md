@@ -1,0 +1,3 @@
+```
+mobile-center test run uitest --app "Pollenalarm/Pollenalarm" --devices 2a654b3d --app-path "/Users/robinmanuelthiel/Library/Developer/Xamarin/Archives/2017-08-16/Pollenalarm.Frontend.Forms.Droid 8-16-17 4.38 PM.apkarchive/com.thepagedot.pollenalarm.apk"  --test-series "master" --locale "en_US" --build-dir /Users/robinmanuelthiel/Source/Thepagedot/Pollenalarm/Test/Pollenalarm.Backend.Forms.UITests/bin/Release
+```
