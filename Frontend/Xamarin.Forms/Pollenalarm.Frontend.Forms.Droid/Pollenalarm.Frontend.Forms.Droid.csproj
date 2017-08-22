@@ -41,9 +41,10 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
+<JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType></DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -56,6 +57,7 @@
     <AndroidSigningStorePass>!iR2SrV$cz5HS$F5eycjHf5shhPGhj^B</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>PollenalarmKey</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>!iR2SrV$cz5HS$F5eycjHf5shhPGhj^B</AndroidSigningKeyPass>
+<JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
