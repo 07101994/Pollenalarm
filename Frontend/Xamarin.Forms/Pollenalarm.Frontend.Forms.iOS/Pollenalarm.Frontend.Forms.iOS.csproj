@@ -106,6 +106,7 @@
     <None Include="packages.config" />
     <Compile Include="CustomRenderers\CustomNavigationRenderer.cs" />
     <Compile Include="CustomRenderers\HyperlinkLabelRenderer.cs" />
+    <Compile Include="Services\EnvironmentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />

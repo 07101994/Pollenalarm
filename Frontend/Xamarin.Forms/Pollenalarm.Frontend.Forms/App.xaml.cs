@@ -5,6 +5,7 @@ using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Microsoft.Azure.Mobile.Distribute;
+using Pollenalarm.Frontend.Forms.Abstractions;
 
 namespace Pollenalarm.Frontend.Forms
 {
@@ -38,15 +39,17 @@ namespace Pollenalarm.Frontend.Forms
         {
             base.OnStart();
 
-#if !DEBUG && !ENABLE_TEST_CLOUD
-            // Register Visual Studio Mobile Center
-            MobileCenter.Start(
-                "ios=85f19b77-10f3-464a-802d-4c8d9b0eac04;" +
-                "android=6be5a535-4b44-4c69-b4ca-73ff82dd96c9;" +
-                "uwp=f435af68-e540-4688-845f-435e0a1079f3;",
-                typeof(Analytics),
-                typeof(Crashes));
-#endif
+            // Only start Visual Studio Mobile Center when running in a real-world scenario
+            var environment = DependencyService.Get<IEnvironmentService>();
+            if (environment.IsRunningInRealWorld())
+            {
+                MobileCenter.Start(
+                    "ios=85f19b77-10f3-464a-802d-4c8d9b0eac04;" +
+                    "android=6be5a535-4b44-4c69-b4ca-73ff82dd96c9;" +
+                    "uwp=f435af68-e540-4688-845f-435e0a1079f3;",
+                    typeof(Analytics),
+                    typeof(Crashes));
+            }
         }
     }
 }
