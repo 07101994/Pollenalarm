@@ -6,7 +6,7 @@
     xmlns:converter="clr-namespace:Pollenalarm.Frontend.Forms.Converters;assembly=Pollenalarm.Frontend.Forms"
     xmlns:custom="clr-namespace:Pollenalarm.Frontend.Forms.CustomControls;assembly=Pollenalarm.Frontend.Forms"
     xmlns:i18n="clr-namespace:Pollenalarm.Frontend.Forms.MarkupExtensions;assembly=Pollenalarm.Frontend.Forms"
-    Title="{i18n:Translate AppTitle}"
+    Title="Pollenalarm Demo"
 	IsBusy="{Binding IsBusy, Mode=OneWay}">
 
     <ContentPage.Resources>
